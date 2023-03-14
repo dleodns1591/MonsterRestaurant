@@ -29,7 +29,7 @@ public class TitleManager : MonoBehaviour
         // 시작 버튼을 눌렀을 경우
         startBtn.onClick.AddListener(() =>
         {
-            // 인게임 씬으로 넘어가기
+            SceneManager.LoadScene(1);
         });
 
         // 설정 버튼을 눌렀을 경우
