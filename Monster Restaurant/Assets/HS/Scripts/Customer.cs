@@ -24,6 +24,10 @@ public class Customer : MonoBehaviour
     private GameObject BackgroundCanvas;
     [SerializeField]
     private FadeInOut fadeInOut;
+    [SerializeField]
+    private Text OrderText;
+    [SerializeField]
+    private RandomText RT;
 
     bool playerDetect = false;
 
@@ -74,5 +78,15 @@ public class Customer : MonoBehaviour
 
         yield return new WaitForSeconds(delayTime);
         playerDetect = false;
+        StartCoroutine(Order());
+
+    }
+
+    IEnumerator Order()
+    {
+        string temp = RT.FirstTexts[Random.Range(0, 21)] + " 재료 " + RT.MiddleTexts[Random.Range(0, 21)] + " 조리방법 " + RT.LastTexts[Random.Range(0, 21)];
+        OrderText.DOText(temp, 0.05f * temp.Length);
+
+        yield return null;
     }
 }
