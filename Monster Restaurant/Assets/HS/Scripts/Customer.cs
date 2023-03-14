@@ -19,11 +19,13 @@ public class Customer : MonoBehaviour
     [SerializeField]
     private Transform FastMovingPos;
     [SerializeField]
-    private Sprite[] GuestDefults;
+    private Sprite[] GuestDefualts;
     [SerializeField, Tooltip("배경 위에 보이기 하기 위한")]
     private GameObject BackgroundCanvas;
 
     bool playerDetect = false;
+
+    int curCustomerType;
     private void Start()
     {
         StartCoroutine(Moving());
@@ -37,6 +39,9 @@ public class Customer : MonoBehaviour
     {
         float delayTime = 0.5f;
 
+        curCustomerType = Random.Range(0, System.Enum.GetValues(typeof(EcustomerType)).Length);
+
+        gameObject.GetComponent<Image>().sprite = GuestDefualts[(int)(EcustomerType)curCustomerType];
         for (int i = 0; i < SlowMovingPos.Length; i++)
         {
             if (i != SlowMovingPos.Length - 1)
@@ -58,7 +63,7 @@ public class Customer : MonoBehaviour
         //주문 테이블쪽 이동
         gameObject.transform.parent = BackgroundCanvas.transform;
         gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(700, 1000);
-        gameObject.GetComponent<Image>().sprite = GuestDefults[(int)EcustomerType.Alien]; 
+        gameObject.GetComponent<Image>().sprite = GuestDefualts[(int)(EcustomerType)curCustomerType]; 
         transform.position = OrderPos[0].position;
         transform.DOMove(OrderPos[1].position, delayTime);
         gameObject.GetComponent<Image   >().DOColor(new Color(1, 1, 1, 1), delayTime);
