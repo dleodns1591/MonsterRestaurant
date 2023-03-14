@@ -1,15 +1,27 @@
 using UnityEngine;
 using DG.Tweening;
 using System.Collections;
+using UnityEngine.UI;
 
-public class Shadow : MonoBehaviour
+public enum EcustomerType
+{
+    Alien,
+    Hyena,
+    Robot,
+    GroupOrder
+}
+
+
+public class Customer : MonoBehaviour
 {
     [SerializeField]
     private Transform[] SlowMovingPos, OrderPos;
     [SerializeField]
     private Transform FastMovingPos;
     [SerializeField]
-    private Sprite GuestSpr;
+    private Sprite[] GuestDefults;
+    [SerializeField, Tooltip("배경 위에 보이기 하기 위한")]
+    private GameObject BackgroundCanvas;
 
     bool playerDetect = false;
     private void Start()
@@ -40,14 +52,16 @@ public class Shadow : MonoBehaviour
         playerDetect = true;
         //빠르게 이동
         transform.DOMove(FastMovingPos.position, delayTime);
-        gameObject.GetComponent<SpriteRenderer>().DOColor(new Color(1,1,1,0), delayTime);
+        gameObject.GetComponent<Image>().DOColor(new Color(1,1,1,0), delayTime);
         yield return new WaitForSeconds(1.5f);
 
         //주문 테이블쪽 이동
-        gameObject.GetComponent<SpriteRenderer>().sprite = GuestSpr; 
+        gameObject.transform.parent = BackgroundCanvas.transform;
+        gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(700, 1000);
+        gameObject.GetComponent<Image>().sprite = GuestDefults[(int)EcustomerType.Alien]; 
         transform.position = OrderPos[0].position;
         transform.DOMove(OrderPos[1].position, delayTime);
-        gameObject.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 1), delayTime);
+        gameObject.GetComponent<Image   >().DOColor(new Color(1, 1, 1, 1), delayTime);
 
 
         yield return new WaitForSeconds(delayTime);
