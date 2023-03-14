@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class FadeInOut : MonoBehaviour
 {
+    [SerializeField] int fadeTime = 0;
 
     void Start()
     {
@@ -17,6 +18,6 @@ public class FadeInOut : MonoBehaviour
         Image fade = GetComponent<Image>();
 
         fade.DOFade(1, 0);
-        fade.DOFade(0, 1).SetEase(Ease.Linear);
+        fade.DOFade(0, fadeTime).SetEase(Ease.Linear);
     }
 }
