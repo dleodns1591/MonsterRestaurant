@@ -977,6 +977,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cec55f0d04072344ca0ead0ca5f3525a, type: 3}
   - {fileID: 21300000, guid: c9473b8feb91f82498fb99c0a87fafcd, type: 3}
   BackgroundCanvas: {fileID: 1729327165}
+  fadeInOut: {fileID: 1955196748}
 --- !u!1 &777566126
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,6 +1541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20a53f7844b51ba4ba2a71f3daf610d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeTime: 1.5
 --- !u!114 &1955196749
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -22,6 +22,8 @@ public class Customer : MonoBehaviour
     private Sprite[] GuestDefualts;
     [SerializeField, Tooltip("배경 위에 보이기 하기 위한")]
     private GameObject BackgroundCanvas;
+    [SerializeField]
+    private FadeInOut fadeInOut;
 
     bool playerDetect = false;
 
@@ -41,6 +43,7 @@ public class Customer : MonoBehaviour
 
         curCustomerType = Random.Range(0, System.Enum.GetValues(typeof(EcustomerType)).Length);
 
+        yield return new WaitForSeconds(fadeInOut.fadeTime); 
         gameObject.GetComponent<Image>().sprite = GuestDefualts[(int)(EcustomerType)curCustomerType];
         for (int i = 0; i < SlowMovingPos.Length; i++)
         {

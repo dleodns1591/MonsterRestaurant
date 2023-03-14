@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class FadeInOut : MonoBehaviour
 {
-    [SerializeField] int fadeTime = 0;
+    public float fadeTime = 0;
 
     void Start()
     {
