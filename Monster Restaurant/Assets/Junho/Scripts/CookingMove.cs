@@ -12,15 +12,14 @@ public class CookingMove : MonoBehaviour, IPointerDownHandler,IDragHandler
     {
         var x = (eventData.position.x - startPos.x > 0) ? 1: -1;
 
-        startPos = eventData.position;
+        if ((moveUIs.transform.position.x >= 0 && x == 1 )|| (moveUIs.transform.position.x <= -16 && x == -1)) return;
+
         moveUIs.transform.Translate(Vector2.right * x * moveSpd * Time.deltaTime);
-        if (moveUIs.transform.position.x >= 0) moveUIs.transform.position = Vector2.zero;
-        else if (moveUIs.transform.position.x <= -16) moveUIs.transform.position = Vector2.right * -16;
+        startPos = eventData.position;
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        print("dd");
         startPos = eventData.position;
     }
    
