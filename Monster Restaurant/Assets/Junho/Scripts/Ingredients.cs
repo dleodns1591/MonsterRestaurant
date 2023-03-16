@@ -68,7 +68,7 @@ public class Ingredients : MonoBehaviour
             ECookingMainMaterial list = (ECookingMainMaterial)i;
             mainMaterialBtns[i].onClick.AddListener(() => {
 
-                cooking.myMainMaterial = list;
+                cooking.MyMainMaterial = list;
 
             });
         }
@@ -78,7 +78,7 @@ public class Ingredients : MonoBehaviour
             ECookingSubMaterial list = (ECookingSubMaterial)i;
             subMaterialBtns[i].onClick.AddListener(() => {
 
-                cooking.mySubMaterial = list;
+                cooking.MySubMaterial = list;
             });
         }
 
