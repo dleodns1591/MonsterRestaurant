@@ -23,15 +23,21 @@ public class Customer : MonoBehaviour
     [SerializeField, Tooltip("배경 위에 보이기 하기 위한")]
     private GameObject BackgroundCanvas;
     [SerializeField]
+    private GameObject CookingScene;
+    [SerializeField]
     private FadeInOut fadeInOut;
     [SerializeField]
     private Text OrderText;
     [SerializeField]
     private RandomText RT;
+    [SerializeField]
+    private Button CookingBtn, ReAskBtn;
 
     bool playerDetect = false;
 
     int curCustomerType;
+    int reAskCount = 0;
+
     private void Start()
     {
         StartCoroutine(Moving());
@@ -43,12 +49,17 @@ public class Customer : MonoBehaviour
     /// <returns></returns>
     IEnumerator Moving()
     {
+        yield return new WaitForSeconds(fadeInOut.fadeTime);
+
         float delayTime = 0.5f;
 
+        Image CustomerImg = gameObject.GetComponent<Image>();
+        //랜덤으로 손님 뽑기
         curCustomerType = Random.Range(0, System.Enum.GetValues(typeof(EcustomerType)).Length);
+        CustomerImg.sprite = GuestDefualts[(int)(EcustomerType)curCustomerType];
 
-        yield return new WaitForSeconds(fadeInOut.fadeTime); 
-        gameObject.GetComponent<Image>().sprite = GuestDefualts[(int)(EcustomerType)curCustomerType];
+
+        //와리가리 움직임
         for (int i = 0; i < SlowMovingPos.Length; i++)
         {
             if (i != SlowMovingPos.Length - 1)
@@ -56,27 +67,29 @@ public class Customer : MonoBehaviour
             else
                 transform.DOMove(SlowMovingPos[i].position, 0.25f);
 
-
             yield return new WaitForSeconds(delayTime);
         }
 
         //빠르게 이동할때 가면 감지
         playerDetect = true;
+
         //빠르게 이동
         transform.DOMove(FastMovingPos.position, delayTime);
-        gameObject.GetComponent<Image>().DOColor(new Color(1,1,1,0), delayTime);
+        CustomerImg.DOColor(new Color(1, 1, 1, 0), delayTime);
+
         yield return new WaitForSeconds(1.5f);
 
         //주문 테이블쪽 이동
         gameObject.transform.parent = BackgroundCanvas.transform;
         gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(700, 1000);
-        gameObject.GetComponent<Image>().sprite = GuestDefualts[(int)(EcustomerType)curCustomerType]; 
+        CustomerImg.sprite = GuestDefualts[(int)(EcustomerType)curCustomerType];
         transform.position = OrderPos[0].position;
         transform.DOMove(OrderPos[1].position, delayTime);
-        gameObject.GetComponent<Image   >().DOColor(new Color(1, 1, 1, 1), delayTime);
-
+        CustomerImg.DOColor(new Color(1, 1, 1, 1), delayTime);
 
         yield return new WaitForSeconds(delayTime);
+
+        //주문시작
         playerDetect = false;
         StartCoroutine(Order());
 
@@ -84,9 +97,37 @@ public class Customer : MonoBehaviour
 
     IEnumerator Order()
     {
-        string temp = RT.FirstTexts[Random.Range(0, 21)] + " 재료 " + RT.MiddleTexts[Random.Range(0, 21)] + " 조리방법 " + RT.LastTexts[Random.Range(0, 21)];
+        OrderText.gameObject.SetActive(true);
+        string temp = "메인 재료 " + RT.FirstTexts[Random.Range(0, 20)] + " 부재료 얼만큼 " + RT.MiddleTexts[Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[Random.Range(0, 20)];
         OrderText.DOText(temp, 0.05f * temp.Length);
 
-        yield return null;
+        yield return new WaitForSeconds((temp.Length * 0.05f) + 1f);
+
+        CookingBtn.onClick.AddListener(() =>
+        {
+            CookingScene.GetComponent<RectTransform>().DOAnchorPos3DY(0, 1).SetEase(Ease.OutBounce);
+        });
+        ReAskBtn.onClick.AddListener(() =>
+        {
+            if (reAskCount == 0)
+            {
+                OrderText.text = "";
+                string ReOrder = "메인 재료 부재료 얼만큼 " + RT.FirstTexts[Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[Random.Range(0, 20)];
+                OrderText.DOText(ReOrder, 0.05f * ReOrder.Length);
+                reAskCount++;
+            }
+            else
+            {
+                OrderText.text = "";
+                string LastOrder = "!메인 재료!로 !부재료! !얼만큼! 넣어서 !조리방법! 해주세요 '^'..";
+                OrderText.DOText(LastOrder, 0.05f * LastOrder.Length);
+
+                ReAskBtn.gameObject.SetActive(false);
+                //CookingBtn.transform.position
+            }
+            
+        });
+        CookingBtn.gameObject.SetActive(true);
+        ReAskBtn.gameObject.SetActive(true);
     }
 }
