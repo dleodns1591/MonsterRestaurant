@@ -2,6 +2,7 @@ using UnityEngine;
 using DG.Tweening;
 using System.Collections;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public enum EcustomerType
 {
@@ -22,7 +23,7 @@ public class Customer : MonoBehaviour
     [SerializeField]
     private Transform[] SlowMovingPos, OrderPos;
     [SerializeField]
-    private Transform FastMovingPos;
+    private Transform FastMovingPos, MemoPivot;
     [SerializeField]
     private Sprite[] GuestDefualts;
     [SerializeField, Tooltip("배경 위에 보이기 하기 위한")]
@@ -32,18 +33,20 @@ public class Customer : MonoBehaviour
     [SerializeField]
     private FadeInOut fadeInOut;
     [SerializeField]
-    private Text OrderText, ReAskText;
+    private UIText OrderText, ReAskText;
     [SerializeField]
-    private Text[] MemoTexts;
+    private UIText[] MemoTexts;
     [SerializeField]
     private RandomText RT;
     [SerializeField]
-    private Button CookingBtn, ReAskBtn, HistoryBtn;
+    private Button CookingBtn, ReAskBtn, MemoBtn;
 
-    bool playerDetect = false;
+    private bool playerDetect = false;
+    private int curCustomerType;
+    private int reAskCount = 0;
+    private string[] memo = new string[5];
+    private Tween TextTween;
 
-    int curCustomerType;
-    int reAskCount = 0;
 
     private void Start()
     {
@@ -114,10 +117,16 @@ public class Customer : MonoBehaviour
 
             CookingBtn.gameObject.SetActive(false);
             ReAskBtn.gameObject.SetActive(false);
-
-            HistoryBtn.onClick.AddListener(() =>
+            MemoBtn.gameObject.SetActive(true);
+                    MemoPaper.SetActive(false);
+            MemoBtn.onClick.AddListener(() =>
             {
-                //MemoTexts
+                for (int i = 0; i < MemoTexts.Length; i++)
+                {
+                    MemoPaper.SetActive(true);
+                    MemoTexts[i].text = memo[i];
+                    MemoPaper.transform.DOScale(new Vector3(1,1), 0.6f).SetEase(Ease.OutQuint);
+                }
             });
         });
 
@@ -125,16 +134,21 @@ public class Customer : MonoBehaviour
         {
             if (reAskCount == 0)
             {
+                memo[1] = "네?";
                 OrderText.text = "";
                 ReAskText.text = "뭐라고요?";
                 string ReOrder = "메인 재료 부재료 얼만큼 " + RT.FirstTexts[Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[Random.Range(0, 20)];
-                OrderText.DOText(ReOrder, 0.05f * ReOrder.Length);
+                memo[2] = ReOrder;
+                TextTween = OrderText.DOText(ReOrder, 0.05f * ReOrder.Length);
                 reAskCount++;
             }
             else
             {
+                memo[3] = "뭐라고요?";
                 OrderText.text = "";
                 string LastOrder = "!메인 재료!로 !부재료! !얼만큼! 넣어서 !조리방법! 해주세요 '^'..";
+                memo[4] = LastOrder;
+                TextTween.Kill();
                 OrderText.DOText(LastOrder, 0.05f * LastOrder.Length);
 
                 ReAskText.text = "네?";
@@ -144,11 +158,13 @@ public class Customer : MonoBehaviour
 
         });
 
+        //memo = new string[memo.Length];
         OrderText.gameObject.SetActive(true);
 
         if (curCustomerType == (int)EcustomerType.Robot)
         {
             string temp2 = "!메인 재료!로 !부재료! !얼만큼! 넣어서 !조리방법! 해주세요";
+            memo[0] = temp2;
             OrderText.DOText(temp2, 0.05f * temp2.Length);
 
             yield return new WaitForSeconds((temp2.Length * 0.05f) + 1f);
@@ -158,7 +174,7 @@ public class Customer : MonoBehaviour
         {
             //RandomText에서 랜덤 외계어를 가져와서 주문 대화를 만듦
             string temp = "메인 재료 " + RT.FirstTexts[Random.Range(0, 20)] + " 부재료 얼만큼 " + RT.MiddleTexts[Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[Random.Range(0, 20)];
-
+            memo[0] = temp;
             OrderText.DOText(temp, 0.05f * temp.Length);
 
             yield return new WaitForSeconds((temp.Length * 0.05f) + 1f);
