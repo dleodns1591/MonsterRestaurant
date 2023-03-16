@@ -23,15 +23,17 @@ public class Customer : MonoBehaviour
     [SerializeField, Tooltip("배경 위에 보이기 하기 위한")]
     private GameObject BackgroundCanvas;
     [SerializeField]
-    private GameObject CookingScene;
+    private GameObject CookingScene, MemoPaper;
     [SerializeField]
     private FadeInOut fadeInOut;
     [SerializeField]
-    private Text OrderText;
+    private Text OrderText, ReAskText;
+    [SerializeField]
+    private Text[] MemoTexts;
     [SerializeField]
     private RandomText RT;
     [SerializeField]
-    private Button CookingBtn, ReAskBtn;
+    private Button CookingBtn, ReAskBtn, HistoryBtn;
 
     bool playerDetect = false;
 
@@ -95,23 +97,31 @@ public class Customer : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 주문 상호작용
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Order()
     {
-        OrderText.gameObject.SetActive(true);
-        string temp = "메인 재료 " + RT.FirstTexts[Random.Range(0, 20)] + " 부재료 얼만큼 " + RT.MiddleTexts[Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[Random.Range(0, 20)];
-        OrderText.DOText(temp, 0.05f * temp.Length);
-
-        yield return new WaitForSeconds((temp.Length * 0.05f) + 1f);
-
         CookingBtn.onClick.AddListener(() =>
         {
             CookingScene.GetComponent<RectTransform>().DOAnchorPos3DY(0, 1).SetEase(Ease.OutBounce);
+
+            CookingBtn.gameObject.SetActive(false);
+            ReAskBtn.gameObject.SetActive(false);
+
+            HistoryBtn.onClick.AddListener(() =>
+            {
+                //MemoTexts
+            });
         });
+
         ReAskBtn.onClick.AddListener(() =>
         {
             if (reAskCount == 0)
             {
                 OrderText.text = "";
+                ReAskText.text = "뭐라고요?";
                 string ReOrder = "메인 재료 부재료 얼만큼 " + RT.FirstTexts[Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[Random.Range(0, 20)];
                 OrderText.DOText(ReOrder, 0.05f * ReOrder.Length);
                 reAskCount++;
@@ -122,12 +132,34 @@ public class Customer : MonoBehaviour
                 string LastOrder = "!메인 재료!로 !부재료! !얼만큼! 넣어서 !조리방법! 해주세요 '^'..";
                 OrderText.DOText(LastOrder, 0.05f * LastOrder.Length);
 
+                ReAskText.text = "네?";
                 ReAskBtn.gameObject.SetActive(false);
                 //CookingBtn.transform.position
             }
-            
+
         });
-        CookingBtn.gameObject.SetActive(true);
-        ReAskBtn.gameObject.SetActive(true);
+
+        OrderText.gameObject.SetActive(true);
+
+        if (curCustomerType == (int)EcustomerType.Robot)
+        {
+            string temp2 = "!메인 재료!로 !부재료! !얼만큼! 넣어서 !조리방법! 해주세요";
+            OrderText.DOText(temp2, 0.05f * temp2.Length);
+
+            yield return new WaitForSeconds((temp2.Length * 0.05f) + 1f);
+            CookingBtn.gameObject.SetActive(true);
+        }
+        else
+        {
+            //RandomText에서 랜덤 외계어를 가져와서 주문 대화를 만듦
+            string temp = "메인 재료 " + RT.FirstTexts[Random.Range(0, 20)] + " 부재료 얼만큼 " + RT.MiddleTexts[Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[Random.Range(0, 20)];
+
+            OrderText.DOText(temp, 0.05f * temp.Length);
+
+            yield return new WaitForSeconds((temp.Length * 0.05f) + 1f);
+
+            CookingBtn.gameObject.SetActive(true);
+            ReAskBtn.gameObject.SetActive(true);
+        }
     }
 }
