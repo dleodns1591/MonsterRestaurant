@@ -31,7 +31,6 @@ public class Cooking : MonoBehaviour,IPointerDownHandler
             if(cookingMG.mainPriceCount.TryGetValue(cookingMG.MyMainMaterial, out int count)) 
             {
                 cookingMG.mainPriceCount[cookingMG.MyMainMaterial] = ++count;
-                print(count);
             }
         }
         else
@@ -45,7 +44,6 @@ public class Cooking : MonoBehaviour,IPointerDownHandler
             if (cookingMG.subPriceCount.TryGetValue(cookingMG.MySubMaterial, out int count))
             {
                 cookingMG.subPriceCount[cookingMG.MySubMaterial] = ++count;
-                print(count);
             }
         }
     }
