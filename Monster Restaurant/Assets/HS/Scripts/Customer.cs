@@ -8,7 +8,12 @@ public enum EcustomerType
     Alien,
     Hyena,
     Robot,
-    GroupOrder
+    Dragon,
+
+    GroupOrder,
+    FoodCleanTester,
+    SalesMan,
+    Thief
 }
 
 
