@@ -48,6 +48,7 @@ public class Customer : MonoBehaviour
     private int reAskCount = 0;
     private string[] memo = new string[5];
     private Tween TextTween;
+    private string[] OrderTalk;
 
 
     private void Start()
@@ -108,6 +109,29 @@ public class Customer : MonoBehaviour
     }
 
     /// <summary>
+    /// 스페셜 손님 설정
+    /// </summary>
+    void SetSpesial(EcustomerType type)
+    {
+        switch (type)
+        {
+            case EcustomerType.GroupOrder:
+                break;
+            case EcustomerType.FoodCleanTester:
+                OrderTalk[0] = "식품 위생관리 위원회에서 나왔습니다. 잠시 주방을 검사해도 되겠습니까?";
+                OrderTalk[1] = "흐음... 깨끗하군요! 혹시 요리를 하실때 청소는 몇주마다 하시나요?";
+                OrderTalk[2] = "오... 대단하시네요! 그러면 이만 ㄱ... 어라?";
+                break;
+            case EcustomerType.SalesMan:
+                break;
+            case EcustomerType.Thief:
+                
+                break;
+            default:
+                return;
+        }
+    }
+    /// <summary>
     /// 주문 상호작용
     /// </summary>
     /// <returns></returns>
@@ -143,19 +167,19 @@ public class Customer : MonoBehaviour
                 memo[1] = "네?";
                 OrderText.text = "";
                 ReAskText.text = "뭐라고요?";
-                string ReOrder = "메인 재료 부재료 얼만큼 " + RT.FirstTexts[Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[Random.Range(0, 20)];
-                memo[2] = ReOrder;
-                TextTween = OrderText.DOText(ReOrder, 0.05f * ReOrder.Length);
+                OrderTalk[1] = "메인 재료 부재료 얼만큼 " + RT.FirstTexts[Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[Random.Range(0, 20)];
+                memo[2] = OrderTalk[1];
+                TextTween = OrderText.DOText(OrderTalk[1], 0.05f * OrderTalk[1].Length);
                 reAskCount++;
             }
             else
             {
                 memo[3] = "뭐라고요?";
                 OrderText.text = "";
-                string LastOrder = "!메인 재료!로 !부재료! !얼만큼! 넣어서 !조리방법! 해주세요 '^'..";
-                memo[4] = LastOrder;
+                OrderTalk[2] = "!메인 재료!로 !부재료! !얼만큼! 넣어서 !조리방법! 해주세요 '^'..";
+                memo[4] = OrderTalk[2];
                 TextTween.Kill();
-                OrderText.DOText(LastOrder, 0.05f * LastOrder.Length);
+                OrderText.DOText(OrderTalk[2], 0.05f * OrderTalk[2].Length);
 
                 ReAskText.text = "네?";
                 ReAskBtn.gameObject.SetActive(false);
@@ -176,12 +200,16 @@ public class Customer : MonoBehaviour
         }
         else
         {
-            //RandomText에서 랜덤 외계어를 가져와서 주문 대화를 만듦
-            string temp = "메인 재료 " + RT.FirstTexts[Random.Range(0, 20)] + " 부재료 얼만큼 " + RT.MiddleTexts[Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[Random.Range(0, 20)];
-            memo[0] = temp;
-            OrderText.DOText(temp, 0.05f * temp.Length);
 
-            yield return new WaitForSeconds((temp.Length * 0.05f) + 1f);
+            //RandomText에서 랜덤 외계어를 가져와서 주문 대화를 만듦
+            OrderTalk[0] = "메인 재료 " + RT.FirstTexts[Random.Range(0, 20)] + " 부재료 얼만큼 " + RT.MiddleTexts[Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[Random.Range(0, 20)];
+            
+            //특별 손님인지 확인
+            SetSpesial((EcustomerType)curCustomerType);
+            memo[0] = OrderTalk[0];
+            OrderText.DOText(OrderTalk[0], 0.05f * OrderTalk[0].Length);
+
+            yield return new WaitForSeconds((OrderTalk[0].Length * 0.05f) + 1f);
 
             CookingBtn.gameObject.SetActive(true);
             ReAskBtn.gameObject.SetActive(true);
