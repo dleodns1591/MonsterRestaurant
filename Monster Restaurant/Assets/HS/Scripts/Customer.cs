@@ -125,7 +125,7 @@ public class Customer : MonoBehaviour
                 {
                     MemoPaper.SetActive(true);
                     MemoTexts[i].text = memo[i];
-                    MemoPaper.transform.DOScale(new Vector3(1,1), 0.6f).SetEase(Ease.OutQuint);
+                    MemoPaper.transform.DOScale(new Vector3(1,1), 0.6f).SetEase(Ease.OutQuint); //여기야 대운아
                 }
             });
         });
@@ -153,12 +153,10 @@ public class Customer : MonoBehaviour
 
                 ReAskText.text = "네?";
                 ReAskBtn.gameObject.SetActive(false);
-                //CookingBtn.transform.position
             }
 
         });
 
-        //memo = new string[memo.Length];
         OrderText.gameObject.SetActive(true);
 
         if (curCustomerType == (int)EcustomerType.Robot)
