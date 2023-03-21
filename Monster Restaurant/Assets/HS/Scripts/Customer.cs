@@ -29,7 +29,9 @@ public class Customer : MonoBehaviour
     [SerializeField, Tooltip("배경 위에 보이기 하기 위한")]
     private GameObject BackgroundCanvas;
     [SerializeField]
-    private GameObject CookingScene, MemoPaper;
+    private GameObject CookingScene;
+    [SerializeField]
+    private RectTransform MemoPaper;
     [SerializeField]
     private FadeInOut fadeInOut;
     [SerializeField]
@@ -118,14 +120,18 @@ public class Customer : MonoBehaviour
             CookingBtn.gameObject.SetActive(false);
             ReAskBtn.gameObject.SetActive(false);
             MemoBtn.gameObject.SetActive(true);
-                    MemoPaper.SetActive(false);
+                    MemoPaper.gameObject.SetActive(false);
+
             MemoBtn.onClick.AddListener(() =>
             {
                 for (int i = 0; i < MemoTexts.Length; i++)
                 {
-                    MemoPaper.SetActive(true);
+                    MemoPaper.gameObject.SetActive(true);
                     MemoTexts[i].text = memo[i];
-                    MemoPaper.transform.DOScale(new Vector3(1,1), 0.6f).SetEase(Ease.OutQuint); //여기야 대운아
+                    MemoPaper.transform.DOScale(new Vector3(1, 1), 0.6f).SetEase(Ease.OutQuint);
+
+                    MemoPaper.DOSizeDelta(new Vector2(650, 549), 0.5f).SetEase(Ease.OutQuint);
+                    MemoPaper.DOAnchorPos(new Vector2(-242.47f, 0), 0.5f).SetEase(Ease.OutQuint);
                 }
             });
         });
