@@ -3,6 +3,7 @@ using DG.Tweening;
 using System.Collections;
 using UnityEngine.UI;
 using Unity.VisualScripting;
+using TMPro;
 
 public enum EcustomerType
 {
@@ -27,7 +28,7 @@ public class Customer : MonoBehaviour
     [SerializeField]
     private Transform[] SlowMovingPos, OrderPos;
     [SerializeField]
-    private Transform FastMovingPos, MemoPivot;
+    private Transform FastMovingPos;
     [SerializeField]
     private Sprite[] GuestDefualts;
     [SerializeField, Tooltip("배경 위에 보이기 하기 위한")]
@@ -46,7 +47,13 @@ public class Customer : MonoBehaviour
     private RandomText RT;
     [SerializeField]
     private Button CookingBtn, ReAskBtn, MemoBtn;
+    [SerializeField]
+    private Image MemoPaperBackground;
 
+
+
+    private readonly Vector2[] MemoOnTextSizes = { new Vector2(-72.51f, 80.92996f), new Vector2(-3, 6.999878f), new Vector2(-72.51f, -64.00003f), new Vector2(-3, -138), new Vector2(-72.51f, -204) };
+    private readonly Vector2[] MemoOffTextSizes = { new Vector2(132, -9), new Vector2(-135, 3), new Vector2(130, -36), new Vector2(-145, -29), new Vector2(131, -65) };
     private bool playerDetect = false;
     private int curCustomerType;
     private int reAskCount = 0;
@@ -76,7 +83,7 @@ public class Customer : MonoBehaviour
         CustomerImg.sprite = GuestDefualts[(int)(EcustomerType)curCustomerType];
 
         //일반 손님 중에 이벤트 손님 경우가 뽑힐 경우
-        if(curCustomerType == System.Enum.GetValues(typeof(EcustomerType)).Length - 1)
+        if (curCustomerType == System.Enum.GetValues(typeof(EcustomerType)).Length - 1)
         {
             //손님 순서 다음부터가 이벤트 손님
 
@@ -141,7 +148,7 @@ public class Customer : MonoBehaviour
                 #region 버튼 관련 전환
                 CookingText.text = "네!";
                 ReAskText.text = "아니요";
-                CookingBtn.onClick.RemoveAllListeners();    
+                CookingBtn.onClick.RemoveAllListeners();
                 ReAskBtn.onClick.RemoveAllListeners();
                 CookingBtn.onClick.AddListener(() =>
                 {
@@ -194,7 +201,7 @@ public class Customer : MonoBehaviour
                 break;
 
             case EeventCustomerType.Thief:
-                
+
                 break;
 
             default:
@@ -219,20 +226,9 @@ public class Customer : MonoBehaviour
             CookingBtn.gameObject.SetActive(false);
             ReAskBtn.gameObject.SetActive(false);
             MemoBtn.gameObject.SetActive(true);
-                    MemoPaper.gameObject.SetActive(false);
-
-            MemoBtn.onClick.AddListener(() =>
-            {
-                for (int i = 0; i < MemoTexts.Length; i++)
-                {
-                    MemoPaper.gameObject.SetActive(true);
-                    MemoTexts[i].text = memo[i];
-                    MemoPaper.transform.DOScale(new Vector3(1, 1), 0.6f).SetEase(Ease.OutQuint);
-
-                    MemoPaper.DOSizeDelta(new Vector2(650, 549), 0.5f).SetEase(Ease.OutQuint);
-                    MemoPaper.DOAnchorPos(new Vector2(-242.47f, 0), 0.5f).SetEase(Ease.OutQuint);
-                }
-            });
+            MemoPaper.gameObject.SetActive(false);
+            MemoPaperBackground.gameObject.SetActive(false);
+            MemoPaperBackground.color = new Color(0, 0, 0, 0);
         });
 
         ReAskBtn.onClick.RemoveAllListeners();
@@ -284,6 +280,46 @@ public class Customer : MonoBehaviour
 
             CookingBtn.gameObject.SetActive(true);
             ReAskBtn.gameObject.SetActive(true);
+        }
+    }
+
+    public void MemoOn()
+    {
+        MemoPaper.gameObject.SetActive(true);
+        MemoPaperBackground.gameObject.SetActive(true);
+        MemoPaperBackground.DOFade(163 / 255f, 0.5f);
+            MemoPaper.DOSizeDelta(new Vector2(650, 549), 0.3f).SetEase(Ease.OutQuint);
+            MemoPaper.DOAnchorPos(new Vector2(-242.47f, 0), 0.3f).SetEase(Ease.OutQuint);
+        for (int i = 0; i < MemoTexts.Length; i++)
+        {
+            MemoTexts[i].gameObject.SetActive(true);
+            MemoTexts[i].text = memo[i];
+            MemoTexts[i].rectTransform.DOAnchorPos(MemoOnTextSizes[i], 0.3f).SetEase(Ease.OutQuint);
+        }
+    }
+    public void MemoOff()
+    {
+        for (int i = 0; i < MemoTexts.Length; i++)
+        {
+            MemoTexts[i].text = memo[i];
+
+            MemoTexts[i].rectTransform.DOAnchorPos(MemoOffTextSizes[i], 0.3f).SetEase(Ease.OutQuint);
+        }
+        StartCoroutine(MemoTextOff());
+        MemoPaper.DOSizeDelta(new Vector2(150, 120), 0.3f);
+        MemoPaper.DOAnchorPos(new Vector2(-492.47f, 0), 0.3f);
+        
+        MemoPaperBackground.DOColor(new Color(0, 0, 0, 0), 0.3f);
+
+        IEnumerator MemoTextOff()
+        {
+            yield return new WaitForSeconds(0.3f);
+            for (int i = 0; i < MemoTexts.Length; i++)
+            {
+                MemoTexts[i].gameObject.SetActive(false);
+            }
+            MemoPaper.gameObject.SetActive(false);
+            MemoPaperBackground.gameObject.SetActive(false);
         }
     }
 }
