@@ -9,10 +9,15 @@ public class TitleManager : MonoBehaviour
 {
     [SerializeField] Button startBtn;
 
+    [Header("ÄÁÅÙÃ÷")]
+    [SerializeField] GameObject content;
+    [SerializeField] Button contentBtn;
+    bool isContent = false;
+
     [Header("¼³Á¤")]
-    [SerializeField] GameObject settingIn;
+    [SerializeField] CanvasGroup settingWindow;
     [SerializeField] Button settingBtn;
-    bool isSetting = false;
+    [SerializeField] Button settingCancleBtn;
 
     void Start()
     {
@@ -32,22 +37,36 @@ public class TitleManager : MonoBehaviour
             SceneManager.LoadScene(1);
         });
 
-        // ¼³Á¤ ¹öÆ°À» ´­·¶À» °æ¿ì
-        settingBtn.onClick.AddListener(() =>
+        // ÄÁÅÙÃ÷ ¹öÆ°À» ´­·¶À» °æ¿ì
+        contentBtn.onClick.AddListener(() =>
         {
-            if(!isSetting)
+            if(!isContent)
             {
-                isSetting = true;
+                isContent = true;
                 for (int i = 1; i < 5; i++)
-                    settingIn.transform.GetChild(i -1).DOLocalMoveY(i * -200, 0.8f).SetEase(Ease.OutBack);
+                    content.transform.GetChild(i -1).DOLocalMoveY(i * -200, 0.8f).SetEase(Ease.OutBack);
             }
 
             else
             {
-                isSetting = false;
+                isContent = false;
                 for (int i = 1; i < 5; i++)
-                    settingIn.transform.GetChild(i - 1).DOLocalMoveY(0, 0.8f).SetEase(Ease.InBack);
+                    content.transform.GetChild(i - 1).DOLocalMoveY(0, 0.8f).SetEase(Ease.InBack);
             }
+        });
+
+        settingBtn.onClick.AddListener(() =>
+        {
+            settingWindow.alpha = 1;
+            settingWindow.gameObject.SetActive(true);
+        });
+
+        settingCancleBtn.onClick.AddListener(() =>
+        {
+            settingWindow.DOFade(0, 0.2f).SetEase(Ease.Linear).OnComplete(() =>
+            {
+                settingWindow.gameObject.SetActive(false);
+            });
         });
     }
 }
