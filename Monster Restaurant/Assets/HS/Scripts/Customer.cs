@@ -11,6 +11,10 @@ public enum EcustomerType
     Robot,
     Dragon,
 
+    EventCustomer
+}
+public enum EeventCustomerType
+{
     GroupOrder,
     FoodCleanTester,
     SalesMan,
@@ -35,7 +39,7 @@ public class Customer : MonoBehaviour
     [SerializeField]
     private FadeInOut fadeInOut;
     [SerializeField]
-    private UIText OrderText, ReAskText;
+    private UIText OrderText, ReAskText, CookingText;
     [SerializeField]
     private UIText[] MemoTexts;
     [SerializeField]
@@ -48,7 +52,7 @@ public class Customer : MonoBehaviour
     private int reAskCount = 0;
     private string[] memo = new string[5];
     private Tween TextTween;
-    private string[] OrderTalk;
+    private string[] OrderTalk = new string[3];
 
 
     private void Start()
@@ -70,6 +74,18 @@ public class Customer : MonoBehaviour
         //랜덤으로 손님 뽑기
         curCustomerType = Random.Range(0, System.Enum.GetValues(typeof(EcustomerType)).Length);
         CustomerImg.sprite = GuestDefualts[(int)(EcustomerType)curCustomerType];
+
+        //일반 손님 중에 이벤트 손님 경우가 뽑힐 경우
+        if(curCustomerType == System.Enum.GetValues(typeof(EcustomerType)).Length - 1)
+        {
+            //손님 순서 다음부터가 이벤트 손님
+
+            //이벤트 손님 뽑기
+            curCustomerType = Random.Range(System.Enum.GetValues(typeof(EcustomerType)).Length - 1,
+                System.Enum.GetValues(typeof(EcustomerType)).Length + System.Enum.GetValues(typeof(EeventCustomerType)).Length - 1);
+            print(curCustomerType);
+            CustomerImg.sprite = GuestDefualts[curCustomerType];
+        }
 
 
         //와리가리 움직임
@@ -109,25 +125,83 @@ public class Customer : MonoBehaviour
     }
 
     /// <summary>
-    /// 스페셜 손님 설정
+    /// 이벤트 손님 확인
     /// </summary>
-    void SetSpesial(EcustomerType type)
+    void EventCustomerCheck(EeventCustomerType type)
     {
         switch (type)
         {
-            case EcustomerType.GroupOrder:
+            case EeventCustomerType.GroupOrder:
+                OrderTalk[0] = "아직 준비되지 않은 손님 유형입니다.";
+                OrderTalk[1] = "아직 준비되지 않은 손님 유형입니다.";
+                OrderTalk[2] = "아직 준비되지 않은 손님 유형입니다.";
                 break;
-            case EcustomerType.FoodCleanTester:
+
+            case EeventCustomerType.FoodCleanTester:
+                #region 버튼 관련 전환
+                CookingText.text = "네!";
+                ReAskText.text = "아니요";
+                CookingBtn.onClick.RemoveAllListeners();    
+                ReAskBtn.onClick.RemoveAllListeners();
+                CookingBtn.onClick.AddListener(() =>
+                {
+                    CookingText.text = "매일이죠!";
+                    ReAskText.text = "2주마다 합니다!";
+                    OrderText.text = "";
+                    TextTween = OrderText.DOText(OrderTalk[1], 0.05f * OrderTalk[1].Length);
+
+                    CookingBtn.onClick.RemoveAllListeners();
+                    CookingBtn.onClick.AddListener(() =>
+                    {
+                        CookingText.text = "가방 두고 가셨네 ㅎ";
+                        ReAskText.text = "앗 먼지가...!";
+                        OrderText.text = "";
+                        TextTween = OrderText.DOText(OrderTalk[2], 0.05f * OrderTalk[2].Length);
+
+                        CookingBtn.onClick.AddListener(() =>
+                        {
+                            CookingBtn.onClick.RemoveAllListeners();
+                            print("다음 손님");
+                        });
+                    });
+                });
+                ReAskBtn.onClick.AddListener(() =>
+                {
+                    print("엔딩");
+                });
+                #endregion
                 OrderTalk[0] = "식품 위생관리 위원회에서 나왔습니다. 잠시 주방을 검사해도 되겠습니까?";
                 OrderTalk[1] = "흐음... 깨끗하군요! 혹시 요리를 하실때 청소는 몇주마다 하시나요?";
                 OrderTalk[2] = "오... 대단하시네요! 그러면 이만 ㄱ... 어라?";
                 break;
-            case EcustomerType.SalesMan:
+
+            case EeventCustomerType.SalesMan:
+                OrderTalk[0] = "끼끼낄...나랑 거래 한번 해볼래..?키킼";
+                CookingText.text = "네";
+                ReAskText.text = "안삽니다. 가세요.";
+                #region 버튼 관련 전환
+                CookingBtn.onClick.RemoveAllListeners();
+                ReAskBtn.onClick.RemoveAllListeners();
+                CookingBtn.onClick.AddListener(() =>
+                {
+                    print("상점 창이 열린다");
+                });
+                ReAskBtn.onClick.AddListener(() =>
+                {
+                    print("다음 손님");
+                });
+                #endregion
                 break;
-            case EcustomerType.Thief:
+
+            case EeventCustomerType.Thief:
                 
                 break;
+
             default:
+                //RandomText에서 랜덤 외계어를 가져와서 주문 대화를 만듦
+                OrderTalk[0] = "메인 재료 " + RT.FirstTexts[Random.Range(0, 20)] + " 부재료 얼만큼 " + RT.MiddleTexts[Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[Random.Range(0, 20)];
+                OrderTalk[1] = "메인 재료 부재료 얼만큼 " + RT.FirstTexts[Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[Random.Range(0, 20)];
+                OrderTalk[2] = "!메인 재료!로 !부재료! !얼만큼! 넣어서 !조리방법! 해주세요 '^'..";
                 return;
         }
     }
@@ -137,6 +211,7 @@ public class Customer : MonoBehaviour
     /// <returns></returns>
     IEnumerator Order()
     {
+        CookingBtn.onClick.RemoveAllListeners();
         CookingBtn.onClick.AddListener(() =>
         {
             CookingScene.GetComponent<RectTransform>().DOAnchorPos3DY(0, 1).SetEase(Ease.OutBounce);
@@ -160,6 +235,7 @@ public class Customer : MonoBehaviour
             });
         });
 
+        ReAskBtn.onClick.RemoveAllListeners();
         ReAskBtn.onClick.AddListener(() =>
         {
             if (reAskCount == 0)
@@ -167,7 +243,6 @@ public class Customer : MonoBehaviour
                 memo[1] = "네?";
                 OrderText.text = "";
                 ReAskText.text = "뭐라고요?";
-                OrderTalk[1] = "메인 재료 부재료 얼만큼 " + RT.FirstTexts[Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[Random.Range(0, 20)];
                 memo[2] = OrderTalk[1];
                 TextTween = OrderText.DOText(OrderTalk[1], 0.05f * OrderTalk[1].Length);
                 reAskCount++;
@@ -176,7 +251,6 @@ public class Customer : MonoBehaviour
             {
                 memo[3] = "뭐라고요?";
                 OrderText.text = "";
-                OrderTalk[2] = "!메인 재료!로 !부재료! !얼만큼! 넣어서 !조리방법! 해주세요 '^'..";
                 memo[4] = OrderTalk[2];
                 TextTween.Kill();
                 OrderText.DOText(OrderTalk[2], 0.05f * OrderTalk[2].Length);
@@ -200,12 +274,9 @@ public class Customer : MonoBehaviour
         }
         else
         {
-
-            //RandomText에서 랜덤 외계어를 가져와서 주문 대화를 만듦
-            OrderTalk[0] = "메인 재료 " + RT.FirstTexts[Random.Range(0, 20)] + " 부재료 얼만큼 " + RT.MiddleTexts[Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[Random.Range(0, 20)];
-            
             //특별 손님인지 확인
-            SetSpesial((EcustomerType)curCustomerType);
+            EventCustomerCheck((EeventCustomerType)(curCustomerType - System.Enum.GetValues(typeof(EeventCustomerType)).Length));
+
             memo[0] = OrderTalk[0];
             OrderText.DOText(OrderTalk[0], 0.05f * OrderTalk[0].Length);
 
