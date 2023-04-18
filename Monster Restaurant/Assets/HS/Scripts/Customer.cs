@@ -4,6 +4,11 @@ using System.Collections;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 using TMPro;
+using System.Linq;
+using UnityEditor.Experimental.GraphView;
+using System.Collections.Generic;
+using HS_Tree;
+using System;
 
 public enum EcustomerType
 {
@@ -11,26 +16,59 @@ public enum EcustomerType
     Hyena,
     Robot,
     Dragon,
-
-    EventCustomer
+    Light,
+    FSM,
 }
 public enum EeventCustomerType
 {
+    Human,
+    Thief,
+
+    Beggar,
+    Rich,
+
     GroupOrder,
-    FoodCleanTester,
     SalesMan,
-    Thief
+    FoodCleanTester
+}
+
+namespace HS_Tree
+{
+    public class TreeNode<T>
+    {
+        private List<TreeNode<T>> children = new List<TreeNode<T>>();
+
+        public T Value { get; set; }
+
+        public TreeNode(T value)
+        {
+            Value = value;
+        }
+
+        public List<TreeNode<T>> Children
+        {
+            get { return children; }
+        }
+
+        public void AddChild(TreeNode<T> node)
+        {
+            children.Add(node);
+        }
+    }
+
 }
 
 
 public class Customer : MonoBehaviour
 {
     [SerializeField]
+    TreeNode<string> SelectSpeechTree = new TreeNode<string>("선택 대사 트리");
+    [SerializeField]
     private Transform[] SlowMovingPos, OrderPos;
     [SerializeField]
     private Transform FastMovingPos;
     [SerializeField]
-    private Sprite[] GuestDefualts;
+    private Sprite[] GuestDefualts, EventGuestDefualts;
     [SerializeField, Tooltip("배경 위에 보이기 하기 위한")]
     private GameObject BackgroundCanvas;
     [SerializeField]
@@ -65,6 +103,41 @@ public class Customer : MonoBehaviour
     private void Start()
     {
         StartCoroutine(Moving());
+
+        for (int i = 0; i < Enum.GetValues(typeof(EeventCustomerType)).Length; i++)
+        {
+            SelectSpeechTree.AddChild(new TreeNode<string>(Enum.GetName(typeof(EeventCustomerType), (EeventCustomerType)i)));
+        }
+
+        SetTree(EeventCustomerType.Thief);
+    }
+
+    void SetTree(EeventCustomerType type)
+    {
+        I_CustomerType I_type = null;
+
+        switch (type)
+        {
+            case EeventCustomerType.Human:
+                break;
+            case EeventCustomerType.Thief:
+                I_type = gameObject.GetComponent<Thief>();
+                break;
+            case EeventCustomerType.Beggar:
+                break;
+            case EeventCustomerType.Rich:
+                break;
+            case EeventCustomerType.GroupOrder:
+                break;
+            case EeventCustomerType.SalesMan:
+                break;
+            case EeventCustomerType.FoodCleanTester:
+                break;
+            default:
+                break;
+        }
+
+        I_type.SpecialType(SelectSpeechTree);
     }
 
     /// <summary>
@@ -79,7 +152,7 @@ public class Customer : MonoBehaviour
 
         Image CustomerImg = gameObject.GetComponent<Image>();
         //랜덤으로 손님 뽑기
-        curCustomerType = Random.Range(0, System.Enum.GetValues(typeof(EcustomerType)).Length);
+        curCustomerType = UnityEngine.Random.Range(0, System.Enum.GetValues(typeof(EcustomerType)).Length);
         CustomerImg.sprite = GuestDefualts[(int)(EcustomerType)curCustomerType];
 
         //일반 손님 중에 이벤트 손님 경우가 뽑힐 경우
@@ -88,7 +161,7 @@ public class Customer : MonoBehaviour
             //손님 순서 다음부터가 이벤트 손님
 
             //이벤트 손님 뽑기
-            curCustomerType = Random.Range(System.Enum.GetValues(typeof(EcustomerType)).Length - 1,
+            curCustomerType = UnityEngine.Random.Range(System.Enum.GetValues(typeof(EcustomerType)).Length - 1,
                 System.Enum.GetValues(typeof(EcustomerType)).Length + System.Enum.GetValues(typeof(EeventCustomerType)).Length - 1);
             print(curCustomerType);
             CustomerImg.sprite = GuestDefualts[curCustomerType];
@@ -206,8 +279,8 @@ public class Customer : MonoBehaviour
 
             default:
                 //RandomText에서 랜덤 외계어를 가져와서 주문 대화를 만듦
-                OrderTalk[0] = "메인 재료 " + RT.FirstTexts[Random.Range(0, 20)] + " 부재료 얼만큼 " + RT.MiddleTexts[Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[Random.Range(0, 20)];
-                OrderTalk[1] = "메인 재료 부재료 얼만큼 " + RT.FirstTexts[Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[Random.Range(0, 20)];
+                OrderTalk[0] = "메인 재료 " + RT.FirstTexts[UnityEngine.Random.Range(0, 20)] + " 부재료 얼만큼 " + RT.MiddleTexts[UnityEngine.Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[UnityEngine.Random.Range(0, 20)];
+                OrderTalk[1] = "메인 재료 부재료 얼만큼 " + RT.FirstTexts[UnityEngine.Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[UnityEngine.Random.Range(0, 20)];
                 OrderTalk[2] = "!메인 재료!로 !부재료! !얼만큼! 넣어서 !조리방법! 해주세요 '^'..";
                 return;
         }
@@ -288,8 +361,8 @@ public class Customer : MonoBehaviour
         MemoPaper.gameObject.SetActive(true);
         MemoPaperBackground.gameObject.SetActive(true);
         MemoPaperBackground.DOFade(163 / 255f, 0.5f);
-            MemoPaper.DOSizeDelta(new Vector2(650, 549), 0.3f).SetEase(Ease.OutQuint);
-            MemoPaper.DOAnchorPos(new Vector2(-242.47f, 0), 0.3f).SetEase(Ease.OutQuint);
+        MemoPaper.DOSizeDelta(new Vector2(650, 549), 0.3f).SetEase(Ease.OutQuint);
+        MemoPaper.DOAnchorPos(new Vector2(-242.47f, 0), 0.3f).SetEase(Ease.OutQuint);
         for (int i = 0; i < MemoTexts.Length; i++)
         {
             MemoTexts[i].gameObject.SetActive(true);
@@ -308,7 +381,7 @@ public class Customer : MonoBehaviour
         StartCoroutine(MemoTextOff());
         MemoPaper.DOSizeDelta(new Vector2(150, 120), 0.3f);
         MemoPaper.DOAnchorPos(new Vector2(-492.47f, 0), 0.3f);
-        
+
         MemoPaperBackground.DOColor(new Color(0, 0, 0, 0), 0.3f);
 
         IEnumerator MemoTextOff()
