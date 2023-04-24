@@ -5,5 +5,5 @@ using UnityEngine;
 
 public interface I_CustomerType
 {
-    void SpecialType(TreeNode<string> SelectSpeechTree);
+    void SpecialType(UIText cook, UIText ask, UIText speech);
 }

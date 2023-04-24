@@ -97,47 +97,14 @@ public class Customer : MonoBehaviour
     private int reAskCount = 0;
     private string[] memo = new string[5];
     private Tween TextTween;
-    private string[] OrderTalk = new string[3];
-
+    public static string[] OrderTalk = new string[3];
+    public static bool isBloom;
+    public static bool isHoldingFlower;
+    public static int SuccessPoint;
 
     private void Start()
     {
         StartCoroutine(Moving());
-
-        for (int i = 0; i < Enum.GetValues(typeof(EeventCustomerType)).Length; i++)
-        {
-            SelectSpeechTree.AddChild(new TreeNode<string>(Enum.GetName(typeof(EeventCustomerType), (EeventCustomerType)i)));
-        }
-
-        SetTree(EeventCustomerType.Thief);
-    }
-
-    void SetTree(EeventCustomerType type)
-    {
-        I_CustomerType I_type = null;
-
-        switch (type)
-        {
-            case EeventCustomerType.Human:
-                break;
-            case EeventCustomerType.Thief:
-                I_type = gameObject.GetComponent<Thief>();
-                break;
-            case EeventCustomerType.Beggar:
-                break;
-            case EeventCustomerType.Rich:
-                break;
-            case EeventCustomerType.GroupOrder:
-                break;
-            case EeventCustomerType.SalesMan:
-                break;
-            case EeventCustomerType.FoodCleanTester:
-                break;
-            default:
-                break;
-        }
-
-        I_type.SpecialType(SelectSpeechTree);
     }
 
     /// <summary>
@@ -354,6 +321,17 @@ public class Customer : MonoBehaviour
             CookingBtn.gameObject.SetActive(true);
             ReAskBtn.gameObject.SetActive(true);
         }
+    }
+
+     public void GetNextCustomer()
+    {
+        Array.Clear(OrderTalk, 0, OrderTalk.Length);
+
+        CookingText.text = "";
+        ReAskText.text = "";
+        CookingBtn.gameObject.SetActive(true);
+        ReAskBtn.gameObject.SetActive(true);
+
     }
 
     public void MemoOn()
