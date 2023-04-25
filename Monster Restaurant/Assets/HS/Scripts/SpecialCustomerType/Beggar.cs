@@ -80,16 +80,100 @@ public class Beggar : MonoBehaviour, I_CustomerType
 
     void Point2(UIText cook, UIText ask)
     {
+        Button cookBtn = cook.GetComponentInParent<Button>();
+        Button askBtn = ask.GetComponentInParent<Button>();
 
+        Customer.OrderTalk[0] = "안녕하세요.. 사장님 오늘도 가능한가요..?";
+
+        cook.text = "잠시만요";
+        cookBtn.onClick.AddListener(() =>
+        {
+            Customer.OrderTalk[1] = "역시! 사장님이야 큭큭..";
+            Customer.SuccessPoint++;
+
+            //끝난 뒤 말
+            //"큭큭 감사합니다!.."
+        });
+
+        ask.text = "나가세요";
+        askBtn.onClick.AddListener(() =>
+        {
+            Customer.OrderTalk[1] = "여태까지.. 무료로 음식을 만들어주셔서 감사합니다.. 사장님";
+
+            //+ 10$
+            //거지는 없다 이제
+        });
     }
 
     void Point3(UIText cook, UIText ask)
     {
+        Button cookBtn = cook.GetComponentInParent<Button>();
+        Button askBtn = ask.GetComponentInParent<Button>();
 
-    }
+        Customer.OrderTalk[0] = "안녕하세요.. 사장님 늘 먹던걸로 주세요..";
+
+        cook.text = "잠시만요";
+        cookBtn.onClick.AddListener(() =>
+        {
+            Customer.OrderTalk[1] = "믿고 있었습니다.. 큭큭";
+            Customer.SuccessPoint++;
+
+            //끝난 뒤 말
+            //"감사합니다!.. 큭큭"
+        });
+
+        ask.text = "나가세요";
+        askBtn.onClick.AddListener(() =>
+        {
+            Customer.OrderTalk[1] = "여태까지.. 무료로 음식을 만들어주셔서 감사합니다.. 사장님";
+
+            //+ 20$
+            //거지는 없다 이제
+        });
+    }   
 
     void Point4(UIText cook, UIText ask)
     {
+        Button cookBtn = cook.GetComponentInParent<Button>();
+        Button askBtn = ask.GetComponentInParent<Button>();
 
+        Customer.OrderTalk[0] = "사장님 아시죠..?";
+
+        cook.text = "잠시만요";
+        cookBtn.onClick.AddListener(() =>
+        {
+            Customer.OrderTalk[1] = "믿고 있었습니다.. 큭큭";
+            Customer.SuccessPoint++;
+
+            //끝난 뒤 말
+            //"감사합니다!.. 큭큭"
+        });
+
+        ask.text = "나가세요";
+        askBtn.onClick.AddListener(() =>
+        {
+            Customer.OrderTalk[1] = "여태까지.. 무료로 음식을 만들어주셔서 감사합니다.. 사장님";
+
+            //+ 30$
+            //거지는 없다 이제
+        });
+    }
+
+    void Point5(UIText cook, UIText ask)
+    {
+        Button cookBtn = cook.GetComponentInParent<Button>();
+        Button askBtn = ask.GetComponentInParent<Button>();
+
+        Customer.OrderTalk[0] = "쉬운일이 아니였을 텐데 음식을 매번 무료로 주셔서 감사합니다. \n마지막으로 늘 먹던걸로 음식 3개 가능할까요?";
+
+        askBtn.gameObject.SetActive(false);
+
+        cookBtn.onClick.AddListener(() =>
+        {
+            Customer.OrderTalk[1] = "다시 한 번 매번 챙겨주셔서 감사합니다.";
+
+            //100만 달러 +
+            //개천에서 용난다 엔딩 ON
+        });
     }
 }
