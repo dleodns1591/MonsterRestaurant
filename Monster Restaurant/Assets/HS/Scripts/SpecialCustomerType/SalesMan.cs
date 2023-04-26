@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SalesMan : MonoBehaviour, I_CustomerType
 {
-    public void SpecialType(TreeNode<string> SelectSpeechTree)
+    public void SpecialType(UIText cook, UIText ask, UIText speech)
     {
         throw new System.NotImplementedException();
     }
