@@ -17,7 +17,7 @@ public enum EcustomerType
     Robot,
     Dragon,
     Light,
-    FSM,
+    FSM
 }
 public enum EeventCustomerType
 {
@@ -61,8 +61,6 @@ namespace HS_Tree
 
 public class Customer : MonoBehaviour
 {
-    [SerializeField]
-    TreeNode<string> SelectSpeechTree = new TreeNode<string>("선택 대사 트리");
     [SerializeField]
     private Transform[] SlowMovingPos, OrderPos;
     [SerializeField]
