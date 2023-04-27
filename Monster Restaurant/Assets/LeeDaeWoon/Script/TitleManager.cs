@@ -18,6 +18,15 @@ public class TitleManager : MonoBehaviour
     [SerializeField] CanvasGroup settingWindow;
     [SerializeField] Button settingBtn;
     [SerializeField] Button settingCancleBtn;
+    [SerializeField] Button bgmBtn;
+    [SerializeField] Button sfxBtn;
+    [SerializeField] Button vibrationBtn;
+    [SerializeField] Button notificationBtn;
+
+    bool isBGM = false;
+    bool isSFX = false;
+    bool isVirbration = false;
+    bool isNotification = false;
 
     void Start()
     {
@@ -67,6 +76,79 @@ public class TitleManager : MonoBehaviour
             {
                 settingWindow.gameObject.SetActive(false);
             });
+        });
+
+        // 배경음 버튼을 눌렀을 시
+        bgmBtn.onClick.AddListener(() =>
+        {
+            if(!isBGM)
+            {
+                isBGM = true;
+                bgmBtn.GetComponent<Image>().color = Color.gray;
+                Debug.Log("BGM OFF");
+            }
+
+            else
+            {
+                isBGM = false;
+                bgmBtn.GetComponent<Image>().color = Color.white;
+                Debug.Log("BGM ON");
+            }
+
+        });
+
+        // 효과음 버튼을 눌렀을 시
+        sfxBtn.onClick.AddListener(() =>
+        {
+            if (!isSFX)
+            {
+                isSFX = true;
+                sfxBtn.GetComponent<Image>().color = Color.gray;
+                Debug.Log("SFX OFF");
+            }
+
+            else
+            {
+                isSFX = false;
+                sfxBtn.GetComponent<Image>().color = Color.white;
+                Debug.Log("SFX ON");
+            }
+        });
+
+        // 진동 버튼을 눌렀을 시
+        vibrationBtn.onClick.AddListener(() =>
+        {
+            if (!isVirbration)
+            {
+                isVirbration = true;
+                vibrationBtn.GetComponent<Image>().color = Color.gray;
+                Debug.Log("vibration OFF");
+            }
+
+            else
+            {
+                isVirbration = false;
+                vibrationBtn.GetComponent<Image>().color = Color.white;
+                Debug.Log("vibration ON");
+            }
+        });
+
+        // 알림 버튼을 눌렀을 시
+        notificationBtn.onClick.AddListener(() =>
+        {
+            if (!isNotification)
+            {
+                isNotification = true;
+                notificationBtn.GetComponent<Image>().color = Color.gray;
+                Debug.Log("Notification OFF");
+            }
+
+            else
+            {
+                isNotification = false;
+                notificationBtn.GetComponent<Image>().color = Color.white;
+                Debug.Log("Notification ON");
+            }
         });
     }
 }
