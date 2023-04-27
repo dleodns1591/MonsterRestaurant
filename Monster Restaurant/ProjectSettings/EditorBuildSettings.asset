@@ -11,4 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/HS/Scenes/FreddyTest.unity
     guid: 886e5dc5f82a2584ea31563a787d2113
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 55e20ab17fa563c46a5e5144db075d18, type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: ae204f88c4d49fa4b94eb42ab71e5713, type: 2}
