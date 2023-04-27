@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 
 public class TitleManager : MonoBehaviour
 {
@@ -18,18 +20,39 @@ public class TitleManager : MonoBehaviour
     [SerializeField] CanvasGroup settingWindow;
     [SerializeField] Button settingBtn;
     [SerializeField] Button settingCancleBtn;
+    [SerializeField] Button bgmBtn;
+    [SerializeField] Button sfxBtn;
+    [SerializeField] Button vibrationBtn;
+    [SerializeField] Button notificationBtn;
+
+    bool isBGM = false;
+    bool isSFX = false;
+    bool isVirbration = false;
+    bool isNotification = false;
+
+    [Header("언어")]
+    [SerializeField] CanvasGroup languageWindow;
+    [SerializeField] Button languageBtn;
+    [SerializeField] Button languageCancleBtn;
+    [SerializeField] Button englishBtn;
+    [SerializeField] Button koreaBtn;
+
+    bool isLanguage = true;
 
     void Start()
     {
-        Btns();
+        SettingBtns();
+        LanguageBtns();
     }
 
     void Update()
     {
-        
     }
 
-    void Btns()
+    void LanguageSetting(int index) =>
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
+
+    void SettingBtns()
     {
         // 시작 버튼을 눌렀을 경우
         startBtn.onClick.AddListener(() =>
@@ -40,11 +63,11 @@ public class TitleManager : MonoBehaviour
         // 컨텐츠 버튼을 눌렀을 경우
         contentBtn.onClick.AddListener(() =>
         {
-            if(!isContent)
+            if (!isContent)
             {
                 isContent = true;
                 for (int i = 1; i < 5; i++)
-                    content.transform.GetChild(i -1).DOLocalMoveY(i * -200, 0.8f).SetEase(Ease.OutBack);
+                    content.transform.GetChild(i - 1).DOLocalMoveY(i * -200, 0.8f).SetEase(Ease.OutBack);
             }
 
             else
@@ -67,6 +90,120 @@ public class TitleManager : MonoBehaviour
             {
                 settingWindow.gameObject.SetActive(false);
             });
+        });
+
+        // 배경음 버튼을 눌렀을 시
+        bgmBtn.onClick.AddListener(() =>
+        {
+            if (!isBGM)
+            {
+                isBGM = true;
+                bgmBtn.GetComponent<Image>().color = Color.gray;
+                Debug.Log("BGM OFF");
+            }
+
+            else
+            {
+                isBGM = false;
+                bgmBtn.GetComponent<Image>().color = Color.white;
+                Debug.Log("BGM ON");
+            }
+
+        });
+
+        // 효과음 버튼을 눌렀을 시
+        sfxBtn.onClick.AddListener(() =>
+        {
+            if (!isSFX)
+            {
+                isSFX = true;
+                sfxBtn.GetComponent<Image>().color = Color.gray;
+                Debug.Log("SFX OFF");
+            }
+
+            else
+            {
+                isSFX = false;
+                sfxBtn.GetComponent<Image>().color = Color.white;
+                Debug.Log("SFX ON");
+            }
+        });
+
+        // 진동 버튼을 눌렀을 시
+        vibrationBtn.onClick.AddListener(() =>
+        {
+            if (!isVirbration)
+            {
+                isVirbration = true;
+                vibrationBtn.GetComponent<Image>().color = Color.gray;
+                Debug.Log("vibration OFF");
+            }
+
+            else
+            {
+                isVirbration = false;
+                vibrationBtn.GetComponent<Image>().color = Color.white;
+                Debug.Log("vibration ON");
+            }
+        });
+
+        // 알림 버튼을 눌렀을 시
+        notificationBtn.onClick.AddListener(() =>
+        {
+            if (!isNotification)
+            {
+                isNotification = true;
+                notificationBtn.GetComponent<Image>().color = Color.gray;
+                Debug.Log("Notification OFF");
+            }
+
+            else
+            {
+                isNotification = false;
+                notificationBtn.GetComponent<Image>().color = Color.white;
+                Debug.Log("Notification ON");
+            }
+        });
+    }
+
+    void LanguageBtns()
+    {
+        koreaBtn.GetComponent<Image>().color = Color.gray;
+
+        languageBtn.onClick.AddListener(() =>
+        {
+            languageWindow.alpha = 1;
+            languageWindow.gameObject.SetActive(true);
+        });
+
+        languageCancleBtn.onClick.AddListener(() =>
+        {
+            languageWindow.DOFade(0, 0.2f).SetEase(Ease.Linear).OnComplete(() =>
+            {
+                languageWindow.gameObject.SetActive(false);
+            });
+        });
+
+        englishBtn.onClick.AddListener(() =>
+        {
+            if (isLanguage)
+            {
+                isLanguage = false;
+                englishBtn.GetComponent<Image>().color = Color.gray;
+                koreaBtn.GetComponent<Image>().color = Color.white;
+                LanguageSetting(0);
+            }
+        });
+
+        koreaBtn.onClick.AddListener(() =>
+        {
+            if (!isLanguage)
+            {
+                isLanguage = true;
+                koreaBtn.GetComponent<Image>().color = Color.gray;
+                englishBtn.GetComponent<Image>().color = Color.white;
+                LanguageSetting(1);
+            }
         });
     }
 }
