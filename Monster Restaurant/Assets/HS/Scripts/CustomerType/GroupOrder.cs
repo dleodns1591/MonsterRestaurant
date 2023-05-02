@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GroupOrder : MonoBehaviour, I_CustomerType
 {
-    public void SpecialType(UIText cook, UIText ask, UIText speech)
+    public void SpecialType(UIText cook, UIText ask)
     {
         throw new System.NotImplementedException();
     }
