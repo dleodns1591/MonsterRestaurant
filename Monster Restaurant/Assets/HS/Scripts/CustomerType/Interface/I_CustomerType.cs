@@ -5,5 +5,5 @@ using UnityEngine;
 
 public interface I_CustomerType
 {
-    void SpecialType(UIText cook, UIText ask, UIText speech);
+    void SpecialType(UIText cook, UIText ask);
 }
