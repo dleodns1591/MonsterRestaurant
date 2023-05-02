@@ -76,7 +76,7 @@ public class OrderManager : MonoBehaviour
             //손님 화내면서 나가기
 
             //다음 손님
-            Order
+            StartCoroutine(Order());
         });
     }
 
