@@ -16,11 +16,18 @@ public enum ESubMatarials
     Paper,
     Poop,
     Preservatives,
-    Sticker
+    Sticker,
+    NULL
 }
 
 public class CookingMaterials : MonoBehaviour
 {
     [SerializeField] private ESubMatarials myType;
     [SerializeField] private Sprite[] sprites;
+
+    
+    public void CookingSubMaterialPush()
+    {
+        Cooking.Instance.CookingTypePush(myType, sprites);
+    }
 }
