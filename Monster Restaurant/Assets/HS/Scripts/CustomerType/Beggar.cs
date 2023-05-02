@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,10 +32,11 @@ public class Beggar : MonoBehaviour, I_CustomerType
     }
     void Point0(UIText cook, UIText ask)
     {
-        Button cookBtn = cook.GetComponentInParent<Button>();
-        Button askBtn = ask.GetComponentInParent<Button>();
+        Button cookBtn = cook.transform.parent.GetComponent<Button>();
+        Button askBtn = ask.transform.parent.GetComponent<Button>();
 
         OrderManager.OrderTalk[0] = "제발요..너무 배고파요..";
+
         cook.text = "잠시만요";
         cookBtn.onClick.AddListener(() =>
         {
@@ -43,6 +45,10 @@ public class Beggar : MonoBehaviour, I_CustomerType
             OrderManager.OrderTalk[1] = "가..감사합니다..큭큭";
             OrderManager.SuccessPoint++;
 
+            OrderManager.isNext = true;
+
+            cookBtn.gameObject.SetActive(false);
+            askBtn.gameObject.SetActive(false);
             //요리
 
             //끝난 뒤 말
@@ -55,6 +61,10 @@ public class Beggar : MonoBehaviour, I_CustomerType
 
             OrderManager.OrderTalk[1] = "그렇게..깐깐하게 살다가 가게가 망해버릴거야!";
 
+            OrderManager.isNext = true;
+
+            cookBtn.gameObject.SetActive(false);
+            askBtn.gameObject.SetActive(false);
             //다음 손님
         });
     }
@@ -73,6 +83,10 @@ public class Beggar : MonoBehaviour, I_CustomerType
             OrderManager.OrderTalk[1] = "큭큭..";
             OrderManager.SuccessPoint++;
 
+            OrderManager.isNext = true;
+
+            cookBtn.gameObject.SetActive(false);
+            askBtn.gameObject.SetActive(false);
             //요리
 
             //끝난 뒤 말
@@ -85,6 +99,8 @@ public class Beggar : MonoBehaviour, I_CustomerType
 
             OrderManager.OrderTalk[1] = "제발요.. 돈은 언젠간 드릴테니..";
 
+            OrderManager.isNext = true;
+
             cook.text = "알겠습니다";
             cookBtn.onClick.RemoveAllListeners();
             cookBtn.onClick.AddListener(() =>
@@ -93,6 +109,10 @@ public class Beggar : MonoBehaviour, I_CustomerType
                 OrderManager.OrderTalk[2] = "큭큭..";
                 OrderManager.SuccessPoint++;
 
+                OrderManager.isNext = true;
+
+                cookBtn.gameObject.SetActive(false);
+                askBtn.gameObject.SetActive(false);
             });
 
             ask.text = "나가세요";
@@ -102,6 +122,10 @@ public class Beggar : MonoBehaviour, I_CustomerType
                 OrderManager.AskTalk[1] = "나가세요";
                 OrderManager.OrderTalk[2] = "가게.. 망해버려라..";
 
+                OrderManager.isNext = true;
+
+                cookBtn.gameObject.SetActive(false);
+                askBtn.gameObject.SetActive(false);
                 //다음 손님
 
             });
@@ -122,6 +146,10 @@ public class Beggar : MonoBehaviour, I_CustomerType
             OrderManager.OrderTalk[1] = "역시! 사장님이야 큭큭..";
             OrderManager.SuccessPoint++;
 
+            OrderManager.isNext = true;
+
+            cookBtn.gameObject.SetActive(false);
+            askBtn.gameObject.SetActive(false);
             //끝난 뒤 말
             //"큭큭 감사합니다!.."
         });
@@ -133,6 +161,10 @@ public class Beggar : MonoBehaviour, I_CustomerType
 
             OrderManager.OrderTalk[1] = "여태까지.. 무료로 음식을 만들어주셔서 감사합니다.. 사장님";
 
+            OrderManager.isNext = true;
+
+            cookBtn.gameObject.SetActive(false);
+            askBtn.gameObject.SetActive(false);
             //+ 10$
             //거지는 없다 이제
         });
@@ -152,6 +184,10 @@ public class Beggar : MonoBehaviour, I_CustomerType
             OrderManager.OrderTalk[1] = "믿고 있었습니다.. 큭큭";
             OrderManager.SuccessPoint++;
 
+            OrderManager.isNext = true;
+
+            cookBtn.gameObject.SetActive(false);
+            askBtn.gameObject.SetActive(false);
             //끝난 뒤 말
             //"감사합니다!.. 큭큭"
         });
@@ -163,6 +199,10 @@ public class Beggar : MonoBehaviour, I_CustomerType
 
             OrderManager.OrderTalk[1] = "여태까지.. 무료로 음식을 만들어주셔서 감사합니다.. 사장님";
 
+            OrderManager.isNext = true;
+
+            cookBtn.gameObject.SetActive(false);
+            askBtn.gameObject.SetActive(false);
             //+ 20$
             //거지는 없다 이제
         });
@@ -182,6 +222,10 @@ public class Beggar : MonoBehaviour, I_CustomerType
             OrderManager.OrderTalk[1] = "믿고 있었습니다.. 큭큭";
             OrderManager.SuccessPoint++;
 
+            OrderManager.isNext = true;
+
+            cookBtn.gameObject.SetActive(false);
+            askBtn.gameObject.SetActive(false);
             //끝난 뒤 말
             //"감사합니다!.. 큭큭"
         });
@@ -192,6 +236,10 @@ public class Beggar : MonoBehaviour, I_CustomerType
             OrderManager.AskTalk[0] = "나가세요";
             OrderManager.OrderTalk[1] = "여태까지.. 무료로 음식을 만들어주셔서 감사합니다.. 사장님";
 
+            OrderManager.isNext = true;
+
+            cookBtn.gameObject.SetActive(false);
+            askBtn.gameObject.SetActive(false);
             //+ 30$
             //거지는 없다 이제
         });
@@ -213,6 +261,10 @@ public class Beggar : MonoBehaviour, I_CustomerType
 
             OrderManager.OrderTalk[1] = "다시 한 번 매번 챙겨주셔서 감사합니다.";
 
+            OrderManager.isNext = true;
+
+            cookBtn.gameObject.SetActive(false);
+            askBtn.gameObject.SetActive(false);
             //100만 달러 +
             //개천에서 용난다 엔딩 ON
         });

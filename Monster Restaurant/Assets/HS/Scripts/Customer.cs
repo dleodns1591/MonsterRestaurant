@@ -10,27 +10,6 @@ using System.Collections.Generic;
 using HS_Tree;
 using System;
 
-public enum EcustomerType
-{
-    Alien,
-    Hyena,
-    Robot,
-    Dragon,
-    Light,
-    FSM
-}
-public enum EeventCustomerType
-{
-    Human,
-    Thief,
-
-    Beggar,
-    Rich,
-
-    GroupOrder,
-    SalesMan,
-    FoodCleanTester
-}
 
 namespace HS_Tree
 {
