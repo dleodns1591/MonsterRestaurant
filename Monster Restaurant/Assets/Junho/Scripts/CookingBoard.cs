@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class CookingBoard : MonoBehaviour, IDragHandler
+public class CookingBoard : MonoBehaviour,IPointerDownHandler
 {
     [SerializeField] private Image mainMaterialImage;
 
@@ -52,16 +52,30 @@ public class CookingBoard : MonoBehaviour, IDragHandler
         mainMaterialImage.color = new Vector4(1, 1, 1, 1);
     }
 
-    public void OnDrag(PointerEventData eventData)
+    //public void OnDrag(PointerEventData eventData)
+    //{
+    //    if (isMainMaterialDrop == false || Cooking.Instance.myType == ESubMatarials.NULL) return;
+
+
+    //    drawT += Time.deltaTime;
+    //    if (drawCnt > drawT) return;
+    //    GameObject sub = Instantiate(subM, transform).gameObject;
+    //    Vector2 inputPos = Camera.main.ScreenToWorldPoint(eventData.position);
+    //    sub.transform.position = inputPos;
+    //    sub.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360)));
+
+    //    drawT = 0;
+    //}
+
+    public void OnPointerDown(PointerEventData eventData)
     {
         if (isMainMaterialDrop == false || Cooking.Instance.myType == ESubMatarials.NULL) return;
 
 
-        drawT += Time.deltaTime;
-        if (drawCnt > drawT) return;
         GameObject sub = Instantiate(subM, transform).gameObject;
         Vector2 inputPos = Camera.main.ScreenToWorldPoint(eventData.position);
         sub.transform.position = inputPos;
+        sub.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360)));
 
         drawT = 0;
     }

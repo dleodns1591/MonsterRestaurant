@@ -10,6 +10,10 @@ public class MapScrollMG : Singleton<MapScrollMG>
     [SerializeField] private Vector3[] BgXPos;
     [SerializeField] private int myBgXPos;
 
+    private void Start()
+    {
+       StartCoroutine(MouseCheck());
+    }
     public IEnumerator MouseCheck()
     {
         while (true)
@@ -19,11 +23,11 @@ public class MapScrollMG : Singleton<MapScrollMG>
             if (Input.mousePosition.x > maxX) yield return MapMove(1);
             else if (Input.mousePosition.x < minX) yield return MapMove(-1);
 
-            if (Input.GetMouseButtonUp(0))
-            {
-                print("End");
-                break;
-            }
+            //if (Input.GetMouseButtonUp(0))
+            //{
+            //    print("End");
+            //    break;
+            //}
         }
     }
 
