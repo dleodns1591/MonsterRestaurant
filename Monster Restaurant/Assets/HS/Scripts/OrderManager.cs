@@ -9,22 +9,28 @@ public class OrderManager : MonoBehaviour
 {
     [Header("Button Related")]
     [SerializeField] private UIText BtnCookText, BtnAskText;
-    private Button CookingBtn => BtnCookText.transform.GetComponentInParent<Button>();
-    private Button ReAskBtn => BtnAskText.transform.GetComponentInParent<Button>();
+    private Button CookingBtn => BtnCookText.transform.parent.GetComponent<Button>();
+    private Button ReAskBtn => BtnAskText.transform.parent.GetComponent<Button>();
     [Header("정리 필요")]
     [SerializeField] private Image TimeFill, CustomerImg;
-    [SerializeField] private Text OrderText;
+    [SerializeField] private UIText OrderText;
     [SerializeField] private RandomText RT;
     [SerializeField] private Sprite[] GuestDefualts;
     private Tween TextTween, DayTween;
     private I_CustomerType CustomerType;
 
     public static Text MoneyText;
-    public static string[] OrderTalk = new string[3], AskTalk;
+    public static string[] OrderTalk = new string[3], AskTalk = new string[3];
     public static bool isNext;
     public static bool isBloom;
     public static bool isHoldingFlower;
     public static int SuccessPoint;
+
+    private void Start()
+    {
+        SuccessPoint = 5;
+        OrderLoop();
+    }
 
     void SetCustomerType(int type)
     {
@@ -57,7 +63,8 @@ public class OrderManager : MonoBehaviour
                 CustomerImg.sprite = GuestDefualts[type];
                 break;
             default:
-                int randomType = UnityEngine.Random.Range(0, Enum.GetValues(typeof(EeventCustomerType)).Length);
+                int randomType = 2;
+                randomType = 2;
                 switch ((EeventCustomerType)randomType)
                 {
                     case EeventCustomerType.Human:
@@ -66,6 +73,7 @@ public class OrderManager : MonoBehaviour
                         CustomerType = gameObject.AddComponent<Thief>();
                         break;
                     case EeventCustomerType.Beggar:
+                        CustomerType = gameObject.AddComponent<Beggar>();
                         break;
                     case EeventCustomerType.Rich:
                         break;
@@ -76,9 +84,9 @@ public class OrderManager : MonoBehaviour
                     case EeventCustomerType.FoodCleanTester:
                         break;
                 }
-                CustomerType.SpecialType(BtnCookText, BtnAskText);
                 break;
         }
+                CustomerType.SpecialType(BtnCookText, BtnAskText);
     }
 
     /// <summary>
@@ -86,7 +94,7 @@ public class OrderManager : MonoBehaviour
     /// </summary>
     void OrderLoop()
     {
-        SetCustomerType(UnityEngine.Random.Range(0, Enum.GetValues(typeof(EcustomerType)).Length + 1));
+        SetCustomerType(10);
         StartCoroutine(Order());
 
         if (DayTween != null)
@@ -118,19 +126,23 @@ public class OrderManager : MonoBehaviour
 
     public IEnumerator Order()
     {
+        print(OrderTalk[0]);
         for (int i = 0; i < OrderTalk.Length; i++)
         {
             if (OrderTalk[i].Equals(""))
             {
                 continue;
             }
+            if(TextTween != null)
+                TextTween.Kill();
+            OrderText.text = "";
+            TextTween = OrderText.DOText(OrderTalk[i], 0.05f * OrderTalk[i].Length);
 
             while (!isNext)
             {
                 yield return null;
             }
-            TextTween.Kill();
-            TextTween = OrderText.DOText(OrderTalk[i], 0.05f * OrderTalk[i].Length);
+            isNext = false;
         }
     }
 }

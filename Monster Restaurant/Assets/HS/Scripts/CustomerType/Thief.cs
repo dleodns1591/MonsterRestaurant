@@ -8,20 +8,22 @@ public class Thief : MonoBehaviour, I_CustomerType
 {
     public void SpecialType(UIText cook, UIText ask)
     {
-        if(Customer.isHoldingFlower == false)
+        print("asd");
+        if(OrderManager.isHoldingFlower == false)
         {
-            Bloom(cook, ask);
+            NotBloom(cook, ask);
         }
         else
         {
-            NotBloom(cook, ask);
+            Bloom(cook, ask);
         }    
     }
 
     void Bloom(UIText cook, UIText ask)
     {
-        Button cookBtn = cook.GetComponentInParent<Button>();
-        Button askBtn = ask.GetComponentInParent<Button>();
+        Button cookBtn = cook.transform.parent.GetComponent<Button>();
+        Button askBtn = ask.transform.parent.GetComponent<Button>();
+
 
         cook.text = "알겠습니다";
         cookBtn.onClick.AddListener(() =>
@@ -35,6 +37,7 @@ public class Thief : MonoBehaviour, I_CustomerType
             OrderManager.AskTalk[0] = "네?";
 
             OrderManager.OrderTalk[1] = "왜.. 한 번에 못알아 들어? 너도 내가 만만해?";
+            OrderManager.isNext = true;
             if (Customer.isBloom)
             {
                 cook.text = "식인 식물을 보여준다.";
@@ -46,6 +49,7 @@ public class Thief : MonoBehaviour, I_CustomerType
                     OrderManager.AskTalk[1] = "식인 식물을 보여준다.";
                     OrderManager.OrderTalk[2] = "다..다음 부터 무..무시하지마..";
 
+                    OrderManager.isNext = true;
                     //다음 손님
                 });
                 askBtn.onClick.RemoveAllListeners();
@@ -54,6 +58,7 @@ public class Thief : MonoBehaviour, I_CustomerType
                     OrderManager.AskTalk[1] = "죄송합니다.";
                     OrderManager.OrderTalk[2] = "진작 그럴 것이지.. 쳇..";
 
+                    OrderManager.isNext = true;
                     //현재 금액 1 /4 로
                     //다음 손님
                 });
@@ -69,6 +74,9 @@ public class Thief : MonoBehaviour, I_CustomerType
                     OrderManager.AskTalk[1] = "죄송합니다.";
                     OrderManager.OrderTalk[2] = "진작 그럴 것이지.. 쳇..";
 
+                    askBtn.gameObject.SetActive(false);
+                    OrderManager.isNext = true;
+
                     //현재 금액 1 /4 로
                     //다음 손님
                 });
@@ -78,8 +86,8 @@ public class Thief : MonoBehaviour, I_CustomerType
 
     void NotBloom(UIText cook, UIText ask)
     {
-        Button cookBtn = cook.GetComponentInParent<Button>();
-        Button askBtn = ask.GetComponentInParent<Button>();
+        Button cookBtn = cook.transform.parent.GetComponent<Button>();
+        Button askBtn = ask.transform.parent.GetComponent<Button>();
 
         OrderManager.OrderTalk[0] = "돈 내놔!";
 
@@ -89,7 +97,10 @@ public class Thief : MonoBehaviour, I_CustomerType
             OrderManager.AskTalk[0] = "네?";
 
             OrderManager.OrderTalk[1] = "내가 말해야 알아?";
+            OrderManager.isNext = true;
 
+            cookBtn.gameObject.SetActive(false);
+            askBtn.gameObject.SetActive(false);
             //현재 금액 1 / 3으로
 
             //다음 손님
@@ -100,10 +111,14 @@ public class Thief : MonoBehaviour, I_CustomerType
             OrderManager.AskTalk[0] = "잠..잠시만요..";
 
             OrderManager.OrderTalk[1] = "큭큭.. 아주 좋아";
+            OrderManager.isNext = true;
 
+            cookBtn.gameObject.SetActive(false);
+            askBtn.gameObject.SetActive(false);
             //현재 금액 1 / 5으로
 
             //다음 손님
         });
+        OrderManager.OrderTalk[2] = "";
     }
 }
