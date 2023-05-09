@@ -28,7 +28,6 @@ public class OrderManager : MonoBehaviour
 
     private void Start()
     {
-        SuccessPoint = 5;
         OrderLoop();
     }
 
@@ -94,7 +93,7 @@ public class OrderManager : MonoBehaviour
     /// </summary>
     void OrderLoop()
     {
-        SetCustomerType(10);
+        SetCustomerType(3);
         StartCoroutine(Order());
 
         if (DayTween != null)
