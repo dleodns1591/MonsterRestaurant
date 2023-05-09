@@ -15,10 +15,12 @@ public class OrderManager : MonoBehaviour
     [SerializeField] private Image TimeFill, CustomerImg;
     [SerializeField] private UIText OrderText;
     [SerializeField] private RandomText RT;
-    [SerializeField] private Sprite[] GuestDefualts;
+    [SerializeField] private Sprite[] GuestDefualts, EventGuestDefualts;
+    [SerializeField] private Transform[] SlowMovingPos, OrderPos;
+    [SerializeField] private GameObject Guest;
+
     private Tween TextTween, DayTween;
     private I_CustomerType CustomerType;
-
     public static Text MoneyText;
     public static string[] OrderTalk = new string[3], AskTalk = new string[3];
     public static bool isNext;
@@ -93,7 +95,7 @@ public class OrderManager : MonoBehaviour
     /// </summary>
     void OrderLoop()
     {
-        SetCustomerType(3);
+        SetCustomerType(2);
         StartCoroutine(Order());
 
         if (DayTween != null)
@@ -109,7 +111,29 @@ public class OrderManager : MonoBehaviour
         });
     }
 
-    void NextCustomerReady()
+    /// <summary>
+    /// 처음 등장부터 주문전까지 이동하는 코루틴
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator Moving()
+    {
+        yield return new WaitForSeconds(FadeInOut.Instance.fadeTime);
+
+        float delayTime = 0.5f;
+
+        //와리가리 움직임
+        for (int i = 0; i < SlowMovingPos.Length; i++)
+        {
+            if (i != SlowMovingPos.Length - 1)
+                Guest.transform.DOMove(SlowMovingPos[i].position, delayTime);
+            else
+                Guest.transform.DOMove(SlowMovingPos[i].position, 0.25f);
+
+            yield return new WaitForSeconds(delayTime);
+        }
+    }
+
+        void NextCustomerReady()
     {
         Array.Clear(OrderTalk, 0, OrderTalk.Length);
         Array.Clear(AskTalk, 0, AskTalk.Length);
@@ -125,7 +149,7 @@ public class OrderManager : MonoBehaviour
 
     public IEnumerator Order()
     {
-        print(OrderTalk[0]);
+        yield return StartCoroutine(Moving());
         for (int i = 0; i < OrderTalk.Length; i++)
         {
             if (OrderTalk[i].Equals(""))

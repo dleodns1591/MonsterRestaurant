@@ -2642,6 +2642,24 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d3b222fea5f5e14438521ff452ea898b, type: 3}
   - {fileID: 21300000, guid: 9dec1962b0c7a42458f049425503771d, type: 3}
   - {fileID: 21300000, guid: 58576ed0b7b91ba47ae3ebf4909aae5c, type: 3}
+  EventGuestDefualts:
+  - {fileID: 21300000, guid: 023685088b6e7544a8211fd371fda878, type: 3}
+  - {fileID: 21300000, guid: f75f6e51136cea9499b7c5732e79ae16, type: 3}
+  - {fileID: 21300000, guid: facaacd49e100964aa1fc670cb927713, type: 3}
+  - {fileID: 21300000, guid: b1254dc4145dba240aaaa2f327c43483, type: 3}
+  - {fileID: 21300000, guid: c9473b8feb91f82498fb99c0a87fafcd, type: 3}
+  - {fileID: 21300000, guid: f86de2362b1cddd4cb4d5248a9c10043, type: 3}
+  - {fileID: 21300000, guid: 98290dc79ae8cfa44b5151806858bee7, type: 3}
+  SlowMovingPos:
+  - {fileID: 148746715}
+  - {fileID: 676784556}
+  - {fileID: 852105781}
+  - {fileID: 1123043208}
+  - {fileID: 854344541}
+  OrderPos:
+  - {fileID: 1805535965}
+  - {fileID: 427526129}
+  Guest: {fileID: 712776504}
 --- !u!4 &1547080679
 Transform:
   m_ObjectHideFlags: 0
