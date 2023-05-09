@@ -11,6 +11,7 @@ public class Cooking : Singleton<Cooking>
     public void CookingTypePush(ESubMatarials type, Sprite[] thisSprites)
     {
         myType = type;
-        sprites = thisSprites;
+
+        sprites = (type == ESubMatarials.NULL) ? null : thisSprites;
     }
 }
