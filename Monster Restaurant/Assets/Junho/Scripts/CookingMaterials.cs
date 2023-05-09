@@ -28,6 +28,9 @@ public class CookingMaterials : MonoBehaviour
     
     public void CookingSubMaterialPush()
     {
-        Cooking.Instance.CookingTypePush(myType, sprites);
+
+        ESubMatarials type = (Cooking.Instance.myType == myType) ? ESubMatarials.NULL: myType;
+            
+        Cooking.Instance.CookingTypePush(type, sprites);
     }
 }

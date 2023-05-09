@@ -20,7 +20,8 @@ public class Trash : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (Cooking.Instance.cookUp == false) return;
+        //요리 들었을때
+        //if (Cooking.Instance.cookUp == false) return;
 
         isEnter = true;
         my.DOAnchorPosY(endPos,0.5f);
@@ -43,6 +44,7 @@ public class Trash : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             if (Input.GetMouseButtonUp(0))
             {
                 print("Drop");
+                break;
             }
         }
     }

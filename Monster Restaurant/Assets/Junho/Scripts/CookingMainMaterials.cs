@@ -28,8 +28,6 @@ public class CookingMainMaterials : MonoBehaviour, IPointerDownHandler, IPointer
     public void OnPointerDown(PointerEventData eventData)
     {
         Cooking.Instance.myType = ESubMatarials.NULL;
-
-        StartCoroutine(MapScrollMG.Instance.MouseCheck());
     }
 
     // 마우스 땟을때 MixedBaord 에 닿았는지 체크
