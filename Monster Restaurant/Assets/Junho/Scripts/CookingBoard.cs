@@ -76,7 +76,7 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler
         Vector2 inputPos = Camera.main.ScreenToWorldPoint(eventData.position);
         sub.transform.position = inputPos;
         sub.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360)));
-
+        sub.GetComponent<Image>().raycastTarget = false;
         drawT = 0;
     }
 }
