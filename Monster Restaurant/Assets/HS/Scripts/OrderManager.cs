@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class OrderManager : MonoBehaviour
+public class OrderManager : Singleton<OrderManager>
 {
     [Header("Button Related")]
     [SerializeField] private UIText BtnCookText, BtnAskText;
@@ -18,15 +18,24 @@ public class OrderManager : MonoBehaviour
     [SerializeField] private Sprite[] GuestDefualts, EventGuestDefualts;
     [SerializeField] private Transform[] SlowMovingPos, OrderPos;
     [SerializeField] private GameObject Guest;
+    [SerializeField] private Customer customer;
+
+    [SerializeField] private RectTransform MemoPaper;
+    [SerializeField] private UIText[] MemoTexts;
+    [SerializeField] private Image MemoPaperBackground; 
+    public GameObject CookingScene;
+
+    private readonly Vector2[] MemoOnTextSizes = { new Vector2(-72.51f, 80.92996f), new Vector2(-3, 6.999878f), new Vector2(-72.51f, -64.00003f), new Vector2(-3, -138), new Vector2(-72.51f, -204) };
+    private readonly Vector2[] MemoOffTextSizes = { new Vector2(132, -9), new Vector2(-135, 3), new Vector2(130, -36), new Vector2(-145, -29), new Vector2(131, -65) };
 
     private Tween TextTween, DayTween;
     private I_CustomerType CustomerType;
-    public static Text MoneyText;
-    public static string[] OrderTalk = new string[3], AskTalk = new string[3];
-    public static bool isNext;
-    public static bool isBloom;
-    public static bool isHoldingFlower;
-    public static int SuccessPoint;
+    public Text MoneyText;
+    public string[] OrderTalk = new string[3], AskTalk = new string[3];
+    public bool isNext;
+    public bool isBloom;
+    public bool isHoldingFlower;
+    public int SuccessPoint;
 
     private void Start()
     {
@@ -35,8 +44,6 @@ public class OrderManager : MonoBehaviour
 
     void SetCustomerType(int type)
     {
-        NextCustomerReady();
-
         OrderTalk[0] = "메인 재료 " + RT.FirstTexts[UnityEngine.Random.Range(0, 20)] + " 부재료 얼만큼 " + RT.MiddleTexts[UnityEngine.Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[UnityEngine.Random.Range(0, 20)];
         OrderTalk[1] = "메인 재료 부재료 얼만큼 " + RT.FirstTexts[UnityEngine.Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[UnityEngine.Random.Range(0, 20)];
         OrderTalk[2] = "!메인 재료!로 !부재료! !얼만큼! 넣어서 !조리방법! 해주세요 '^'..";
@@ -61,6 +68,15 @@ public class OrderManager : MonoBehaviour
                 CustomerImg.sprite = GuestDefualts[type];
                 break;
             case EcustomerType.FSM:
+                CustomerImg.sprite = GuestDefualts[type];
+                break;
+            case EcustomerType.Chris:
+                CustomerImg.sprite = GuestDefualts[type];
+                break;
+            case EcustomerType.Demon:
+                CustomerImg.sprite = GuestDefualts[type];
+                break;
+            case EcustomerType.Holotle:
                 CustomerImg.sprite = GuestDefualts[type];
                 break;
             default:
@@ -95,7 +111,6 @@ public class OrderManager : MonoBehaviour
     /// </summary>
     void OrderLoop()
     {
-        SetCustomerType(2);
         StartCoroutine(Order());
 
         if (DayTween != null)
@@ -111,28 +126,6 @@ public class OrderManager : MonoBehaviour
         });
     }
 
-    /// <summary>
-    /// 처음 등장부터 주문전까지 이동하는 코루틴
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator Moving()
-    {
-        yield return new WaitForSeconds(FadeInOut.Instance.fadeTime);
-
-        float delayTime = 0.5f;
-
-        //와리가리 움직임
-        for (int i = 0; i < SlowMovingPos.Length; i++)
-        {
-            if (i != SlowMovingPos.Length - 1)
-                Guest.transform.DOMove(SlowMovingPos[i].position, delayTime);
-            else
-                Guest.transform.DOMove(SlowMovingPos[i].position, 0.25f);
-
-            yield return new WaitForSeconds(delayTime);
-        }
-    }
-
         void NextCustomerReady()
     {
         Array.Clear(OrderTalk, 0, OrderTalk.Length);
@@ -141,15 +134,17 @@ public class OrderManager : MonoBehaviour
         OrderText.text = "";
         BtnCookText.text = "";
         BtnAskText.text = "";
-        CookingBtn.gameObject.SetActive(true);
-        ReAskBtn.gameObject.SetActive(true);
-
     }
 
 
-    public IEnumerator Order()
+    private IEnumerator Order()
     {
-        yield return StartCoroutine(Moving());
+        NextCustomerReady();
+        SetCustomerType(UnityEngine.Random.Range(0, 8));
+        yield return StartCoroutine(customer.Moving());
+        ReAskBtn.gameObject.SetActive(true);
+        CookingBtn.gameObject.SetActive(true);
+
         for (int i = 0; i < OrderTalk.Length; i++)
         {
             if (OrderTalk[i].Equals(""))
@@ -166,6 +161,64 @@ public class OrderManager : MonoBehaviour
                 yield return null;
             }
             isNext = false;
+        }
+    }
+
+    public void MemoOn()
+    {
+        MemoPaper.gameObject.SetActive(true);
+        MemoPaperBackground.gameObject.SetActive(true);
+        MemoPaperBackground.DOFade(163 / 255f, 0.5f);
+        MemoPaper.DOSizeDelta(new Vector2(650, 549), 0.3f).SetEase(Ease.OutQuint);
+        MemoPaper.DOAnchorPos(new Vector2(-242.47f, 0), 0.3f).SetEase(Ease.OutQuint);
+        int OrderCheck = 0;
+        int AskCheck = 0;
+        for (int i = 0; i < MemoTexts.Length; i++)
+        {
+            MemoTexts[i].gameObject.SetActive(true);
+            if (i % 2 != 0)
+            {
+                MemoTexts[i].text = OrderTalk[OrderCheck];
+            }
+            else
+            {
+                MemoTexts[i].text = AskTalk[AskCheck];
+            }
+            MemoTexts[i].rectTransform.DOAnchorPos(MemoOnTextSizes[i], 0.3f).SetEase(Ease.OutQuint);
+        }
+    }
+    public void MemoOff()
+    {
+        for (int i = 0; i < MemoTexts.Length; i++)
+        {
+            int OrderCheck = 0;
+            int AskCheck = 0;
+            if (i % 2 != 0)
+            {
+                MemoTexts[i].text = OrderTalk[OrderCheck];
+            }
+            else
+            {
+                MemoTexts[i].text = AskTalk[AskCheck];
+            }
+
+            MemoTexts[i].rectTransform.DOAnchorPos(MemoOffTextSizes[i], 0.3f).SetEase(Ease.OutQuint);
+        }
+        StartCoroutine(MemoTextOff());
+        MemoPaper.DOSizeDelta(new Vector2(150, 120), 0.3f);
+        MemoPaper.DOAnchorPos(new Vector2(-492.47f, 0), 0.3f);
+
+        MemoPaperBackground.DOColor(new Color(0, 0, 0, 0), 0.3f);
+
+        IEnumerator MemoTextOff()
+        {
+            yield return new WaitForSeconds(0.3f);
+            for (int i = 0; i < MemoTexts.Length; i++)
+            {
+                MemoTexts[i].gameObject.SetActive(false);
+            }
+            MemoPaper.gameObject.SetActive(false);
+            MemoPaperBackground.gameObject.SetActive(false);
         }
     }
 }

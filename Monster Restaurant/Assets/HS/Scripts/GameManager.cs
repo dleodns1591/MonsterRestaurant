@@ -11,7 +11,7 @@ public class GameManager : Singleton<GameManager>
         set 
         {
             money = value;
-            OrderManager.MoneyText.text = money.ToString() + " $";
+            OrderManager.Instance.MoneyText.text = money.ToString() + " $";
             if(money < 0)
             {
                 //거지 엔딩

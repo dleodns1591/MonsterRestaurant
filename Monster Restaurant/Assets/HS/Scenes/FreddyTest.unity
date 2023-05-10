@@ -291,7 +291,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 3}
+    m_Font: {fileID: 12800000, guid: 3074a1bbc031b4d49b4a702c29ac5d57, type: 3}
     m_FontSize: 29
     m_FontStyle: 0
     m_BestFit: 0
@@ -599,7 +599,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 3}
+    m_Font: {fileID: 12800000, guid: 3074a1bbc031b4d49b4a702c29ac5d57, type: 3}
     m_FontSize: 29
     m_FontStyle: 0
     m_BestFit: 0
@@ -975,8 +975,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 712776508}
-        m_TargetAssemblyTypeName: Customer, Assembly-CSharp
+      - m_Target: {fileID: 1547080678}
+        m_TargetAssemblyTypeName: OrderManager, Assembly-CSharp
         m_MethodName: MemoOn
         m_Mode: 1
         m_Arguments:
@@ -1840,22 +1840,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f86de2362b1cddd4cb4d5248a9c10043, type: 3}
   - {fileID: 21300000, guid: 98290dc79ae8cfa44b5151806858bee7, type: 3}
   BackgroundCanvas: {fileID: 1729327165}
-  CookingScene: {fileID: 1151527851}
   MemoPaper: {fileID: 1654505403}
   fadeInOut: {fileID: 1955196748}
-  OrderText: {fileID: 149272331}
-  ReAskText: {fileID: 203561631}
-  CookingText: {fileID: 1609211100}
   MemoTexts:
   - {fileID: 1918311605}
   - {fileID: 24065246}
   - {fileID: 1732655557}
   - {fileID: 174282538}
   - {fileID: 1704123193}
-  RT: {fileID: 11400000, guid: 08474a3478f15504f94861ecb0c22f59, type: 2}
-  CookingBtn: {fileID: 214358847}
-  ReAskBtn: {fileID: 1234437008}
-  MemoBtn: {fileID: 283376333}
   MemoPaperBackground: {fileID: 1691087522}
 --- !u!1 &777566126
 GameObject:
@@ -2642,6 +2634,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d3b222fea5f5e14438521ff452ea898b, type: 3}
   - {fileID: 21300000, guid: 9dec1962b0c7a42458f049425503771d, type: 3}
   - {fileID: 21300000, guid: 58576ed0b7b91ba47ae3ebf4909aae5c, type: 3}
+  - {fileID: 21300000, guid: d6f5dbe973c3d94458feaf5a8f1cbae9, type: 3}
+  - {fileID: 21300000, guid: 529dd75453cea3d48b49c7d500887511, type: 3}
+  - {fileID: 21300000, guid: fcb58071df8571b42a6540e865c19059, type: 3}
   EventGuestDefualts:
   - {fileID: 21300000, guid: 023685088b6e7544a8211fd371fda878, type: 3}
   - {fileID: 21300000, guid: f75f6e51136cea9499b7c5732e79ae16, type: 3}
@@ -2660,6 +2655,29 @@ MonoBehaviour:
   - {fileID: 1805535965}
   - {fileID: 427526129}
   Guest: {fileID: 712776504}
+  customer: {fileID: 712776508}
+  MemoPaper: {fileID: 1654505403}
+  MemoTexts:
+  - {fileID: 1918311605}
+  - {fileID: 24065246}
+  - {fileID: 1732655557}
+  - {fileID: 174282538}
+  - {fileID: 1704123193}
+  MemoPaperBackground: {fileID: 1691087522}
+  CookingScene: {fileID: 1151527851}
+  MoneyText: {fileID: 0}
+  OrderTalk:
+  - 
+  - 
+  - 
+  AskTalk:
+  - 
+  - 
+  - 
+  isNext: 0
+  isBloom: 0
+  isHoldingFlower: 0
+  SuccessPoint: 0
 --- !u!4 &1547080679
 Transform:
   m_ObjectHideFlags: 0
@@ -2774,7 +2792,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1654505403
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3046,7 +3064,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1691087521
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3150,8 +3168,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 712776508}
-        m_TargetAssemblyTypeName: Customer, Assembly-CSharp
+      - m_Target: {fileID: 1547080678}
+        m_TargetAssemblyTypeName: OrderManager, Assembly-CSharp
         m_MethodName: MemoOff
         m_Mode: 1
         m_Arguments:
@@ -3229,7 +3247,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 3}
+    m_Font: {fileID: 12800000, guid: 3074a1bbc031b4d49b4a702c29ac5d57, type: 3}
     m_FontSize: 23
     m_FontStyle: 0
     m_BestFit: 0
@@ -3412,7 +3430,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 3}
+    m_Font: {fileID: 12800000, guid: 3074a1bbc031b4d49b4a702c29ac5d57, type: 3}
     m_FontSize: 23
     m_FontStyle: 0
     m_BestFit: 0
@@ -3524,7 +3542,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 3}
+    m_Font: {fileID: 12800000, guid: 3074a1bbc031b4d49b4a702c29ac5d57, type: 3}
     m_FontSize: 23
     m_FontStyle: 0
     m_BestFit: 0

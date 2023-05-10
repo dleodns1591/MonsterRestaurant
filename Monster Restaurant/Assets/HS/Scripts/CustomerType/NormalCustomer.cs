@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,10 @@ public enum EcustomerType
     Robot,
     Dragon,
     Light,
-    FSM
+    FSM,
+    Chris,
+    Demon,
+    Holotle
 }
 public enum EeventCustomerType
 {
@@ -34,46 +38,50 @@ public class NormalCustomer : MonoBehaviour, I_CustomerType
         cook.text = "알겠습니다";
         cookBtn.onClick.AddListener(() =>
         {
-            OrderManager.AskTalk[0] = "알겠습니다";
+            OrderManager.Instance.AskTalk[0] = "알겠습니다";
 
             cookBtn.gameObject.SetActive(false);
             askBtn.gameObject.SetActive(false);
+
             //요리
+            OrderManager.Instance.CookingScene.GetComponent<RectTransform>().DOAnchorPos3DY(0, 1).SetEase(Ease.OutBounce);
         });
         ask.text = "네?";
         askBtn.onClick.AddListener(() =>
         {
-            OrderManager.AskTalk[0] = "네?";
+            OrderManager.Instance.AskTalk[0] = "네?";
 
-            OrderManager.isNext = true;
+            OrderManager.Instance.isNext = true;
 
             //시간 깎기
             cookBtn.onClick.RemoveAllListeners();
             cookBtn.onClick.AddListener(() =>
             {
-                OrderManager.AskTalk[1] = "알겠습니다";
+                OrderManager.Instance.AskTalk[1] = "알겠습니다";
 
                 cookBtn.gameObject.SetActive(false);
                 askBtn.gameObject.SetActive(false);
                 //요리
+                OrderManager.Instance.CookingScene.GetComponent<RectTransform>().DOAnchorPos3DY(0, 1).SetEase(Ease.OutBounce);
             });
                 askBtn.onClick.RemoveAllListeners();
             askBtn.onClick.AddListener(() =>
             {
-                OrderManager.AskTalk[1] = "네?";
+                OrderManager.Instance.AskTalk[1] = "네?";
 
-                OrderManager.isNext = true;
+                OrderManager.Instance.isNext = true;
 
                 askBtn.gameObject.SetActive(false);
 
                 cookBtn.onClick.RemoveAllListeners();
                 cookBtn.onClick.AddListener(() =>
                 {
-                    OrderManager.AskTalk[2] = "알겠습니다";
+                    OrderManager.Instance.AskTalk[2] = "알겠습니다";
 
                     cookBtn.gameObject.SetActive(false);
                     askBtn.gameObject.SetActive(false);
                     //요리
+                    OrderManager.Instance.CookingScene.GetComponent<RectTransform>().DOAnchorPos3DY(0, 1).SetEase(Ease.OutBounce);
                 });
             });
         });
