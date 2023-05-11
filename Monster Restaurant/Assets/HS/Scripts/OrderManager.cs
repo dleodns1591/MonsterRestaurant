@@ -26,16 +26,16 @@ public class OrderManager : Singleton<OrderManager>
     public GameObject CookingScene;
 
     private readonly Vector2[] MemoOnTextSizes = { new Vector2(-72.51f, 80.92996f), new Vector2(-3, 6.999878f), new Vector2(-72.51f, -64.00003f), new Vector2(-3, -138), new Vector2(-72.51f, -204) };
-    private readonly Vector2[] MemoOffTextSizes = { new Vector2(132, -9), new Vector2(-135, 3), new Vector2(130, -36), new Vector2(-145, -29), new Vector2(131, -65) };
 
     private Tween TextTween, DayTween;
     private I_CustomerType CustomerType;
-    public Text MoneyText;
-    public string[] OrderTalk = new string[3], AskTalk = new string[3];
-    public bool isNext;
-    public bool isBloom;
-    public bool isHoldingFlower;
-    public int SuccessPoint;
+    [HideInInspector] public Text MoneyText;
+    [HideInInspector] public string[] OrderTalk = new string[3], AskTalk = new string[3];
+    [HideInInspector] public bool isNext;
+    [HideInInspector] public bool isBloom;
+    [HideInInspector] public bool isHoldingFlower;
+    [HideInInspector] public int SuccessPoint;
+    [HideInInspector] public int dialogNumber;
 
     private void Start()
     {
@@ -131,6 +131,12 @@ public class OrderManager : Singleton<OrderManager>
         Array.Clear(OrderTalk, 0, OrderTalk.Length);
         Array.Clear(AskTalk, 0, AskTalk.Length);
 
+        dialogNumber = 0;
+
+        for (int i = 0; i < MemoTexts.Length; i++)
+        {
+            MemoTexts[i].text = "";
+        }
         OrderText.text = "";
         BtnCookText.text = "";
         BtnAskText.text = "";
@@ -173,16 +179,21 @@ public class OrderManager : Singleton<OrderManager>
         MemoPaper.DOAnchorPos(new Vector2(-242.47f, 0), 0.3f).SetEase(Ease.OutQuint);
         int OrderCheck = 0;
         int AskCheck = 0;
-        for (int i = 0; i < MemoTexts.Length; i++)
+        for (int i = 0; i < dialogNumber; i++)
         {
+            print(dialogNumber);
             MemoTexts[i].gameObject.SetActive(true);
+
+
             if (i % 2 != 0)
             {
-                MemoTexts[i].text = OrderTalk[OrderCheck];
+                MemoTexts[i].text = AskTalk[AskCheck];
+                AskCheck++;
             }
             else
             {
-                MemoTexts[i].text = AskTalk[AskCheck];
+                MemoTexts[i].text = OrderTalk[OrderCheck];
+                OrderCheck++;
             }
             MemoTexts[i].rectTransform.DOAnchorPos(MemoOnTextSizes[i], 0.3f).SetEase(Ease.OutQuint);
         }
@@ -191,18 +202,7 @@ public class OrderManager : Singleton<OrderManager>
     {
         for (int i = 0; i < MemoTexts.Length; i++)
         {
-            int OrderCheck = 0;
-            int AskCheck = 0;
-            if (i % 2 != 0)
-            {
-                MemoTexts[i].text = OrderTalk[OrderCheck];
-            }
-            else
-            {
-                MemoTexts[i].text = AskTalk[AskCheck];
-            }
-
-            MemoTexts[i].rectTransform.DOAnchorPos(MemoOffTextSizes[i], 0.3f).SetEase(Ease.OutQuint);
+            MemoTexts[i].gameObject.SetActive(false);
         }
         StartCoroutine(MemoTextOff());
         MemoPaper.DOSizeDelta(new Vector2(150, 120), 0.3f);
