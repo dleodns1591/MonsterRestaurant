@@ -8,7 +8,7 @@ public class Trash : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private float startPos = -800;
     private float endPos = -223;
 
-    private bool isEnter = false;
+    public bool isEnter = false;
 
     private RectTransform my;
 
@@ -26,7 +26,6 @@ public class Trash : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         isEnter = true;
         my.DOAnchorPosY(endPos,0.5f);
 
-        StartCoroutine(DropCheck());
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -35,17 +34,4 @@ public class Trash : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         my.DOAnchorPosY(startPos,0.5f);
     }
 
-    private IEnumerator DropCheck()
-    {
-        while (isEnter == true)
-        {
-            yield return null;
-
-            if (Input.GetMouseButtonUp(0))
-            {
-                print("Drop");
-                break;
-            }
-        }
-    }
 }
