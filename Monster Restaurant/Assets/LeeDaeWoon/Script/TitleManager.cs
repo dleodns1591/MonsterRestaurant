@@ -26,6 +26,11 @@ public class TitleManager : MonoBehaviour
     [SerializeField] Button vibrationBtn;
     [SerializeField] Button notificationBtn;
 
+    [SerializeField] Sprite bgmCancle;
+    [SerializeField] Sprite sfxCancle;
+    [SerializeField] Sprite vibarationCancle;
+    [SerializeField] Sprite notificationCancle;
+
     bool isBGM = false;
     bool isSFX = false;
     bool isVirbration = false;
@@ -56,6 +61,11 @@ public class TitleManager : MonoBehaviour
 
     void SettingBtns()
     {
+        Sprite bgmBasic = bgmBtn.GetComponent<Image>().sprite;
+        Sprite sfxBasic = sfxBtn.GetComponent<Image>().sprite;
+        Sprite vibrationBasic = vibrationBtn.GetComponent<Image>().sprite;
+        Sprite notificationBasic = notificationBtn.GetComponent<Image>().sprite;
+
         // 시작 버튼을 눌렀을 경우
         startBtn.onClick.AddListener(() =>
         {
@@ -102,15 +112,13 @@ public class TitleManager : MonoBehaviour
             if (!isBGM)
             {
                 isBGM = true;
-                bgmBtn.GetComponent<Image>().color = Color.gray;
-                Debug.Log("BGM OFF");
+                bgmBtn.GetComponent<Image>().sprite = bgmCancle;
             }
 
             else
             {
                 isBGM = false;
-                bgmBtn.GetComponent<Image>().color = Color.white;
-                Debug.Log("BGM ON");
+                bgmBtn.GetComponent<Image>().sprite = bgmBasic;
             }
 
         });
@@ -118,54 +126,51 @@ public class TitleManager : MonoBehaviour
         // 효과음 버튼을 눌렀을 시
         sfxBtn.onClick.AddListener(() =>
         {
+
             if (!isSFX)
             {
                 isSFX = true;
-                sfxBtn.GetComponent<Image>().color = Color.gray;
-                Debug.Log("SFX OFF");
+                sfxBtn.GetComponent<Image>().sprite = sfxCancle;
             }
 
             else
             {
                 isSFX = false;
-                sfxBtn.GetComponent<Image>().color = Color.white;
-                Debug.Log("SFX ON");
+                sfxBtn.GetComponent<Image>().sprite = sfxBasic;
             }
         });
 
         // 진동 버튼을 눌렀을 시
         vibrationBtn.onClick.AddListener(() =>
         {
+
             if (!isVirbration)
             {
                 isVirbration = true;
-                vibrationBtn.GetComponent<Image>().color = Color.gray;
-                Debug.Log("vibration OFF");
+                vibrationBtn.GetComponent<Image>().sprite = vibarationCancle;
             }
 
             else
             {
                 isVirbration = false;
-                vibrationBtn.GetComponent<Image>().color = Color.white;
-                Debug.Log("vibration ON");
+                vibrationBtn.GetComponent<Image>().sprite = vibrationBasic;
             }
         });
 
         // 알림 버튼을 눌렀을 시
         notificationBtn.onClick.AddListener(() =>
         {
+
             if (!isNotification)
             {
                 isNotification = true;
-                notificationBtn.GetComponent<Image>().color = Color.gray;
-                Debug.Log("Notification OFF");
+                notificationBtn.GetComponent<Image>().sprite = notificationCancle;
             }
 
             else
             {
                 isNotification = false;
-                notificationBtn.GetComponent<Image>().color = Color.white;
-                Debug.Log("Notification ON");
+                notificationBtn.GetComponent<Image>().sprite = notificationBasic;
             }
         });
     }

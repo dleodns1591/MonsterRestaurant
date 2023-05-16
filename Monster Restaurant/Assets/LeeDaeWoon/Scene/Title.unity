@@ -3876,6 +3876,10 @@ MonoBehaviour:
   sfxBtn: {fileID: 674979126}
   vibrationBtn: {fileID: 1418151429}
   notificationBtn: {fileID: 718751458}
+  bgmCancle: {fileID: 21300000, guid: f46e31de674c5f142a653498ac9ac71c, type: 3}
+  sfxCancle: {fileID: 21300000, guid: b82611f169d38564ba8d4293ca13eefc, type: 3}
+  vibarationCancle: {fileID: 21300000, guid: 73ff4855b1d1ae94195ced8927f5a07e, type: 3}
+  notificationCancle: {fileID: 21300000, guid: e4154fdee9134ed489485bbb2f1e6f11, type: 3}
   languageWindow: {fileID: 656740484}
   languageBtn: {fileID: 1573018956}
   languageCancleBtn: {fileID: 1082405381}
