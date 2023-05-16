@@ -14,6 +14,7 @@ public class OrderManager : Singleton<OrderManager>
     [Header("정리 필요")]
     [SerializeField] private Image TimeFill, CustomerImg;
     [SerializeField] private UIText OrderText;
+    private Image SpeechBallon => OrderText.transform.parent.GetComponent<Image>();
     [SerializeField] private RandomText RT;
     [SerializeField] private Sprite[] GuestDefualts, EventGuestDefualts;
     [SerializeField] private Transform[] SlowMovingPos, OrderPos;
@@ -22,7 +23,7 @@ public class OrderManager : Singleton<OrderManager>
 
     [SerializeField] private RectTransform MemoPaper;
     [SerializeField] private UIText[] MemoTexts;
-    [SerializeField] private Image MemoPaperBackground; 
+    [SerializeField] private Image MemoPaperBackground;
     public GameObject CookingScene;
 
     private readonly Vector2[] MemoOnTextSizes = { new Vector2(-72.51f, 80.92996f), new Vector2(-3, 6.999878f), new Vector2(-72.51f, -64.00003f), new Vector2(-3, -138), new Vector2(-72.51f, -204) };
@@ -80,17 +81,19 @@ public class OrderManager : Singleton<OrderManager>
                 CustomerImg.sprite = GuestDefualts[type];
                 break;
             default:
-                int randomType = 2;
-                randomType = 2;
+                int randomType = 6;
+                randomType = 6;
                 switch ((EeventCustomerType)randomType)
                 {
                     case EeventCustomerType.Human:
                         break;
                     case EeventCustomerType.Thief:
                         CustomerType = gameObject.AddComponent<Thief>();
+                        CustomerImg.sprite = EventGuestDefualts[randomType];
                         break;
                     case EeventCustomerType.Beggar:
                         CustomerType = gameObject.AddComponent<Beggar>();
+                        CustomerImg.sprite = EventGuestDefualts[randomType];
                         break;
                     case EeventCustomerType.Rich:
                         break;
@@ -99,11 +102,13 @@ public class OrderManager : Singleton<OrderManager>
                     case EeventCustomerType.SalesMan:
                         break;
                     case EeventCustomerType.FoodCleanTester:
+                        CustomerType = gameObject.AddComponent<FoodCleanTester>();
+                        CustomerImg.sprite = EventGuestDefualts[randomType];
                         break;
                 }
                 break;
         }
-                CustomerType.SpecialType(BtnCookText, BtnAskText);
+        CustomerType.SpecialType(BtnCookText, BtnAskText);
     }
 
     /// <summary>
@@ -126,7 +131,7 @@ public class OrderManager : Singleton<OrderManager>
         });
     }
 
-        void NextCustomerReady()
+    void NextCustomerReady()
     {
         Array.Clear(OrderTalk, 0, OrderTalk.Length);
         Array.Clear(AskTalk, 0, AskTalk.Length);
@@ -146,10 +151,11 @@ public class OrderManager : Singleton<OrderManager>
     private IEnumerator Order()
     {
         NextCustomerReady();
-        SetCustomerType(UnityEngine.Random.Range(0, 8));
+        SetCustomerType(UnityEngine.Random.Range(9, 9));
         yield return StartCoroutine(customer.Moving());
         ReAskBtn.gameObject.SetActive(true);
         CookingBtn.gameObject.SetActive(true);
+        SpeechBallon.gameObject.SetActive(true);
 
         for (int i = 0; i < OrderTalk.Length; i++)
         {
@@ -157,7 +163,7 @@ public class OrderManager : Singleton<OrderManager>
             {
                 continue;
             }
-            if(TextTween != null)
+            if (TextTween != null)
                 TextTween.Kill();
             OrderText.text = "";
             TextTween = OrderText.DOText(OrderTalk[i], 0.05f * OrderTalk[i].Length);
@@ -176,15 +182,20 @@ public class OrderManager : Singleton<OrderManager>
         MemoPaperBackground.gameObject.SetActive(true);
         MemoPaperBackground.DOFade(163 / 255f, 0.5f);
         MemoPaper.DOSizeDelta(new Vector2(650, 549), 0.3f).SetEase(Ease.OutQuint);
-        MemoPaper.DOAnchorPos(new Vector2(-242.47f, 0), 0.3f).SetEase(Ease.OutQuint);
+        MemoPaper.DOAnchorPos(new Vector2(-242.47f, 0), 0.2f).SetEase(Ease.OutQuint).OnComplete(OnMemoTexts);
+        void OnMemoTexts()
+        {
+            for (int i = 0; i < dialogNumber; i++)
+            {
+                print(dialogNumber);
+                MemoTexts[i].gameObject.SetActive(true);
+            }
+        }
+
         int OrderCheck = 0;
         int AskCheck = 0;
         for (int i = 0; i < dialogNumber; i++)
         {
-            print(dialogNumber);
-            MemoTexts[i].gameObject.SetActive(true);
-
-
             if (i % 2 != 0)
             {
                 MemoTexts[i].text = AskTalk[AskCheck];
@@ -213,10 +224,6 @@ public class OrderManager : Singleton<OrderManager>
         IEnumerator MemoTextOff()
         {
             yield return new WaitForSeconds(0.3f);
-            for (int i = 0; i < MemoTexts.Length; i++)
-            {
-                MemoTexts[i].gameObject.SetActive(false);
-            }
             MemoPaper.gameObject.SetActive(false);
             MemoPaperBackground.gameObject.SetActive(false);
         }
