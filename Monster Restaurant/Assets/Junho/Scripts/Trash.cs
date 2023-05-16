@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
-public class Trash : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class Trash : MonoBehaviour
 {
     private float startPos = -800;
     private float endPos = -223;
@@ -17,21 +17,14 @@ public class Trash : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         my = GetComponent<RectTransform>();
     }
 
-
-    public void OnPointerEnter(PointerEventData eventData)
+    public void Enter()
     {
-        //요리 들었을때
-        //if (Cooking.Instance.cookUp == false) return;
-
         isEnter = true;
-        my.DOAnchorPosY(endPos,0.5f);
-
+        my.DOAnchorPosY(endPos, 0.5f);
     }
-
-    public void OnPointerExit(PointerEventData eventData)
+    public void Exit()
     {
         isEnter = false;
-        my.DOAnchorPosY(startPos,0.5f);
+        my.DOAnchorPosY(startPos, 0.5f);
     }
-
 }

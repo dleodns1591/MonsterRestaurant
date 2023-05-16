@@ -12,6 +12,8 @@ public class CuttingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     [SerializeField] private CookingBoard food;
     [SerializeField] private CookingBoard NewFoodObj;
     [SerializeField] private Transform boardPool;
+    [SerializeField] private Transform foodPool;
+
 
     private void Start()
     {
@@ -20,9 +22,9 @@ public class CuttingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        if(food.mainMaterial != EMainMatarials.NULL)
+        if (food.mainMaterial == EMainMatarials.NULL) return;
         StartCoroutine(BoardMove());
-        transform.parent = trash.transform;
+        transform.parent = foodPool;
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -35,6 +37,7 @@ public class CuttingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         if(trash.isEnter == true)
         {
             FoodDrop();
+            trash.Exit();
         }
     }
 
@@ -42,10 +45,11 @@ public class CuttingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     {
         Destroy(food.gameObject);
         food = Instantiate(NewFoodObj,board.transform);
-        food.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+        food.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,80);
     }
     private IEnumerator BoardMove()
     {
+        bool isEnterTrash = false;
         while (true)
         {
             yield return null;
@@ -54,7 +58,16 @@ public class CuttingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
             
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            board.transform.position = mousePos;
+            board.transform.position = mousePos + new Vector2(0,2);
+
+            //쓰레기 위치 체크
+            if((mousePos.x > -3f || mousePos.x < 3f) && mousePos.y < -4.5f)
+                isEnterTrash = true;
+            else isEnterTrash = false;
+
+
+            if (isEnterTrash == true) trash.Enter();
+            else trash.Exit();
 
         }
     }
