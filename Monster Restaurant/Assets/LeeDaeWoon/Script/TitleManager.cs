@@ -17,7 +17,8 @@ public class TitleManager : MonoBehaviour
     bool isContent = false;
 
     [Header("¼³Á¤")]
-    [SerializeField] CanvasGroup settingWindow;
+    [SerializeField] CanvasGroup settingGroup;
+    [SerializeField] GameObject settingWidnow;
     [SerializeField] Button settingBtn;
     [SerializeField] Button settingCancleBtn;
     [SerializeField] Button bgmBtn;
@@ -47,6 +48,7 @@ public class TitleManager : MonoBehaviour
 
     void Update()
     {
+
     }
 
     void LanguageSetting(int index) =>
@@ -66,29 +68,31 @@ public class TitleManager : MonoBehaviour
             if (!isContent)
             {
                 isContent = true;
-                for (int i = 1; i < 5; i++)
-                    content.transform.GetChild(i - 1).DOLocalMoveY(i * -200, 0.8f).SetEase(Ease.OutBack);
+                for (int i = 1; i <= content.transform.childCount; i++)
+                    content.transform.GetChild(i - 1).DOLocalMoveY(i * -180, 0.5f).SetEase(Ease.OutBack);
             }
 
             else
             {
                 isContent = false;
-                for (int i = 1; i < 5; i++)
-                    content.transform.GetChild(i - 1).DOLocalMoveY(0, 0.8f).SetEase(Ease.InBack);
+                for (int i = 1; i <= content.transform.childCount; i++)
+                    content.transform.GetChild(i - 1).DOLocalMoveY(0, 0.5f).SetEase(Ease.InBack);
             }
         });
 
         settingBtn.onClick.AddListener(() =>
         {
-            settingWindow.alpha = 1;
-            settingWindow.gameObject.SetActive(true);
+            settingGroup.alpha = 1;
+            settingWidnow.transform.DOLocalMoveY(0, 0.5f).SetEase(Ease.OutBack);
+            settingGroup.gameObject.SetActive(true);
         });
 
         settingCancleBtn.onClick.AddListener(() =>
         {
-            settingWindow.DOFade(0, 0.2f).SetEase(Ease.Linear).OnComplete(() =>
+            settingGroup.DOFade(0, 0.2f).SetEase(Ease.Linear).OnComplete(() =>
             {
-                settingWindow.gameObject.SetActive(false);
+                settingWidnow.transform.DOLocalMoveY(1050, 0).SetEase(Ease.Linear);
+                settingGroup.gameObject.SetActive(false);
             });
         });
 
