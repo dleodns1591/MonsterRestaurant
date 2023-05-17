@@ -151,7 +151,7 @@ public class OrderManager : Singleton<OrderManager>
     private IEnumerator Order()
     {
         NextCustomerReady();
-        SetCustomerType(UnityEngine.Random.Range(9, 9));
+        SetCustomerType(UnityEngine.Random.Range(0, 8));
         yield return StartCoroutine(customer.Moving());
         ReAskBtn.gameObject.SetActive(true);
         CookingBtn.gameObject.SetActive(true);
