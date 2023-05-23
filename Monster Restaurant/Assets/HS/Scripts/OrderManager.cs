@@ -45,9 +45,64 @@ public class OrderManager : Singleton<OrderManager>
 
     void SetCustomerType(int type)
     {
-        OrderTalk[0] = "메인 재료 " + RT.FirstTexts[UnityEngine.Random.Range(0, 20)] + " 부재료 얼만큼 " + RT.MiddleTexts[UnityEngine.Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[UnityEngine.Random.Range(0, 20)];
-        OrderTalk[1] = "메인 재료 부재료 얼만큼 " + RT.FirstTexts[UnityEngine.Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[UnityEngine.Random.Range(0, 20)];
-        OrderTalk[2] = "!메인 재료!로 !부재료! !얼만큼! 넣어서 !조리방법! 해주세요 '^'..";
+        string MainIngredient(EMainMatarials main)
+        {
+            switch(main)
+            {
+                case EMainMatarials.Bread:
+                    return "빵에다가 ";
+                case EMainMatarials.Meat:
+                    return "고기에다가 ";
+                case EMainMatarials.Noodle:
+                    return "면에다가 ";
+                case EMainMatarials.Rice:
+                    return "밥에다가 ";
+                default:
+                    return "ERORR";
+            }
+        }
+
+        string SubIngredient(ESubMatarials sub)
+        {
+            switch (sub)
+            {
+                case ESubMatarials.AlienPlant:
+                    return "외계 잡초";
+                case ESubMatarials.Battery:
+                    return "배터리";
+                case ESubMatarials.Bismuth:
+                    return "비스무트";
+                case ESubMatarials.Bolt:
+                    return "볼트";
+                case ESubMatarials.Eyes:
+                    return "눈알";
+                case ESubMatarials.Fur:
+                    return "털뭉치";
+                case ESubMatarials.Jewelry:
+                    return "보석들";
+                case ESubMatarials.Money:
+                    return "돈뭉치";
+                case ESubMatarials.Paper:
+                    return "색종이";
+                case ESubMatarials.Poop:
+                    return "똥덩이";
+                case ESubMatarials.Preservatives:
+                    return "방부제";
+                case ESubMatarials.Sticker:
+                    return "스티커";
+                default:
+                    return "ERROR";
+            }
+        }
+
+        string MainText = MainIngredient((EMainMatarials)UnityEngine.Random.Range(0, 3));
+        string SubText = SubIngredient((ESubMatarials)UnityEngine.Random.Range(0, 12));
+
+        OrderTalk[0] = MainText + RT.FirstTexts[UnityEngine.Random.Range(0, 20)] + 
+                        SubText + " 넣어서" + RT.MiddleTexts[UnityEngine.Random.Range(0, 20)] + 
+                        " 조리방법 " + RT.LastTexts[UnityEngine.Random.Range(0, 20)];
+        OrderTalk[1] = MainText + SubText + " 넣어서" + RT.FirstTexts[UnityEngine.Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[UnityEngine.Random.Range(0, 20)];
+        OrderTalk[2] = MainText + SubText + " 넣어서 !조리방법! 해주세요 '^'..";
 
         CustomerType = gameObject.AddComponent<NormalCustomer>();
 
