@@ -33,4 +33,10 @@ public class GameManager : Singleton<GameManager>
     public bool Bloom;
     public int CanNotMask;
     public int HumanLike;
+
+
+    public bool BuyCheck(float price)
+    {
+        return (money >= price);
+    }
 }

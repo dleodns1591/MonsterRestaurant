@@ -8,10 +8,17 @@ public class Cooking : Singleton<Cooking>
 
     public ESubMatarials myType;
     public Sprite[] sprites;
+
+    [SerializeField] private float[] SubMaterialsPriece;
+    public float[] MainMaterialsPriece;
+    public float materialPrice;
+    
     public void CookingTypePush(ESubMatarials type, Sprite[] thisSprites)
     {
         myType = type;
 
         sprites = (type == ESubMatarials.NULL) ? null : thisSprites;
+
+        materialPrice = SubMaterialsPriece[((int)type)];
     }
 }

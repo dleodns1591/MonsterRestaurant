@@ -23,12 +23,15 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler
     private bool isMainMaterialDrop;
     [SerializeField] private bool isEnterImage;
 
-    [SerializeField] private float drawCnt;
-    [SerializeField] private float drawT;
 
     public void DropMainMaterial(EMainMatarials main, Sprite sprite)
     {
-        if (isMainMaterialDrop == true) return;
+        float mainPrice = Cooking.Instance.MainMaterialsPriece[((int)main)];
+
+
+        if (isMainMaterialDrop == true && GameManager.Instance.BuyCheck(mainPrice)) return;
+
+        GameManager.Instance.Money -= mainPrice;
 
         isMainMaterialDrop = true;
         mainMaterial = main;
@@ -52,31 +55,21 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler
         mainMaterialImage.color = new Vector4(1, 1, 1, 1);
     }
 
-    //public void OnDrag(PointerEventData eventData)
-    //{
-    //    if (isMainMaterialDrop == false || Cooking.Instance.myType == ESubMatarials.NULL) return;
-
-
-    //    drawT += Time.deltaTime;
-    //    if (drawCnt > drawT) return;
-    //    GameObject sub = Instantiate(subM, transform).gameObject;
-    //    Vector2 inputPos = Camera.main.ScreenToWorldPoint(eventData.position);
-    //    sub.transform.position = inputPos;
-    //    sub.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360)));
-
-    //    drawT = 0;
-    //}
-
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (isMainMaterialDrop == false || Cooking.Instance.myType == ESubMatarials.NULL) return;
+        float price = Cooking.Instance.materialPrice;
+
+        if ((isMainMaterialDrop == false || Cooking.Instance.myType == ESubMatarials.NULL)
+            && GameManager.Instance.BuyCheck(price)) return;
+
+        subMaterials.Add(Cooking.Instance.myType);
 
         GameObject sub = Instantiate(subM, transform).gameObject;
         Vector2 inputPos = Camera.main.ScreenToWorldPoint(eventData.position);
         sub.transform.position = inputPos;
         sub.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360)));
         sub.GetComponent<Image>().raycastTarget = false;
-        drawT = 0;
-        subMaterials.Add(Cooking.Instance.myType);
+        
+        GameManager.Instance.Money -= price;
     }
 }
