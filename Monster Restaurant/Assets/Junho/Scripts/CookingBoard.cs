@@ -16,7 +16,7 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler
     };
 
     public EMainMatarials mainMaterial;
-    public ESubMatarials[] subMaterials;
+    public List<ESubMatarials> subMaterials = new List<ESubMatarials>();
 
     [SerializeField] private Image subM;
 
@@ -71,12 +71,12 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler
     {
         if (isMainMaterialDrop == false || Cooking.Instance.myType == ESubMatarials.NULL) return;
 
-
         GameObject sub = Instantiate(subM, transform).gameObject;
         Vector2 inputPos = Camera.main.ScreenToWorldPoint(eventData.position);
         sub.transform.position = inputPos;
         sub.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360)));
         sub.GetComponent<Image>().raycastTarget = false;
         drawT = 0;
+        subMaterials.Add(Cooking.Instance.myType);
     }
 }
