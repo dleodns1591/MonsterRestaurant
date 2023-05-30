@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    private float money;
+    private float money = 1000;
     public float Money
     {
         get { return money; }
         set 
         {
             money = value;
-            OrderManager.Instance.MoneyText.text = money.ToString() + " $";
+            //OrderManager.Instance.MoneyText.text = money.ToString() + " $";
             if(money < 0)
             {
                 //거지 엔딩

@@ -46,7 +46,7 @@ public class NormalCustomer : MonoBehaviour, I_CustomerType
             askBtn.gameObject.SetActive(false);
 
             //요리
-            OrderManager.Instance.CookingScene.GetComponent<RectTransform>().DOAnchorPos3DY(0, 1).SetEase(Ease.OutBounce);
+            OrderManager.Instance.CookingScene.transform.DOMoveY(0, 1).SetEase(Ease.OutBounce);
         });
         ask.text = "네?";
         askBtn.onClick.AddListener(() =>
@@ -68,7 +68,7 @@ public class NormalCustomer : MonoBehaviour, I_CustomerType
                 cookBtn.gameObject.SetActive(false);
                 askBtn.gameObject.SetActive(false);
                 //요리
-                OrderManager.Instance.CookingScene.GetComponent<RectTransform>().DOAnchorPos3DY(0, 1).SetEase(Ease.OutBounce);
+                OrderManager.Instance.CookingScene.transform.DOMoveY(0, 1).SetEase(Ease.OutBounce);
             });
             askBtn.onClick.RemoveAllListeners();
             askBtn.onClick.AddListener(() =>
@@ -90,7 +90,7 @@ public class NormalCustomer : MonoBehaviour, I_CustomerType
                     cookBtn.gameObject.SetActive(false);
                     askBtn.gameObject.SetActive(false);
                     //요리
-                    OrderManager.Instance.CookingScene.GetComponent<RectTransform>().DOAnchorPos3DY(0, 1).SetEase(Ease.OutBounce);
+                    OrderManager.Instance.CookingScene.transform.DOMoveY(0, 1).SetEase(Ease.OutBounce);
                 });
             });
         });
