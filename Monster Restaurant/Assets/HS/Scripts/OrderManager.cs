@@ -101,16 +101,17 @@ public class OrderManager : Singleton<OrderManager>
             string SubText = SubIngredient((ESubMatarials)UnityEngine.Random.Range(0, 12));
 
         print(txt.text);
-        string[] line = txt.text.Split('\t');
-        int lineSize = line.Length;
-        string[] Sentence = new string[lineSize];
+        string[] line = txt.text.Split('\n');
+        string[] Sentence = new string[line.Length];
 
-        // ÇÑ ÁÙ¿¡¼­ ÅÇÀ¸·Î ³ª´®
-        for (int i = 0; i < lineSize; i++)
+        //¿£ÅÍ·Î ³ª´®
+        for (int i = 1; i < line.Length; i++)
         {
-            Sentence[i] = line[i];
+            string[] cell = line[i].Split('\t');
+
+                Sentence[i] = cell[5];
         }
-        string order = Sentence[UnityEngine.Random.Range(0, Sentence.Length)];
+        string order = Sentence[UnityEngine.Random.Range(0, line.Length)];
 
         OrderTalk[0] = order;
         //MainText + RT.FirstTexts[UnityEngine.Random.Range(0, 20)] +
