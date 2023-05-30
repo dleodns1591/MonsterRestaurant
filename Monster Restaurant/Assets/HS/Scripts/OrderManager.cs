@@ -100,8 +100,8 @@ public class OrderManager : Singleton<OrderManager>
             string MainText = MainIngredient((EMainMatarials)UnityEngine.Random.Range(0, 3));
             string SubText = SubIngredient((ESubMatarials)UnityEngine.Random.Range(0, 12));
 
-        string currentText = txt.text.Substring(0, txt.text.Length - 1);
-        string[] line = currentText.Split('\n');
+        print(txt.text);
+        string[] line = txt.text.Split('\t');
         int lineSize = line.Length;
         string[] Sentence = new string[lineSize];
 
@@ -186,7 +186,7 @@ public class OrderManager : Singleton<OrderManager>
         /// </summary>
         void OrderLoop()
         {
-            StartCoroutine(Order());
+            StartCoroutine(Order());    
 
             if (DayTween != null)
                 DayTween.Kill();

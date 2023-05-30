@@ -1,0 +1,61 @@
+메인재료	부재료	수량	조리방식	반 반	한국어	영어
+면	스티커		없음	FALSE	"와이파이 있으신가요? 잠시 빌려써도 될까요? 스텟카아 파스타 하나 주문할게요."	Do you have Wi-Fi? Can I borrow it for a while? I'd like to order a sticker pasta."
+면	스티커		없음	FALSE	"파스타 하나요. 접착력이 강하게요."	"One pasta, please. The adhesion is strong."
+면	스티커		없음	FALSE	"파스타랑 스티커가 같이 있으면 맛이 이상해요."	"It tastes weird with pasta and stickers."
+면	스티커		없음	FALSE	"풀처럼 찐득하고, 가느다란 파스타"	"Sticky, thin pasta like grass"
+면	스티커		없음	FALSE	"요나하 타스파 커티스"	"Eno Atsap Rekcits"
+면	방부제		없음	FALSE	"썩지 않는 파스타 하나요."	"One pasta that doesn't rot."
+면	방부제		없음	FALSE	"고대 이집트에선 왕족과 귀족들의 면을 방부제로 하시던 거 아시나요...."	"Did you know that in ancient Egypt, the pasta of royalty and aristocrats was used as a preservative..."
+면	방부제		없음	FALSE	"포르말린 파스타를 드셔보셨나요? 정말 맛있어요!"	"Have you tried formalin pasta? It's really good!"
+면	방부제		없음	FALSE	"오래 먹을 수 있는 파스타 주세요."	"Please give me pasta that I can eat for a long time."
+면	방부제		없음	FALSE	"그냥 방부제 파스타 주세요."	"Just a preservative pasta, please."
+면	똥		없음	FALSE	"길게 늘어져 있는 웃는 똥에 대해 들어보셨나요? 히히..."	"Have you heard of the long drooping smiling poop? "Hehe..."
+면	똥		없음	FALSE	"땡큐 베리 풉…파"	"Thank you very pub…pa"
+면	똥		없음	FALSE	"어제 화장실에 봤던 기다란거 주세요."	"Give me the long one I saw in the bathroom yesterday."
+면	똥		없음	FALSE	"똥 냄새를 맡고 다섯 행성을 파르게 달려왔어요."	"I smelled the poop and ran to five planets."
+면	똥		없음	FALSE	"똥똥 파스타"	"PoopPoop pasta."
+면	종이		없음	FALSE	"페이퍼 면이 들어간 음식은 몇 달러 페이퍼?"	"How many dollars is the food with paper noodles?"
+면	종이		없음	FALSE	"파피루스 파스타 하나요."	"One papyrus pasta, please."
+면	종이		없음	FALSE	"요나하 타스파 이종"	"Eno Atsap Repap"
+면	종이		없음	FALSE	"종이 파스타.. 제 눈으로 확인해 봐야겠어요"	"Paper pasta..." I'll have to check with my own eyes."
+면	종이		없음	FALSE	"종이를 밥에 넣어 먹어도 봤고, 파스타에 넣어 먹으면?"	"I've seen you putting paper in rice. What if you put it in pasta?"
+면	너트		없음	FALSE	"너트와 돈을 넣은 파스타요. 아, 돈은 빼주세요."	"Pasta with nuts and money. Oh, take out the money."
+면	너트		없음	FALSE	"ㅇㄴㅅ ㅍㅅㅌ ㅎㄴㅇ"	"N.P.O"
+면	너트		없음	FALSE	"암나사 파스타 하나요"	"One female screw pasta, please"
+면	너트		없음	FALSE	"쇠 냄새를 맡고 여섯 행성을 파르게 달려왔어요."	"I smelled iron and came running blue across six planets."
+면	너트		없음	FALSE	"저기 저 너트면이 맛있을 것 같아요."	"That nut pasta over there looks delicious."
+면	돈		없음	FALSE	"행복을 돈으로 살 수 없다면 혹시 돈이 모자란건 아닌지 확인해 보면 어떨까요?"	"If you can't buy happiness with money, why don't you check if you don't have enough money?"
+면	돈		없음	FALSE	"저희 할머니는 파스타를 좋아해요."	"My grandmother loves pasta."
+면	돈		없음	FALSE	"제 파스타를 특별하게 만들어줄 멋진 캐시가..."	"I have a nice cash that will make my pasta special..."
+면	돈		없음	FALSE	"종이 비슷한 파스타 하나 주세요."	"I'd like a paper-like pasta."
+면	돈		없음	FALSE	"기다란 돈은 항상 옳다!"	"Long money is always right!"
+면	보석		없음	FALSE	"여기서 제일 비싼 파스타 하나 주세요."	"I'd like the most expensive pasta here."
+면	보석		없음	FALSE	"주얼리한 파스타 주세요."	"Give me a piece of jewelry pasta."
+면	보석		없음	FALSE	"파스타 위에 보석을 토핑으로 올리는 거 좀 이상한가요?"	"Is it a little strange to put jewelry on top of pasta as a topping?"
+면	보석		없음	FALSE	"보석을 고기에 넣어 먹어도 봤고, 파스타에도… 올려 먹으면?"	"I've seen jewelry in meat, and pasta... What if you put it on top of it
+면	보석		없음	FALSE	"보석 파스타를 파신다고요? 보석 캔디는 들어봤는데.."	"You sell jewelry pasta? I've heard of jewelry candy.."
+면	털 뭉치		없음	FALSE	"저는 긴 털 많이 달린 생물이 좋아요."	"I like creatures with long hair."
+면	털 뭉치		없음	FALSE	"긴 털이 뭉치면 긴 털뭉치"	"When long hair clumps up, long hair clumps"
+면	털 뭉치		없음	FALSE	"어제 티비에서 봤던 복슬복슬한 면..."	"The fluffy side that I saw on TV yesterday...""
+면	털 뭉치		없음	FALSE	"저기 저 긴 털이 맛있을 것 같아요."	"That long hair over there looks delicious."
+면	털 뭉치		없음	FALSE	"그냥 털 파스타 하나 주세요."	"Just one fur pasta, please."
+면	눈알		없음	FALSE	"저기 저 옆 행성 음식점 사장님 너무 멋있지 않아요? 긴 눈이 멋있는 것 같아요."	"Isn't the owner of the restaurant on the next planet so cool?" I think long eyes are cool."
+면	눈알		없음	FALSE	"눈알 먹어보셨나요? 저는 기다란 눈이 맛있더라구요."	"Have you tried eyeballs?" I liked the long snow."
+면	눈알		없음	FALSE	"저기 저 눈알이 맛있을 것 같은데, 눈알 파스타 하나 주세요."	"That eyeball looks delicious, I'd like one eyeball pasta."
+면	눈알		없음	FALSE	"ㄴㅇ ㅍㅅㅌ ㅎㄴㅇ"	"E.P.O"
+면	눈알		없음	FALSE	"저희 아이가 먹을 파스타 하나 주세요."	"I'd like a pasta for my child."
+면	비스무트		없음	FALSE	"위장 장애를 치료할 수 있는 파스타 주세요."	"I'd like pasta to treat gastrointestinal disorders."
+면	비스무트		없음	FALSE	"녹은 파스타 주세요."	"Please give me melted pasta."
+면	비스무트		없음	FALSE	"끓는점을 1,564°C까지 올린 파스타 하나 주세요."	"I'd like a pasta with a boiling point up to 1,564°C."
+면	비스무트		없음	FALSE	"83번째 파스타 하나 주세요."	"One 83rd pasta, please."
+면	비스무트		없음	FALSE	"독성이 없는 금속 파스타 주세요."	"I'd like non-toxic metal pasta."
+면	건전지		없음	FALSE	"저의 긴 인생을 짜릿하게 해줄 음식을 만들어 주세요."	"Please make me food that will thrill my long life."
+면	건전지		없음	FALSE		
+면	건전지		없음	FALSE		
+면	건전지		없음	FALSE		
+면	건전지		없음	FALSE		
+면	외계 풀		없음	FALSE		
+면	외계 풀		없음	FALSE		
+면	외계 풀		없음	FALSE		
+면	외계 풀		없음	FALSE		
+면	외계 풀		없음	FALSE		
