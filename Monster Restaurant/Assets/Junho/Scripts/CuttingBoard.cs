@@ -58,10 +58,9 @@ public class CuttingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             board.rectTransform.position = new Vector3(mousePos.x, mousePos.y + 2, 0);
-            Debug.Log(board.rectTransform.position);
 
             //쓰레기 위치 체크
-            if ((mousePos.x > -3f || mousePos.x < 3f) && mousePos.y < -4.5f)
+            if ((mousePos.x > -2.5f && mousePos.x < 2.5f) && mousePos.y < -4.5f)
                 isEnterTrash = true;
             else isEnterTrash = false;
 
