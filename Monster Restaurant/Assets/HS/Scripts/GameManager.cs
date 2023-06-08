@@ -2,8 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public struct OrderSet
+{
+    public EMainMatarials main;
+    public ESubMatarials sub;
+    public int count;
+    //조리방식
+    public bool half;
+}
+
+
 public class GameManager : Singleton<GameManager>
 {
+    public OrderSet[] orderSets;
     private float money = 1000;
     public float Money
     {

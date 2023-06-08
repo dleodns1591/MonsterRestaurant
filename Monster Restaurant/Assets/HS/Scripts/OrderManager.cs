@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-using Unity.VisualScripting;
-using static Unity.Burst.Intrinsics.Arm;
-using UnityEditor.Localization.Plugins.XLIFF.V20;
 
 public class OrderManager : Singleton<OrderManager>
 {
@@ -24,6 +21,7 @@ public class OrderManager : Singleton<OrderManager>
     private Text NameBallonText => NameBallon.transform.GetComponentInChildren<Text>();
     [SerializeField] private RandomText RT;
     [SerializeField] private Sprite[] GuestDefualts, EventGuestDefualts;
+    [SerializeField] private Text MonetText;
     [SerializeField] private Transform[] SlowMovingPos, OrderPos;
     [SerializeField] private GameObject Guest;
     [SerializeField] private Customer customer;
@@ -38,7 +36,6 @@ public class OrderManager : Singleton<OrderManager>
     private Tween TextTween, DayTween;
     private I_CustomerType CustomerType;
     private int randomCustomerNum;
-    [HideInInspector] public Text MoneyText;
     [HideInInspector] public string[] OrderTalk = new string[3], AskTalk = new string[3];
     [HideInInspector] public bool isNext;
     [HideInInspector] public bool isBloom;
@@ -48,12 +45,17 @@ public class OrderManager : Singleton<OrderManager>
 
     private void Start()
     {
+        RandomOrderMaterial();
         OrderLoop();
+    }
+    private void Update()
+    {
+        MonetText.text = GameManager.Instance.Money.ToString();
     }
     void SetCustomerType(int type)
     {
         randomCustomerNum = UnityEngine.Random.Range(0, txt.text.Split('\n').Length);
-        string order = RandomOrder()[randomCustomerNum];
+        string order = RandomOrderSpeech()[randomCustomerNum];
         OrderTalk[0] = order;
         OrderTalk[1] = order;
         OrderTalk[2] = order;
@@ -67,52 +69,36 @@ public class OrderManager : Singleton<OrderManager>
             {
                 case "Alien":
                     return "퀘이사";
-                    break;
                 case "Hyena":
                     return "제토";
-                    break;
                 case "Robot":
                     return "sdh210224";
-                    break;
                 case "Dragon":
                     return "시금치";
-                    break;
                 case "Light":
                     return "2차 양지화";
-                    break;
                 case "FSM":
                     return "날스괴";
-                    break;  
                 case "Chris":
                     return "유령 크리스";
-                    break;
                 case "Demon":
                     return "헬리오스";
-                    break;
                 case "Holotle":
                     return "아홀로노트";
-                    break;
                 case "Thief":
                     return "도주";
-                    break;
                 case "Beggar":
                     return "양말 아저씨";
-                    break;
                 case "Rich":
                     return "양말 아저씨";
-                    break;
                 case "GroupOrder":
                     return "플로리안";
-                    break;
                 case "SalesMan":
                     return "리시드";
-                    break;
                 case "FoodCleanTester":
                     return "H-30122";
-                    break;
                 default:
                     return "";
-                    break;
             }
         }
         void NormalCustomerSetting()
@@ -188,13 +174,11 @@ public class OrderManager : Singleton<OrderManager>
         }
         CustomerType.SpecialType(BtnCookText, BtnAskText);
     }
-    string[] RandomOrder()
+    string[] RandomOrderSpeech()
     {
-        print(txt.text);
         string[] line = txt.text.Split('\n');
         string[] Sentence = new string[line.Length];
 
-        //엔터로 나눔
         for (int i = 1; i < line.Length; i++)
         {
             string[] cell = line[i].Split('\t');
@@ -204,7 +188,71 @@ public class OrderManager : Singleton<OrderManager>
         return Sentence;
     }
 
+    string[] RandomOrderMaterial()
+    {
+        EMainMatarials eMain(string cell)
+        {
+            switch (cell)
+            {
+                case "면":
+                    return EMainMatarials.Noodle;
+                case "밥":
+                    return EMainMatarials.Rice;
+                case "빵":
+                    return EMainMatarials.Bread;
+                case "고기":
+                    return EMainMatarials.Meat;
+                default:
+                    return EMainMatarials.Bread;
+            }
+        }
+        ESubMatarials eSub(string cell)
+        {
+            switch (cell)
+            {
+                case "스티커":
+                    return ESubMatarials.Sticker;
+                case "똥":
+                    return ESubMatarials.Poop;
+                case "너트":
+                    return ESubMatarials.Bolt;
+                case "방부제":
+                    return ESubMatarials.Preservatives;
+                case "종이":
+                    return ESubMatarials.Paper;
+                case "돈":
+                    return ESubMatarials.Money;
+                case "보석":
+                    return ESubMatarials.Jewelry;
+                case "눈알":
+                    return ESubMatarials.Eyes;
+                case "건전지":
+                    return ESubMatarials.Battery;
+                case "털 뭉치":
+                    return ESubMatarials.Fur;
+                case "비스무트":
+                    return ESubMatarials.Bismuth;
+                case "외계 풀":
+                    return ESubMatarials.AlienPlant;
+                default:
+                    return ESubMatarials.Battery;
 
+            }
+        }
+
+        string[] line = txt.text.Split('\n');
+        string[] Sentence = new string[line.Length];
+
+        GameManager.Instance.orderSets = new OrderSet[line.Length];
+        for (int i = 1; i < line.Length; i++)
+        {
+            string[] cell = line[i].Split('\t');
+
+           GameManager.Instance.orderSets[i].main = eMain(cell[0]);
+           GameManager.Instance.orderSets[i].sub = eSub(cell[1]);
+        }
+        return Sentence;
+    }
     /// <summary>
     /// 손님을 받는 이벤트? 들이 시작하는 함수
     /// </summary>
