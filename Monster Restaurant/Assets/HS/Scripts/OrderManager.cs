@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using Unity.VisualScripting;
+using static Unity.Burst.Intrinsics.Arm;
+using UnityEditor.Localization.Plugins.XLIFF.V20;
 
 public class OrderManager : Singleton<OrderManager>
 {
@@ -18,6 +20,8 @@ public class OrderManager : Singleton<OrderManager>
     [SerializeField] private Image TimeFill, CustomerImg;
     [SerializeField] private UIText OrderText;
     private Image SpeechBallon => OrderText.transform.parent.GetComponent<Image>();
+    [SerializeField] private GameObject NameBallon;
+    private Text NameBallonText => NameBallon.transform.GetComponentInChildren<Text>();
     [SerializeField] private RandomText RT;
     [SerializeField] private Sprite[] GuestDefualts, EventGuestDefualts;
     [SerializeField] private Transform[] SlowMovingPos, OrderPos;
@@ -33,6 +37,7 @@ public class OrderManager : Singleton<OrderManager>
 
     private Tween TextTween, DayTween;
     private I_CustomerType CustomerType;
+    private int randomCustomerNum;
     [HideInInspector] public Text MoneyText;
     [HideInInspector] public string[] OrderTalk = new string[3], AskTalk = new string[3];
     [HideInInspector] public bool isNext;
@@ -45,61 +50,146 @@ public class OrderManager : Singleton<OrderManager>
     {
         OrderLoop();
     }
-        void SetCustomerType(int type)
+    void SetCustomerType(int type)
+    {
+        randomCustomerNum = UnityEngine.Random.Range(0, txt.text.Split('\n').Length);
+        string order = RandomOrder()[randomCustomerNum];
+        OrderTalk[0] = order;
+        OrderTalk[1] = order;
+        OrderTalk[2] = order;
+
+        CustomerType = gameObject.AddComponent<NormalCustomer>();
+
+
+        string NameKoreanReturn(string name)
         {
-            string MainIngredient(EMainMatarials main)
+            switch (name)
             {
-                switch (main)
-                {
-                    case EMainMatarials.Bread:
-                        return "빵에다가 ";
-                    case EMainMatarials.Meat:
-                        return "고기에다가 ";
-                    case EMainMatarials.Noodle:
-                        return "면에다가 ";
-                    case EMainMatarials.Rice:
-                        return "밥에다가 ";
-                    default:
-                        return "ERORR";
-                }
+                case "Alien":
+                    return "퀘이사";
+                    break;
+                case "Hyena":
+                    return "제토";
+                    break;
+                case "Robot":
+                    return "sdh210224";
+                    break;
+                case "Dragon":
+                    return "시금치";
+                    break;
+                case "Light":
+                    return "2차 양지화";
+                    break;
+                case "FSM":
+                    return "날스괴";
+                    break;  
+                case "Chris":
+                    return "유령 크리스";
+                    break;
+                case "Demon":
+                    return "헬리오스";
+                    break;
+                case "Holotle":
+                    return "아홀로노트";
+                    break;
+                case "Thief":
+                    return "도주";
+                    break;
+                case "Beggar":
+                    return "양말 아저씨";
+                    break;
+                case "Rich":
+                    return "양말 아저씨";
+                    break;
+                case "GroupOrder":
+                    return "플로리안";
+                    break;
+                case "SalesMan":
+                    return "리시드";
+                    break;
+                case "FoodCleanTester":
+                    return "H-30122";
+                    break;
+                default:
+                    return "";
+                    break;
             }
+        }
+        void NormalCustomerSetting()
+        {
+            CustomerImg.sprite = GuestDefualts[type];
+            NameBallonText.text = NameKoreanReturn(Enum.GetName(typeof(EcustomerType), type));
+        }
+        void EeventCustomerSetting(int randomType)
+        {
+            CustomerImg.sprite = EventGuestDefualts[randomType];
+            NameBallonText.text = NameKoreanReturn(Enum.GetName(typeof(EeventCustomerType), randomType));
+        }
 
-            string SubIngredient(ESubMatarials sub)
-            {
-                switch (sub)
+        switch ((EcustomerType)type)
+        {
+            case EcustomerType.Alien:
+                NormalCustomerSetting();
+                break;
+            case EcustomerType.Hyena:
+                NormalCustomerSetting();
+                break;
+            case EcustomerType.Robot:
+                NormalCustomerSetting();
+                break;
+            case EcustomerType.Dragon:
+                NormalCustomerSetting();
+                break;
+            case EcustomerType.Light:
+                NormalCustomerSetting();
+                break;
+            case EcustomerType.FSM:
+                NormalCustomerSetting();
+                break;
+            case EcustomerType.Chris:
+                NormalCustomerSetting();
+                break;
+            case EcustomerType.Demon:
+                NormalCustomerSetting();
+                break;
+            case EcustomerType.Holotle:
+                NormalCustomerSetting();
+                break;
+            default:
+                int randomType = 6;
+                randomType = 6;
+                switch ((EeventCustomerType)randomType)
                 {
-                    case ESubMatarials.AlienPlant:
-                        return "외계 잡초";
-                    case ESubMatarials.Battery:
-                        return "배터리";
-                    case ESubMatarials.Bismuth:
-                        return "비스무트";
-                    case ESubMatarials.Bolt:
-                        return "볼트";
-                    case ESubMatarials.Eyes:
-                        return "눈알";
-                    case ESubMatarials.Fur:
-                        return "털뭉치";
-                    case ESubMatarials.Jewelry:
-                        return "보석들";
-                    case ESubMatarials.Money:
-                        return "돈뭉치";
-                    case ESubMatarials.Paper:
-                        return "색종이";
-                    case ESubMatarials.Poop:
-                        return "똥덩이";
-                    case ESubMatarials.Preservatives:
-                        return "방부제";
-                    case ESubMatarials.Sticker:
-                        return "스티커";
-                    default:
-                        return "ERROR";
+                    case EeventCustomerType.Human:
+                        break;
+                    case EeventCustomerType.Thief:
+                        CustomerType = gameObject.AddComponent<Thief>();
+                        EeventCustomerSetting(randomType);
+                        break;
+                    case EeventCustomerType.Beggar:
+                        CustomerType = gameObject.AddComponent<Beggar>();
+                        EeventCustomerSetting(randomType);
+                        break;
+                    case EeventCustomerType.Rich:
+                        EeventCustomerSetting(randomType);
+                        break;
+                    case EeventCustomerType.GroupOrder:
+                        EeventCustomerSetting(randomType);
+                        break;
+                    case EeventCustomerType.SalesMan:
+                        EeventCustomerSetting(randomType);
+                        break;
+                    case EeventCustomerType.FoodCleanTester:
+                        CustomerType = gameObject.AddComponent<FoodCleanTester>();
+                        EeventCustomerSetting(randomType);
+                        break;
                 }
-            }
-
-            string MainText = MainIngredient((EMainMatarials)UnityEngine.Random.Range(0, 3));
-            string SubText = SubIngredient((ESubMatarials)UnityEngine.Random.Range(0, 12));
-
+                break;
+        }
+        CustomerType.SpecialType(BtnCookText, BtnAskText);
+    }
+    string[] RandomOrder()
+    {
         print(txt.text);
         string[] line = txt.text.Split('\n');
         string[] Sentence = new string[line.Length];
@@ -109,205 +199,152 @@ public class OrderManager : Singleton<OrderManager>
         {
             string[] cell = line[i].Split('\t');
 
-                Sentence[i] = cell[5];
+            Sentence[i] = cell[5];
         }
-        string order = Sentence[UnityEngine.Random.Range(0, line.Length)];
+        return Sentence;
+    }
 
-        OrderTalk[0] = order;
-        //MainText + RT.FirstTexts[UnityEngine.Random.Range(0, 20)] +
-        // SubText + " 넣어서" + RT.MiddleTexts[UnityEngine.Random.Range(0, 20)] +
-        // " 조리방법 " + RT.LastTexts[UnityEngine.Random.Range(0, 20)];
-        OrderTalk[1] = order;//MainText + SubText + " 넣어서" + RT.FirstTexts[UnityEngine.Random.Range(0, 20)] + " 조리방법 " + RT.LastTexts[UnityEngine.Random.Range(0, 20)];
-        OrderTalk[2] = order;//MainText + SubText + " 넣어서 !조리방법! 해주세요 '^'..";
 
-            CustomerType = gameObject.AddComponent<NormalCustomer>();
+    /// <summary>
+    /// 손님을 받는 이벤트? 들이 시작하는 함수
+    /// </summary>
+    void OrderLoop()
+    {
+        StartCoroutine(Order());
 
-            switch ((EcustomerType)type)
-            {
-                case EcustomerType.Alien:
-                    CustomerImg.sprite = GuestDefualts[type];
-                    break;
-                case EcustomerType.Hyena:
-                    CustomerImg.sprite = GuestDefualts[type];
-                    break;
-                case EcustomerType.Robot:
-                    CustomerImg.sprite = GuestDefualts[type];
-                    break;
-                case EcustomerType.Dragon:
-                    CustomerImg.sprite = GuestDefualts[type];
-                    break;
-                case EcustomerType.Light:
-                    CustomerImg.sprite = GuestDefualts[type];
-                    break;
-                case EcustomerType.FSM:
-                    CustomerImg.sprite = GuestDefualts[type];
-                    break;
-                case EcustomerType.Chris:
-                    CustomerImg.sprite = GuestDefualts[type];
-                    break;
-                case EcustomerType.Demon:
-                    CustomerImg.sprite = GuestDefualts[type];
-                    break;
-                case EcustomerType.Holotle:
-                    CustomerImg.sprite = GuestDefualts[type];
-                    break;
-                default:
-                    int randomType = 6;
-                    randomType = 6;
-                    switch ((EeventCustomerType)randomType)
-                    {
-                        case EeventCustomerType.Human:
-                            break;
-                        case EeventCustomerType.Thief:
-                            CustomerType = gameObject.AddComponent<Thief>();
-                            CustomerImg.sprite = EventGuestDefualts[randomType];
-                            break;
-                        case EeventCustomerType.Beggar:
-                            CustomerType = gameObject.AddComponent<Beggar>();
-                            CustomerImg.sprite = EventGuestDefualts[randomType];
-                            break;
-                        case EeventCustomerType.Rich:
-                            break;
-                        case EeventCustomerType.GroupOrder:
-                            break;
-                        case EeventCustomerType.SalesMan:
-                            break;
-                        case EeventCustomerType.FoodCleanTester:
-                            CustomerType = gameObject.AddComponent<FoodCleanTester>();
-                            CustomerImg.sprite = EventGuestDefualts[randomType];
-                            break;
-                    }
-                    break;
-            }
-            CustomerType.SpecialType(BtnCookText, BtnAskText);
-        }
+        if (DayTween != null)
+            DayTween.Kill();
+        TimeFill.fillAmount = 1;
 
-        /// <summary>
-        /// 손님을 받는 이벤트? 들이 시작하는 함수
-        /// </summary>
-        void OrderLoop()
+        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 100)
+        .OnComplete(() => //시간이 다 지났을때
         {
-            StartCoroutine(Order());    
+            //손님 화내면서 나가기
 
-            if (DayTween != null)
-                DayTween.Kill();
-            TimeFill.fillAmount = 1;
+            OrderLoop();
+        });
+    }
 
-            DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 100)
-            .OnComplete(() => //시간이 다 지났을때
-            {
-                //손님 화내면서 나가기
+    void NextCustomerReady()
+    {
+        Array.Clear(OrderTalk, 0, OrderTalk.Length);
+        Array.Clear(AskTalk, 0, AskTalk.Length);
 
-                OrderLoop();
-            });
-        }
+        dialogNumber = 0;
 
-        void NextCustomerReady()
+        for (int i = 0; i < MemoTexts.Length; i++)
         {
-            Array.Clear(OrderTalk, 0, OrderTalk.Length);
-            Array.Clear(AskTalk, 0, AskTalk.Length);
+            MemoTexts[i].text = "";
+        }
+        OrderText.text = "";
+        BtnCookText.text = "";
+        BtnAskText.text = "";
+    }
 
-            dialogNumber = 0;
+    /// <summary>
+    /// 손님 이름 반환하는 함수
+    /// </summary>
+    /// <returns></returns>
+    string CustomerName(int type)
+    {
+        switch (type)
+        {
+            
+        }
+        return "";
+    }
 
-            for (int i = 0; i < MemoTexts.Length; i++)
+
+    IEnumerator Order()
+    {
+        NextCustomerReady();
+        SetCustomerType(UnityEngine.Random.Range(0, 8));
+        yield return StartCoroutine(customer.Moving());
+        ReAskBtn.gameObject.SetActive(true);
+        CookingBtn.gameObject.SetActive(true);
+        SpeechBallon.gameObject.SetActive(true);
+        NameBallon.gameObject.SetActive(true);
+
+        for (int i = 0; i < OrderTalk.Length; i++)
+        {
+            if (OrderTalk[i].Equals(""))
             {
-                MemoTexts[i].text = "";
+                continue;
             }
+            if (TextTween != null)
+                TextTween.Kill();
             OrderText.text = "";
-            BtnCookText.text = "";
-            BtnAskText.text = "";
-        }
+            TextTween = OrderText.DOText(OrderTalk[i], 0.05f * OrderTalk[i].Length);
 
-
-         IEnumerator Order()
-        {
-            NextCustomerReady();
-            SetCustomerType(UnityEngine.Random.Range(0, 8));
-            yield return StartCoroutine(customer.Moving());
-            ReAskBtn.gameObject.SetActive(true);
-            CookingBtn.gameObject.SetActive(true);
-            SpeechBallon.gameObject.SetActive(true);
-
-            for (int i = 0; i < OrderTalk.Length; i++)
+            while (!isNext)
             {
-                if (OrderTalk[i].Equals(""))
-                {
-                    continue;
-                }
-                if (TextTween != null)
-                    TextTween.Kill();
-                OrderText.text = "";
-                TextTween = OrderText.DOText(OrderTalk[i], 0.05f * OrderTalk[i].Length);
-
-                while (!isNext)
-                {
-                    yield return null;
-                }
-                isNext = false;
+                yield return null;
             }
+            isNext = false;
         }
+    }
 
-        #region 메모 관련
-        public void MemoOn()
+    #region 메모 관련
+    public void MemoOn()
+    {
+        MemoPaper.gameObject.SetActive(true);
+        MemoPaperBackground.gameObject.SetActive(true);
+        MemoPaperBackground.DOFade(163 / 255f, 0.5f);
+        MemoPaper.DOSizeDelta(new Vector2(650, 549), 0.3f).SetEase(Ease.OutQuint);
+        MemoPaper.DOAnchorPos(new Vector2(-242.47f, 0), 0.2f).SetEase(Ease.OutQuint).OnComplete(OnMemoTexts);
+        void OnMemoTexts()
         {
-            MemoPaper.gameObject.SetActive(true);
-            MemoPaperBackground.gameObject.SetActive(true);
-            MemoPaperBackground.DOFade(163 / 255f, 0.5f);
-            MemoPaper.DOSizeDelta(new Vector2(650, 549), 0.3f).SetEase(Ease.OutQuint);
-            MemoPaper.DOAnchorPos(new Vector2(-242.47f, 0), 0.2f).SetEase(Ease.OutQuint).OnComplete(OnMemoTexts);
-            void OnMemoTexts()
-            {
-                for (int i = 0; i < dialogNumber; i++)
-                {
-                    print(dialogNumber);
-                    MemoTexts[i].gameObject.SetActive(true);
-                }
-            }
-
-            int OrderCheck = 0;
-            int AskCheck = 0;
             for (int i = 0; i < dialogNumber; i++)
             {
-                if (i % 2 != 0)
-                {
-                    MemoTexts[i].text = AskTalk[AskCheck];
-                    AskCheck++;
-                }
-                else
-                {
-                    MemoTexts[i].text = OrderTalk[OrderCheck];
-                    OrderCheck++;
-                }
-                MemoTexts[i].rectTransform.DOAnchorPos(MemoOnTextSizes[i], 0.3f).SetEase(Ease.OutQuint);
+                print(dialogNumber);
+                MemoTexts[i].gameObject.SetActive(true);
             }
         }
-        public void MemoOff()
+
+        int OrderCheck = 0;
+        int AskCheck = 0;
+        for (int i = 0; i < dialogNumber; i++)
         {
-            for (int i = 0; i < MemoTexts.Length; i++)
+            if (i % 2 != 0)
             {
-                MemoTexts[i].gameObject.SetActive(false);
+                MemoTexts[i].text = AskTalk[AskCheck];
+                AskCheck++;
             }
-            StartCoroutine(MemoTextOff());
-            MemoPaper.DOSizeDelta(new Vector2(150, 120), 0.3f);
-            MemoPaper.DOAnchorPos(new Vector2(-492.47f, 0), 0.3f);
-
-            MemoPaperBackground.DOColor(new Color(0, 0, 0, 0), 0.3f);
-
-            IEnumerator MemoTextOff()
+            else
             {
-                yield return new WaitForSeconds(0.3f);
-                MemoPaper.gameObject.SetActive(false);
-                MemoPaperBackground.gameObject.SetActive(false);
+                MemoTexts[i].text = OrderTalk[OrderCheck];
+                OrderCheck++;
             }
+            MemoTexts[i].rectTransform.DOAnchorPos(MemoOnTextSizes[i], 0.3f).SetEase(Ease.OutQuint);
         }
-        #endregion
-
-        #region 게임 루틴 관련
-
-        public void NextJuMun()
+    }
+    public void MemoOff()
+    {
+        for (int i = 0; i < MemoTexts.Length; i++)
         {
-
+            MemoTexts[i].gameObject.SetActive(false);
         }
-        #endregion
+        StartCoroutine(MemoTextOff());
+        MemoPaper.DOSizeDelta(new Vector2(150, 120), 0.3f);
+        MemoPaper.DOAnchorPos(new Vector2(-492.47f, 0), 0.3f);
+
+        MemoPaperBackground.DOColor(new Color(0, 0, 0, 0), 0.3f);
+
+        IEnumerator MemoTextOff()
+        {
+            yield return new WaitForSeconds(0.3f);
+            MemoPaper.gameObject.SetActive(false);
+            MemoPaperBackground.gameObject.SetActive(false);
+        }
+    }
+    #endregion
+
+    #region 게임 루틴 관련
+
+    public void NextJuMun()
+    {
+
+    }
+    #endregion
 
 }
