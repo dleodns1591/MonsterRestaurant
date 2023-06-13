@@ -43,7 +43,7 @@ public class Customer : MonoBehaviour
     [SerializeField]
     private Transform[] SlowMovingPos, OrderPos;
     [SerializeField]
-    private Transform FastMovingPos;
+    private Transform FastMovingPos, OriginalPos;
     [SerializeField]
     private Sprite[] GuestDefualts, EventGuestDefualts;
     [SerializeField, Tooltip("배경 위에 보이기 하기 위한")]
@@ -56,9 +56,8 @@ public class Customer : MonoBehaviour
     private UIText[] MemoTexts;
     [SerializeField]
     private Image MemoPaperBackground;
+    [SerializeField] private GameObject Window;
 
-    private readonly Vector2[] MemoOnTextSizes = { new Vector2(-72.51f, 80.92996f), new Vector2(-3, 6.999878f), new Vector2(-72.51f, -64.00003f), new Vector2(-3, -138), new Vector2(-72.51f, -204) };
-    private readonly Vector2[] MemoOffTextSizes = { new Vector2(132, -9), new Vector2(-135, 3), new Vector2(130, -36), new Vector2(-145, -29), new Vector2(131, -65) };
     private string[] memo = new string[5];
 
     /// <summary>
@@ -89,53 +88,28 @@ public class Customer : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
 
-        //주문 테이블쪽 이동
+        Appear(CustomerImg, delayTime);
+
+        yield return new WaitForSeconds(delayTime);
+    }
+
+    void Appear(Image CustomerImg, float delayTime)
+    {
         gameObject.transform.parent = BackgroundCanvas.transform;
         gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(700, 1000);
         transform.position = OrderPos[0].position;
         transform.DOMove(OrderPos[1].position, delayTime);
         CustomerImg.DOColor(new Color(1, 1, 1, 1), delayTime);
-
-        yield return new WaitForSeconds(delayTime);
     }
 
-    public void MemoOn()
+    public void Exit()
     {
-        MemoPaper.gameObject.SetActive(true);
-        MemoPaperBackground.gameObject.SetActive(true);
-        MemoPaperBackground.DOFade(163 / 255f, 0.5f);
-        MemoPaper.DOSizeDelta(new Vector2(650, 549), 0.3f).SetEase(Ease.OutQuint);
-        MemoPaper.DOAnchorPos(new Vector2(-242.47f, 0), 0.3f).SetEase(Ease.OutQuint);
-        for (int i = 0; i < MemoTexts.Length; i++)
+        transform.DOMove(OrderPos[2].position, 0.5f).OnComplete(() =>
         {
-            MemoTexts[i].gameObject.SetActive(true);
-            MemoTexts[i].text = memo[i];
-            MemoTexts[i].rectTransform.DOAnchorPos(MemoOnTextSizes[i], 0.3f).SetEase(Ease.OutQuint);
-        }
-    }
-    public void MemoOff()
-    {
-        for (int i = 0; i < MemoTexts.Length; i++)
-        {
-            MemoTexts[i].text = memo[i];
-
-            MemoTexts[i].rectTransform.DOAnchorPos(MemoOffTextSizes[i], 0.3f).SetEase(Ease.OutQuint);
-        }
-        StartCoroutine(MemoTextOff());
-        MemoPaper.DOSizeDelta(new Vector2(150, 120), 0.3f);
-        MemoPaper.DOAnchorPos(new Vector2(-492.47f, 0), 0.3f);
-
-        MemoPaperBackground.DOColor(new Color(0, 0, 0, 0), 0.3f);
-
-        IEnumerator MemoTextOff()
-        {
-            yield return new WaitForSeconds(0.3f);
-            for (int i = 0; i < MemoTexts.Length; i++)
-            {
-                MemoTexts[i].gameObject.SetActive(false);
-            }
-            MemoPaper.gameObject.SetActive(false);
-            MemoPaperBackground.gameObject.SetActive(false);
-        }
+            gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(155, 221);
+            transform.position = OriginalPos.position;
+            gameObject.GetComponent<Image>().color = new Color(0, 0, 0, 1);
+            gameObject.transform.parent = Window.transform;
+        });
     }
 }

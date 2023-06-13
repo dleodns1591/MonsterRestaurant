@@ -47,6 +47,8 @@ public class OrderManager : Singleton<OrderManager>
     {
         RandomOrderMaterial();
         OrderLoop();
+        OrderToCook();
+        CookToOrder();
     }
     private void Update()
     {
@@ -389,10 +391,48 @@ public class OrderManager : Singleton<OrderManager>
 
     #region 게임 루틴 관련
 
-    public void NextJuMun()
+    public void AAA()
     {
-
+        GameManager.Instance.ReturnOreder();
     }
+
+    public void CookToOrder()
+    {
+        GameManager.Instance.ReturnOreder = () =>
+        {
+            CookingScene.transform.DOMoveY(-10, 1).SetEase(Ease.OutBounce).OnComplete(() =>
+            {
+                string EMSEE = "베리베리 나이스베리 이대운 바보 ㅋㅋ";
+                OrderText.DOText(EMSEE, 0.05f * EMSEE.Length).OnComplete(() =>
+                {
+                    StartCoroutine(ASD());
+                });
+            });
+            OrderText.text = "";
+        };
+
+        IEnumerator ASD()
+        {
+            yield return new WaitForSeconds(1.5f);
+
+            SpeechBallon.gameObject.SetActive(false);
+            NameBallon.gameObject.SetActive(false);
+            //다시 시작
+
+            customer.Exit();
+
+            yield return new WaitForSeconds(1f);
+            StartCoroutine(Order());
+        }
+    }
+    public void OrderToCook()
+    {
+        GameManager.Instance.ReturnCook = () =>
+        {
+            CookingScene.transform.DOMoveY(0, 1).SetEase(Ease.OutBounce);
+        };
+    }
+
     #endregion
 
 }

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public struct OrderSet
 {
     public EMainMatarials main;
@@ -50,4 +50,8 @@ public class GameManager : Singleton<GameManager>
     {
         return (money >= price);
     }
+
+    public Action ReturnOreder;
+    public Action ReturnCook;
 }
+
