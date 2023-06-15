@@ -8,7 +8,7 @@ public class Beggar : MonoBehaviour, I_CustomerType
 {
     public void SpecialType(UIText cook, UIText ask)
     {
-        switch (OrderManager.Instance.SuccessPoint)
+        switch (OrderManager.Instance.Beggar_SuccessPoint)
         {
             case 0:
                 Point0(cook, ask);
@@ -43,7 +43,7 @@ public class Beggar : MonoBehaviour, I_CustomerType
             OrderManager.Instance.AskTalk[0] = "Àá½Ã¸¸¿ä";
 
             OrderManager.Instance.OrderTalk[1] = "°¡..°¨»çÇÕ´Ï´Ù..ÅªÅª";
-            OrderManager.Instance.SuccessPoint++;
+            OrderManager.Instance.Beggar_SuccessPoint++;
 
             OrderManager.Instance.isNext = true;
 
@@ -81,7 +81,7 @@ public class Beggar : MonoBehaviour, I_CustomerType
             OrderManager.Instance.AskTalk[0] = "Àá½Ã¸¸¿ä";
 
             OrderManager.Instance.OrderTalk[1] = "ÅªÅª..";
-            OrderManager.Instance.SuccessPoint++;
+            OrderManager.Instance.Beggar_SuccessPoint++;
 
             OrderManager.Instance.isNext = true;
 
@@ -107,7 +107,7 @@ public class Beggar : MonoBehaviour, I_CustomerType
             {
                 OrderManager.Instance.AskTalk[1] = "¾Ë°Ú½À´Ï´Ù";
                 OrderManager.Instance.OrderTalk[2] = "ÅªÅª..";
-                OrderManager.Instance.SuccessPoint++;
+                OrderManager.Instance.Beggar_SuccessPoint++;
 
                 OrderManager.Instance.isNext = true;
 
@@ -144,7 +144,7 @@ public class Beggar : MonoBehaviour, I_CustomerType
         {
             OrderManager.Instance.AskTalk[0] = "Àá½Ã¸¸¿ä";
             OrderManager.Instance.OrderTalk[1] = "¿ª½Ã! »çÀå´ÔÀÌ¾ß ÅªÅª..";
-            OrderManager.Instance.SuccessPoint++;
+            OrderManager.Instance.Beggar_SuccessPoint++;
 
             OrderManager.Instance.isNext = true;
 
@@ -182,7 +182,7 @@ public class Beggar : MonoBehaviour, I_CustomerType
         {
             OrderManager.Instance.AskTalk[0] = "Àá½Ã¸¸¿ä";
             OrderManager.Instance.OrderTalk[1] = "¹Ï°í ÀÖ¾ú½À´Ï´Ù.. ÅªÅª";
-            OrderManager.Instance.SuccessPoint++;
+            OrderManager.Instance.Beggar_SuccessPoint++;
 
             OrderManager.Instance.isNext = true;
 
@@ -220,7 +220,7 @@ public class Beggar : MonoBehaviour, I_CustomerType
         {
             OrderManager.Instance.AskTalk[0] = "Àá½Ã¸¸¿ä";
             OrderManager.Instance.OrderTalk[1] = "¹Ï°í ÀÖ¾ú½À´Ï´Ù.. ÅªÅª";
-            OrderManager.Instance.SuccessPoint++;
+            OrderManager.Instance.Beggar_SuccessPoint++;
 
             OrderManager.Instance.isNext = true;
 
