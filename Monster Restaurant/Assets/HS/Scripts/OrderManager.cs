@@ -9,38 +9,49 @@ public class OrderManager : Singleton<OrderManager>
 {
     public TextAsset txt;
 
-    [Header("Button Related")]
-    [SerializeField] private UIText BtnCookText, BtnAskText;
+    [Header("주문 버튼 관련")]
+    [SerializeField] private UIText BtnCookText;
+    [SerializeField] private UIText BtnAskText;
     private Button CookingBtn => BtnCookText.transform.parent.GetComponent<Button>();
     private Button ReAskBtn => BtnAskText.transform.parent.GetComponent<Button>();
-    [Header("정리 필요")]
-    [SerializeField] private Image TimeFill, CustomerImg;
-    [SerializeField] private UIText OrderText;
-    private Image SpeechBallon => OrderText.transform.parent.GetComponent<Image>();
-    [SerializeField] private GameObject NameBallon;
-    private Text NameBallonText => NameBallon.transform.GetComponentInChildren<Text>();
-    [SerializeField] private RandomText RT;
-    [SerializeField] private Sprite[] GuestDefualts, EventGuestDefualts;
-    [SerializeField] private Text MonetText;
-    [SerializeField] private Transform[] SlowMovingPos, OrderPos;
-    [SerializeField] private GameObject Guest;
-    [SerializeField] private Customer customer;
 
+    [Header("하루 시간 관련")]
+    [SerializeField] private Image TimeFill;
+
+    [Header("손님 관련")]
+    [SerializeField] private Image CustomerImg;
+    [SerializeField] private Sprite[] GuestDefualts, EventGuestDefualts;
+    [SerializeField] private Sprite[] GuestSuccess, EventGuestSuccess;
+    [SerializeField] private Sprite[] GuestFails, EventGuestFails;
+    [SerializeField] private Customer customer;
+    private int normalGuestType;
+
+    [Header("손님의 말풍선 관련")]
+    [SerializeField] private UIText OrderText;
+    [SerializeField] private GameObject NameBallon;
+    private Image SpeechBallon => OrderText.transform.parent.GetComponent<Image>();
+    private Text NameBallonText => NameBallon.transform.GetComponentInChildren<Text>();
+
+    [Header("UI 관련")]
+    [SerializeField] private Text MoneyText;
+
+    [Header("메모 관련")]
     [SerializeField] private RectTransform MemoPaper;
     [SerializeField] private UIText[] MemoTexts;
     [SerializeField] private Image MemoPaperBackground;
-    public GameObject CookingScene;
-
     private readonly Vector2[] MemoOnTextSizes = { new Vector2(-72.51f, 80.92996f), new Vector2(-3, 6.999878f), new Vector2(-72.51f, -64.00003f), new Vector2(-3, -138), new Vector2(-72.51f, -204) };
 
+    [Header("기타부타타")]
+    public GameObject CookingScene;
+
+    [Header("내부 변수들")]
     private Tween TextTween, DayTween;
     private I_CustomerType CustomerType;
-    private int randomCustomerNum;
     [HideInInspector] public string[] OrderTalk = new string[3], AskTalk = new string[3];
     [HideInInspector] public bool isNext;
     [HideInInspector] public bool isBloom;
     [HideInInspector] public bool isHoldingFlower;
-    [HideInInspector] public int SuccessPoint;
+    [HideInInspector] public int Beggar_SuccessPoint;
     [HideInInspector] public int dialogNumber;
 
     private void Start()
@@ -52,12 +63,12 @@ public class OrderManager : Singleton<OrderManager>
     }
     private void Update()
     {
-        MonetText.text = GameManager.Instance.Money.ToString();
+        MoneyText.text = GameManager.Instance.Money.ToString();
     }
     void SetCustomerType(int type)
     {
-        randomCustomerNum = UnityEngine.Random.Range(0, txt.text.Split('\n').Length);
-        string order = RandomOrderSpeech()[randomCustomerNum];
+        GameManager.Instance.randomCustomerNum = UnityEngine.Random.Range(0, txt.text.Split('\n').Length);
+        string order = RandomOrderSpeech()[GameManager.Instance.randomCustomerNum];
         OrderTalk[0] = order;
         OrderTalk[1] = order;
         OrderTalk[2] = order;
@@ -308,7 +319,8 @@ public class OrderManager : Singleton<OrderManager>
     IEnumerator Order()
     {
         NextCustomerReady();
-        SetCustomerType(UnityEngine.Random.Range(0, 8));
+        normalGuestType = UnityEngine.Random.Range(0, 8);
+        SetCustomerType(normalGuestType);
         yield return StartCoroutine(customer.Moving());
         ReAskBtn.gameObject.SetActive(true);
         CookingBtn.gameObject.SetActive(true);
@@ -400,6 +412,8 @@ public class OrderManager : Singleton<OrderManager>
     {
         GameManager.Instance.ReturnOreder = () =>
         {
+            //if 성공 실패
+            CustomerImg.sprite = GuestSuccess[normalGuestType];
             CookingScene.transform.DOMoveY(-10, 1).SetEase(Ease.OutBounce).OnComplete(() =>
             {
                 string EMSEE = "베리베리 나이스베리 이대운 바보 ㅋㅋ";

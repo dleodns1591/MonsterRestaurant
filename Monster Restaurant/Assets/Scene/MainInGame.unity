@@ -3556,9 +3556,6 @@ MonoBehaviour:
   BtnAskText: {fileID: 1751038924}
   TimeFill: {fileID: 601277343}
   CustomerImg: {fileID: 410546293}
-  OrderText: {fileID: 1748135909}
-  NameBallon: {fileID: 1985689347}
-  RT: {fileID: 11400000, guid: 08474a3478f15504f94861ecb0c22f59, type: 2}
   GuestDefualts:
   - {fileID: 21300000, guid: d56bdf0dec37d4644a86fbc51665ec55, type: 3}
   - {fileID: 21300000, guid: d26f55a076617bb428849fae3f850f65, type: 3}
@@ -3577,18 +3574,46 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c9473b8feb91f82498fb99c0a87fafcd, type: 3}
   - {fileID: 21300000, guid: f86de2362b1cddd4cb4d5248a9c10043, type: 3}
   - {fileID: 21300000, guid: 98290dc79ae8cfa44b5151806858bee7, type: 3}
-  MonetText: {fileID: 393972778}
-  SlowMovingPos:
-  - {fileID: 999919254}
-  - {fileID: 1729760657}
-  - {fileID: 713841026}
-  - {fileID: 873262733}
-  - {fileID: 257585319}
-  OrderPos:
-  - {fileID: 126442059}
-  - {fileID: 656877364}
-  Guest: {fileID: 410546289}
+  GuestSuccess:
+  - {fileID: 21300000, guid: 31fea9b35d474c54cb355926db78b7de, type: 3}
+  - {fileID: 21300000, guid: aa812315573aea142b0f42c95f636dcb, type: 3}
+  - {fileID: 21300000, guid: 03c3b48e94f82ce43b2662e5837b1297, type: 3}
+  - {fileID: 21300000, guid: 342b937512680b74093ddc759ea253fd, type: 3}
+  - {fileID: 21300000, guid: e0214b75578cfb6408fb99c199fceb28, type: 3}
+  - {fileID: 21300000, guid: ed2cdf654696d6d438398f07c2dc7260, type: 3}
+  - {fileID: 21300000, guid: 1fab53ddc14567f46b4979becad61a91, type: 3}
+  - {fileID: 21300000, guid: 83982362f30a0ab49a43690ec4aad370, type: 3}
+  - {fileID: 21300000, guid: 8a28763dcadbfed4eb06fd533f2385bf, type: 3}
+  EventGuestSuccess:
+  - {fileID: 21300000, guid: 3bfb5d28960fba746b82f3753ef261e0, type: 3}
+  - {fileID: 21300000, guid: 5b8e9233b9fb8a64d872f7ae09791277, type: 3}
+  - {fileID: 21300000, guid: 856fd5b01776aff47aa253b7e2a0e574, type: 3}
+  - {fileID: 21300000, guid: b1254dc4145dba240aaaa2f327c43483, type: 3}
+  - {fileID: 21300000, guid: 73e0d14831e89f343b55300585471ea1, type: 3}
+  - {fileID: 21300000, guid: b2bb823c18c21384f9c652cc30cb94fb, type: 3}
+  - {fileID: 21300000, guid: 98290dc79ae8cfa44b5151806858bee7, type: 3}
+  GuestFails:
+  - {fileID: 21300000, guid: 6754f27186ab9f74f84e14a0bd7da2c7, type: 3}
+  - {fileID: 21300000, guid: 4412147cf58ebe0429e46591eca2c122, type: 3}
+  - {fileID: 21300000, guid: 99c09033040c4714e8aae865454cfb38, type: 3}
+  - {fileID: 21300000, guid: 37d5664f00d80334ca97e758c7b68950, type: 3}
+  - {fileID: 21300000, guid: 4b1a97888ff51c54db84a24b7e39ab65, type: 3}
+  - {fileID: 21300000, guid: d7d4864796f614b41aa05f49fe265d18, type: 3}
+  - {fileID: 21300000, guid: 7ad6ac33a988a7b40aad57fb5a6bf87a, type: 3}
+  - {fileID: 21300000, guid: 2713e2d726f77d44db6607ccc24e5f0b, type: 3}
+  - {fileID: 21300000, guid: 476859d0f26751448a057b6d9ecfd527, type: 3}
+  EventGuestFails:
+  - {fileID: 21300000, guid: 51fb13b190048aa4eb2f880664cb0545, type: 3}
+  - {fileID: 21300000, guid: f75f6e51136cea9499b7c5732e79ae16, type: 3}
+  - {fileID: 21300000, guid: b16851145617f644eb3330fe7867d3e5, type: 3}
+  - {fileID: 21300000, guid: b1254dc4145dba240aaaa2f327c43483, type: 3}
+  - {fileID: 21300000, guid: ca3309862cba71b428835595bfd4cbc2, type: 3}
+  - {fileID: 21300000, guid: 75c151ae2014470499950f1059e28517, type: 3}
+  - {fileID: 21300000, guid: 98290dc79ae8cfa44b5151806858bee7, type: 3}
   customer: {fileID: 410546290}
+  OrderText: {fileID: 1748135909}
+  NameBallon: {fileID: 1985689347}
+  MoneyText: {fileID: 393972778}
   MemoPaper: {fileID: 1772147113}
   MemoTexts:
   - {fileID: 1840918131}
@@ -3610,7 +3635,7 @@ MonoBehaviour:
   isNext: 0
   isBloom: 0
   isHoldingFlower: 0
-  SuccessPoint: 0
+  Beggar_SuccessPoint: 0
   dialogNumber: 0
 --- !u!4 &945262610
 Transform:
