@@ -13,11 +13,25 @@ public class FadeInOut : Singleton<FadeInOut>
         Fade();
     }
 
-    void Fade()
+    public void Fade()
     {
         Image fade = GetComponent<Image>();
 
         fade.DOFade(1, 0);
         fade.DOFade(0, fadeTime).SetEase(Ease.Linear);
+    }
+
+    public void FadeOut()
+    {
+        Image fade = GetComponent<Image>();
+
+        fade.DOFade(1, fadeTime).SetEase(Ease.Linear);
+    }
+    public void RevenueFadeOut()
+    {
+        Image fade = transform.GetChild(0).GetComponent<Image>();
+
+        fade.DOFade(0, 0);
+        fade.DOFade(1, fadeTime).SetEase(Ease.Linear);
     }
 }

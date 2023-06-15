@@ -35,6 +35,11 @@ public class OrderManager : Singleton<OrderManager>
     [Header("UI 관련")]
     [SerializeField] private Text MoneyText;
 
+    [Header("결과 창 관련")]
+    [SerializeField] private GameObject RevenuePopup;
+    [SerializeField] private Button NextButton;
+    [SerializeField] private Text Principal, BasicRevenue, SalesRevenue, MarterialCost, TaxCost, SettlementCost, Total;
+
     [Header("메모 관련")]
     [SerializeField] private RectTransform MemoPaper;
     [SerializeField] private UIText[] MemoTexts;
@@ -46,6 +51,7 @@ public class OrderManager : Singleton<OrderManager>
 
     [Header("내부 변수들")]
     private Tween TextTween, DayTween;
+    private int firstMoney;
     private I_CustomerType CustomerType;
     [HideInInspector] public string[] OrderTalk = new string[3], AskTalk = new string[3];
     [HideInInspector] public bool isNext;
@@ -271,18 +277,18 @@ public class OrderManager : Singleton<OrderManager>
     /// </summary>
     void OrderLoop()
     {
+        firstMoney = (int)GameManager.Instance.Money;
         StartCoroutine(Order());
 
         if (DayTween != null)
             DayTween.Kill();
         TimeFill.fillAmount = 1;
 
-        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 100)
+        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 10)
         .OnComplete(() => //시간이 다 지났을때
         {
+            GameManager.Instance.dayEndCheck = true;
             //손님 화내면서 나가기
-
-            OrderLoop();
         });
     }
 
@@ -315,9 +321,63 @@ public class OrderManager : Singleton<OrderManager>
         return "";
     }
 
+    /// <summary>
+    /// 숫자 오르는 애니메이션
+    /// </summary>
+    /// <param name="targetNumber">원하는 수치</param>
+    /// <param name="animationDuration">원하는 속도</param>
+    /// <param name="numberText">적용될 텍스트 UI</param>
+    void NumberAnimation(int targetNumber, float animationDuration, Text numberText)
+    {
+        int currentNumber = 0;
+        DOTween.To(() => currentNumber, x => currentNumber = x, targetNumber, animationDuration)
+            .SetEase(Ease.Linear)
+            .OnUpdate(() => numberText.text = currentNumber.ToString());
+    }
+
+    void DayEnd()
+    {
+        FadeInOut.Instance.FadeOut();
+        FadeInOut.Instance.RevenueFadeOut();
+
+        GameManager.Instance.Money += 200;
+        GameManager.Instance.Money -= GameManager.Instance.SalesRevenue / 10;
+        GameManager.Instance.Money -= GameManager.Instance.SettlementCost;
+        StartCoroutine(NumberAni());
+        IEnumerator NumberAni()
+        {
+            yield return new WaitForSeconds(FadeInOut.Instance.fadeTime);
+            for (int i = 0; i < RevenuePopup.transform.childCount; i++)
+            {
+                RevenuePopup.transform.GetChild(i).gameObject.SetActive(true);
+            }
+            NextButton.gameObject.SetActive(false);
+
+            NumberAnimation(firstMoney, 1.3f, Principal);
+            yield return new WaitForSeconds(1.5f);
+            NumberAnimation(GameManager.Instance.BasicRevenue, 1.3f, BasicRevenue);
+            yield return new WaitForSeconds(1.5f);
+            NumberAnimation(GameManager.Instance.SalesRevenue, 1.3f, SalesRevenue);
+            yield return new WaitForSeconds(1.5f);
+            NumberAnimation(GameManager.Instance.MarterialCost, 1.3f, MarterialCost);
+            yield return new WaitForSeconds(1.5f);
+            NumberAnimation(GameManager.Instance.TaxCost, 1.3f, TaxCost);
+            yield return new WaitForSeconds(1.5f);
+            NumberAnimation(GameManager.Instance.SettlementCost, 1.3f, SettlementCost);
+            yield return new WaitForSeconds(1.5f);
+            NumberAnimation((int)GameManager.Instance.Money, 1.3f, Total);
+            yield return new WaitForSeconds(2.0f);
+            NextButton.gameObject.SetActive(true);
+        }
+    }
 
     IEnumerator Order()
     {
+        if (GameManager.Instance.dayEndCheck)
+        {
+            DayEnd();
+            yield break;
+        }
         NextCustomerReady();
         normalGuestType = UnityEngine.Random.Range(0, 8);
         SetCustomerType(normalGuestType);
