@@ -1,4 +1,3 @@
-메인재료	부재료	수량	조리방식	반 반	한국어	영어
 면	스티커		없음	FALSE	"와이파이 있으신가요? 잠시 빌려써도 될까요? 스티커 파스타 하나 주문할게요."	"Do you have Wi-Fi? Can I borrow it for a while? I'd like to order a sticker pasta."
 면	스티커		없음	FALSE	"파스타 하나요. 접착력이 강하게요."	"One pasta, please. The adhesion is strong."
 면	스티커		없음	FALSE	"파스타랑 스티커가 같이 있으면 맛이 이상해요. 하지만 중독되는 맛이에요."	"It tastes weird with pasta and stickers. But it's an addictive taste."

@@ -4271,7 +4271,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3959017519ffc5445b90dea41f84ec17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  txt: {fileID: 4900000, guid: b2819f235f9135141b741e73a27827e0, type: 3}
+  OrderTalkTxt: {fileID: 4900000, guid: b2819f235f9135141b741e73a27827e0, type: 3}
+  AnswerTalkTxt: {fileID: 4900000, guid: 594b082584a0bd44f8c96db02974766a, type: 3}
   BtnCookText: {fileID: 756368583}
   BtnAskText: {fileID: 1751038924}
   TimeFill: {fileID: 601277343}
@@ -4353,6 +4354,7 @@ MonoBehaviour:
   - {fileID: 1399167806}
   MemoPaperBackground: {fileID: 1381683104}
   CookingScene: {fileID: 1152493739}
+  isCookingSuccess: 0
   OrderTalk:
   - 
   - 

@@ -7,7 +7,7 @@ using DG.Tweening;
 
 public class OrderManager : Singleton<OrderManager>
 {
-    public TextAsset txt;
+    public TextAsset OrderTalkTxt, AnswerTalkTxt;
 
     [Header("주문 버튼 관련")]
     [SerializeField] private UIText BtnCookText;
@@ -52,6 +52,7 @@ public class OrderManager : Singleton<OrderManager>
     [Header("내부 변수들")]
     private Tween TextTween, DayTween;
     private int firstMoney;
+    public bool isCookingSuccess;
     private I_CustomerType CustomerType;
     [HideInInspector] public string[] OrderTalk = new string[3], AskTalk = new string[3];
     [HideInInspector] public bool isNext;
@@ -71,9 +72,76 @@ public class OrderManager : Singleton<OrderManager>
     {
         MoneyText.text = GameManager.Instance.Money.ToString();
     }
+
+    string NameKoreanReturn(string name)
+    {
+        switch (name)
+        {
+            case "Alien":
+                return "퀘이사";
+            case "Hyena":
+                return "제토";
+            case "Robot":
+                return "sdh210224";
+            case "Dragon":
+                return "시금치";
+            case "Light":
+                return "2차 양지화";
+            case "FSM":
+                return "날스괴";
+            case "Chris":
+                return "유령 크리스";
+            case "Demon":
+                return "헬리오스";
+            case "Holotle":
+                return "아홀로노트";
+            case "Thief":
+                return "도주";
+            case "Beggar":
+                return "양말 아저씨";
+            case "Rich":
+                return "양말 아저씨";
+            case "GroupOrder":
+                return "플로리안";
+            case "SalesMan":
+                return "리시드";
+            case "FoodCleanTester":
+                return "H-30122";
+            default:
+                return "";
+        }
+    }
+
+    EcustomerType NameToEnumReturn(string name)
+    {
+        switch (name)
+        {
+            case "퀘이사":
+                return EcustomerType.Alien;
+            case "제토":
+                return EcustomerType.Hyena;
+            case "sdh210224":
+                return EcustomerType.Robot;
+            case "시금치":
+                return EcustomerType.Dragon;
+            case "2차 양자화":
+                return EcustomerType.Light;
+            case "날스괴":
+                return EcustomerType.FSM;
+            case "유령 크리스":
+                return EcustomerType.Chris;
+            case "헬리오스":
+                return EcustomerType.Demon;
+            case "아홀로노트":
+                return EcustomerType.Holotle;
+            default:
+                return EcustomerType.Alien;
+        }
+    }
+
     void SetCustomerType(int type)
     {
-        GameManager.Instance.randomCustomerNum = UnityEngine.Random.Range(0, txt.text.Split('\n').Length);
+        GameManager.Instance.randomCustomerNum = UnityEngine.Random.Range(0, OrderTalkTxt.text.Split('\n').Length);
         string order = RandomOrderSpeech()[GameManager.Instance.randomCustomerNum];
         OrderTalk[0] = order;
         OrderTalk[1] = order;
@@ -81,45 +149,6 @@ public class OrderManager : Singleton<OrderManager>
 
         CustomerType = gameObject.AddComponent<NormalCustomer>();
 
-
-        string NameKoreanReturn(string name)
-        {
-            switch (name)
-            {
-                case "Alien":
-                    return "퀘이사";
-                case "Hyena":
-                    return "제토";
-                case "Robot":
-                    return "sdh210224";
-                case "Dragon":
-                    return "시금치";
-                case "Light":
-                    return "2차 양지화";
-                case "FSM":
-                    return "날스괴";
-                case "Chris":
-                    return "유령 크리스";
-                case "Demon":
-                    return "헬리오스";
-                case "Holotle":
-                    return "아홀로노트";
-                case "Thief":
-                    return "도주";
-                case "Beggar":
-                    return "양말 아저씨";
-                case "Rich":
-                    return "양말 아저씨";
-                case "GroupOrder":
-                    return "플로리안";
-                case "SalesMan":
-                    return "리시드";
-                case "FoodCleanTester":
-                    return "H-30122";
-                default:
-                    return "";
-            }
-        }
         void NormalCustomerSetting()
         {
             CustomerImg.sprite = GuestDefualts[type];
@@ -195,10 +224,10 @@ public class OrderManager : Singleton<OrderManager>
     }
     string[] RandomOrderSpeech()
     {
-        string[] line = txt.text.Split('\n');
+        string[] line = OrderTalkTxt.text.Split('\n');
         string[] Sentence = new string[line.Length];
 
-        for (int i = 1; i < line.Length; i++)
+        for (int i = 0; i < line.Length; i++)
         {
             string[] cell = line[i].Split('\t');
 
@@ -259,16 +288,16 @@ public class OrderManager : Singleton<OrderManager>
             }
         }
 
-        string[] line = txt.text.Split('\n');
+        string[] line = OrderTalkTxt.text.Split('\n');
         string[] Sentence = new string[line.Length];
 
         GameManager.Instance.orderSets = new OrderSet[line.Length];
-        for (int i = 1; i < line.Length; i++)
+        for (int i = 0; i < line.Length; i++)
         {
             string[] cell = line[i].Split('\t');
 
-           GameManager.Instance.orderSets[i].main = eMain(cell[0]);
-           GameManager.Instance.orderSets[i].sub = eSub(cell[1]);
+            GameManager.Instance.orderSets[i].main = eMain(cell[0]);
+            GameManager.Instance.orderSets[i].sub = eSub(cell[1]);
         }
         return Sentence;
     }
@@ -316,7 +345,7 @@ public class OrderManager : Singleton<OrderManager>
     {
         switch (type)
         {
-            
+
         }
         return "";
     }
@@ -472,12 +501,58 @@ public class OrderManager : Singleton<OrderManager>
     {
         GameManager.Instance.ReturnOreder = () =>
         {
+            string talk;
+
+
+            string[] line = AnswerTalkTxt.text.Split('\n');
+
+            string[,] SucsessTalk = new string[Enum.GetValues(typeof(EcustomerType)).Length, 3];
+            string[,] FailTalk = new string[Enum.GetValues(typeof(EcustomerType)).Length, 3];
+
+
+            int sucsessCnt = 0;
+            int FailCnt = 0;
+
+            string formerName = "";
+            for (int i = 0; i < line.Length; i++)
+            {
+                string[] cell = line[i].Split('\t');
+
+                if (formerName != cell[0])
+                {
+                    sucsessCnt = 0;
+                    FailCnt = 0;
+                }
+
+                formerName = cell[0];
+                if (cell[1] == "성공")
+                {
+                    SucsessTalk[(int)NameToEnumReturn(cell[0]), sucsessCnt] = cell[2];
+                    print(sucsessCnt);
+                    sucsessCnt++;
+                }
+                else if(cell[1] == "실패")
+                {
+                    FailTalk[(int)NameToEnumReturn(cell[0]), FailCnt] = cell[2];
+                    FailCnt++;
+                }
+
+            }
+
             //if 성공 실패
-            CustomerImg.sprite = GuestSuccess[normalGuestType];
+            if (isCookingSuccess)
+            {
+                CustomerImg.sprite = GuestSuccess[normalGuestType];
+                talk = SucsessTalk[normalGuestType, UnityEngine.Random.Range(0, 2)];
+            }
+            else
+            {
+                CustomerImg.sprite = GuestFails[normalGuestType];
+                talk = FailTalk[normalGuestType, UnityEngine.Random.Range(0, 2)];
+            }
             CookingScene.transform.DOMoveY(-10, 1).SetEase(Ease.OutBounce).OnComplete(() =>
             {
-                string EMSEE = "베리베리 나이스베리 이대운 바보 ㅋㅋ";
-                OrderText.DOText(EMSEE, 0.05f * EMSEE.Length).OnComplete(() =>
+                OrderText.DOText(talk, 0.05f * talk.Length).OnComplete(() =>
                 {
                     StartCoroutine(ASD());
                 });
