@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
+[System.Serializable]
+public struct CookingStyleSprites
+{
+    public Sprite[] sprites;
+}
 public enum ESubMatarials
 {
     AlienPlant,
@@ -24,6 +29,7 @@ public class CookingMaterials : MonoBehaviour
 {
     [SerializeField] private ESubMatarials myType;
     [SerializeField] private Sprite[] sprites;
+    [SerializeField] private CookingStyleSprites[] cookingStyleSprites;
 
     
     public void CookingSubMaterialPush()
@@ -31,6 +37,6 @@ public class CookingMaterials : MonoBehaviour
 
         ESubMatarials type = (Cooking.Instance.myType == myType) ? ESubMatarials.NULL: myType;
             
-        Cooking.Instance.CookingTypePush(type, sprites);
+        Cooking.Instance.CookingTypePush(type, sprites, cookingStyleSprites);
     }
 }
