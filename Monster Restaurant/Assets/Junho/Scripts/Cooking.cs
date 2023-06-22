@@ -12,7 +12,9 @@ public class Cooking : Singleton<Cooking>
     [SerializeField] private float[] SubMaterialsPriece;
     public float[] MainMaterialsPriece;
     public float materialPrice;
-    
+
+    public CookingMachine cookingMachine;
+
     public void CookingTypePush(ESubMatarials type, Sprite[] thisSprites)
     {
         myType = type;

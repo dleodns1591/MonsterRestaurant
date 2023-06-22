@@ -15,13 +15,25 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler
         new Vector2(324, 295) // π‰, ∏È ªÁ¿Ã¡Ó
     };
 
+    public ECookingStyle style;
     public EMainMatarials mainMaterial;
     public List<ESubMatarials> subMaterials = new List<ESubMatarials>();
 
     [SerializeField] private Image subM;
 
+    public bool isFinish;
     private bool isMainMaterialDrop;
     [SerializeField] private bool isEnterImage;
+
+    public void ImageProcessing()
+    {
+        foreach (var item in subMaterials)
+        {
+
+        }
+
+    }
+
 
 
     public void DropMainMaterial(EMainMatarials main, Sprite sprite)
@@ -57,19 +69,27 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        float price = Cooking.Instance.materialPrice;
+        if (isFinish == false)
+        {
+            float price = Cooking.Instance.materialPrice;
 
-        if ((isMainMaterialDrop == false || Cooking.Instance.myType == ESubMatarials.NULL)
-            && GameManager.Instance.BuyCheck(price)) return;
+            if ((isMainMaterialDrop == false || Cooking.Instance.myType == ESubMatarials.NULL)
+                && GameManager.Instance.BuyCheck(price)) return;
 
-        subMaterials.Add(Cooking.Instance.myType);
+            subMaterials.Add(Cooking.Instance.myType);
 
-        GameObject sub = Instantiate(subM, transform).gameObject;
-        Vector2 inputPos = Camera.main.ScreenToWorldPoint(eventData.position);
-        sub.transform.position = inputPos;
-        sub.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360)));
-        sub.GetComponent<Image>().raycastTarget = false;
-        
-        GameManager.Instance.Money -= price;
+            GameObject sub = Instantiate(subM, transform).gameObject;
+            Vector2 inputPos = Camera.main.ScreenToWorldPoint(eventData.position);
+            sub.transform.position = inputPos;
+            sub.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360)));
+            sub.GetComponent<Image>().raycastTarget = false;
+
+            GameManager.Instance.Money -= price;
+        }
+        else
+        {
+
+        }
+
     }
 }
