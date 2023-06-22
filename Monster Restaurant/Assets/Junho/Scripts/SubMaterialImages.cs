@@ -4,7 +4,7 @@ public class SubMaterialImages : MonoBehaviour
 {
     private Image img;
     private Sprite[] sprites;
-    private Sprite[] subSprites;
+    private CookingStyleSprites[] styleSprites;
 
     private int ran;
 
@@ -12,10 +12,16 @@ public class SubMaterialImages : MonoBehaviour
     {
         img = GetComponent<Image>();
         sprites = Cooking.Instance.sprites;
+        styleSprites = Cooking.Instance.styleSprites;
 
         ran = Random.Range(0, sprites.Length);
 
         img.sprite = sprites[ran];
         img.rectTransform.sizeDelta = sprites[ran].rect.size;
+    }
+
+    public void ImageProcessing(ECookingStyle style)
+    {
+        img.sprite = styleSprites[((int)style)].sprites[ran];
     }
 }

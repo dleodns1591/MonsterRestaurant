@@ -437,6 +437,19 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0f4d9375ac82ebe42acc79d1f302c9d0, type: 3}
   - {fileID: 21300000, guid: 32be9c21e75cc1f49aaaa5e50c575cd4, type: 3}
   - {fileID: 21300000, guid: 976d30c2867b0ce479ac1b3becc1e75f, type: 3}
+  cookingStyleSprites:
+  - sprites:
+    - {fileID: 21300000, guid: f0b6c5c4fb58b014c9b918b7fe62a275, type: 3}
+    - {fileID: 21300000, guid: 9fbf79261cef8024eb2fc1ca825f75e8, type: 3}
+    - {fileID: 21300000, guid: f238c9ec70a801646a6a147540bd723c, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: 4b4c92045b6d21145aa35f0f08959588, type: 3}
+    - {fileID: 21300000, guid: c6ce99719b7c077438849327e99d377d, type: 3}
+    - {fileID: 21300000, guid: 956910ef2d5c3a64fa0073dfe424bba9, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: 4dfaef7862ef237498d1bf00d550e96e, type: 3}
+    - {fileID: 21300000, guid: 03d64a3b11cb1814e9dcbbee21b228e1, type: 3}
+    - {fileID: 21300000, guid: 68a0215a9a080a74281cdfe0e8b55298, type: 3}
 --- !u!1 &223906411
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,6 +649,19 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 854328e2901b0ed408c618548a340dc8, type: 3}
   - {fileID: 21300000, guid: c8d843aecad44ee4f91946ae658489b4, type: 3}
   - {fileID: 21300000, guid: 7bb0b745c8b5ca74ab9bf0404b1b008c, type: 3}
+  cookingStyleSprites:
+  - sprites:
+    - {fileID: 21300000, guid: 616ad241ba0d8584bad0ad590000bc49, type: 3}
+    - {fileID: 21300000, guid: df0e975cb3b82d643bbc9794c29edac6, type: 3}
+    - {fileID: 21300000, guid: dbe6595d51f3f424db57307cf99f0b88, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: 520129caea8bde84fa4a4a58499483ee, type: 3}
+    - {fileID: 21300000, guid: e2b94fac18f360849858272739b9ce91, type: 3}
+    - {fileID: 21300000, guid: 3ed2b37515791284ab6c410bd8af2b66, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: 6888b8ace49fc604b80ba34421d414dd, type: 3}
+    - {fileID: 21300000, guid: 92c11c020a587ef4e9a80066f77cb41c, type: 3}
+    - {fileID: 21300000, guid: b2b25791b19131c4cadbd684d5776659, type: 3}
 --- !u!1 &332359495
 GameObject:
   m_ObjectHideFlags: 0
@@ -884,6 +910,7 @@ MonoBehaviour:
   cookUp: 0
   myType: 12
   sprites: []
+  styleSprites: []
   SubMaterialsPriece:
   - 1.2
   - 1.5
@@ -1056,6 +1083,19 @@ MonoBehaviour:
   - {fileID: 21300000, guid: eed396b2af49fb44ea1b8b4c79724012, type: 3}
   - {fileID: 21300000, guid: fb97842c147ce03498cdfb53c7a85528, type: 3}
   - {fileID: 21300000, guid: 6f65e9fc6be2c86428b68126cc97a02f, type: 3}
+  cookingStyleSprites:
+  - sprites:
+    - {fileID: 21300000, guid: 21487d4b75d0a4944bdeb56bd8c3e29d, type: 3}
+    - {fileID: 21300000, guid: c7db50cb0db7b3c49bdf9bd4f9ff536f, type: 3}
+    - {fileID: 21300000, guid: 146b002a43ef47541a56bfd7a6987e26, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: 439703a2279a7f4428647ca95a735598, type: 3}
+    - {fileID: 21300000, guid: 2cf17386c7cf37644919bcd9e0321d95, type: 3}
+    - {fileID: 21300000, guid: ca83adb9ec19485439dd4b9c7329d21d, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: 612c3cfee486de940a2ee7a4742131ca, type: 3}
+    - {fileID: 21300000, guid: 367729199bdb5df4aa0d2ca1de2bc47a, type: 3}
+    - {fileID: 21300000, guid: 6a91ec03dc7e27d41a11c286b3c20f07, type: 3}
 --- !u!1 &529305258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,6 +1247,19 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e304fc90fdbf8e74884eaa8dfdeb3b4a, type: 3}
   - {fileID: 21300000, guid: 6f9cb72463b96d44f8d7f043643335f0, type: 3}
   - {fileID: 21300000, guid: 351015febc7ee3e4fbc1bae76a5c4044, type: 3}
+  cookingStyleSprites:
+  - sprites:
+    - {fileID: 21300000, guid: da637fd5a4c001649996b424ec7ad212, type: 3}
+    - {fileID: 21300000, guid: f7bf8282b976a8849aff32f46bbd8121, type: 3}
+    - {fileID: 21300000, guid: ae6996d91e456e34c99a1b0fa845e550, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: edf88ba05c6927e4eb8b393bbd5ee843, type: 3}
+    - {fileID: 21300000, guid: 3d55867a70a84af45936161ee4f17ae2, type: 3}
+    - {fileID: 21300000, guid: ce91329d0cb3af64cb7a15ae32564397, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: 0b2f67a5bc2e6114e8f31e2208b4aeec, type: 3}
+    - {fileID: 21300000, guid: 09472228b28668347a5af3a1a9aed01d, type: 3}
+    - {fileID: 21300000, guid: 63417063f5fe3014c845f9d36b236aa5, type: 3}
 --- !u!1 &541011851
 GameObject:
   m_ObjectHideFlags: 0
@@ -1445,6 +1498,10 @@ MonoBehaviour:
   myMainType: 2
   mySprite: {fileID: 21300000, guid: 2ccdda5ea168c0740844fedd15d9ebdd, type: 3}
   canvas: {fileID: 345152909}
+  styleSprites:
+  - {fileID: 21300000, guid: 173017ccadb5fea4885f6d689fcb7f70, type: 3}
+  - {fileID: 21300000, guid: 285bb738971b0384b80d0a28a50303e9, type: 3}
+  - {fileID: 21300000, guid: db8772954769b404fac46895fd8f8d9e, type: 3}
 --- !u!1 &696043209
 GameObject:
   m_ObjectHideFlags: 0
@@ -1961,6 +2018,22 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ed489e0ee9a2e154b86e3618bec7b782, type: 3}
   - {fileID: 21300000, guid: 23d04c05bfcb6ee4bb36ed6ff2bfc355, type: 3}
   - {fileID: 21300000, guid: 0d6a2e1108fd2a946a2653373c28a7af, type: 3}
+  cookingStyleSprites:
+  - sprites:
+    - {fileID: 21300000, guid: 115dda02c6da5d54ebcd4a791f5cbae9, type: 3}
+    - {fileID: 21300000, guid: dd51bed69a41c624ca186349c0cd83cb, type: 3}
+    - {fileID: 21300000, guid: dde8c3a46d95bbf4398b6f6a0ba5ab32, type: 3}
+    - {fileID: 21300000, guid: 962e379bf42e37e4b8d82194f10ebeaa, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: 102d7d9f859e2284a9f403b9e07facb0, type: 3}
+    - {fileID: 21300000, guid: 5a2c78bcd2dc5e9428d350264e7041db, type: 3}
+    - {fileID: 21300000, guid: e20b1f62e73e1e94b8d19c8f8a5f2342, type: 3}
+    - {fileID: 21300000, guid: 27c55a605c3722c4696c25b8f94202d6, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: 9a9be1f60c9c6814b937deceae1a01a1, type: 3}
+    - {fileID: 21300000, guid: c69260e9056b4cd4ba93f44d56592fd9, type: 3}
+    - {fileID: 21300000, guid: 2b1faae5a6b8eef42b1cdd2a109cc7c8, type: 3}
+    - {fileID: 21300000, guid: b24d3ed5dead996468938b60d85a7582, type: 3}
 --- !u!1 &884772524
 GameObject:
   m_ObjectHideFlags: 0
@@ -2404,6 +2477,19 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4e984e9d052c24a4db720dc82ce2c232, type: 3}
   - {fileID: 21300000, guid: 72c52ba31e9facd4396118a0d278351b, type: 3}
   - {fileID: 21300000, guid: 2ffa9fe469a3ef8429ba2bcfa5280cd4, type: 3}
+  cookingStyleSprites:
+  - sprites:
+    - {fileID: 21300000, guid: a0a129e8599e73b43a3c5041c33f119a, type: 3}
+    - {fileID: 21300000, guid: c382f8a450aad0044acbd5c9fd61a02f, type: 3}
+    - {fileID: 21300000, guid: 328f19a3a6b4ddd4db59abc815232f10, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: d208a7a6f9abb824bbfc5e20ba818e3b, type: 3}
+    - {fileID: 21300000, guid: c39f15fb193f0ff428fcfee6a04d941d, type: 3}
+    - {fileID: 21300000, guid: 3c08a5a1640b29e47876ccfb681e99c2, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: 0391c2aacbe8620438390f882881384f, type: 3}
+    - {fileID: 21300000, guid: 751b78a157ae36a4c95f13387a94ee9a, type: 3}
+    - {fileID: 21300000, guid: bac2c2a18e9a2f44ab299ab7860ad503, type: 3}
 --- !u!1001 &1308538295
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2742,6 +2828,10 @@ MonoBehaviour:
   myMainType: 0
   mySprite: {fileID: 21300000, guid: 8226e02617d6d2e47b6f991f8039d60c, type: 3}
   canvas: {fileID: 345152909}
+  styleSprites:
+  - {fileID: 21300000, guid: 4ea531db74ed1c14b879ec3da752898e, type: 3}
+  - {fileID: 21300000, guid: 51d54fc5fd731df46bac2ec6fba387d3, type: 3}
+  - {fileID: 21300000, guid: d25ba237fc2fb91429ebe55e334f4576, type: 3}
 --- !u!1 &1380417517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2973,6 +3063,22 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6e15f7f00977ccd44a48755c95845bac, type: 3}
   - {fileID: 21300000, guid: 04e8b9687c29a6543b86296e01d269d6, type: 3}
   - {fileID: 21300000, guid: f81c85669b46d57448786120c69d2163, type: 3}
+  cookingStyleSprites:
+  - sprites:
+    - {fileID: 21300000, guid: 3854b320020734d4aae67c320b76b465, type: 3}
+    - {fileID: 21300000, guid: 9941344033f8d464587b388677a56b4e, type: 3}
+    - {fileID: 21300000, guid: 7a14c1f3121d2fb4f8844276e3d85606, type: 3}
+    - {fileID: 21300000, guid: 8b151ec59d77e8d459e779b3bdafe477, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: 3b1ed1291fc412f4f9add0339f5768c1, type: 3}
+    - {fileID: 21300000, guid: ef220fcd7466d184fb5ef91f7dcdfdfb, type: 3}
+    - {fileID: 21300000, guid: 2b96f88fb92f3f34491e819fc565d6fb, type: 3}
+    - {fileID: 21300000, guid: c5fbff5ecc0db6a41894ffa8769eaab1, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: 2b80c59d0e2b80747af69f480d6cc6dd, type: 3}
+    - {fileID: 21300000, guid: a002582ba76a12a48a0b146476d2d51e, type: 3}
+    - {fileID: 21300000, guid: aa1f67faf60a0e947b284f3bde991ef3, type: 3}
+    - {fileID: 21300000, guid: f64ad31a60651c64f9091ca64b094f6f, type: 3}
 --- !u!1 &1476188439
 GameObject:
   m_ObjectHideFlags: 0
@@ -3191,6 +3297,10 @@ MonoBehaviour:
   myMainType: 1
   mySprite: {fileID: 21300000, guid: 3deaf313dd2f1284a8a6a1c1a708e8d6, type: 3}
   canvas: {fileID: 345152909}
+  styleSprites:
+  - {fileID: 21300000, guid: 6613f3e06e23ad147911235c722de41d, type: 3}
+  - {fileID: 21300000, guid: c0f9c027af1257649b83db29f055c100, type: 3}
+  - {fileID: 21300000, guid: 5c97fd0157e845a4d88f18f3c1172244, type: 3}
 --- !u!1 &1599251266
 GameObject:
   m_ObjectHideFlags: 0
@@ -3627,6 +3737,16 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 533d1427e2a198448a79064c970878c3, type: 3}
   - {fileID: 21300000, guid: 67cf90b0d9be3a84e8525fb060177c5e, type: 3}
+  cookingStyleSprites:
+  - sprites:
+    - {fileID: 21300000, guid: fc7f2f6a395de804b93db75a92419434, type: 3}
+    - {fileID: 21300000, guid: 8a7c598bc6912e24faea905dbde16434, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: fff53112ea1c13a4196e1a060321e4ba, type: 3}
+    - {fileID: 21300000, guid: b13fc5561238d7842953d9495fc03975, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: a99513aa2280d0c41b2956dbbcb5e542, type: 3}
+    - {fileID: 21300000, guid: e63e471f453a3ba40a0161ecca111ed0, type: 3}
 --- !u!1 &1872620557
 GameObject:
   m_ObjectHideFlags: 0
@@ -3777,6 +3897,16 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 6ece03dbab60a8e47b562e68dbeaef38, type: 3}
   - {fileID: 21300000, guid: 5a95019b318772246a62f1e0161505a4, type: 3}
+  cookingStyleSprites:
+  - sprites:
+    - {fileID: 21300000, guid: c8d5e02d558c34d45ab326c5d7076b5e, type: 3}
+    - {fileID: 21300000, guid: 55dff9acf9dc905449c7b0a184ae4fcc, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: 2244b4952d8e2f7429b00c6ec07cd78b, type: 3}
+    - {fileID: 21300000, guid: bb725aeb88e5b3f419dfd6309bcfb256, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: 28c205d6498f1f34c90eae95365c9ce9, type: 3}
+    - {fileID: 21300000, guid: 3be6425c8dd557b42ab9fb0613672228, type: 3}
 --- !u!1 &1950918420
 GameObject:
   m_ObjectHideFlags: 0
@@ -3930,6 +4060,25 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8f4f8c7140d229d4c912da36586a8cbf, type: 3}
   - {fileID: 21300000, guid: 35aa764379cc3414390cd8a35975c089, type: 3}
   - {fileID: 21300000, guid: ad61885960146af4da7e512f88138adb, type: 3}
+  cookingStyleSprites:
+  - sprites:
+    - {fileID: 21300000, guid: eb14d1455b4b9e7458e9fa4283cd54b9, type: 3}
+    - {fileID: 21300000, guid: 46fe8916f640cf4429c16969b0153557, type: 3}
+    - {fileID: 21300000, guid: 6dc8a0435e04a524eab96e8c91955599, type: 3}
+    - {fileID: 21300000, guid: 74ccc5723115f174db5787bc3b56d7b4, type: 3}
+    - {fileID: 21300000, guid: 0d61809c43c8a7344bdf45de9a9a410b, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: b0b35d725a2c4e94d87bfc2169532a83, type: 3}
+    - {fileID: 21300000, guid: 7be0f2d8dde7b544da30932102ea0d4d, type: 3}
+    - {fileID: 21300000, guid: c726cced99c69964296eac5703dbfbcb, type: 3}
+    - {fileID: 21300000, guid: 08de073ff23ee77428755dd5e64f62d9, type: 3}
+    - {fileID: 21300000, guid: 90d28ab9b241fde448d24e9bbbb5593c, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: b695f7b13a3e73f4d85c10f0d9b50c78, type: 3}
+    - {fileID: 21300000, guid: 21ca8001af774e6429c828582f55aae9, type: 3}
+    - {fileID: 21300000, guid: 4bfc72672af23c14eb95d992d4cbf5ca, type: 3}
+    - {fileID: 21300000, guid: 83406c257f3b2e6448189ab42bc97615, type: 3}
+    - {fileID: 21300000, guid: 07e82f89a6997e7419a69abf349f265b, type: 3}
 --- !u!1 &1958068244
 GameObject:
   m_ObjectHideFlags: 0
@@ -4081,6 +4230,19 @@ MonoBehaviour:
   - {fileID: 21300000, guid: be7af9f1eaec82b4aba6cafcf58934e3, type: 3}
   - {fileID: 21300000, guid: 43e70d9f52aaa684eb89b788f404f509, type: 3}
   - {fileID: 21300000, guid: 0e6d6c294db3fe3469ec9401b9d32ab1, type: 3}
+  cookingStyleSprites:
+  - sprites:
+    - {fileID: 21300000, guid: 46e122a2b77479844bcab386d64bca82, type: 3}
+    - {fileID: 21300000, guid: 836d8735832c9434b81d52e1339158c7, type: 3}
+    - {fileID: 21300000, guid: 65cc331ad6d2f30468eca9653eb6fbbd, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: 1b3d616af2c417241b785d7e1c5d8dd0, type: 3}
+    - {fileID: 21300000, guid: 4eff0eb66a14ed64497de87564088f73, type: 3}
+    - {fileID: 21300000, guid: b74a429e5dc1bc04290db26d8cf19f24, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: f113d348e5a6fbe41a3eaa53e86f9e49, type: 3}
+    - {fileID: 21300000, guid: 918f4c7e1f4611b439966d2d680b27e5, type: 3}
+    - {fileID: 21300000, guid: 3831594e7650c254e9cbd0b2288dd2b6, type: 3}
 --- !u!1 &2033200150
 GameObject:
   m_ObjectHideFlags: 0
@@ -4234,6 +4396,25 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7f87db81c875b744ea7fee182a8c0606, type: 3}
   - {fileID: 21300000, guid: 1da99721ffb818943852eed2cae207bd, type: 3}
   - {fileID: 21300000, guid: 54197525f9bcb374a9ef91e48c002778, type: 3}
+  cookingStyleSprites:
+  - sprites:
+    - {fileID: 21300000, guid: b11c99e5da99e264cbdd97a454367a3c, type: 3}
+    - {fileID: 21300000, guid: 939d1dcd9f83b2c468acc8774f4e8ecf, type: 3}
+    - {fileID: 21300000, guid: 4590482cea314e34f8e4177f9153de8d, type: 3}
+    - {fileID: 21300000, guid: 5852173fc2351c04eb85597bca5ffc54, type: 3}
+    - {fileID: 21300000, guid: bfe16112ca745f14ab3baf8220384577, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: 36647a20eb68eda4798389dd87f81c69, type: 3}
+    - {fileID: 21300000, guid: fba6a32b79c6c34498156c0cd3b9c3c6, type: 3}
+    - {fileID: 21300000, guid: a9d2ad2b1f7bf944697ad140942f7bba, type: 3}
+    - {fileID: 21300000, guid: 6fb65ff5cf5f1fd45adae85a277ba97b, type: 3}
+    - {fileID: 21300000, guid: e80306b1d336b9442a146ce3cc3040ce, type: 3}
+  - sprites:
+    - {fileID: 21300000, guid: 5a463e8ecea46244ca3c3cd7050d0ada, type: 3}
+    - {fileID: 21300000, guid: f03b603031ae02940bef0e4049d69fb2, type: 3}
+    - {fileID: 21300000, guid: 3a8544dafc09f3f4ababe2fb5f100686, type: 3}
+    - {fileID: 21300000, guid: 7f04e24ab76cebb45a3fbf8a8fba05a2, type: 3}
+    - {fileID: 21300000, guid: 95739a9b1f12e9c4cb71f459c8398b02, type: 3}
 --- !u!1 &2116451538
 GameObject:
   m_ObjectHideFlags: 0
@@ -4371,6 +4552,10 @@ MonoBehaviour:
   myMainType: 3
   mySprite: {fileID: 21300000, guid: 4821a383f288ece4e8a5ccf9133fa423, type: 3}
   canvas: {fileID: 345152909}
+  styleSprites:
+  - {fileID: 21300000, guid: 1f052a8c6703b1b4a959654acfc7cdce, type: 3}
+  - {fileID: 21300000, guid: 6d06f002c25f62e4da80c52ac774ecc4, type: 3}
+  - {fileID: 21300000, guid: fc57fb49826e9754a92febad37a1b0d4, type: 3}
 --- !u!1 &2128894832
 GameObject:
   m_ObjectHideFlags: 0

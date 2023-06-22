@@ -4,9 +4,9 @@ using UnityEngine;
 
 public enum ECookingStyle
 {
-    Roast,
-    Boil,
     Fry,
+    Boil,
+    Roast,
     None
 }
 

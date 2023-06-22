@@ -19,6 +19,7 @@ public class CookingMainMaterials : MonoBehaviour, IPointerDownHandler, IPointer
     private GraphicRaycaster gr;
     private PointerEventData ped;
     [SerializeField] private GameObject canvas;
+    [SerializeField] private Sprite[] styleSprites;
 
     private void Start()
     {
@@ -41,7 +42,7 @@ public class CookingMainMaterials : MonoBehaviour, IPointerDownHandler, IPointer
         {
             if(item.gameObject.tag == "MixedBoard")
             {
-                item.gameObject.GetComponent<CookingBoard>().DropMainMaterial(myMainType, mySprite);
+                item.gameObject.GetComponent<CookingBoard>().DropMainMaterial(myMainType, mySprite, styleSprites);
             }
         }
     }
