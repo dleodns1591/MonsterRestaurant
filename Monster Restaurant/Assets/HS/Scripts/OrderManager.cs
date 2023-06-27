@@ -61,6 +61,7 @@ public class OrderManager : Singleton<OrderManager>
     private int firstMoney;
     private I_CustomerType CustomerType;
     [HideInInspector] public bool isCookingSuccess;
+    [HideInInspector] public int orderType;
     [HideInInspector] public string[] OrderTalk = new string[3], AskTalk = new string[3];
     [HideInInspector] public string AnswerTalk;
     [HideInInspector] public bool isNext;
@@ -310,11 +311,12 @@ public class OrderManager : Singleton<OrderManager>
             string[] cell = line[i].Split('\t');
 
             GameManager.Instance.orderSets[i].main = eMain(cell[0]);
+            GameManager.Instance.orderSets[i].sub = new List<ESubMatarials>() { ESubMatarials.AlienPlant, ESubMatarials.AlienPlant, ESubMatarials.AlienPlant};
             GameManager.Instance.orderSets[i].sub[0] = eSub(cell[1]);
             GameManager.Instance.orderSets[i].sub[1] = eSub(cell[2]);
             GameManager.Instance.orderSets[i].sub[2] = eSub(cell[3]);
             GameManager.Instance.orderSets[i].style = eStyle(cell[4]);
-            GameManager.Instance.orderSets[i].count = Int32.Parse(cell[5]);
+            //GameManager.Instance.orderSets[i].count = Convert.ToInt32(cell[5]);
         }
         return Sentence;
     }
@@ -330,7 +332,7 @@ public class OrderManager : Singleton<OrderManager>
             DayTween.Kill();
         TimeFill.fillAmount = 1;
 
-        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 100)
+        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 10)
         .OnComplete(() => //시간이 다 지났을때
         {
             GameManager.Instance.dayEndCheck = true;
@@ -414,6 +416,19 @@ public class OrderManager : Singleton<OrderManager>
             NumberAnimation((int)GameManager.Instance.Money, 1.3f, Total);
             yield return new WaitForSeconds(2.0f);
             NextButton.gameObject.SetActive(true);
+            NextButton.onClick.RemoveAllListeners();
+            NextButton.onClick.AddListener(() =>
+            {
+                NextButton.gameObject.SetActive(false);
+                RevenuePopup.transform.DOMoveY(1, 1).SetEase(Ease.InBounce).OnComplete(() =>
+                {
+                    for (int i = 0; i < RevenuePopup.transform.childCount; i++)
+                    {
+                        RevenuePopup.transform.GetChild(i).gameObject.SetActive(false);
+                    }
+                    FadeInOut.Instance.Fade();  
+                });
+            });
         }
     }
 
