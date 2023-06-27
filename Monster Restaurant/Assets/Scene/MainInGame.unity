@@ -499,6 +499,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 854328e2901b0ed408c618548a340dc8, type: 3}
   - {fileID: 21300000, guid: c8d843aecad44ee4f91946ae658489b4, type: 3}
   - {fileID: 21300000, guid: 7bb0b745c8b5ca74ab9bf0404b1b008c, type: 3}
+  cookingStyleSprites: []
 --- !u!114 &73815650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -649,6 +650,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 6ece03dbab60a8e47b562e68dbeaef38, type: 3}
   - {fileID: 21300000, guid: 5a95019b318772246a62f1e0161505a4, type: 3}
+  cookingStyleSprites: []
 --- !u!114 &89359741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -798,6 +800,7 @@ MonoBehaviour:
   myMainType: 2
   mySprite: {fileID: 21300000, guid: 2ccdda5ea168c0740844fedd15d9ebdd, type: 3}
   canvas: {fileID: 41407577}
+  styleSprites: []
 --- !u!114 &92588444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1699,7 +1702,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 2635, y: -651}
+  m_AnchoredPosition: {x: 2594, y: -651}
   m_SizeDelta: {x: 1660, y: 1492}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &349174843
@@ -1776,7 +1779,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 2634.3997, y: -377}
+  m_AnchoredPosition: {x: 2592.4, y: -377}
   m_SizeDelta: {x: 148, y: 152}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &372103295
@@ -2125,6 +2128,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e304fc90fdbf8e74884eaa8dfdeb3b4a, type: 3}
   - {fileID: 21300000, guid: 6f9cb72463b96d44f8d7f043643335f0, type: 3}
   - {fileID: 21300000, guid: 351015febc7ee3e4fbc1bae76a5c4044, type: 3}
+  cookingStyleSprites: []
 --- !u!114 &412908357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2419,7 +2423,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 2649.9998, y: 768}
+  m_AnchoredPosition: {x: 2646, y: 768}
   m_SizeDelta: {x: 1660, y: 1492}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &451709613
@@ -3284,6 +3288,7 @@ MonoBehaviour:
   myMainType: 1
   mySprite: {fileID: 21300000, guid: 3deaf313dd2f1284a8a6a1c1a708e8d6, type: 3}
   canvas: {fileID: 41407577}
+  styleSprites: []
 --- !u!114 &665404998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3784,6 +3789,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4e984e9d052c24a4db720dc82ce2c232, type: 3}
   - {fileID: 21300000, guid: 72c52ba31e9facd4396118a0d278351b, type: 3}
   - {fileID: 21300000, guid: 2ffa9fe469a3ef8429ba2bcfa5280cd4, type: 3}
+  cookingStyleSprites: []
 --- !u!114 &831928791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4014,6 +4020,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 533d1427e2a198448a79064c970878c3, type: 3}
   - {fileID: 21300000, guid: 67cf90b0d9be3a84e8525fb060177c5e, type: 3}
+  cookingStyleSprites: []
 --- !u!114 &867297792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4255,7 +4262,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 2473.9998, y: -377}
+  m_AnchoredPosition: {x: 2432, y: -377}
   m_SizeDelta: {x: 148, y: 152}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &928909694
@@ -4461,6 +4468,7 @@ MonoBehaviour:
   - 
   - 
   - 
+  AnswerTalk: 
   isNext: 0
   isBloom: 0
   isHoldingFlower: 0
@@ -4886,6 +4894,7 @@ MonoBehaviour:
   myMainType: 0
   mySprite: {fileID: 21300000, guid: 8226e02617d6d2e47b6f991f8039d60c, type: 3}
   canvas: {fileID: 41407577}
+  styleSprites: []
 --- !u!114 &1107412088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5173,6 +5182,7 @@ MonoBehaviour:
   cookUp: 0
   myType: 12
   sprites: []
+  styleSprites: []
   SubMaterialsPriece:
   - 1.2
   - 1.5
@@ -5193,6 +5203,7 @@ MonoBehaviour:
   - 5
   - 5
   materialPrice: 0
+  cookingMachine: {fileID: 0}
 --- !u!1 &1232533623
 GameObject:
   m_ObjectHideFlags: 0
@@ -5328,6 +5339,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ed489e0ee9a2e154b86e3618bec7b782, type: 3}
   - {fileID: 21300000, guid: 23d04c05bfcb6ee4bb36ed6ff2bfc355, type: 3}
   - {fileID: 21300000, guid: 0d6a2e1108fd2a946a2653373c28a7af, type: 3}
+  cookingStyleSprites: []
 --- !u!114 &1252725458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5769,6 +5781,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6e15f7f00977ccd44a48755c95845bac, type: 3}
   - {fileID: 21300000, guid: 04e8b9687c29a6543b86296e01d269d6, type: 3}
   - {fileID: 21300000, guid: f81c85669b46d57448786120c69d2163, type: 3}
+  cookingStyleSprites: []
 --- !u!114 &1289688540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6848,6 +6861,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7f87db81c875b744ea7fee182a8c0606, type: 3}
   - {fileID: 21300000, guid: 1da99721ffb818943852eed2cae207bd, type: 3}
   - {fileID: 21300000, guid: 54197525f9bcb374a9ef91e48c002778, type: 3}
+  cookingStyleSprites: []
 --- !u!114 &1442832174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8243,6 +8257,7 @@ MonoBehaviour:
   myMainType: 3
   mySprite: {fileID: 21300000, guid: 4821a383f288ece4e8a5ccf9133fa423, type: 3}
   canvas: {fileID: 41407577}
+  styleSprites: []
 --- !u!114 &1838222219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8463,6 +8478,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: be7af9f1eaec82b4aba6cafcf58934e3, type: 3}
   - {fileID: 21300000, guid: 43e70d9f52aaa684eb89b788f404f509, type: 3}
   - {fileID: 21300000, guid: 0e6d6c294db3fe3469ec9401b9d32ab1, type: 3}
+  cookingStyleSprites: []
 --- !u!114 &1862846343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8614,6 +8630,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: eed396b2af49fb44ea1b8b4c79724012, type: 3}
   - {fileID: 21300000, guid: fb97842c147ce03498cdfb53c7a85528, type: 3}
   - {fileID: 21300000, guid: 6f65e9fc6be2c86428b68126cc97a02f, type: 3}
+  cookingStyleSprites: []
 --- !u!114 &1875905323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9083,6 +9100,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8f4f8c7140d229d4c912da36586a8cbf, type: 3}
   - {fileID: 21300000, guid: 35aa764379cc3414390cd8a35975c089, type: 3}
   - {fileID: 21300000, guid: ad61885960146af4da7e512f88138adb, type: 3}
+  cookingStyleSprites: []
 --- !u!114 &1986651241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9777,7 +9795,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 2792.9998, y: -377.00003}
+  m_AnchoredPosition: {x: 2751, y: -377.00003}
   m_SizeDelta: {x: 148, y: 152}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2050868008
@@ -10083,6 +10101,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0f4d9375ac82ebe42acc79d1f302c9d0, type: 3}
   - {fileID: 21300000, guid: 32be9c21e75cc1f49aaaa5e50c575cd4, type: 3}
   - {fileID: 21300000, guid: 976d30c2867b0ce479ac1b3becc1e75f, type: 3}
+  cookingStyleSprites: []
 --- !u!114 &2113880442
 MonoBehaviour:
   m_ObjectHideFlags: 0
