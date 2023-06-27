@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class SubMaterialImages : MonoBehaviour
 {
+    public ESubMatarials subM;
     private Image img;
     private Sprite[] sprites;
     private CookingStyleSprites[] styleSprites;
@@ -14,6 +15,7 @@ public class SubMaterialImages : MonoBehaviour
         sprites = Cooking.Instance.sprites;
         styleSprites = Cooking.Instance.styleSprites;
 
+        subM = Cooking.Instance.myType;
         ran = Random.Range(0, sprites.Length);
 
         img.sprite = sprites[ran];

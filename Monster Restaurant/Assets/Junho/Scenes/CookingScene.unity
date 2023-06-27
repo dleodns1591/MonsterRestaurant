@@ -987,6 +987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cookUp: 0
+  trash: {fileID: 741480702}
   myType: 12
   sprites: []
   styleSprites: []
@@ -1011,6 +1012,7 @@ MonoBehaviour:
   - 5
   materialPrice: 0
   cookingMachine: {fileID: 332359499}
+  KitchenRoom: {fileID: 1476188439}
 --- !u!1 &361871270
 GameObject:
   m_ObjectHideFlags: 0
@@ -1941,7 +1943,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 345152909}
-  trash: {fileID: 741480702}
   food: {fileID: 1342805054}
   NewFoodObj: {fileID: 342891362658141533, guid: 4e87c2b0eddd0f94ab8067bd8e2199b8, type: 3}
   boardPool: {fileID: 1599251267}
@@ -2281,7 +2282,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 345152909}
-  trash: {fileID: 741480702}
   food: {fileID: 1308538297}
   NewFoodObj: {fileID: 342891362658141533, guid: 4e87c2b0eddd0f94ab8067bd8e2199b8, type: 3}
   boardPool: {fileID: 1599251267}

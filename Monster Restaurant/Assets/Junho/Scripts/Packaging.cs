@@ -9,6 +9,8 @@ public class Packaging : MonoBehaviour
 
     [SerializeField] private GameObject[] stickers;
 
+    readonly Vector3 startUnder = new Vector3(1722, -8, 0);
+    readonly Vector3 startUp = new Vector3(200, 230, 0);
 
     public IEnumerator CheckPack(GameObject cook)
     {
@@ -22,13 +24,13 @@ public class Packaging : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         yield return Pack();
-       
+
         //GameManager.Instance.orderSets[0].
         // 음식 제출
 
         // 체크 
 
-            
+        StartSet();
 
     }
     private IEnumerator Pack()
@@ -40,7 +42,20 @@ public class Packaging : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         transform.DOLocalMoveY(800, 1);
+        yield return new WaitForSeconds(1f);
+
     }
 
+    private void StartSet()
+    {
+        foreach (var item in stickers)
+        {
+            item.SetActive(false);
+        }
 
+        transform.localPosition = startUnder;
+        up.localPosition = startUp;
+
+        Destroy(transform.GetChild(0).gameObject);
+    }
 }

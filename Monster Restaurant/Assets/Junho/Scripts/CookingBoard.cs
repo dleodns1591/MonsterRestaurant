@@ -170,9 +170,45 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 
             if (item.gameObject.tag == "Packaging")
             {
+                OrderCheck();
+
                 StartCoroutine(item.gameObject.GetComponent<Packaging>().CheckPack(gameObject));
             }
         }
+
+    }
+
+    private void OrderCheck()
+    {
+        int checkList = 0;
+
+        OrderSet order = GameManager.Instance.orderSets[GameManager.Instance.randomCustomerNum];
+
+
+        if (order.style != style) checkList++;
+        if (order.main != mainMaterial) checkList++;
+        if (order.count < subMaterials.Count) checkList++;
+
+
+        int num = 0;
+        bool isReturn = false; ;
+
+        for (int i = 0; i < 3; i++)
+        {
+            isReturn = false;
+            foreach (var subM in subMaterials)
+            {
+                if (order.sub[i] == subM.subM)
+                {
+                    if (isReturn == true) return;
+                    num++;
+                    isReturn = true;
+                }
+            }
+
+        }
+
+        checkList += 3 - num;
 
     }
 }
