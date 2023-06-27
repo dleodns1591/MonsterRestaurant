@@ -5,10 +5,10 @@ using System;
 public struct OrderSet
 {
     public EMainMatarials main;
-    public ESubMatarials sub;
+    public List<ESubMatarials> sub;
     public int count;
-    //조리방식
-    public bool half;
+    public ECookingStyle style;
+
 }
 
 

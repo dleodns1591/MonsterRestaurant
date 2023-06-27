@@ -31,7 +31,7 @@ public class NormalCustomer : MonoBehaviour, I_CustomerType
 {
     public string SpecialAnswer()
     {
-        return null;
+        return "";
     }
 
     public void SpecialType(UIText cook, UIText ask)

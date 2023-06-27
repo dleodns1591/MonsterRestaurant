@@ -32,6 +32,12 @@ public class OrderManager : Singleton<OrderManager>
     private Image SpeechBallon => OrderText.transform.parent.GetComponent<Image>();
     private Text NameBallonText => NameBallon.transform.GetComponentInChildren<Text>();
 
+    [Header("요리 당 만족도 관련")]
+    [SerializeField] private Sprite[] FaceSprites;
+    [SerializeField] private Image FaceImage;
+    [SerializeField] private Text EmotionText;
+    private int satisfaction = 100;
+
     [Header("UI 관련")]
     [SerializeField] private Text MoneyText;
 
@@ -51,6 +57,7 @@ public class OrderManager : Singleton<OrderManager>
 
     [Header("내부 변수들")]
     private Tween TextTween, DayTween;
+    private Coroutine SatisfactionCoroutine;
     private int firstMoney;
     private I_CustomerType CustomerType;
     [HideInInspector] public bool isCookingSuccess;
@@ -289,6 +296,11 @@ public class OrderManager : Singleton<OrderManager>
             }
         }
 
+        ECookingStyle eStyle(string cell)
+        {
+            return ECookingStyle.Fry;
+        }
+
         string[] line = OrderTalkTxt.text.Split('\n');
         string[] Sentence = new string[line.Length];
 
@@ -298,7 +310,11 @@ public class OrderManager : Singleton<OrderManager>
             string[] cell = line[i].Split('\t');
 
             GameManager.Instance.orderSets[i].main = eMain(cell[0]);
-            GameManager.Instance.orderSets[i].sub = eSub(cell[1]);
+            GameManager.Instance.orderSets[i].sub[0] = eSub(cell[1]);
+            GameManager.Instance.orderSets[i].sub[1] = eSub(cell[2]);
+            GameManager.Instance.orderSets[i].sub[2] = eSub(cell[3]);
+            GameManager.Instance.orderSets[i].style = eStyle(cell[4]);
+            GameManager.Instance.orderSets[i].count = Int32.Parse(cell[5]);
         }
         return Sentence;
     }
@@ -314,7 +330,7 @@ public class OrderManager : Singleton<OrderManager>
             DayTween.Kill();
         TimeFill.fillAmount = 1;
 
-        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 10)
+        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 100)
         .OnComplete(() => //시간이 다 지났을때
         {
             GameManager.Instance.dayEndCheck = true;
@@ -443,7 +459,7 @@ public class OrderManager : Singleton<OrderManager>
         MemoPaperBackground.gameObject.SetActive(true);
         MemoPaperBackground.DOFade(163 / 255f, 0.5f);
         MemoPaper.DOSizeDelta(new Vector2(650, 549), 0.3f).SetEase(Ease.OutQuint);
-        MemoPaper.DOAnchorPos(new Vector2(-242.47f, 0), 0.2f).SetEase(Ease.OutQuint).OnComplete(OnMemoTexts);
+        MemoPaper.DOAnchorPos(new Vector2(91, 0), 0.2f).SetEase(Ease.OutQuint).OnComplete(OnMemoTexts);
         void OnMemoTexts()
         {
             for (int i = 0; i < dialogNumber; i++)
@@ -478,7 +494,7 @@ public class OrderManager : Singleton<OrderManager>
         }
         StartCoroutine(MemoTextOff());
         MemoPaper.DOSizeDelta(new Vector2(150, 120), 0.3f);
-        MemoPaper.DOAnchorPos(new Vector2(-492.47f, 0), 0.3f);
+        MemoPaper.DOAnchorPos(new Vector2(-158, 0), 0.3f);
 
         MemoPaperBackground.DOColor(new Color(0, 0, 0, 0), 0.3f);
 
@@ -566,6 +582,8 @@ public class OrderManager : Singleton<OrderManager>
     }
     public IEnumerator ExitAndComein()
     {
+        StopCoroutine(SatisfactionCoroutine);
+
         yield return new WaitForSeconds(1.5f);
 
         SpeechBallon.gameObject.SetActive(false);
@@ -575,16 +593,32 @@ public class OrderManager : Singleton<OrderManager>
         customer.Exit();
 
         yield return new WaitForSeconds(1f);
+        EmotionText.text = "100%";
+        satisfaction = 100;
+        FaceImage.sprite = FaceSprites[(int)EFaceType.Happy];
         StartCoroutine(Order());
     }
     public void OrderToCook()
     {
         GameManager.Instance.ReturnCook = () =>
         {
-            CookingScene.transform.DOMoveY(0, 1).SetEase(Ease.OutBounce);
+            CookingScene.transform.DOMoveY(0, 1).SetEase(Ease.OutBounce).OnComplete(() => SatisfactionCoroutine = StartCoroutine(SatisfactionUpdate()));
         };
     }
 
+    private IEnumerator SatisfactionUpdate()
+    {
+        if(satisfaction <= 60)
+            FaceImage.sprite = FaceSprites[(int)EFaceType.Umm];
+        if (satisfaction <= 20)
+            FaceImage.sprite = FaceSprites[(int)EFaceType.Angry];
+        yield return new WaitForSeconds(0.05f);
+        if (satisfaction <= 0)
+            yield break;
+        satisfaction--;
+        EmotionText.text = $"{satisfaction}%";
+        SatisfactionCoroutine = StartCoroutine(SatisfactionUpdate());
+    }
     #endregion
 
 }

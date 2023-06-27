@@ -11,6 +11,14 @@ using HS_Tree;
 using System;
 
 
+public enum EFaceType
+{
+    Happy,
+    Umm,
+    Angry
+}
+
+
 namespace HS_Tree
 {
     public class TreeNode<T>

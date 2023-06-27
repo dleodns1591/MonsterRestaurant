@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 4374
+  controlID: 4851
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -86,7 +86,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 4375
+  controlID: 4852
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 4376
+  controlID: 4853
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -224,10 +224,10 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 4e6b0000
-      m_LastClickedID: 27470
-      m_ExpandedIDs: fcfaffff
+      scrollPos: {x: 0, y: 60}
+      m_SelectedIDs: b66c0000
+      m_LastClickedID: 27830
+      m_ExpandedIDs: fcfaffffde690000a46b0000ae6b0000b66b0000dc6b0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -524,9 +524,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 20.805555, y: -2.6712961, z: 90}
+    m_Target: {x: 4.6742544, y: -7.974843, z: 776.26807}
     speed: 2
-    m_Value: {x: 20.805555, y: -2.6712961, z: 90}
+    m_Value: {x: 4.6742544, y: -7.974843, z: 776.26807}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -577,9 +577,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 30.669346
+    m_Target: 6.7309995
     speed: 2
-    m_Value: 30.669346
+    m_Value: 6.7309995
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -698,22 +698,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/HS
+    - Assets/Resources/UI/Ingame
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 61
   m_LastFolders:
-  - Assets/HS
+  - Assets/Resources/UI/Ingame
   m_LastFoldersGridSize: 61
   m_LastProjectPath: C:\Users\ASUS\MonsterRestaurant\Monster Restaurant
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 95}
-    m_SelectedIDs: e26f0000
-    m_LastClickedID: 28642
-    m_ExpandedIDs: 00000000e26f0000e46f0000e66f0000e86f0000ea6f0000ec6f0000ee6f0000f06f0000f26f0000f46f0000f66f00005671000000ca9a3b
+    scrollPos: {x: 0, y: 497.40002}
+    m_SelectedIDs: fa730000
+    m_LastClickedID: 29690
+    m_ExpandedIDs: 000000002a7000002c7000002e70000030700000327000003470000036700000387000003a7000003c7000003e700000b273000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -741,7 +741,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000e26f0000e46f0000e66f0000e86f0000ea6f0000ec6f0000ee6f0000f06f0000f26f0000f46f0000f66f000000ca9a3b
+    m_ExpandedIDs: 000000002a7000002c7000002e70000030700000327000003470000036700000387000003a7000003c7000003e70000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -766,10 +766,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 4e6b0000
-    m_LastClickedInstanceID: 27470
+    m_SelectedInstanceIDs: b66c0000
+    m_LastClickedInstanceID: 27830
     m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c6230000606000007060000042600000a4bc000076260000e6620000e26200002a7200003a720000926b0000166e0000d06c000020e70000
+    m_ExpandedInstanceIDs: c6230000606000007060000042600000a4bc000076260000e6620000e26200002a7200003a720000926b0000166e0000d06c000020e700007e6f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
