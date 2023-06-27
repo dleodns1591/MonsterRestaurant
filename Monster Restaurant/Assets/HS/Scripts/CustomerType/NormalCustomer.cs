@@ -29,6 +29,11 @@ public enum EeventCustomerType
 }
 public class NormalCustomer : MonoBehaviour, I_CustomerType
 {
+    public string SpecialAnswer()
+    {
+        return null;
+    }
+
     public void SpecialType(UIText cook, UIText ask)
     {
         Button cookBtn = cook.transform.parent.GetComponent<Button>();

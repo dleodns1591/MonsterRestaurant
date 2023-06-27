@@ -4,6 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 public class FoodCleanTester : MonoBehaviour, I_CustomerType
 {
+    public string SpecialAnswer()
+    {
+        return " ";
+    }
+
     public void SpecialType(UIText cook, UIText ask)
     {
         OrderManager.Instance.OrderTalk[0] = "식품위생관리 위원회에서 나왔습니다. 잠시 주방을 검사해도 되겠습니까?";
@@ -27,21 +32,22 @@ public class FoodCleanTester : MonoBehaviour, I_CustomerType
             {
                 OrderManager.Instance.OrderTalk[2] = "역시 인기 있는 곳인 만큼 주방도 깨끗하네요.";
 
-                print("역시 인기 있는 곳인 만큼 주방도 깨끗하네요.");
                 OrderManager.Instance.isNext = true;
 
                 //다음 손님
+                OrderManager.Instance.ExitAndComein();
             }
             else
             {
-                OrderManager.Instance.OrderTalk[2] = "잠시만요.. 주방 구석에 우주벌레가 나왔네요. 식품위생법 제 3조 위생적 취급기준을 위반 하였기에 (현재 플레이어가 가진 소지금 / 3)을 지불 하시면 됩니다.";
+                OrderManager.Instance.OrderTalk[2] = $"잠시만요.. 주방 구석에 우주벌레가 나왔네요. 식품위생법 제 3조 위생적 취급기준을 위반 하였기에 {GameManager.Instance.Money / 3}을 지불 하시면 됩니다.";
                 //골드 깎기
-                print("잠시만요.. 주방 구석에 우");
+                GameManager.Instance.Money -= GameManager.Instance.Money / 3;
                 OrderManager.Instance.isNext = true;
 
                 cookBtn.gameObject.SetActive(false);
                 askBtn.gameObject.SetActive(false);
                 //다음 손님
+                OrderManager.Instance.ExitAndComein();
             }
         });
 
@@ -61,12 +67,13 @@ public class FoodCleanTester : MonoBehaviour, I_CustomerType
                 OrderManager.Instance.AskTalk[1] = "네";
                 OrderManager.Instance.OrderTalk[2] = "알겠습니다.";
 
+                //골드 깎기
+                GameManager.Instance.Money -= GameManager.Instance.Money / 2;
+
                 OrderManager.Instance.isNext = true;
 
                 cookBtn.gameObject.SetActive(false);
                 askBtn.gameObject.SetActive(false);
-
-                //골드 1 / 2 깎기
             });
 
             ask.text = "아니요.";
@@ -90,20 +97,24 @@ public class FoodCleanTester : MonoBehaviour, I_CustomerType
 
                     cookBtn.gameObject.SetActive(false);
                     askBtn.gameObject.SetActive(false);
+
                     //다음 손님
+                    OrderManager.Instance.ExitAndComein();
                 }
                 else
                 {
-                    OrderManager.Instance.OrderTalk[2] = "잠시만요.. 주방 구석에 우주벌레가 나왔네요. 식품위생법 제 3조 위생적 취급기준을 위반 하였기에 (현재 플레이어가 가진 소지금 / 3)을 지불 하시면 됩니다.";
+                    OrderManager.Instance.OrderTalk[2] = $"잠시만요.. 주방 구석에 우주벌레가 나왔네요. 식품위생법 제 3조 위생적 취급기준을 위반 하였기에 {GameManager.Instance.Money / 3}을 지불 하시면 됩니다.";
+                    
                     //골드 깎기
+                    GameManager.Instance.Money -= GameManager.Instance.Money / 3;
 
                     OrderManager.Instance.isNext = true;
                     
-                    print("벌레쉨");
-
                     cookBtn.gameObject.SetActive(false);
                     askBtn.gameObject.SetActive(false);
+
                     //다음 손님
+                    OrderManager.Instance.ExitAndComein();
                 }
             });
         }); 

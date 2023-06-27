@@ -6,9 +6,18 @@ using UnityEngine.UI;
 
 public class Thief : MonoBehaviour, I_CustomerType
 {
+    public string SpecialAnswer()
+    {
+        if (OrderManager.Instance.isCookingSuccess)
+        {
+            return "쳇... 음식 덕분에 산 줄 알아라..";
+        }
+        else
+            return "제대로 만들 것이지.. 쯧...";
+    }
+
     public void SpecialType(UIText cook, UIText ask)
     {
-        print("asd");
         if(OrderManager.Instance.isHoldingFlower == false)
         {
             NotBloom(cook, ask);
@@ -29,7 +38,9 @@ public class Thief : MonoBehaviour, I_CustomerType
         cookBtn.onClick.AddListener(() =>
         {
             OrderManager.Instance.AskTalk[0] = "알겠습니다";
+
             //요리
+            GameManager.Instance.ReturnCook();
         });
         ask.text = "네?";
         askBtn.onClick.AddListener(() =>
@@ -50,7 +61,9 @@ public class Thief : MonoBehaviour, I_CustomerType
                     OrderManager.Instance.OrderTalk[2] = "다..다음 부터 무..무시하지마..";
 
                     OrderManager.Instance.isNext = true;
+
                     //다음 손님
+                    OrderManager.Instance.ExitAndComein();
                 });
                 askBtn.onClick.RemoveAllListeners();
                 askBtn.onClick.AddListener(() =>
@@ -59,8 +72,11 @@ public class Thief : MonoBehaviour, I_CustomerType
                     OrderManager.Instance.OrderTalk[2] = "진작 그럴 것이지.. 쳇..";
 
                     OrderManager.Instance.isNext = true;
+
                     //현재 금액 1 /4 로
+                    GameManager.Instance.Money = GameManager.Instance.Money / 4;
                     //다음 손님
+                    OrderManager.Instance.ExitAndComein();
                 });
             }
             else
@@ -78,7 +94,9 @@ public class Thief : MonoBehaviour, I_CustomerType
                     OrderManager.Instance.isNext = true;
 
                     //현재 금액 1 /4 로
+                    GameManager.Instance.Money = GameManager.Instance.Money / 4;
                     //다음 손님
+                    OrderManager.Instance.ExitAndComein();
                 });
             }
         });
@@ -101,9 +119,10 @@ public class Thief : MonoBehaviour, I_CustomerType
 
             cookBtn.gameObject.SetActive(false);
             askBtn.gameObject.SetActive(false);
-            //현재 금액 1 / 3으로
-
+            //현재 금액 1 /3 로
+            GameManager.Instance.Money = GameManager.Instance.Money / 3;
             //다음 손님
+            OrderManager.Instance.ExitAndComein();
         });
         ask.text = "잠..잠시만요..";
         askBtn.onClick.AddListener(() =>
@@ -115,9 +134,10 @@ public class Thief : MonoBehaviour, I_CustomerType
 
             cookBtn.gameObject.SetActive(false);
             askBtn.gameObject.SetActive(false);
-            //현재 금액 1 / 5으로
-
+            //현재 금액 1 /5 로
+            GameManager.Instance.Money = GameManager.Instance.Money / 5;
             //다음 손님
+            OrderManager.Instance.ExitAndComein();
         });
         OrderManager.Instance.OrderTalk[2] = "";
     }

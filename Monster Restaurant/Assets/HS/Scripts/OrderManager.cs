@@ -52,9 +52,10 @@ public class OrderManager : Singleton<OrderManager>
     [Header("내부 변수들")]
     private Tween TextTween, DayTween;
     private int firstMoney;
-    public bool isCookingSuccess;
     private I_CustomerType CustomerType;
+    [HideInInspector] public bool isCookingSuccess;
     [HideInInspector] public string[] OrderTalk = new string[3], AskTalk = new string[3];
+    [HideInInspector] public string AnswerTalk;
     [HideInInspector] public bool isNext;
     [HideInInspector] public bool isBloom;
     [HideInInspector] public bool isHoldingFlower;
@@ -501,8 +502,6 @@ public class OrderManager : Singleton<OrderManager>
     {
         GameManager.Instance.ReturnOreder = () =>
         {
-            string talk;
-
 
             string[] line = AnswerTalkTxt.text.Split('\n');
 
@@ -531,7 +530,7 @@ public class OrderManager : Singleton<OrderManager>
                     print(sucsessCnt);
                     sucsessCnt++;
                 }
-                else if(cell[1] == "실패")
+                else if (cell[1] == "실패")
                 {
                     FailTalk[(int)NameToEnumReturn(cell[0]), FailCnt] = cell[2];
                     FailCnt++;
@@ -543,36 +542,40 @@ public class OrderManager : Singleton<OrderManager>
             if (isCookingSuccess)
             {
                 CustomerImg.sprite = GuestSuccess[normalGuestType];
-                talk = SucsessTalk[normalGuestType, UnityEngine.Random.Range(0, 2)];
+                AnswerTalk = SucsessTalk[normalGuestType, UnityEngine.Random.Range(0, 2)];
             }
             else
             {
                 CustomerImg.sprite = GuestFails[normalGuestType];
-                talk = FailTalk[normalGuestType, UnityEngine.Random.Range(0, 2)];
+                AnswerTalk = FailTalk[normalGuestType, UnityEngine.Random.Range(0, 2)];
             }
+
+            if (!CustomerType.SpecialAnswer().Equals(""))
+                AnswerTalk = CustomerType.SpecialAnswer();
+
             CookingScene.transform.DOMoveY(-10, 1).SetEase(Ease.OutBounce).OnComplete(() =>
             {
-                OrderText.DOText(talk, 0.05f * talk.Length).OnComplete(() =>
+                OrderText.DOText(AnswerTalk, 0.05f * AnswerTalk.Length).OnComplete(() =>
                 {
-                    StartCoroutine(ASD());
+                    StartCoroutine(ExitAndComein());
                 });
             });
             OrderText.text = "";
         };
 
-        IEnumerator ASD()
-        {
-            yield return new WaitForSeconds(1.5f);
+    }
+    public IEnumerator ExitAndComein()
+    {
+        yield return new WaitForSeconds(1.5f);
 
-            SpeechBallon.gameObject.SetActive(false);
-            NameBallon.gameObject.SetActive(false);
-            //다시 시작
+        SpeechBallon.gameObject.SetActive(false);
+        NameBallon.gameObject.SetActive(false);
+        //다시 시작
 
-            customer.Exit();
+        customer.Exit();
 
-            yield return new WaitForSeconds(1f);
-            StartCoroutine(Order());
-        }
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(Order());
     }
     public void OrderToCook()
     {
