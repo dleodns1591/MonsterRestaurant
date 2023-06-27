@@ -5,7 +5,30 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Beggar : MonoBehaviour, I_CustomerType
-{
+{ 
+    Button cookBtn;
+    Button askBtn;
+
+    public string SpecialAnswer()
+    {
+        switch (OrderManager.Instance.Beggar_SuccessPoint)
+        {
+            case 0:
+                return "큭큭..이 은혜는.. 꼭 갚겠습니다.";
+            case 1:
+                return "다시 한 번 말하지만 이 은혜는 꼭 갚겠습니다.. 큭큭";
+            case 2:
+                return "큭큭 감사합니다!..";
+            case 3:
+                return "감사합니다!.. 큭큭";
+            case 4:
+                return "감사합니다!.. 큭큭";
+            default:
+                return " ";
+        }
+
+    }
+
     public void SpecialType(UIText cook, UIText ask)
     {
         switch (OrderManager.Instance.Beggar_SuccessPoint)
@@ -30,10 +53,32 @@ public class Beggar : MonoBehaviour, I_CustomerType
                 break;
         }
     }
+
+    void SucsessCook()
+    {
+        OrderManager.Instance.Beggar_SuccessPoint++;
+
+        OrderManager.Instance.isNext = true;
+
+        cookBtn.gameObject.SetActive(false);
+        askBtn.gameObject.SetActive(false);
+
+        //요리
+        GameManager.Instance.ReturnCook();
+    }
+    void RefuseOrder()
+    {
+        OrderManager.Instance.isNext = true;
+
+        cookBtn.gameObject.SetActive(false);
+        askBtn.gameObject.SetActive(false);
+        //다음 손님
+        OrderManager.Instance.ExitAndComein();
+    }
     void Point0(UIText cook, UIText ask)
     {
-        Button cookBtn = cook.transform.parent.GetComponent<Button>();
-        Button askBtn = ask.transform.parent.GetComponent<Button>();
+        cookBtn = cook.transform.parent.GetComponent<Button>();
+        askBtn = ask.transform.parent.GetComponent<Button>();
 
         OrderManager.Instance.OrderTalk[0] = "제발요..너무 배고파요..";
 
@@ -43,13 +88,8 @@ public class Beggar : MonoBehaviour, I_CustomerType
             OrderManager.Instance.AskTalk[0] = "잠시만요";
 
             OrderManager.Instance.OrderTalk[1] = "가..감사합니다..큭큭";
-            OrderManager.Instance.Beggar_SuccessPoint++;
 
-            OrderManager.Instance.isNext = true;
-
-            cookBtn.gameObject.SetActive(false);
-            askBtn.gameObject.SetActive(false);
-            //요리
+            SucsessCook();
 
             //끝난 뒤 말
             //"큭큭..이 은혜는.. 꼭 갚겠습니다."
@@ -61,19 +101,12 @@ public class Beggar : MonoBehaviour, I_CustomerType
 
             OrderManager.Instance.OrderTalk[1] = "그렇게..깐깐하게 살다가 가게가 망해버릴거야!";
 
-            OrderManager.Instance.isNext = true;
-
-            cookBtn.gameObject.SetActive(false);
-            askBtn.gameObject.SetActive(false);
-            //다음 손님
+            RefuseOrder();
         });
     }
 
     void Point1(UIText cook, UIText ask)
     {
-        Button cookBtn = cook.GetComponentInParent<Button>();
-        Button askBtn = ask.GetComponentInParent<Button>();
-
         OrderManager.Instance.OrderTalk[0] = "안녕하세요, 또 저에요, 혹시.. (주문 내용)을 주실 수 있으실까요?";
         cook.text = "잠시만요";
         cookBtn.onClick.AddListener(() =>
@@ -81,13 +114,8 @@ public class Beggar : MonoBehaviour, I_CustomerType
             OrderManager.Instance.AskTalk[0] = "잠시만요";
 
             OrderManager.Instance.OrderTalk[1] = "큭큭..";
-            OrderManager.Instance.Beggar_SuccessPoint++;
 
-            OrderManager.Instance.isNext = true;
-
-            cookBtn.gameObject.SetActive(false);
-            askBtn.gameObject.SetActive(false);
-            //요리
+            SucsessCook();
 
             //끝난 뒤 말
             //"다시 한 번 말하지만 이 은혜는 꼭 갚겠습니다.. 큭큭"
@@ -107,12 +135,9 @@ public class Beggar : MonoBehaviour, I_CustomerType
             {
                 OrderManager.Instance.AskTalk[1] = "알겠습니다";
                 OrderManager.Instance.OrderTalk[2] = "큭큭..";
-                OrderManager.Instance.Beggar_SuccessPoint++;
+                
+                SucsessCook();
 
-                OrderManager.Instance.isNext = true;
-
-                cookBtn.gameObject.SetActive(false);
-                askBtn.gameObject.SetActive(false);
             });
 
             ask.text = "나가세요";
@@ -122,21 +147,13 @@ public class Beggar : MonoBehaviour, I_CustomerType
                 OrderManager.Instance.AskTalk[1] = "나가세요";
                 OrderManager.Instance.OrderTalk[2] = "가게.. 망해버려라..";
 
-                OrderManager.Instance.isNext = true;
-
-                cookBtn.gameObject.SetActive(false);
-                askBtn.gameObject.SetActive(false);
-                //다음 손님
-
+                RefuseOrder();
             });
         });
     }
 
     void Point2(UIText cook, UIText ask)
     {
-        Button cookBtn = cook.GetComponentInParent<Button>();
-        Button askBtn = ask.GetComponentInParent<Button>();
-
         OrderManager.Instance.OrderTalk[0] = "안녕하세요.. 사장님 오늘도 가능한가요..?";
 
         cook.text = "잠시만요";
@@ -144,12 +161,9 @@ public class Beggar : MonoBehaviour, I_CustomerType
         {
             OrderManager.Instance.AskTalk[0] = "잠시만요";
             OrderManager.Instance.OrderTalk[1] = "역시! 사장님이야 큭큭..";
-            OrderManager.Instance.Beggar_SuccessPoint++;
+           
+            SucsessCook();
 
-            OrderManager.Instance.isNext = true;
-
-            cookBtn.gameObject.SetActive(false);
-            askBtn.gameObject.SetActive(false);
             //끝난 뒤 말
             //"큭큭 감사합니다!.."
         });
@@ -161,20 +175,15 @@ public class Beggar : MonoBehaviour, I_CustomerType
 
             OrderManager.Instance.OrderTalk[1] = "여태까지.. 무료로 음식을 만들어주셔서 감사합니다.. 사장님";
 
-            OrderManager.Instance.isNext = true;
+            RefuseOrder();
 
-            cookBtn.gameObject.SetActive(false);
-            askBtn.gameObject.SetActive(false);
-            //+ 10$
+            GameManager.Instance.Money += 10;
             //거지는 없다 이제
         });
     }
 
     void Point3(UIText cook, UIText ask)
     {
-        Button cookBtn = cook.GetComponentInParent<Button>();
-        Button askBtn = ask.GetComponentInParent<Button>();
-
         OrderManager.Instance.OrderTalk[0] = "안녕하세요.. 사장님 늘 먹던걸로 주세요..";
 
         cook.text = "잠시만요";
@@ -182,12 +191,9 @@ public class Beggar : MonoBehaviour, I_CustomerType
         {
             OrderManager.Instance.AskTalk[0] = "잠시만요";
             OrderManager.Instance.OrderTalk[1] = "믿고 있었습니다.. 큭큭";
-            OrderManager.Instance.Beggar_SuccessPoint++;
+            
+            SucsessCook();
 
-            OrderManager.Instance.isNext = true;
-
-            cookBtn.gameObject.SetActive(false);
-            askBtn.gameObject.SetActive(false);
             //끝난 뒤 말
             //"감사합니다!.. 큭큭"
         });
@@ -199,20 +205,15 @@ public class Beggar : MonoBehaviour, I_CustomerType
 
             OrderManager.Instance.OrderTalk[1] = "여태까지.. 무료로 음식을 만들어주셔서 감사합니다.. 사장님";
 
-            OrderManager.Instance.isNext = true;
+            RefuseOrder();
 
-            cookBtn.gameObject.SetActive(false);
-            askBtn.gameObject.SetActive(false);
-            //+ 20$
+            GameManager.Instance.Money += 20;
             //거지는 없다 이제
         });
     }
 
     void Point4(UIText cook, UIText ask)
     {
-        Button cookBtn = cook.GetComponentInParent<Button>();
-        Button askBtn = ask.GetComponentInParent<Button>();
-
         OrderManager.Instance.OrderTalk[0] = "사장님 아시죠..?";
 
         cook.text = "잠시만요";
@@ -220,12 +221,9 @@ public class Beggar : MonoBehaviour, I_CustomerType
         {
             OrderManager.Instance.AskTalk[0] = "잠시만요";
             OrderManager.Instance.OrderTalk[1] = "믿고 있었습니다.. 큭큭";
-            OrderManager.Instance.Beggar_SuccessPoint++;
+            
+            SucsessCook();
 
-            OrderManager.Instance.isNext = true;
-
-            cookBtn.gameObject.SetActive(false);
-            askBtn.gameObject.SetActive(false);
             //끝난 뒤 말
             //"감사합니다!.. 큭큭"
         });
@@ -236,20 +234,15 @@ public class Beggar : MonoBehaviour, I_CustomerType
             OrderManager.Instance.AskTalk[0] = "나가세요";
             OrderManager.Instance.OrderTalk[1] = "여태까지.. 무료로 음식을 만들어주셔서 감사합니다.. 사장님";
 
-            OrderManager.Instance.isNext = true;
+            RefuseOrder();
 
-            cookBtn.gameObject.SetActive(false);
-            askBtn.gameObject.SetActive(false);
-            //+ 30$
+            GameManager.Instance.Money += 30;
             //거지는 없다 이제
         });
     }
 
     void Point5(UIText cook, UIText ask)
     {
-        Button cookBtn = cook.GetComponentInParent<Button>();
-        Button askBtn = ask.GetComponentInParent<Button>();
-
         OrderManager.Instance.OrderTalk[0] = "쉬운일이 아니였을 텐데 음식을 매번 무료로 주셔서 감사합니다. \n마지막으로 늘 먹던걸로 음식 3개 가능할까요?";
 
         askBtn.gameObject.SetActive(false);
@@ -260,12 +253,10 @@ public class Beggar : MonoBehaviour, I_CustomerType
             OrderManager.Instance.AskTalk[0] = "알겠습니다";
 
             OrderManager.Instance.OrderTalk[1] = "다시 한 번 매번 챙겨주셔서 감사합니다.";
+            
+            SucsessCook();
 
-            OrderManager.Instance.isNext = true;
-
-            cookBtn.gameObject.SetActive(false);
-            askBtn.gameObject.SetActive(false);
-            //100만 달러 +
+            GameManager.Instance.Money += 10000000000;
             //개천에서 용난다 엔딩 ON
         });
     }
