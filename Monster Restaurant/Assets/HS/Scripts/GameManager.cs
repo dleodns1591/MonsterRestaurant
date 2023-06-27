@@ -47,10 +47,17 @@ public class GameManager : Singleton<GameManager>
     public int CanNotMask;
     public int HumanLike;
 
+    public int Satisfaction;
+
     [Tooltip("OrderSet 배열에서의 사용하는 인덱스")] public int randomCustomerNum;
     public bool BuyCheck(float price)
     {
-        return (money >= price);
+        if(money >= price)
+        {
+            MarterialCost += (int)price;
+
+            return true;
+        }
     }
 
     public Action ReturnOreder;
