@@ -326,6 +326,10 @@ public class OrderManager : Singleton<OrderManager>
     void OrderLoop()
     {
         firstMoney = (int)GameManager.Instance.Money;
+        GameManager.Instance.SalesRevenue  = 0;
+        GameManager.Instance.MarterialCost = 0;
+        GameManager.Instance.TaxCost = 0;
+        GameManager.Instance.SettlementCost = 0;
         StartCoroutine(Order());
 
         if (DayTween != null)
@@ -389,7 +393,8 @@ public class OrderManager : Singleton<OrderManager>
         FadeInOut.Instance.RevenueFadeOut();
 
         GameManager.Instance.Money += 200;
-        GameManager.Instance.Money -= GameManager.Instance.SalesRevenue / 10;
+        GameManager.Instance.TaxCost = GameManager.Instance.SalesRevenue / 10;
+        GameManager.Instance.Money -= GameManager.Instance.TaxCost;
         GameManager.Instance.Money -= GameManager.Instance.SettlementCost;
         StartCoroutine(NumberAni());
         IEnumerator NumberAni()
