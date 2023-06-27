@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public enum ECookingStyle
 {
@@ -23,6 +24,8 @@ public class CookingMachine : MonoBehaviour
         cook = cooking;
         cook.gameObject.transform.parent = transform;
         cook.transform.position = pos[0].position;
+
+        CookingStyleButton(Random.Range(0, 3));
     }
     public void CookingStyleButton(int num)
     {
@@ -48,9 +51,12 @@ public class CookingMachine : MonoBehaviour
                 (pos[0].position, pos[1].position, t/0.5f);
         }
 
+        cook.style = cookingStyle;
+        cook.CookingComplete();
+
+            
         yield return new WaitForSeconds(1f);
 
-        cook.style = cookingStyle;
         //animation Play
 
         t = 0;
@@ -62,6 +68,7 @@ public class CookingMachine : MonoBehaviour
             cook.gameObject.transform.position = Vector3.Lerp
                 (pos[1].position, pos[2].position, t / 0.5f);
         }
+
 
         isSelectCookingStyle = false;
         cook = null;
