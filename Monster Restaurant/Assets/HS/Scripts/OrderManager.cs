@@ -395,6 +395,12 @@ public class OrderManager : Singleton<OrderManager>
         IEnumerator NumberAni()
         {
             yield return new WaitForSeconds(FadeInOut.Instance.fadeTime);
+            BasicRevenue.text = "";
+            SalesRevenue.text = "";
+            MarterialCost.text = "";
+            TaxCost.text = "";
+            SettlementCost.text = "";
+            Total.text = "";
             for (int i = 0; i < RevenuePopup.transform.childCount; i++)
             {
                 RevenuePopup.transform.GetChild(i).gameObject.SetActive(true);
@@ -420,15 +426,25 @@ public class OrderManager : Singleton<OrderManager>
             NextButton.onClick.AddListener(() =>
             {
                 NextButton.gameObject.SetActive(false);
-                RevenuePopup.transform.DOMoveY(1, 1).SetEase(Ease.InBounce).OnComplete(() =>
+                RevenuePopup.GetComponent<RectTransform>().DOAnchorPosY(865, 2.5f).SetEase(Ease.OutElastic).OnComplete(() =>
                 {
                     for (int i = 0; i < RevenuePopup.transform.childCount; i++)
                     {
                         RevenuePopup.transform.GetChild(i).gameObject.SetActive(false);
                     }
-                    FadeInOut.Instance.Fade();  
+                    TimeFill.fillAmount = 1;
+                    FadeInOut.Instance.Fade();
+                    StartCoroutine(Reset());
                 });
             });
+            IEnumerator Reset()
+            {
+                yield return new WaitForSeconds(FadeInOut.Instance.fadeTime);
+                RevenuePopup.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+                RevenuePopup.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                GameManager.Instance.dayEndCheck = false;
+                OrderLoop();
+            }
         }
     }
 
