@@ -6,6 +6,8 @@ public class Cooking : Singleton<Cooking>
 {
     public bool cookUp;
 
+    public Trash trash;
+
     public ESubMatarials myType;
     public Sprite[] sprites;
     public CookingStyleSprites[] styleSprites;
@@ -15,6 +17,8 @@ public class Cooking : Singleton<Cooking>
     public float materialPrice;
 
     public CookingMachine cookingMachine;
+
+    public GameObject KitchenRoom;
 
     public void CookingTypePush(ESubMatarials type, Sprite[] thisSprites, CookingStyleSprites[] styleSprite)
     {

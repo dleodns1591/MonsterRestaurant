@@ -4,8 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class CookingBoard : MonoBehaviour,IPointerDownHandler
+public class CookingBoard : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 {
+    private GraphicRaycaster gr;
+    private PointerEventData ped;
+    private GameObject canvas;
+
+
     [SerializeField] private Image mainMaterialImage;
     private Sprite[] styleImage;
 
@@ -25,6 +30,21 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler
     public bool isFinish;
     private bool isMainMaterialDrop;
     [SerializeField] private bool isEnterImage;
+
+    private Image myCook;
+    private Vector2 machinePos = new Vector2(631,192);
+
+    private bool isEnterTrash;
+
+    private void Start()
+    {
+        canvas = GameObject.Find("Canvas");
+        gr = canvas.GetComponent<GraphicRaycaster>();
+        ped = new PointerEventData(null);
+        myCook = this.GetComponent<Image>();
+    }
+
+
 
     public void ImageProcessing()
     {
@@ -70,6 +90,32 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler
         mainMaterialImage.color = new Vector4(1, 1, 1, 1);
     }
 
+    private IEnumerator BoardMove()
+    {
+        print("st");
+        while (true)
+        {
+            yield return null;
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                
+                break;
+            }
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            myCook.rectTransform.position = new Vector3(mousePos.x, mousePos.y, 0);
+
+            //쓰레기 위치 체크
+            if ((mousePos.x > -2.5f && mousePos.x < 2.5f) && mousePos.y < -4.5f)
+                isEnterTrash = true;
+            else isEnterTrash = false;
+
+
+            if (isEnterTrash == true) Cooking.Instance.trash.Enter();
+            else Cooking.Instance.trash.Exit();
+        }
+    }
+
     public void OnPointerDown(PointerEventData eventData)
     {
         if (isFinish == false)
@@ -91,7 +137,41 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler
         }
         else
         {
+            transform.parent = Cooking.Instance.KitchenRoom.transform;
+            StartCoroutine(BoardMove());
+        }
+    }
 
+    public void CookingComplete()
+    {
+        isFinish = true;
+        ImageProcessing();
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+
+
+        if (isFinish == false) return;
+
+        myCook.transform.parent = Cooking.Instance.cookingMachine.transform;
+        myCook.rectTransform.localPosition = new Vector2(631, 192);
+
+
+        if (isEnterTrash == true) Destroy(gameObject);
+
+        ped.position = eventData.position;
+        List<RaycastResult> results = new List<RaycastResult>();
+        gr.Raycast(ped, results);
+
+        foreach (var item in results)
+        {
+            print(item.gameObject.tag);
+
+            if (item.gameObject.tag == "Packaging")
+            {
+                StartCoroutine(item.gameObject.GetComponent<Packaging>().CheckPack(gameObject));
+            }
         }
 
     }

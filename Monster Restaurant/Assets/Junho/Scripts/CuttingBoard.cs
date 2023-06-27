@@ -6,9 +6,12 @@ using UnityEngine.UI;
 
 public class CuttingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
+    private GraphicRaycaster gr;
+    private PointerEventData ped;
+    [SerializeField] private GameObject canvas;
+
     private Image board;
     private Vector3 startPos;
-    [SerializeField] private Trash trash;
     [SerializeField] private CookingBoard food;
     [SerializeField] private CookingBoard NewFoodObj;
     [SerializeField] private Transform boardPool;
@@ -19,6 +22,8 @@ public class CuttingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     {
         board = GetComponent<Image>();
         startPos = board.GetComponent<RectTransform>().anchoredPosition;
+        gr = canvas.GetComponent<GraphicRaycaster>();
+        ped = new PointerEventData(null);
     }
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -34,18 +39,36 @@ public class CuttingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
         board.GetComponent<RectTransform>().anchoredPosition = startPos;
 
-        if (trash.isEnter == true)
+        if (Cooking.Instance.trash.isEnter == true)
         {
             FoodDrop();
-            trash.Exit();
+            Cooking.Instance.trash.Exit();
+        }
+
+        ped.position = eventData.position;
+        List<RaycastResult> results = new List<RaycastResult>();
+        gr.Raycast(ped, results);
+
+        foreach (var item in results)
+        {
+            print(item.gameObject.tag);
+
+            if (item.gameObject.tag == "CookingMachine")
+            {
+                item.gameObject.GetComponent<CookingMachine>().CookDrop(food);
+                CreateFood();
+            }
         }
     }
-
+    private void CreateFood()
+    {
+        food = Instantiate(NewFoodObj, board.transform);
+        food.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 80);
+    }
     private void FoodDrop()
     {
         Destroy(food.gameObject);
-        food = Instantiate(NewFoodObj, board.transform);
-        food.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 80);
+        CreateFood();
     }
     private IEnumerator BoardMove()
     {
@@ -65,8 +88,8 @@ public class CuttingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
             else isEnterTrash = false;
 
 
-            if (isEnterTrash == true) trash.Enter();
-            else trash.Exit();
+            if (isEnterTrash == true) Cooking.Instance.trash.Enter();
+            else Cooking.Instance.trash.Exit();
 
         }
     }

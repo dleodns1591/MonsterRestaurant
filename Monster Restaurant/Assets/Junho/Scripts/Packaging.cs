@@ -2,20 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine.EventSystems;
-public class Packaging : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+using UnityEngine.UI;
+public class Packaging : MonoBehaviour
 {
     [SerializeField] private RectTransform up;
 
     [SerializeField] private GameObject[] stickers;
 
-    private bool isEnter;
 
-    private IEnumerator CheckPack()
+    public IEnumerator CheckPack(GameObject cook)
     {
-        yield return Pack();
+        cook.transform.parent = transform;
+        cook.transform.SetAsFirstSibling();
+        cook.transform.localPosition = transform.position;
 
+
+        up.transform.DOLocalMove(transform.position, 1);
+
+        yield return new WaitForSeconds(1f);
+
+        yield return Pack();
+       
+        //GameManager.Instance.orderSets[0].
         // 음식 제출
+
+        // 체크 
+
+            
+
     }
     private IEnumerator Pack()
     {
@@ -25,42 +39,8 @@ public class Packaging : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         yield return new WaitForSeconds(0.5f);
 
-        transform.DOMoveY(7.5f, 1);
-    }
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        isEnter = true;
-        print("enter");
-
-        checkDrop = StartCoroutine(CheckDrop());
+        transform.DOLocalMoveY(800, 1);
     }
 
-    Coroutine checkDrop;
-    IEnumerator CheckDrop()
-    {
-        while (true)
-        {
-            yield return null;
-
-            if (Input.GetMouseButtonUp(0) && isEnter== true)
-            {
-                print("Check");
-
-                up.transform.DOMove(transform.position, 1).OnComplete(() =>
-                {
-                    StartCoroutine(CheckPack());
-                });
-
-                break;
-            }
-        }
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        isEnter = false;
-        print("Exit");
-        StopCoroutine(checkDrop);
-    }
 
 }
