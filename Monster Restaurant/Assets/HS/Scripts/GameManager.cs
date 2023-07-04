@@ -47,7 +47,20 @@ public class GameManager : Singleton<GameManager>
     public int CanNotMask;
     public int HumanLike;
 
-    public int Satisfaction;
+    private int satisfaction;
+    public int Satisfaction
+    {
+        get
+        {
+            return satisfaction;
+        }
+        set
+        {
+            satisfaction = value;
+            if (satisfaction < 0)
+                satisfaction = 0;
+        }
+    }
 
     [Tooltip("OrderSet 배열에서의 사용하는 인덱스")] public int randomCustomerNum;
     public bool BuyCheck(float price)
