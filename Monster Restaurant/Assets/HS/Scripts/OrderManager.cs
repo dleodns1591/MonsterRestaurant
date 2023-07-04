@@ -547,12 +547,12 @@ public class OrderManager : Singleton<OrderManager>
 
     public void AAA()
     {
-        GameManager.Instance.ReturnOreder();
+        GameManager.Instance.ReturnOrder();
     }
 
     public void CookToOrder()
     {
-        GameManager.Instance.ReturnOreder = () =>
+        GameManager.Instance.ReturnOrder = () =>
         {
 
             string[] line = AnswerTalkTxt.text.Split('\n');

@@ -61,7 +61,7 @@ public class GameManager : Singleton<GameManager>
         return false;
     }
 
-    public Action ReturnOreder;
+    public Action ReturnOrder;
     public Action ReturnCook;
 }
 
