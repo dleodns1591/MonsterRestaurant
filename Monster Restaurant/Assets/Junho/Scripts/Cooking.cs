@@ -20,8 +20,6 @@ public class Cooking : Singleton<Cooking>
 
     public GameObject KitchenRoom;
 
-    public Coroutine MapScrollCoroutine;
-
     public void CookingTypePush(ESubMatarials type, Sprite[] thisSprites, CookingStyleSprites[] styleSprite)
     {
         myType = type;
