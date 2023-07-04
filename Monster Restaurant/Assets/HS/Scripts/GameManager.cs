@@ -30,7 +30,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    private int day;
+    private int day = 1;
 
     public int Day
     {

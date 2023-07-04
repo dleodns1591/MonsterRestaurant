@@ -441,7 +441,8 @@ public class OrderManager : Singleton<OrderManager>
                     
                     IEnumerator DayProduction()
                     {
-                        DayText.text = $"1일차....!";
+                        GameManager.Instance.Day++;
+                        DayText.text = $"{GameManager.Instance.Day}일차....!";
                         DayText.DOFade(1, 1);
                         yield return new WaitForSeconds(1.5f);
                         FadeInOut.Instance.LittleFade();
