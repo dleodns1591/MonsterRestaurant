@@ -210,5 +210,7 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 
         checkList += 3 - num;
 
+
+        GameManager.Instance.Satisfaction -= checkList * 10;
     }
 }
