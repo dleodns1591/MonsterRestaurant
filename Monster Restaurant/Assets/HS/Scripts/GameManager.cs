@@ -41,7 +41,8 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public int BasicRevenue = 200, SalesRevenue = 2890, MarterialCost = 563, TaxCost = 289, SettlementCost;
+    public int BasicRevenue = 200, SalesRevenue = 2890, TaxCost = 289, SettlementCost;
+    public float MarterialCost;
     public bool Bloom;
     public bool dayEndCheck = false;
     public int CanNotMask;
@@ -67,8 +68,8 @@ public class GameManager : Singleton<GameManager>
     {
         if(money >= price)
         {
-            MarterialCost += (int)price;
-
+            Money -= price;
+            MarterialCost += price;
             return true;
         }
         return false;

@@ -417,7 +417,7 @@ public class OrderManager : Singleton<OrderManager>
             yield return new WaitForSeconds(1.5f);
             NumberAnimation(GameManager.Instance.SalesRevenue, 1.3f, SalesRevenue);
             yield return new WaitForSeconds(1.5f);
-            NumberAnimation(GameManager.Instance.MarterialCost, 1.3f, MarterialCost);
+            NumberAnimation((int)GameManager.Instance.MarterialCost, 1.3f, MarterialCost);
             yield return new WaitForSeconds(1.5f);
             NumberAnimation(GameManager.Instance.TaxCost, 1.3f, TaxCost);
             yield return new WaitForSeconds(1.5f);
@@ -544,11 +544,6 @@ public class OrderManager : Singleton<OrderManager>
 
     #region 게임 루틴 관련
 
-    public void AAA()
-    {
-        GameManager.Instance.ReturnOrder();
-    }
-
     public void CookToOrder()
     {
         GameManager.Instance.ReturnOrder = () =>
@@ -589,7 +584,7 @@ public class OrderManager : Singleton<OrderManager>
 
             }
 
-            if (GameManager.Instance.Satisfaction >= 30)
+            if (GameManager.Instance.Satisfaction >= 65)
                 isCookingSuccess = true;
             else
                 isCookingSuccess = false;
@@ -597,11 +592,15 @@ public class OrderManager : Singleton<OrderManager>
             //if 성공 실패
             if (isCookingSuccess)
             {
+                GameManager.Instance.Money += 500;
+                GameManager.Instance.SalesRevenue += 500;
                 CustomerImg.sprite = GuestSuccess[normalGuestType];
                 AnswerTalk = SucsessTalk[normalGuestType, UnityEngine.Random.Range(0, 2)];
             }
             else
             {
+                GameManager.Instance.Money += 200;
+                GameManager.Instance.SalesRevenue += 200;
                 CustomerImg.sprite = GuestFails[normalGuestType];
                 AnswerTalk = FailTalk[normalGuestType, UnityEngine.Random.Range(0, 2)];
             }

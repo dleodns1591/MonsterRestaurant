@@ -9867,7 +9867,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 945262609}
         m_TargetAssemblyTypeName: OrderManager, Assembly-CSharp
         m_MethodName: MemoOn
         m_Mode: 1
@@ -10077,7 +10077,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 945262609}
         m_TargetAssemblyTypeName: OrderManager, Assembly-CSharp
         m_MethodName: MemoOff
         m_Mode: 1
