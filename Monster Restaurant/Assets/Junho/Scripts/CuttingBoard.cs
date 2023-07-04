@@ -51,8 +51,6 @@ public class CuttingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
         foreach (var item in results)
         {
-            print(item.gameObject.tag);
-
             if (item.gameObject.tag == "CookingMachine")
             {
                 item.gameObject.GetComponent<CookingMachine>().CookDrop(food);

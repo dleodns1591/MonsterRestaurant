@@ -164,7 +164,6 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 
         foreach (var item in results)
         {
-            print(item.gameObject.tag);
 
             if (item.gameObject.tag == "Packaging")
             {

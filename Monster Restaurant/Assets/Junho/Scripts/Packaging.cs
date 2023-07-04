@@ -29,7 +29,7 @@ public class Packaging : MonoBehaviour
         // 음식 제출
         GameManager.Instance.ReturnOrder();
         // 체크 
-        StopCoroutine(MapScrollMG.Instance.MouseCheckCoroutine);
+        MapScrollMG.Instance.StopMouseCheck();
 
         StartSet();
 
@@ -37,7 +37,6 @@ public class Packaging : MonoBehaviour
     private IEnumerator Pack()
     {
         int ran = Random.Range(0, stickers.Length);
-        print(ran);
         stickers[ran].SetActive(true);
 
         yield return new WaitForSeconds(0.5f);

@@ -10,7 +10,23 @@ public class MapScrollMG : Singleton<MapScrollMG>
     [SerializeField] private Vector3[] BgXPos;
     [SerializeField] private int myBgXPos;
 
-    public Coroutine MouseCheckCoroutine;
+    private Coroutine MouseCheckCoroutine;
+
+
+    public void StartSet()
+    {
+        bg.anchoredPosition = BgXPos[0];
+        myBgXPos = 0;
+
+        if (MouseCheckCoroutine != null) StopCoroutine(MouseCheckCoroutine);
+        MouseCheckCoroutine = StartCoroutine(MouseCheck());
+    }
+
+    public void StopMouseCheck()
+    {
+        StopCoroutine(MouseCheckCoroutine);
+    }
+
     public IEnumerator MouseCheck()
     {
         while (true)
@@ -31,6 +47,8 @@ public class MapScrollMG : Singleton<MapScrollMG>
     private IEnumerator MapMove(int num)
     {
         myBgXPos += num;
+
+        print(myBgXPos);
 
         if (myBgXPos <= 0) myBgXPos = 0;
         else if (myBgXPos >= BgXPos.Length - 1) myBgXPos = BgXPos.Length - 1;
