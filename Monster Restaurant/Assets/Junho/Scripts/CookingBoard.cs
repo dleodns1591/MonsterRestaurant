@@ -63,9 +63,8 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
         float mainPrice = Cooking.Instance.MainMaterialsPriece[((int)main)];
 
 
-        if (isMainMaterialDrop == true && GameManager.Instance.BuyCheck(mainPrice)) return;
+        if (isMainMaterialDrop == true || GameManager.Instance.BuyCheck(mainPrice) == false) return;
 
-        GameManager.Instance.Money -= mainPrice;
 
         isMainMaterialDrop = true;
         mainMaterial = main;
@@ -123,7 +122,7 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
             float price = Cooking.Instance.materialPrice;
 
             if ((isMainMaterialDrop == false || Cooking.Instance.myType == ESubMatarials.NULL)
-                && GameManager.Instance.BuyCheck(price)) return;
+                && GameManager.Instance.BuyCheck(price) == false) return;
 
 
             GameObject sub = Instantiate(subM, transform).gameObject;
@@ -133,7 +132,6 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
             sub.GetComponent<Image>().raycastTarget = false;
 
             subMaterials.Add(sub.GetComponent<SubMaterialImages>());
-            GameManager.Instance.Money -= price;
         }
         else
         {

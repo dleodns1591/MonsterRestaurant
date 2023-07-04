@@ -10,9 +10,11 @@ public class MapScrollMG : Singleton<MapScrollMG>
     [SerializeField] private Vector3[] BgXPos;
     [SerializeField] private int myBgXPos;
 
+    private Coroutine MouseCheckCoroutine;
+
     private void Start()
     {
-       StartCoroutine(MouseCheck());
+       MouseCheckCoroutine = StartCoroutine(MouseCheck());
     }
     public IEnumerator MouseCheck()
     {
@@ -40,12 +42,12 @@ public class MapScrollMG : Singleton<MapScrollMG>
 
         Vector3 startPos = bg.anchoredPosition;
         float t = 0;
-        while (t < 0.5f)
+        while (t < 0.25f)
         {
             yield return null;
             t += Time.deltaTime;
 
-            bg.anchoredPosition = Vector3.Lerp(startPos, BgXPos[myBgXPos], t / 0.5f);
+            bg.anchoredPosition = Vector3.Lerp(startPos, BgXPos[myBgXPos], t / 0.25f);
         }
 
         yield return new WaitForSeconds(1);
