@@ -27,7 +27,7 @@ public class Packaging : MonoBehaviour
 
         //GameManager.Instance.orderSets[0].
         // 음식 제출
-
+        GameManager.Instance.ReturnOrder();
         // 체크 
 
         StartSet();
