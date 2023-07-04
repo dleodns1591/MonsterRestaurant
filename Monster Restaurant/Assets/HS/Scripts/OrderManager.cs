@@ -630,7 +630,7 @@ public class OrderManager : Singleton<OrderManager>
 
         yield return new WaitForSeconds(1f);
         EmotionText.text = "100%";
-        satisfaction = 100;
+        GameManager.Instance.Satisfaction = 100;
         FaceImage.sprite = FaceSprites[(int)EFaceType.Happy];
         StartCoroutine(Order());
     }
@@ -644,15 +644,15 @@ public class OrderManager : Singleton<OrderManager>
 
     private IEnumerator SatisfactionUpdate()
     {
-        if(satisfaction <= 60)
+        if(GameManager.Instance.Satisfaction <= 60)
             FaceImage.sprite = FaceSprites[(int)EFaceType.Umm];
-        if (satisfaction <= 20)
+        if (GameManager.Instance.Satisfaction <= 20)
             FaceImage.sprite = FaceSprites[(int)EFaceType.Angry];
         yield return new WaitForSeconds(0.05f);
-        if (satisfaction <= 0)
+        if (GameManager.Instance.Satisfaction <= 0)
             yield break;
-        satisfaction--;
-        EmotionText.text = $"{satisfaction}%";
+        GameManager.Instance.Satisfaction--;
+        EmotionText.text = $"{GameManager.Instance.Satisfaction}%";
         SatisfactionCoroutine = StartCoroutine(SatisfactionUpdate());
     }
     #endregion
