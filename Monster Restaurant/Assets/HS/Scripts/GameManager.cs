@@ -70,6 +70,7 @@ public class GameManager : Singleton<GameManager>
         {
             Money -= price;
             MarterialCost += price;
+            print(MarterialCost);
             return true;
         }
         return false;
