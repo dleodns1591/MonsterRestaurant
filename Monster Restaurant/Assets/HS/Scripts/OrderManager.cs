@@ -60,6 +60,7 @@ public class OrderManager : Singleton<OrderManager>
     private Coroutine SatisfactionCoroutine;
     private int firstMoney;
     private I_CustomerType CustomerType;
+    private bool isSatisfactionStop;
     [HideInInspector] public bool isCookingSuccess;
     [HideInInspector] public int orderType;
     [HideInInspector] public string[] OrderTalk = new string[3], AskTalk = new string[3];
@@ -79,7 +80,7 @@ public class OrderManager : Singleton<OrderManager>
     }
     private void Update()
     {
-        MoneyText.text = GameManager.Instance.Money.ToString();
+        MoneyText.text = ((int)GameManager.Instance.Money).ToString();
     }
 
     string NameKoreanReturn(string name)
@@ -336,7 +337,7 @@ public class OrderManager : Singleton<OrderManager>
             DayTween.Kill();
         TimeFill.fillAmount = 1;
 
-        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 10)
+        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 300)
         .OnComplete(() => //시간이 다 지났을때
         {
             GameManager.Instance.dayEndCheck = true;
@@ -596,7 +597,7 @@ public class OrderManager : Singleton<OrderManager>
 
             }
 
-            if (GameManager.Instance.Satisfaction >= 65)
+            if (GameManager.Instance.Satisfaction >= 40)
                 isCookingSuccess = true;
             else
                 isCookingSuccess = false;
@@ -658,7 +659,12 @@ public class OrderManager : Singleton<OrderManager>
         {
             MapScrollMG.Instance.StartSet();
             GameManager.Instance.Satisfaction = 100;
-            CookingScene.transform.DOMoveY(0, 1).SetEase(Ease.OutBounce).OnComplete(() => SatisfactionCoroutine = StartCoroutine(SatisfactionUpdate()));
+            CookingScene.transform.DOMoveY(0, 1).SetEase(Ease.OutBounce).OnComplete(() =>
+            {
+                isSatisfactionStop = true;
+                StopCoroutine(SatisfactionUpdate());
+                SatisfactionCoroutine = StartCoroutine(SatisfactionUpdate());
+            });
         };
     }
 
@@ -669,8 +675,11 @@ public class OrderManager : Singleton<OrderManager>
         if (GameManager.Instance.Satisfaction <= 20)
             FaceImage.sprite = FaceSprites[(int)EFaceType.Angry];
         yield return new WaitForSeconds(1f);
-        if (GameManager.Instance.Satisfaction <= 0)
+        if (GameManager.Instance.Satisfaction <= 0 || isSatisfactionStop == true)
+        {
+            isSatisfactionStop = false;
             yield break;
+        }
         GameManager.Instance.Satisfaction--;
         EmotionText.text = $"{GameManager.Instance.Satisfaction}%";
         SatisfactionCoroutine = StartCoroutine(SatisfactionUpdate());
