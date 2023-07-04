@@ -29,6 +29,7 @@ public class Packaging : MonoBehaviour
         // 음식 제출
         GameManager.Instance.ReturnOrder();
         // 체크 
+        StopCoroutine(Cooking.Instance.MapScrollCoroutine);
 
         StartSet();
 
