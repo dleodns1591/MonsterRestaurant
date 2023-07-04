@@ -36,7 +36,6 @@ public class OrderManager : Singleton<OrderManager>
     [SerializeField] private Sprite[] FaceSprites;
     [SerializeField] private Image FaceImage;
     [SerializeField] private Text EmotionText;
-    private int satisfaction = 100;
 
     [Header("UI 관련")]
     [SerializeField] private Text MoneyText;
@@ -590,6 +589,11 @@ public class OrderManager : Singleton<OrderManager>
 
             }
 
+            if (GameManager.Instance.Satisfaction >= 30)
+                isCookingSuccess = true;
+            else
+                isCookingSuccess = false;
+
             //if 성공 실패
             if (isCookingSuccess)
             {
@@ -638,6 +642,7 @@ public class OrderManager : Singleton<OrderManager>
     {
         GameManager.Instance.ReturnCook = () =>
         {
+            GameManager.Instance.Satisfaction = 100;
             CookingScene.transform.DOMoveY(0, 1).SetEase(Ease.OutBounce).OnComplete(() => SatisfactionCoroutine = StartCoroutine(SatisfactionUpdate()));
         };
     }
@@ -648,7 +653,7 @@ public class OrderManager : Singleton<OrderManager>
             FaceImage.sprite = FaceSprites[(int)EFaceType.Umm];
         if (GameManager.Instance.Satisfaction <= 20)
             FaceImage.sprite = FaceSprites[(int)EFaceType.Angry];
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(1f);
         if (GameManager.Instance.Satisfaction <= 0)
             yield break;
         GameManager.Instance.Satisfaction--;
