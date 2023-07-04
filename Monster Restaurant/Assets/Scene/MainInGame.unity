@@ -4491,7 +4491,6 @@ MonoBehaviour:
   - {fileID: 4877039913572415011}
   - {fileID: 4877039913628905975}
   - {fileID: 4877039913089621723}
-  - {fileID: 0}
   MemoPaperBackground: {fileID: 4877039913073412677}
   CookingScene: {fileID: 1152493739}
   isCookingSuccess: 0
