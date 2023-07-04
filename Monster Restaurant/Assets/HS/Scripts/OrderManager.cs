@@ -44,6 +44,7 @@ public class OrderManager : Singleton<OrderManager>
     [SerializeField] private GameObject RevenuePopup;
     [SerializeField] private Button NextButton;
     [SerializeField] private Text Principal, BasicRevenue, SalesRevenue, MarterialCost, TaxCost, SettlementCost, Total;
+    [SerializeField] private Text DayText;
 
     [Header("메모 관련")]
     [SerializeField] private RectTransform MemoPaper;
@@ -310,7 +311,7 @@ public class OrderManager : Singleton<OrderManager>
             string[] cell = line[i].Split('\t');
 
             GameManager.Instance.orderSets[i].main = eMain(cell[0]);
-            GameManager.Instance.orderSets[i].sub = new List<ESubMatarials>() { ESubMatarials.AlienPlant, ESubMatarials.AlienPlant, ESubMatarials.AlienPlant};
+            GameManager.Instance.orderSets[i].sub = new List<ESubMatarials>() { ESubMatarials.AlienPlant, ESubMatarials.AlienPlant, ESubMatarials.AlienPlant };
             GameManager.Instance.orderSets[i].sub[0] = eSub(cell[1]);
             GameManager.Instance.orderSets[i].sub[1] = eSub(cell[2]);
             GameManager.Instance.orderSets[i].sub[2] = eSub(cell[3]);
@@ -325,7 +326,7 @@ public class OrderManager : Singleton<OrderManager>
     void OrderLoop()
     {
         firstMoney = (int)GameManager.Instance.Money;
-        GameManager.Instance.SalesRevenue  = 0;
+        GameManager.Instance.SalesRevenue = 0;
         GameManager.Instance.MarterialCost = 0;
         GameManager.Instance.TaxCost = 0;
         GameManager.Instance.SettlementCost = 0;
@@ -388,7 +389,7 @@ public class OrderManager : Singleton<OrderManager>
 
     void DayEnd()
     {
-        FadeInOut.Instance.FadeOut();
+        FadeInOut.Instance.LittleFadeOut();
         FadeInOut.Instance.RevenueFadeOut();
 
         GameManager.Instance.Money += 200;
@@ -430,14 +431,24 @@ public class OrderManager : Singleton<OrderManager>
             NextButton.onClick.AddListener(() =>
             {
                 NextButton.gameObject.SetActive(false);
-                RevenuePopup.GetComponent<RectTransform>().DOAnchorPosY(865, 2.5f).SetEase(Ease.OutElastic).OnComplete(() =>
+                RevenuePopup.GetComponent<RectTransform>().DOAnchorPosY(865, 2.5f).OnComplete(() =>
                 {
                     for (int i = 0; i < RevenuePopup.transform.childCount; i++)
                     {
                         RevenuePopup.transform.GetChild(i).gameObject.SetActive(false);
                     }
                     TimeFill.fillAmount = 1;
-                    FadeInOut.Instance.Fade();
+                    
+                    IEnumerator DayProduction()
+                    {
+                        DayText.text = $"1일차....!";
+                        DayText.DOFade(1, 1);
+                        yield return new WaitForSeconds(1.5f);
+                        FadeInOut.Instance.LittleFade();
+                        DayText.DOFade(0, FadeInOut.Instance.fadeTime);
+                        yield return new WaitForSeconds(FadeInOut.Instance.fadeTime);
+                    }
+                    StartCoroutine(DayProduction());
                     StartCoroutine(Reset());
                 });
             });
@@ -601,6 +612,9 @@ public class OrderManager : Singleton<OrderManager>
             {
                 GameManager.Instance.Money += 200;
                 GameManager.Instance.SalesRevenue += 200;
+                int rand = UnityEngine.Random.Range(1, 5);
+                if (rand == 1)
+                    GameManager.Instance.SettlementCost += 100;
                 CustomerImg.sprite = GuestFails[normalGuestType];
                 AnswerTalk = FailTalk[normalGuestType, UnityEngine.Random.Range(0, 2)];
             }
@@ -649,7 +663,7 @@ public class OrderManager : Singleton<OrderManager>
 
     private IEnumerator SatisfactionUpdate()
     {
-        if(GameManager.Instance.Satisfaction <= 60)
+        if (GameManager.Instance.Satisfaction <= 60)
             FaceImage.sprite = FaceSprites[(int)EFaceType.Umm];
         if (GameManager.Instance.Satisfaction <= 20)
             FaceImage.sprite = FaceSprites[(int)EFaceType.Angry];
