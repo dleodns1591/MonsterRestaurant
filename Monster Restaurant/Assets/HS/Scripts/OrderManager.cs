@@ -68,7 +68,7 @@ public class OrderManager : Singleton<OrderManager>
     [HideInInspector] public bool isNext;
     [HideInInspector] public bool isBloom;
     [HideInInspector] public bool isHoldingFlower;
-    [HideInInspector] public int Beggar_SuccessPoint;
+    [HideInInspector] public int Beggar_SuccessPoint = 0;
     [HideInInspector] public int dialogNumber;
 
     private void Start()
@@ -201,7 +201,7 @@ public class OrderManager : Singleton<OrderManager>
                 break;
             default:
                 int randomType = 6;
-                randomType = 6;
+                randomType = 2;
                 switch ((EeventCustomerType)randomType)
                 {
                     case EeventCustomerType.Human:
@@ -439,7 +439,7 @@ public class OrderManager : Singleton<OrderManager>
                         RevenuePopup.transform.GetChild(i).gameObject.SetActive(false);
                     }
                     TimeFill.fillAmount = 1;
-                    
+
                     IEnumerator DayProduction()
                     {
                         GameManager.Instance.Day++;
@@ -474,7 +474,7 @@ public class OrderManager : Singleton<OrderManager>
         }
         NextCustomerReady();
         normalGuestType = UnityEngine.Random.Range(0, 8);
-        SetCustomerType(normalGuestType);
+        SetCustomerType(9);
         yield return StartCoroutine(customer.Moving());
         ReAskBtn.gameObject.SetActive(true);
         CookingBtn.gameObject.SetActive(true);
@@ -637,7 +637,8 @@ public class OrderManager : Singleton<OrderManager>
     }
     public IEnumerator ExitAndComein()
     {
-        StopCoroutine(SatisfactionCoroutine);
+        if (SatisfactionCoroutine != null)
+            StopCoroutine(SatisfactionCoroutine);
 
         yield return new WaitForSeconds(1.5f);
 
@@ -683,6 +684,11 @@ public class OrderManager : Singleton<OrderManager>
         GameManager.Instance.Satisfaction--;
         EmotionText.text = $"{GameManager.Instance.Satisfaction}%";
         SatisfactionCoroutine = StartCoroutine(SatisfactionUpdate());
+    }
+
+    public void BankruptcyEnding()
+    {
+
     }
     #endregion
 

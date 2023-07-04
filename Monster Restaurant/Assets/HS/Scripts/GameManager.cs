@@ -73,6 +73,10 @@ public class GameManager : Singleton<GameManager>
             print(MarterialCost);
             return true;
         }
+        else
+        {
+            OrderManager.Instance.BankruptcyEnding();
+        }
         return false;
     }
 
