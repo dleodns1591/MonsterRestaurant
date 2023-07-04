@@ -641,6 +641,7 @@ public class OrderManager : Singleton<OrderManager>
     {
         GameManager.Instance.ReturnCook = () =>
         {
+            StartCoroutine(MapScrollMG.Instance.MouseCheck());
             GameManager.Instance.Satisfaction = 100;
             CookingScene.transform.DOMoveY(0, 1).SetEase(Ease.OutBounce).OnComplete(() => SatisfactionCoroutine = StartCoroutine(SatisfactionUpdate()));
         };

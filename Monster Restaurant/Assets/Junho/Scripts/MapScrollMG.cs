@@ -10,12 +10,7 @@ public class MapScrollMG : Singleton<MapScrollMG>
     [SerializeField] private Vector3[] BgXPos;
     [SerializeField] private int myBgXPos;
 
-    private Coroutine MouseCheckCoroutine;
-
-    private void Start()
-    {
-       MouseCheckCoroutine = StartCoroutine(MouseCheck());
-    }
+    public Coroutine MouseCheckCoroutine;
     public IEnumerator MouseCheck()
     {
         while (true)
