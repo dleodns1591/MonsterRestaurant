@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Beggar : MonoBehaviour, I_CustomerType
-{ 
+{
     Button cookBtn;
     Button askBtn;
 
@@ -61,26 +61,31 @@ public class Beggar : MonoBehaviour, I_CustomerType
 
     void SucsessCook()
     {
-            OrderManager.Instance.Beggar_SuccessPoint++;
+        OrderManager.Instance.Beggar_SuccessPoint++;
 
-            cookBtn.gameObject.SetActive(false);
-            askBtn.gameObject.SetActive(false);
+        cookBtn.gameObject.SetActive(false);
+        askBtn.gameObject.SetActive(false);
 
         OrderManager.Instance.isBeggar = true;
-            //요리
-            GameManager.Instance.ReturnCook();
+        //요리
+        GameManager.Instance.ReturnCook();
     }
     void RefuseOrder()
     {
-        cookBtn.gameObject.SetActive(false);
-        askBtn.gameObject.SetActive(false);
-        StartCoroutine(OrderManager.Instance.ExitAndComein());
+        IEnumerator RefuseOrderDelay()
+        {
+            yield return new WaitForSeconds(1.5f);
+            cookBtn.gameObject.SetActive(false);
+            askBtn.gameObject.SetActive(false);
+            StartCoroutine(OrderManager.Instance.ExitAndComein());
+        }
+
     }
     void ResetTalk()
     {
         for (int i = 0; i < OrderManager.Instance.OrderTalk.Length; i++)
         {
-           // OrderManager.Instance.OrderTalk[i].
+            // OrderManager.Instance.OrderTalk[i].
         }
     }
 
@@ -138,7 +143,7 @@ public class Beggar : MonoBehaviour, I_CustomerType
             cookBtn.onClick.AddListener(() =>
             {
                 OrderManager.Instance.AskTalk[1] = "알겠습니다";
-                
+
                 SucsessCook();
 
             });
@@ -163,7 +168,7 @@ public class Beggar : MonoBehaviour, I_CustomerType
         cookBtn.onClick.AddListener(() =>
         {
             OrderManager.Instance.AskTalk[0] = "잠시만요";
-           
+
             SucsessCook();
 
             //끝난 뒤 말
@@ -192,7 +197,7 @@ public class Beggar : MonoBehaviour, I_CustomerType
         cookBtn.onClick.AddListener(() =>
         {
             OrderManager.Instance.AskTalk[0] = "잠시만요";
-            
+
             SucsessCook();
 
             //끝난 뒤 말
@@ -221,7 +226,7 @@ public class Beggar : MonoBehaviour, I_CustomerType
         cookBtn.onClick.AddListener(() =>
         {
             OrderManager.Instance.AskTalk[0] = "잠시만요";
-            
+
             SucsessCook();
 
             //끝난 뒤 말
