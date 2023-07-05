@@ -15,7 +15,7 @@ public struct OrderSet
 public class GameManager : Singleton<GameManager>
 {
     public OrderSet[] orderSets;
-    private float money = 1000;
+    private float money = 10;
     public float Money
     {
         get { return money; }
@@ -75,7 +75,7 @@ public class GameManager : Singleton<GameManager>
         }
         else
         {
-            OrderManager.Instance.BankruptcyEnding();
+            OrderManager.Instance.EndingProduction(Eending.Bankruptcy);
         }
         return false;
     }

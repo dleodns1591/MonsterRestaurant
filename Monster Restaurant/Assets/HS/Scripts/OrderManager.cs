@@ -5,6 +5,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
+[Serializable]
+public struct EndingType
+{
+    [TextArea] public string Speech;
+    public Sprite EndingSpr;
+}
+
+public enum Eending
+{
+    Bankruptcy,
+    Rich
+}
+
 public class OrderManager : Singleton<OrderManager>
 {
     public TextAsset OrderTalkTxt, AnswerTalkTxt;
@@ -54,6 +67,12 @@ public class OrderManager : Singleton<OrderManager>
 
     [Header("기타부타타")]
     public GameObject CookingScene;
+
+    [Header("엔딩 관련")]
+    [SerializeField] private Image EndingImg;
+    [SerializeField] private Text EndingExplanTxt;
+    public EndingType[] endingTypes;
+    private GameObject EndingCanvas => EndingImg.transform.parent.gameObject;
 
     [Header("내부 변수들")]
     private Tween TextTween, DayTween;
@@ -474,7 +493,7 @@ public class OrderManager : Singleton<OrderManager>
         }
         NextCustomerReady();
         normalGuestType = UnityEngine.Random.Range(0, 8);
-        SetCustomerType(9);
+        SetCustomerType(normalGuestType);
         yield return StartCoroutine(customer.Moving());
         ReAskBtn.gameObject.SetActive(true);
         CookingBtn.gameObject.SetActive(true);
@@ -638,7 +657,9 @@ public class OrderManager : Singleton<OrderManager>
     public IEnumerator ExitAndComein()
     {
         if (SatisfactionCoroutine != null)
-            StopCoroutine(SatisfactionCoroutine);
+        {
+            isSatisfactionStop = true;
+        }
 
         yield return new WaitForSeconds(1.5f);
 
@@ -662,7 +683,6 @@ public class OrderManager : Singleton<OrderManager>
             GameManager.Instance.Satisfaction = 100;
             CookingScene.transform.DOMoveY(0, 1).SetEase(Ease.OutBounce).OnComplete(() =>
             {
-                isSatisfactionStop = true;
                 StopCoroutine(SatisfactionUpdate());
                 SatisfactionCoroutine = StartCoroutine(SatisfactionUpdate());
             });
@@ -686,9 +706,23 @@ public class OrderManager : Singleton<OrderManager>
         SatisfactionCoroutine = StartCoroutine(SatisfactionUpdate());
     }
 
-    public void BankruptcyEnding()
+    public void EndingProduction(Eending endingType)
     {
-
+        StartCoroutine(EndingDelay(endingTypes[(int)endingType].Speech, endingTypes[(int)endingType].EndingSpr));
+        
+        IEnumerator EndingDelay(string speech, Sprite spr)
+        {
+            EndingCanvas.SetActive(true);
+            FadeInOut.Instance.FadeOut();
+            EndingImg.sprite = spr;
+            EndingImg.DOFade(1, FadeInOut.Instance.fadeTime);
+            yield return new WaitForSeconds(FadeInOut.Instance.fadeTime + 1);
+            EndingExplanTxt.DOText(speech, 0.05f * speech.Length).OnComplete(() =>
+            {
+                //EndingExplanTxt.text = "";
+                //EndingCanvas.SetActive(false);
+            });
+        }
     }
     #endregion
 
