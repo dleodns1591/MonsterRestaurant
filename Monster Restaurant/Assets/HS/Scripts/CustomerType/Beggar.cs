@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,6 +33,9 @@ public class Beggar : MonoBehaviour, I_CustomerType
 
     public void SpecialType(TextMeshProUGUI cook, TextMeshProUGUI ask)
     {
+        cookBtn = cook.transform.parent.GetComponent<Button>();
+        askBtn = ask.transform.parent.GetComponent<Button>();
+
         switch (OrderManager.Instance.Beggar_SuccessPoint)
         {
             case 0:
@@ -62,6 +66,7 @@ public class Beggar : MonoBehaviour, I_CustomerType
             cookBtn.gameObject.SetActive(false);
             askBtn.gameObject.SetActive(false);
 
+        OrderManager.Instance.isBeggar = true;
             //요리
             GameManager.Instance.ReturnCook();
     }
@@ -81,9 +86,6 @@ public class Beggar : MonoBehaviour, I_CustomerType
 
     void Point0(TextMeshProUGUI cook, TextMeshProUGUI ask)
     {
-        cookBtn = cook.transform.parent.GetComponent<Button>();
-        askBtn = ask.transform.parent.GetComponent<Button>();
-
         OrderManager.Instance.OrderTalk[0] = "제발요..너무 배고파요..";
 
         cook.text = "잠시만요";
@@ -108,8 +110,10 @@ public class Beggar : MonoBehaviour, I_CustomerType
 
     void Point1(TextMeshProUGUI cook, TextMeshProUGUI ask)
     {
-        OrderManager.Instance.OrderTalk[0] = "안녕하세요, 또 저에요, 혹시.. (주문 내용)을 주실 수 있으실까요?";
+        OrderManager.Instance.OrderTalk[0] = "안녕하세요, 또 저에요, 혹시.. 한번 더 주실 수 있으실까요?";
         cook.text = "잠시만요";
+        print(cookBtn);
+        cookBtn.onClick.RemoveAllListeners();
         cookBtn.onClick.AddListener(() =>
         {
             OrderManager.Instance.AskTalk[0] = "잠시만요";
@@ -120,6 +124,7 @@ public class Beggar : MonoBehaviour, I_CustomerType
             //"다시 한 번 말하지만 이 은혜는 꼭 갚겠습니다.. 큭큭"
         });
         ask.text = "네?";
+        askBtn.onClick.RemoveAllListeners();
         askBtn.onClick.AddListener(() =>
         {
             OrderManager.Instance.AskTalk[0] = "네?";
@@ -251,6 +256,7 @@ public class Beggar : MonoBehaviour, I_CustomerType
 
             GameManager.Instance.Money += 10000000000;
             //개천에서 용난다 엔딩 ON
+            OrderManager.Instance.EndingProduction(Eending.Rich);
         });
     }
 }

@@ -78,8 +78,8 @@ public class TitleManager : MonoBehaviour
             if (!isContent)
             {
                 isContent = true;
-                for (int i = 1; i <= content.transform.childCount; i++)
-                    content.transform.GetChild(i - 1).DOLocalMoveY(i * -180, 0.5f).SetEase(Ease.OutBack);
+                for (int i = 0; i < content.transform.childCount; i++)
+                    content.transform.GetChild(i).DOLocalMoveY((i + 1) * -180, 0.5f).SetEase(Ease.OutBack);
             }
 
             else

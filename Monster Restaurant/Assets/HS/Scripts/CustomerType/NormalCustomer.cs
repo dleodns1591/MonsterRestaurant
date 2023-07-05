@@ -43,6 +43,7 @@ public class NormalCustomer : MonoBehaviour, I_CustomerType
         OrderManager.Instance.dialogNumber++;
 
         cook.text = "알겠습니다";
+        cookBtn.onClick.RemoveAllListeners();
         cookBtn.onClick.AddListener(() =>
         {
             OrderManager.Instance.AskTalk[0] = "알겠습니다";
@@ -55,6 +56,7 @@ public class NormalCustomer : MonoBehaviour, I_CustomerType
             GameManager.Instance.ReturnCook();
         });
         ask.text = "네?";
+        askBtn.onClick.RemoveAllListeners();
         askBtn.onClick.AddListener(() =>
         {
             OrderManager.Instance.AskTalk[0] = "네?";

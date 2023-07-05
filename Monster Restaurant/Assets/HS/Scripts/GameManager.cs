@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEditor;
+
 public struct OrderSet
 {
     public EMainMatarials main;
@@ -19,11 +21,11 @@ public class GameManager : Singleton<GameManager>
     public float Money
     {
         get { return money; }
-        set 
+        set
         {
             money = value;
             //OrderManager.Instance.MoneyText.text = money.ToString() + " $";
-            if(money < 0)
+            if (money < 0)
             {
                 //거지 엔딩
             }
@@ -35,7 +37,7 @@ public class GameManager : Singleton<GameManager>
     public int Day
     {
         get { return day; }
-        set 
+        set
         {
             day = value;
         }
@@ -48,7 +50,7 @@ public class GameManager : Singleton<GameManager>
     public int CanNotMask;
     public int HumanLike;
 
-    private int satisfaction;
+    private int satisfaction = 100;
     public int Satisfaction
     {
         get
@@ -57,20 +59,22 @@ public class GameManager : Singleton<GameManager>
         }
         set
         {
-            satisfaction = value;
+            if (!OrderManager.Instance.isBeggar)
+                satisfaction = value;
+
             if (satisfaction < 0)
                 satisfaction = 0;
         }
     }
 
     [Tooltip("OrderSet 배열에서의 사용하는 인덱스")] public int randomCustomerNum;
+    public int SpecialType;
     public bool BuyCheck(float price)
     {
-        if(money >= price)
+        if (money >= price)
         {
             Money -= price;
             MarterialCost += price;
-            print(MarterialCost);
             return true;
         }
         else

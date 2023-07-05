@@ -77,6 +77,10 @@ public class OrderManager : Singleton<OrderManager>
 
     [Header("상점 관련")]
     [SerializeField] private GameObject CounterDesk;
+    [SerializeField] private Button StopBuyBtn;
+    [SerializeField] private Button[] BuyBtns;
+    [SerializeField] private GameObject RightClick, LeftClick;
+
 
     [Header("내부 변수들")]
     private Tween TextTween, DayTween;
@@ -85,6 +89,7 @@ public class OrderManager : Singleton<OrderManager>
     private I_CustomerType CustomerType;
     private bool isSatisfactionStop;
     [HideInInspector] public bool isCookingSuccess;
+    [HideInInspector] public bool isBeggar;
     [HideInInspector] public int orderType;
     [HideInInspector] public string[] OrderTalk = new string[3], AskTalk = new string[3];
     [HideInInspector] public string AnswerTalk;
@@ -172,6 +177,16 @@ public class OrderManager : Singleton<OrderManager>
                 return EcustomerType.Alien;
         }
     }
+    void NormalCustomerSetting(int type)
+    {
+        CustomerImg.sprite = GuestDefualts[type];
+        NameBallonText.text = NameKoreanReturn(Enum.GetName(typeof(EcustomerType), type));
+    }
+    void EeventCustomerSetting(int randomType)
+    {
+        CustomerImg.sprite = EventGuestDefualts[randomType];
+        NameBallonText.text = NameKoreanReturn(Enum.GetName(typeof(EeventCustomerType), randomType));
+    }
 
     void SetCustomerType(int type)
     {
@@ -185,49 +200,39 @@ public class OrderManager : Singleton<OrderManager>
 
         CustomerType = gameObject.AddComponent<NormalCustomer>();
 
-        void NormalCustomerSetting()
-        {
-            CustomerImg.sprite = GuestDefualts[type];
-            NameBallonText.text = NameKoreanReturn(Enum.GetName(typeof(EcustomerType), type));
-        }
-        void EeventCustomerSetting(int randomType)
-        {
-            CustomerImg.sprite = EventGuestDefualts[randomType];
-            NameBallonText.text = NameKoreanReturn(Enum.GetName(typeof(EeventCustomerType), randomType));
-        }
 
         switch ((EcustomerType)type)
         {
             case EcustomerType.Alien:
-                NormalCustomerSetting();
+                NormalCustomerSetting(type);
                 break;
             case EcustomerType.Hyena:
-                NormalCustomerSetting();
+                NormalCustomerSetting(type);
                 break;
             case EcustomerType.Robot:
-                NormalCustomerSetting();
+                NormalCustomerSetting(type);
                 break;
             case EcustomerType.Dragon:
-                NormalCustomerSetting();
+                NormalCustomerSetting(type);
                 break;
             case EcustomerType.Light:
-                NormalCustomerSetting();
+                NormalCustomerSetting(type);
                 break;
             case EcustomerType.FSM:
-                NormalCustomerSetting();
+                NormalCustomerSetting(type);
                 break;
             case EcustomerType.Chris:
-                NormalCustomerSetting();
+                NormalCustomerSetting(type);
                 break;
             case EcustomerType.Demon:
-                NormalCustomerSetting();
+                NormalCustomerSetting(type);
                 break;
             case EcustomerType.Holotle:
-                NormalCustomerSetting();
+                NormalCustomerSetting(type);
                 break;
             default:
-                int randomType = 6;
-                randomType = 2;
+                int randomType = 2;
+                GameManager.Instance.SpecialType = 2;
                 switch ((EeventCustomerType)randomType)
                 {
                     case EeventCustomerType.Human:
@@ -623,33 +628,42 @@ public class OrderManager : Singleton<OrderManager>
 
             }
 
-            if (GameManager.Instance.Satisfaction >= 40)
-                isCookingSuccess = true;
-            else
-                isCookingSuccess = false;
-
-            //if 성공 실패
-            if (isCookingSuccess)
+            if (!isBeggar)
             {
-                GameManager.Instance.Money += 500;
-                GameManager.Instance.SalesRevenue += 500;
-                CustomerImg.sprite = GuestSuccess[normalGuestType];
-                AnswerTalk = SucsessTalk[normalGuestType, UnityEngine.Random.Range(0, 2)];
-            }
-            else
-            {
-                GameManager.Instance.Money += 200;
-                GameManager.Instance.SalesRevenue += 200;
-                int rand = UnityEngine.Random.Range(1, 5);
-                if (rand == 1)
-                    GameManager.Instance.SettlementCost += 100;
-                CustomerImg.sprite = GuestFails[normalGuestType];
-                AnswerTalk = FailTalk[normalGuestType, UnityEngine.Random.Range(0, 2)];
+
+                if (GameManager.Instance.Satisfaction >= 40)
+                    isCookingSuccess = true;
+                else
+                    isCookingSuccess = false;
+
+                //if 성공 실패
+                if (isCookingSuccess)
+                {
+                    GameManager.Instance.Money += 500;
+                    GameManager.Instance.SalesRevenue += 500;
+                    CustomerImg.sprite = GuestSuccess[normalGuestType];
+                    AnswerTalk = SucsessTalk[normalGuestType, UnityEngine.Random.Range(0, 2)];
+                }
+                else
+                {
+                    GameManager.Instance.Money += 200;
+                    GameManager.Instance.SalesRevenue += 200;
+                    int rand = UnityEngine.Random.Range(1, 5);
+                    if (rand == 1)
+                        GameManager.Instance.SettlementCost += 100;
+                    CustomerImg.sprite = GuestFails[normalGuestType];
+                    AnswerTalk = FailTalk[normalGuestType, UnityEngine.Random.Range(0, 2)];
+                }
             }
 
+            isBeggar = false;
             if (!CustomerType.SpecialAnswer().Equals(""))
+            {
+                EeventCustomerSetting(GameManager.Instance.SpecialType);
                 AnswerTalk = CustomerType.SpecialAnswer();
+            }
 
+            print(AnswerTalk);
             CookingScene.transform.DOMoveY(-10, 1).SetEase(Ease.OutBounce).OnComplete(() =>
             {
                 OrderText.DOText(AnswerTalk, 0.05f * AnswerTalk.Length).OnComplete(() =>
@@ -716,7 +730,7 @@ public class OrderManager : Singleton<OrderManager>
     public void EndingProduction(Eending endingType)
     {
         StartCoroutine(EndingDelay(endingTypes[(int)endingType].Speech, endingTypes[(int)endingType].EndingSpr));
-        
+
         IEnumerator EndingDelay(string speech, Sprite spr)
         {
             EndingCanvas.SetActive(true);
