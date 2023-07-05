@@ -75,6 +75,9 @@ public class OrderManager : Singleton<OrderManager>
     public EndingType[] endingTypes;
     private GameObject EndingCanvas => EndingImg.transform.parent.gameObject;
 
+    [Header("상점 관련")]
+    [SerializeField] private GameObject CounterDesk;
+
     [Header("내부 변수들")]
     private Tween TextTween, DayTween;
     private Coroutine SatisfactionCoroutine;
@@ -89,6 +92,7 @@ public class OrderManager : Singleton<OrderManager>
     [HideInInspector] public bool isBloom;
     [HideInInspector] public bool isHoldingFlower;
     [HideInInspector] public int Beggar_SuccessPoint = 0;
+    [HideInInspector] public int Earthling_SuccessPoint = 0;
     [HideInInspector] public int dialogNumber;
 
     private void Start()
