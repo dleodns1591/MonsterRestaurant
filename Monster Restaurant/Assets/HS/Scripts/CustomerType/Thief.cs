@@ -1,6 +1,7 @@
 using HS_Tree;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +17,7 @@ public class Thief : MonoBehaviour, I_CustomerType
             return "제대로 만들 것이지.. 쯧...";
     }
 
-    public void SpecialType(UIText cook, UIText ask)
+    public void SpecialType(TextMeshProUGUI cook, TextMeshProUGUI ask)
     {
         if(OrderManager.Instance.isHoldingFlower == false)
         {
@@ -28,7 +29,7 @@ public class Thief : MonoBehaviour, I_CustomerType
         }    
     }
 
-    void Bloom(UIText cook, UIText ask)
+    void Bloom(TextMeshProUGUI cook, TextMeshProUGUI ask)
     {
         Button cookBtn = cook.transform.parent.GetComponent<Button>();
         Button askBtn = ask.transform.parent.GetComponent<Button>();
@@ -102,7 +103,7 @@ public class Thief : MonoBehaviour, I_CustomerType
         });
     }
 
-    void NotBloom(UIText cook, UIText ask)
+    void NotBloom(TextMeshProUGUI cook, TextMeshProUGUI ask)
     {
         Button cookBtn = cook.transform.parent.GetComponent<Button>();
         Button askBtn = ask.transform.parent.GetComponent<Button>();

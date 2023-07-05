@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public class FoodCleanTester : MonoBehaviour, I_CustomerType
@@ -9,7 +10,7 @@ public class FoodCleanTester : MonoBehaviour, I_CustomerType
         return " ";
     }
 
-    public void SpecialType(UIText cook, UIText ask)
+    public void SpecialType(TextMeshProUGUI cook, TextMeshProUGUI ask)
     {
         OrderManager.Instance.OrderTalk[0] = "식품위생관리 위원회에서 나왔습니다. 잠시 주방을 검사해도 되겠습니까?";
 

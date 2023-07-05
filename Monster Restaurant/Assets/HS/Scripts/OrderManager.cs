@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 [Serializable]
 public struct EndingType
@@ -23,8 +24,8 @@ public class OrderManager : Singleton<OrderManager>
     public TextAsset OrderTalkTxt, AnswerTalkTxt;
 
     [Header("주문 버튼 관련")]
-    [SerializeField] private UIText BtnCookText;
-    [SerializeField] private UIText BtnAskText;
+    [SerializeField] private TextMeshProUGUI BtnCookText;
+    [SerializeField] private TextMeshProUGUI BtnAskText;
     private Button CookingBtn => BtnCookText.transform.parent.GetComponent<Button>();
     private Button ReAskBtn => BtnAskText.transform.parent.GetComponent<Button>();
 
@@ -170,6 +171,8 @@ public class OrderManager : Singleton<OrderManager>
 
     void SetCustomerType(int type)
     {
+        type = 9;
+
         GameManager.Instance.randomCustomerNum = UnityEngine.Random.Range(0, OrderTalkTxt.text.Split('\n').Length);
         string order = RandomOrderSpeech()[GameManager.Instance.randomCustomerNum];
         OrderTalk[0] = order;

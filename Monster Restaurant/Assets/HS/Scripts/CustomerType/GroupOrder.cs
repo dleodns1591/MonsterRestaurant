@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public class GroupOrder : MonoBehaviour, I_CustomerType
@@ -15,7 +16,7 @@ public class GroupOrder : MonoBehaviour, I_CustomerType
             return "늦게 주시면 어떡해요..! 현재 급식 배분을 잘 처리해서 다행이지만, 돈은 못드리겠네요";
     }
 
-    public void SpecialType(UIText cook, UIText ask)
+    public void SpecialType(TextMeshProUGUI cook, TextMeshProUGUI ask)
     {
         OrderManager.Instance.OrderTalk[0] = "안녕하세요. 옆 건물에서 어린이집 교사로 일하고 있습니다. 현재 급식 배분에 문제가 생겨서 그러는데 n초 안에 n개의(주문 내용)을 만들어 주실 수 있나요 ?";
 

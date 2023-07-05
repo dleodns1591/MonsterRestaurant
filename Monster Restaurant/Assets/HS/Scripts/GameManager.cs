@@ -80,6 +80,7 @@ public class GameManager : Singleton<GameManager>
         return false;
     }
 
+    public Action ReturnSpecialOrder;
     public Action ReturnOrder;
     public Action ReturnCook;
 }

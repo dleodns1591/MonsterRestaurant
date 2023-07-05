@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public enum EcustomerType
@@ -34,7 +35,7 @@ public class NormalCustomer : MonoBehaviour, I_CustomerType
         return "";
     }
 
-    public void SpecialType(UIText cook, UIText ask)
+    public void SpecialType(TextMeshProUGUI cook, TextMeshProUGUI ask)
     {
         Button cookBtn = cook.transform.parent.GetComponent<Button>();
         Button askBtn = ask.transform.parent.GetComponent<Button>();
