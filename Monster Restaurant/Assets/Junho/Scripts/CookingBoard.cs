@@ -193,7 +193,6 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         for (int i = 0; i < 3; i++)
         {
             isReturn = false;
-            Debug.Log(Cooking.Instance.AnswerOrder.sub[i]);
             foreach (var subM in subMaterials)
             {
                 if (Cooking.Instance.AnswerOrder.sub[i] == subM.subM)
