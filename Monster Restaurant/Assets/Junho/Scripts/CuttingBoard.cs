@@ -15,7 +15,6 @@ public class CuttingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     [SerializeField] private CookingBoard food;
     [SerializeField] private CookingBoard NewFoodObj;
     [SerializeField] private Transform boardPool;
-    [SerializeField] private Transform foodPool;
 
 
     private void Start()
@@ -29,7 +28,7 @@ public class CuttingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     {
         if (food.mainMaterial == EMainMatarials.NULL) return;
         StartCoroutine(BoardMove());
-        transform.SetParent(foodPool);
+        transform.SetParent(Cooking.Instance.foodPool);
     }
 
     public void OnPointerUp(PointerEventData eventData)
