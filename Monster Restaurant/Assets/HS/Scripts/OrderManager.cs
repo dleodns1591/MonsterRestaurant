@@ -16,6 +16,7 @@ public struct EndingType
 public enum Eending
 {
     Bankruptcy,
+    Earth,
     Rich
 }
 
@@ -229,11 +230,20 @@ public class OrderManager : Singleton<OrderManager>
                 NormalCustomerSetting(type);
                 break;
             default:
-                int randomType = 2;
-                GameManager.Instance.SpecialType = 2;
+                int randomType = 0;
+                GameManager.Instance.SpecialType = 0;
                 switch ((EeventCustomerType)randomType)
                 {
                     case EeventCustomerType.Human:
+                        if (GameManager.Instance.isEarthlingRefuse)
+                        {
+                            normalGuestType = UnityEngine.Random.Range(0, 8);
+                            SetCustomerType(normalGuestType);
+
+                            return;
+                        }
+                        CustomerType = gameObject.AddComponent<Earthling>();
+                        EeventCustomerSetting(randomType);
                         break;
                     case EeventCustomerType.Thief:
                         CustomerType = gameObject.AddComponent<Thief>();
@@ -528,7 +538,6 @@ public class OrderManager : Singleton<OrderManager>
                 TextTween.Kill();
             OrderText.text = "";
             TextTween = OrderText.DOText(OrderTalk[i], 0.05f * OrderTalk[i].Length);
-
             while (!isNext)
             {
                 yield return null;
@@ -661,6 +670,10 @@ public class OrderManager : Singleton<OrderManager>
                     CustomerImg.sprite = GuestFails[normalGuestType];
                     AnswerTalk = FailTalk[normalGuestType, UnityEngine.Random.Range(0, 2)];
                 }
+            }
+            else
+            {
+                CustomerImg.sprite = EventGuestSuccess[(int)EeventCustomerType.Beggar];
             }
 
             isBeggar = false;
