@@ -38,7 +38,7 @@ public class OrderManager : Singleton<OrderManager>
     [SerializeField] private Sprite[] GuestDefualts, EventGuestDefualts;
     [SerializeField] private Sprite[] GuestSuccess, EventGuestSuccess;
     [SerializeField] private Sprite[] GuestFails, EventGuestFails;
-    [SerializeField] private Customer customer;
+    [SerializeField] public Customer customer;
     private int normalGuestType;
 
     [Header("손님의 말풍선 관련")]
@@ -135,6 +135,8 @@ public class OrderManager : Singleton<OrderManager>
                 return "헬리오스";
             case "Holotle":
                 return "아홀로노트";
+            case "Human":
+                return "스텔라";
             case "Thief":
                 return "도주";
             case "Beggar":
@@ -523,6 +525,7 @@ public class OrderManager : Singleton<OrderManager>
         normalGuestType = UnityEngine.Random.Range(0, 8);
         SetCustomerType(9);
         yield return StartCoroutine(customer.Moving());
+        
         ReAskBtn.gameObject.SetActive(true);
         CookingBtn.gameObject.SetActive(true);
         SpeechBallon.gameObject.SetActive(true);
