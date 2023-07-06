@@ -46,7 +46,7 @@ public class GameManager : Singleton<GameManager>
     public int BasicRevenue = 200, SalesRevenue = 2890, TaxCost = 289, SettlementCost;
     public float MarterialCost;
     public bool Bloom;
-    public bool isBeggarRefuse;
+    public bool isBeggarRefuse, isEarthlingRefuse;
     public bool dayEndCheck = false;
     public int CanNotMask;
     public int HumanLike;
