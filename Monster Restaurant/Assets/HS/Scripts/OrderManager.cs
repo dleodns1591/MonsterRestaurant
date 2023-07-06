@@ -190,8 +190,6 @@ public class OrderManager : Singleton<OrderManager>
 
     void SetCustomerType(int type)
     {
-        type = 9;
-
         GameManager.Instance.randomCustomerNum = UnityEngine.Random.Range(0, OrderTalkTxt.text.Split('\n').Length);
         string order = RandomOrderSpeech()[GameManager.Instance.randomCustomerNum];
         OrderTalk[0] = order;
@@ -242,6 +240,13 @@ public class OrderManager : Singleton<OrderManager>
                         EeventCustomerSetting(randomType);
                         break;
                     case EeventCustomerType.Beggar:
+                        if(GameManager.Instance.isBeggarRefuse)
+                        {
+                            normalGuestType = UnityEngine.Random.Range(0, 8);
+                            SetCustomerType(normalGuestType);
+
+                            return;
+                        }
                         CustomerType = gameObject.AddComponent<Beggar>();
                         EeventCustomerSetting(randomType);
                         break;
@@ -505,7 +510,7 @@ public class OrderManager : Singleton<OrderManager>
         }
         NextCustomerReady();
         normalGuestType = UnityEngine.Random.Range(0, 8);
-        SetCustomerType(normalGuestType);
+        SetCustomerType(9);
         yield return StartCoroutine(customer.Moving());
         ReAskBtn.gameObject.SetActive(true);
         CookingBtn.gameObject.SetActive(true);
@@ -543,23 +548,24 @@ public class OrderManager : Singleton<OrderManager>
         {
             for (int i = 0; i < dialogNumber; i++)
             {
-                print(dialogNumber);
                 MemoTexts[i].gameObject.SetActive(true);
             }
         }
-
         int OrderCheck = 0;
         int AskCheck = 0;
         for (int i = 0; i < dialogNumber; i++)
         {
             if (i % 2 != 0)
             {
+                print("asd");
                 MemoTexts[i].text = AskTalk[AskCheck];
+                print(AskTalk[AskCheck]);
                 AskCheck++;
             }
             else
             {
                 MemoTexts[i].text = OrderTalk[OrderCheck];
+                print(AskTalk[OrderCheck]);
                 OrderCheck++;
             }
             MemoTexts[i].rectTransform.DOAnchorPos(MemoOnTextSizes[i], 0.3f).SetEase(Ease.OutQuint);

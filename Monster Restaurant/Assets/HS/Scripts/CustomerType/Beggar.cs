@@ -36,6 +36,7 @@ public class Beggar : MonoBehaviour, I_CustomerType
         cookBtn = cook.transform.parent.GetComponent<Button>();
         askBtn = ask.transform.parent.GetComponent<Button>();
 
+        print(askBtn);
         switch (OrderManager.Instance.Beggar_SuccessPoint)
         {
             case 0:
@@ -72,11 +73,14 @@ public class Beggar : MonoBehaviour, I_CustomerType
     }
     void RefuseOrder()
     {
+        StartCoroutine(RefuseOrderDelay());
         IEnumerator RefuseOrderDelay()
         {
-            yield return new WaitForSeconds(1.5f);
+            GameManager.Instance.isBeggarRefuse = true;
+            OrderManager.Instance.isNext = true;
             cookBtn.gameObject.SetActive(false);
             askBtn.gameObject.SetActive(false);
+            yield return new WaitForSeconds(1.5f);
             StartCoroutine(OrderManager.Instance.ExitAndComein());
         }
 
@@ -92,11 +96,14 @@ public class Beggar : MonoBehaviour, I_CustomerType
     void Point0(TextMeshProUGUI cook, TextMeshProUGUI ask)
     {
         OrderManager.Instance.OrderTalk[0] = "제발요..너무 배고파요..";
+        OrderManager.Instance.dialogNumber++;
 
         cook.text = "잠시만요";
+        cookBtn.onClick.RemoveAllListeners();
         cookBtn.onClick.AddListener(() =>
         {
             OrderManager.Instance.AskTalk[0] = "잠시만요";
+            OrderManager.Instance.dialogNumber++;
 
             SucsessCook();
 
@@ -104,9 +111,13 @@ public class Beggar : MonoBehaviour, I_CustomerType
             //"큭큭..이 은혜는.. 꼭 갚겠습니다."
         });
         ask.text = "아잇... 나가세요";
+        askBtn.onClick.RemoveAllListeners();
         askBtn.onClick.AddListener(() =>
         {
             OrderManager.Instance.AskTalk[0] = "아잇... 나가세요";
+            OrderManager.Instance.dialogNumber++;
+            OrderManager.Instance.OrderTalk[1] = "그렇게..깐깐하게 살다가 가게가 망해버릴 거야!";
+            OrderManager.Instance.dialogNumber++;
 
             RefuseOrder();
 
@@ -116,12 +127,14 @@ public class Beggar : MonoBehaviour, I_CustomerType
     void Point1(TextMeshProUGUI cook, TextMeshProUGUI ask)
     {
         OrderManager.Instance.OrderTalk[0] = "안녕하세요, 또 저에요, 혹시.. 한번 더 주실 수 있으실까요?";
+        OrderManager.Instance.dialogNumber++;
         cook.text = "잠시만요";
         print(cookBtn);
         cookBtn.onClick.RemoveAllListeners();
         cookBtn.onClick.AddListener(() =>
         {
             OrderManager.Instance.AskTalk[0] = "잠시만요";
+            OrderManager.Instance.dialogNumber++;
 
             SucsessCook();
 
@@ -133,16 +146,20 @@ public class Beggar : MonoBehaviour, I_CustomerType
         askBtn.onClick.AddListener(() =>
         {
             OrderManager.Instance.AskTalk[0] = "네?";
+            OrderManager.Instance.dialogNumber++;
 
             OrderManager.Instance.OrderTalk[1] = "제발요.. 돈은 언젠간 드릴테니..";
+            OrderManager.Instance.dialogNumber++;
 
             OrderManager.Instance.isNext = true;
 
+            print(OrderManager.Instance.OrderTalk[1]);
             cook.text = "알겠습니다";
             cookBtn.onClick.RemoveAllListeners();
             cookBtn.onClick.AddListener(() =>
             {
                 OrderManager.Instance.AskTalk[1] = "알겠습니다";
+                OrderManager.Instance.dialogNumber++;
 
                 SucsessCook();
 
@@ -153,7 +170,9 @@ public class Beggar : MonoBehaviour, I_CustomerType
             askBtn.onClick.AddListener(() =>
             {
                 OrderManager.Instance.AskTalk[1] = "나가세요";
+                OrderManager.Instance.dialogNumber++;
                 OrderManager.Instance.OrderTalk[2] = "가게.. 망해버려라..";
+                OrderManager.Instance.dialogNumber++;
 
                 RefuseOrder();
             });
@@ -165,9 +184,11 @@ public class Beggar : MonoBehaviour, I_CustomerType
         OrderManager.Instance.OrderTalk[0] = "안녕하세요.. 사장님 오늘도 가능한가요..?";
 
         cook.text = "잠시만요";
+        cookBtn.onClick.RemoveAllListeners();
         cookBtn.onClick.AddListener(() =>
         {
             OrderManager.Instance.AskTalk[0] = "잠시만요";
+            OrderManager.Instance.dialogNumber++;
 
             SucsessCook();
 
@@ -176,11 +197,14 @@ public class Beggar : MonoBehaviour, I_CustomerType
         });
 
         ask.text = "나가세요";
+        askBtn.onClick.RemoveAllListeners();
         askBtn.onClick.AddListener(() =>
         {
             OrderManager.Instance.AskTalk[0] = "나가세요";
+            OrderManager.Instance.dialogNumber++;
 
             OrderManager.Instance.OrderTalk[1] = "여태까지.. 무료로 음식을 만들어주셔서 감사합니다.. 사장님";
+            OrderManager.Instance.dialogNumber++;
 
             RefuseOrder();
 
@@ -192,11 +216,14 @@ public class Beggar : MonoBehaviour, I_CustomerType
     void Point3(TextMeshProUGUI cook, TextMeshProUGUI ask)
     {
         OrderManager.Instance.OrderTalk[0] = "안녕하세요.. 사장님 늘 먹던걸로 주세요..";
+        OrderManager.Instance.dialogNumber++;
 
         cook.text = "잠시만요";
+        cookBtn.onClick.RemoveAllListeners();
         cookBtn.onClick.AddListener(() =>
         {
             OrderManager.Instance.AskTalk[0] = "잠시만요";
+            OrderManager.Instance.dialogNumber++;
 
             SucsessCook();
 
@@ -205,11 +232,14 @@ public class Beggar : MonoBehaviour, I_CustomerType
         });
 
         ask.text = "나가세요";
+        askBtn.onClick.RemoveAllListeners();
         askBtn.onClick.AddListener(() =>
         {
             OrderManager.Instance.AskTalk[0] = "나가세요";
+            OrderManager.Instance.dialogNumber++;
 
             OrderManager.Instance.OrderTalk[1] = "여태까지.. 무료로 음식을 만들어주셔서 감사합니다.. 사장님";
+            OrderManager.Instance.dialogNumber++;
 
             RefuseOrder();
 
@@ -221,11 +251,14 @@ public class Beggar : MonoBehaviour, I_CustomerType
     void Point4(TextMeshProUGUI cook, TextMeshProUGUI ask)
     {
         OrderManager.Instance.OrderTalk[0] = "사장님 아시죠..?";
+        OrderManager.Instance.dialogNumber++;
 
         cook.text = "잠시만요";
+        cookBtn.onClick.RemoveAllListeners();
         cookBtn.onClick.AddListener(() =>
         {
             OrderManager.Instance.AskTalk[0] = "잠시만요";
+            OrderManager.Instance.dialogNumber++;
 
             SucsessCook();
 
@@ -234,10 +267,13 @@ public class Beggar : MonoBehaviour, I_CustomerType
         });
 
         ask.text = "나가세요";
+        askBtn.onClick.RemoveAllListeners();
         askBtn.onClick.AddListener(() =>
         {
             OrderManager.Instance.AskTalk[0] = "나가세요";
+            OrderManager.Instance.dialogNumber++;
             OrderManager.Instance.OrderTalk[1] = "여태까지.. 무료로 음식을 만들어주셔서 감사합니다.. 사장님";
+            OrderManager.Instance.dialogNumber++;
 
             RefuseOrder();
 
@@ -249,13 +285,16 @@ public class Beggar : MonoBehaviour, I_CustomerType
     void Point5(TextMeshProUGUI cook, TextMeshProUGUI ask)
     {
         OrderManager.Instance.OrderTalk[0] = "쉬운일이 아니였을 텐데 음식을 매번 무료로 주셔서 감사합니다. \n마지막으로 늘 먹던걸로 음식 3개 가능할까요?";
+        OrderManager.Instance.dialogNumber++;
 
         askBtn.gameObject.SetActive(false);
 
         cook.text = "알겠습니다";
+        cookBtn.onClick.RemoveAllListeners();
         cookBtn.onClick.AddListener(() =>
         {
             OrderManager.Instance.AskTalk[0] = "알겠습니다";
+            OrderManager.Instance.dialogNumber++;
 
             SucsessCook();
 
