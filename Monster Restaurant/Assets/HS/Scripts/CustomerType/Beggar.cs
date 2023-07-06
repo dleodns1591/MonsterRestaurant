@@ -278,6 +278,11 @@ public class Beggar : MonoBehaviour, I_CustomerType
     void Point5(TextMeshProUGUI cook, TextMeshProUGUI ask)
     {
         OrderManager.Instance.OrderTalk[0] = "쉬운일이 아니였을 텐데 음식을 매번 무료로 주셔서 감사합니다. \n마지막으로 늘 먹던걸로 음식 3개 가능할까요?";
+        List<ESubMatarials> subs = new List<ESubMatarials>
+        {
+            ESubMatarials.NULL
+        };
+        GameManager.Instance.asd(EMainMatarials.NULL, subs, 0, ECookingStyle.None, 3);
         OrderManager.Instance.dialogNumber++;
 
         askBtn.gameObject.SetActive(false);
