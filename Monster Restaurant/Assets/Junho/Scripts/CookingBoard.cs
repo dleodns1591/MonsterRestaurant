@@ -153,7 +153,7 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
         if (isFinish == false) return;
 
         myCook.transform.parent = Cooking.Instance.cookingMachine.transform;
-        myCook.rectTransform.localPosition = new Vector2(631, 192);
+        myCook.rectTransform.localPosition = new Vector2(605.9997f, -11.50008f);
 
 
         if (isEnterTrash == true) Destroy(gameObject);
@@ -175,7 +175,7 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 
     }
 
-    private void OrderCheck()
+    public void OrderCheck()
     {
         int checkList = 0;
 
@@ -208,6 +208,6 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
         checkList += 3 - num;
 
 
-        GameManager.Instance.Satisfaction -= checkList * 10;
+        GameManager.Instance.Satisfaction -= checkList * 20;
     }
 }

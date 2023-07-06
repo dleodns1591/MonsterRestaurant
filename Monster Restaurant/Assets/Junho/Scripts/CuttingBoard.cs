@@ -56,6 +56,17 @@ public class CuttingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                 item.gameObject.GetComponent<CookingMachine>().CookDrop(food);
                 CreateFood();
             }
+            else if (item.gameObject.tag == "Packaging")
+            {
+                //transform.SetParent(boardPool);
+                //board.GetComponent<RectTransform>().anchoredPosition = startPos;
+
+
+                food.OrderCheck();
+                StartCoroutine(item.gameObject.GetComponent<Packaging>().CheckPack(food.gameObject));
+                
+                CreateFood();
+            }
         }
     }
     private void CreateFood()
