@@ -191,10 +191,10 @@ public class OrderManager : Singleton<OrderManager>
     void SetCustomerType(int type)
     {
         GameManager.Instance.randomCustomerNum = UnityEngine.Random.Range(0, OrderTalkTxt.text.Split('\n').Length);
-        string order = RandomOrderSpeech()[GameManager.Instance.randomCustomerNum];
-        OrderTalk[0] = order;
-        OrderTalk[1] = order;
-        OrderTalk[2] = order;
+        for (int i = 0; i < OrderTalk.Length; i++)
+        {
+            OrderTalk[i] = RandomOrderSpeech(i)[GameManager.Instance.randomCustomerNum];
+        }
 
         CustomerType = gameObject.AddComponent<NormalCustomer>();
 
@@ -268,7 +268,7 @@ public class OrderManager : Singleton<OrderManager>
         }
         CustomerType.SpecialType(BtnCookText, BtnAskText);
     }
-    string[] RandomOrderSpeech()
+    string[] RandomOrderSpeech(int OrderSequence)
     {
         string[] line = OrderTalkTxt.text.Split('\n');
         string[] Sentence = new string[line.Length];
@@ -277,7 +277,7 @@ public class OrderManager : Singleton<OrderManager>
         {
             string[] cell = line[i].Split('\t');
 
-            Sentence[i] = cell[5];
+            Sentence[i] = cell[7 + OrderSequence];
         }
         return Sentence;
     }
@@ -353,7 +353,8 @@ public class OrderManager : Singleton<OrderManager>
             GameManager.Instance.orderSets[i].sub[1] = eSub(cell[2]);
             GameManager.Instance.orderSets[i].sub[2] = eSub(cell[3]);
             GameManager.Instance.orderSets[i].style = eStyle(cell[4]);
-            //GameManager.Instance.orderSets[i].count = Convert.ToInt32(cell[5]);
+            GameManager.Instance.orderSets[i].count = int.Parse(cell[5]);
+            GameManager.Instance.orderSets[i].dishCount = int.Parse(cell[6]);
         }
         return Sentence;
     }
