@@ -16,20 +16,28 @@ public class CookingMachine : MonoBehaviour
 {
     [SerializeField] private CookingBoard cook;
     [SerializeField] private Transform[] pos;
-    private bool isCooking;
+
+    [SerializeField] private Animator railAnimation;
+    [SerializeField] private Animator pushAnimation;
+
+    public bool isCooking;
+
+    private bool isCookingDrop;
     private bool isSelectCookingStyle;
     private ECookingStyle cookingStyle;
     public void CookDrop(CookingBoard cooking)
     {
+        if (isCookingDrop == true) return;
+
         cook = cooking;
         cook.gameObject.transform.parent = transform;
         cook.transform.position = pos[0].position;
 
-        CookingStyleButton(Random.Range(0, 3));
+        isCookingDrop = true;
     }
     public void CookingStyleButton(int num)
     {
-        if (isCooking == true) return;
+        if (isCooking == true || isCookingDrop == false) return;
 
         isSelectCookingStyle = true;
         cookingStyle = (ECookingStyle)num;
@@ -40,7 +48,7 @@ public class CookingMachine : MonoBehaviour
     private IEnumerator Cooking()
     {
         isCooking = true;
-
+        railAnimation.SetBool("IsPlay",true);
         float t = 0;
         while (t < 0.5f)
         {
@@ -51,11 +59,14 @@ public class CookingMachine : MonoBehaviour
                 (pos[0].position, pos[1].position, t/0.5f);
         }
 
+        pushAnimation.SetBool("IsPlay",true);
+
+        pushAnimation.Play("Psuh_animation");
+        yield return new WaitForSeconds(0.1f);
         cook.style = cookingStyle;
         cook.CookingComplete();
-
-            
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.9f);
+        pushAnimation.SetBool("IsPlay",false);
 
         //animation Play
 
@@ -69,10 +80,11 @@ public class CookingMachine : MonoBehaviour
                 (pos[1].position, pos[2].position, t / 0.5f);
         }
 
+        railAnimation.SetBool("IsPlay", false);
 
         isSelectCookingStyle = false;
         cook = null;
-        isCooking = false;
+        isCookingDrop = false;
         cookingStyle = ECookingStyle.None;
     }
 
