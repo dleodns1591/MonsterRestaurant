@@ -10,14 +10,14 @@ public struct OrderSet
     public List<ESubMatarials> sub;
     public int count;
     public ECookingStyle style;
-
+    public int dishCount;
 }
 
 
 public class GameManager : Singleton<GameManager>
 {
     public OrderSet[] orderSets;
-    private float money = 10;
+    private float money = 100;
     public float Money
     {
         get { return money; }
@@ -88,5 +88,6 @@ public class GameManager : Singleton<GameManager>
     public Action ReturnSpecialOrder;
     public Action ReturnOrder;
     public Action ReturnCook;
+    public Action<EMainMatarials, List<ESubMatarials>, int, ECookingStyle, int> asd;
 }
 

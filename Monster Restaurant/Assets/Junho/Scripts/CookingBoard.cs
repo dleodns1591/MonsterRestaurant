@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEditor;
 
-public class CookingBoard : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
+public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     private GraphicRaycaster gr;
     private PointerEventData ped;
@@ -21,10 +22,11 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
         new Vector2(324, 295) // π‰, ∏È ªÁ¿Ã¡Ó
     };
 
+    private OrderSet AnswerOrder;
     public ECookingStyle style;
     public EMainMatarials mainMaterial;
     public List<SubMaterialImages> subMaterials = new List<SubMaterialImages>();
-    
+
     [SerializeField] private Image subM;
 
     public bool isFinish;
@@ -32,7 +34,7 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
     [SerializeField] private bool isEnterImage;
 
     private Image myCook;
-    private Vector2 machinePos = new Vector2(631,192);
+    private Vector2 machinePos = new Vector2(631, 192);
 
     private bool isEnterTrash;
 
@@ -42,10 +44,17 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
         gr = canvas.GetComponent<GraphicRaycaster>();
         ped = new PointerEventData(null);
         myCook = this.GetComponent<Image>();
+
+
+        GameManager.Instance.asd = (EMainMatarials main, List<ESubMatarials> subs, int count, ECookingStyle style, int dishCount) =>
+            {
+                AnswerOrder.main = main;
+                AnswerOrder.sub = subs;
+                AnswerOrder.count = count;
+                AnswerOrder.style = style;
+                AnswerOrder.dishCount = dishCount;
+            };
     }
-
-
-
     public void ImageProcessing()
     {
         mainMaterialImage.sprite = styleImage[((int)style)];
@@ -98,7 +107,7 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 
             if (Input.GetMouseButtonUp(0))
             {
-                
+
                 break;
             }
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -122,7 +131,7 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
             float price = Cooking.Instance.materialPrice;
 
             if (isMainMaterialDrop == false || Cooking.Instance.myType == ESubMatarials.NULL) return;
-            if ( GameManager.Instance.BuyCheck(price) == false) return;
+            if (GameManager.Instance.BuyCheck(price) == false) return;
 
 
             GameObject sub = Instantiate(subM, transform).gameObject;
@@ -179,12 +188,9 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
     {
         int checkList = 0;
 
-        OrderSet order = GameManager.Instance.orderSets[GameManager.Instance.randomCustomerNum];
-
-
-        if (order.style != style) checkList++;
-        if (order.main != mainMaterial) checkList++;
-        if (order.count < subMaterials.Count) checkList++;
+        if (AnswerOrder.style != style) checkList++;
+        if (AnswerOrder.main != mainMaterial) checkList++;
+        if (AnswerOrder.count < subMaterials.Count) checkList++;
 
 
         int num = 0;
@@ -195,7 +201,7 @@ public class CookingBoard : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
             isReturn = false;
             foreach (var subM in subMaterials)
             {
-                if (order.sub[i] == subM.subM)
+                if (AnswerOrder.sub[i] == subM.subM)
                 {
                     if (isReturn == true) return;
                     num++;

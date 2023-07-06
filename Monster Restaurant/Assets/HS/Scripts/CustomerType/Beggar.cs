@@ -85,13 +85,6 @@ public class Beggar : MonoBehaviour, I_CustomerType
         }
 
     }
-    void ResetTalk()
-    {
-        for (int i = 0; i < OrderManager.Instance.OrderTalk.Length; i++)
-        {
-            // OrderManager.Instance.OrderTalk[i].
-        }
-    }
 
     void Point0(TextMeshProUGUI cook, TextMeshProUGUI ask)
     {

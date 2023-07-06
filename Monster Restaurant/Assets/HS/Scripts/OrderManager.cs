@@ -645,15 +645,15 @@ public class OrderManager : Singleton<OrderManager>
                 //if 성공 실패
                 if (isCookingSuccess)
                 {
-                    GameManager.Instance.Money += 500;
-                    GameManager.Instance.SalesRevenue += 500;
+                    GameManager.Instance.Money += 50;
+                    GameManager.Instance.SalesRevenue += 50;
                     CustomerImg.sprite = GuestSuccess[normalGuestType];
                     AnswerTalk = SucsessTalk[normalGuestType, UnityEngine.Random.Range(0, 2)];
                 }
                 else
                 {
-                    GameManager.Instance.Money += 200;
-                    GameManager.Instance.SalesRevenue += 200;
+                    GameManager.Instance.Money += 20;
+                    GameManager.Instance.SalesRevenue += 20;
                     int rand = UnityEngine.Random.Range(1, 5);
                     if (rand == 1)
                         GameManager.Instance.SettlementCost += 100;
@@ -707,6 +707,10 @@ public class OrderManager : Singleton<OrderManager>
         GameManager.Instance.ReturnCook = () =>
         {
             MapScrollMG.Instance.StartSet();
+            OrderSet order = GameManager.Instance.orderSets[GameManager.Instance.randomCustomerNum];
+            GameManager.Instance.asd(order.main, order.sub, order.count, order.style, order.dishCount);
+
+
             GameManager.Instance.Satisfaction = 100;
             CookingScene.transform.DOMoveY(0, 1).SetEase(Ease.OutBounce).OnComplete(() =>
             {
