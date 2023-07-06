@@ -100,7 +100,20 @@ public class Customer : MonoBehaviour
 
         yield return new WaitForSeconds(delayTime);
     }
+    public IEnumerator MovingTime()
+    {
+        yield return new WaitForSeconds(fadeInOut.fadeTime);
 
+        float delayTime = 0.5f;
+
+        for (int i = 0; i < SlowMovingPos.Length; i++)
+        {
+            yield return new WaitForSeconds(delayTime);
+        }
+
+        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(delayTime);
+    }
     void Appear(Image CustomerImg, float delayTime)
     {
         gameObject.transform.parent = BackgroundCanvas.transform;

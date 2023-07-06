@@ -42,7 +42,9 @@ public class Earthling : MonoBehaviour, I_CustomerType
             }
         }
         else
+        {
             return "......죄송합니다, 다음 가게를 찾아야 하네..";
+        }
     }
 
 
@@ -104,7 +106,7 @@ public class Earthling : MonoBehaviour, I_CustomerType
         {
             ESubMatarials.NULL
         };
-            GameManager.Instance.asd(EMainMatarials.Rice, subs, 0, ECookingStyle.Roast, 1);
+            GameManager.Instance.asd(EMainMatarials.Rice, subs,     0, ECookingStyle.Roast, 1);
         });
         ask.text = "저희가 메인 재료만 팔지 않아서 안 될 것 같습니다.";
         askBtn.onClick.RemoveAllListeners();
@@ -148,7 +150,7 @@ public class Earthling : MonoBehaviour, I_CustomerType
                 {
                     ESubMatarials.NULL
                 };
-                GameManager.Instance.asd(EMainMatarials.Noodle, subs, 0, ECookingStyle.Boil, 1);
+                GameManager.Instance.asd(EMainMatarials.Meat, subs, 0, ECookingStyle.Roast, 1);
 
 
                 askBtn.gameObject.SetActive(false);
@@ -272,16 +274,21 @@ public class Earthling : MonoBehaviour, I_CustomerType
         cookBtn = cook.transform.parent.GetComponent<Button>();
         askBtn = ask.transform.parent.GetComponent<Button>();
 
-        OrderManager.Instance.OrderTalk[0] = "제 판단은 틀리지 않았어요. 그 친근감은 당신이 지구인이기 때문에 느껴졌어요.\r\n같은 지구인이라 반가워서 그러는데 저와 함께 이 행성을 빠져나가실래요?";
-        OrderManager.Instance.dialogNumber++;
+        OrderManager.Instance.OrderTalk[0] = "제 판단은 틀리지 않았어요. 그 친근감은 당신이 지구인이기 때문에 느껴졌어요. 같은 지구인이라 반가워서 그러는데 저와 함께 이 행성을 빠져나가실래요?";
+
+        askBtn.GetComponent<Image>().enabled = false;
+        askBtn.enabled = false;
+        ask.text = "";
         cook.text = "알겠습니다";
         cookBtn.onClick.RemoveAllListeners();
         cookBtn.onClick.AddListener(() =>
         {
+            print("엔딩");
             OrderManager.Instance.EndingProduction(Eending.Earth);
-
+            askBtn.GetComponent<Image>().enabled = true;
+            askBtn.enabled = true;
+            askBtn.gameObject.SetActive(false);
         });
-        askBtn.gameObject.SetActive(false);
     }
 }
 
