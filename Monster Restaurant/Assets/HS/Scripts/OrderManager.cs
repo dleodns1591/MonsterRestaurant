@@ -240,7 +240,7 @@ public class OrderManager : Singleton<OrderManager>
                         EeventCustomerSetting(randomType);
                         break;
                     case EeventCustomerType.Beggar:
-                        if(GameManager.Instance.isBeggarRefuse)
+                        if (GameManager.Instance.isBeggarRefuse)
                         {
                             normalGuestType = UnityEngine.Random.Range(0, 8);
                             SetCustomerType(normalGuestType);
@@ -698,7 +698,6 @@ public class OrderManager : Singleton<OrderManager>
 
         yield return new WaitForSeconds(1f);
         EmotionText.text = "100%";
-        GameManager.Instance.Satisfaction = 100;
         FaceImage.sprite = FaceSprites[(int)EFaceType.Happy];
         StartCoroutine(Order());
     }
@@ -710,18 +709,22 @@ public class OrderManager : Singleton<OrderManager>
             OrderSet order = GameManager.Instance.orderSets[GameManager.Instance.randomCustomerNum];
             GameManager.Instance.asd(order.main, order.sub, order.count, order.style, order.dishCount);
 
-
             GameManager.Instance.Satisfaction = 100;
             CookingScene.transform.DOMoveY(0, 1).SetEase(Ease.OutBounce).OnComplete(() =>
             {
-                StopCoroutine(SatisfactionUpdate());
-                SatisfactionCoroutine = StartCoroutine(SatisfactionUpdate());
+                if (!isBeggar)
+                {
+                    if (SatisfactionCoroutine != null)
+                        StopCoroutine(SatisfactionUpdate());
+                    SatisfactionCoroutine = StartCoroutine(SatisfactionUpdate());
+                }
             });
         };
     }
 
     private IEnumerator SatisfactionUpdate()
     {
+        print(GameManager.Instance.Satisfaction);
         if (GameManager.Instance.Satisfaction <= 60)
             FaceImage.sprite = FaceSprites[(int)EFaceType.Umm];
         if (GameManager.Instance.Satisfaction <= 20)
