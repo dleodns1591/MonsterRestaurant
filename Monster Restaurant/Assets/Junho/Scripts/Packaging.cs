@@ -14,6 +14,9 @@ public class Packaging : MonoBehaviour
 
     public IEnumerator CheckPack(GameObject cook)
     {
+        Cooking.Instance.cookingMachine.isCooking = false;
+
+
         cook.transform.parent = transform;
         cook.transform.SetAsFirstSibling();
         cook.transform.localPosition = transform.position;

@@ -24,6 +24,8 @@ public class MapScrollMG : Singleton<MapScrollMG>
 
     public void StopMouseCheck()
     {
+        bg.anchoredPosition = BgXPos[0];
+
         StopCoroutine(MouseCheckCoroutine);
     }
 
