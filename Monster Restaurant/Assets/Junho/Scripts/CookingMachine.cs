@@ -43,16 +43,18 @@ public class CookingMachine : MonoBehaviour
         isSelectCookingStyle = true;
         cookingStyle = (ECookingStyle)num;
 
+        cook.style = cookingStyle;
+
         StartCoroutine(Cooking());
     }
 
     private IEnumerator Cooking()
     {
-        pushMachineImage.sprite = pushMachineSprite[((int)cook.style)];
+        pushMachineImage.sprite = pushMachineSprite[((int)cookingStyle)];
 
 
         isCooking = true;
-        railAnimation.SetBool("IsPlay",true);
+        railAnimation.SetTrigger("IsPlay");
         float t = 0;
         while (t < 0.5f)
         {
@@ -63,14 +65,14 @@ public class CookingMachine : MonoBehaviour
                 (pos[0].position, pos[1].position, t/0.5f);
         }
 
-        pushAnimation.SetBool("IsPlay",true);
+        pushAnimation.SetTrigger("IsPlay");
 
-        pushAnimation.Play("Psuh_animation");
         yield return new WaitForSeconds(0.1f);
         cook.style = cookingStyle;
         cook.CookingComplete();
         yield return new WaitForSeconds(0.9f);
-        pushAnimation.SetBool("IsPlay",false);
+
+        pushAnimation.ResetTrigger("IsPlay");
 
         //animation Play
 
@@ -84,7 +86,8 @@ public class CookingMachine : MonoBehaviour
                 (pos[1].position, pos[2].position, t / 0.5f);
         }
 
-        railAnimation.SetBool("IsPlay", false);
+        railAnimation.ResetTrigger("IsPlay");
+
 
         isSelectCookingStyle = false;
         cook = null;

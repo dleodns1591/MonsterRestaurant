@@ -135,7 +135,7 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         }
         else
         {
-            transform.parent = Cooking.Instance.KitchenRoom.transform;
+            transform.parent = Cooking.Instance.foodPool;
             StartCoroutine(BoardMove());
         }
     }
@@ -149,7 +149,6 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     public void OnPointerUp(PointerEventData eventData)
     {
 
-
         if (isFinish == false) return;
 
         myCook.transform.parent = Cooking.Instance.cookingMachine.transform;
@@ -159,6 +158,7 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         if (isEnterTrash == true)
         {
             Cooking.Instance.trash.Exit();
+            Cooking.Instance.cookingMachine.isCooking = false;
             Destroy(gameObject);
         }
         ped.position = eventData.position;

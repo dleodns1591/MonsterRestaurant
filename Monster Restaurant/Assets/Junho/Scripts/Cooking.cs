@@ -22,6 +22,7 @@ public class Cooking : Singleton<Cooking>
 
     public OrderSet AnswerOrder;
 
+    public Transform foodPool;
 
     private void Start()
     {
