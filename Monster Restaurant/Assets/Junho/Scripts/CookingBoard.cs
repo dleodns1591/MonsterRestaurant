@@ -22,13 +22,13 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         new Vector2(324, 295) // π‰, ∏È ªÁ¿Ã¡Ó
     };
 
-    private OrderSet AnswerOrder;
     public ECookingStyle style;
     public EMainMatarials mainMaterial;
     public List<SubMaterialImages> subMaterials = new List<SubMaterialImages>();
 
     [SerializeField] private Image subM;
 
+    public bool isCooking;
     public bool isFinish;
     private bool isMainMaterialDrop;
     [SerializeField] private bool isEnterImage;
@@ -44,16 +44,6 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         gr = canvas.GetComponent<GraphicRaycaster>();
         ped = new PointerEventData(null);
         myCook = this.GetComponent<Image>();
-
-
-        GameManager.Instance.asd = (EMainMatarials main, List<ESubMatarials> subs, int count, ECookingStyle style, int dishCount) =>
-            {
-                AnswerOrder.main = main;
-                AnswerOrder.sub = subs;
-                AnswerOrder.count = count;
-                AnswerOrder.style = style;
-                AnswerOrder.dishCount = dishCount;
-            };
     }
     public void ImageProcessing()
     {
@@ -100,14 +90,12 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     private IEnumerator BoardMove()
     {
-        print("st");
         while (true)
         {
             yield return null;
 
             if (Input.GetMouseButtonUp(0))
             {
-
                 break;
             }
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -126,8 +114,11 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     public void OnPointerDown(PointerEventData eventData)
     {
+
         if (isFinish == false)
         {
+            if (isCooking == true) return;
+
             float price = Cooking.Instance.materialPrice;
 
             if (isMainMaterialDrop == false || Cooking.Instance.myType == ESubMatarials.NULL) return;
@@ -165,8 +156,11 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         myCook.rectTransform.localPosition = new Vector2(605.9997f, -11.50008f);
 
 
-        if (isEnterTrash == true) Destroy(gameObject);
-
+        if (isEnterTrash == true)
+        {
+            Cooking.Instance.trash.Exit();
+            Destroy(gameObject);
+        }
         ped.position = eventData.position;
         List<RaycastResult> results = new List<RaycastResult>();
         gr.Raycast(ped, results);
@@ -188,9 +182,9 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     {
         int checkList = 0;
 
-        if (AnswerOrder.style != style) checkList++;
-        if (AnswerOrder.main != mainMaterial) checkList++;
-        if (AnswerOrder.count < subMaterials.Count) checkList++;
+        if (Cooking.Instance.AnswerOrder.style != style) checkList++;
+        if (Cooking.Instance.AnswerOrder.main != mainMaterial) checkList++;
+        if (Cooking.Instance.AnswerOrder.count < subMaterials.Count) checkList++;
 
 
         int num = 0;
@@ -199,9 +193,10 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         for (int i = 0; i < 3; i++)
         {
             isReturn = false;
+            Debug.Log(Cooking.Instance.AnswerOrder.sub[i]);
             foreach (var subM in subMaterials)
             {
-                if (AnswerOrder.sub[i] == subM.subM)
+                if (Cooking.Instance.AnswerOrder.sub[i] == subM.subM)
                 {
                     if (isReturn == true) return;
                     num++;

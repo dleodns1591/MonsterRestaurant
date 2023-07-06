@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+using UnityEngine.UI;
 public enum ECookingStyle
 {
     Fry,
@@ -16,13 +16,14 @@ public class CookingMachine : MonoBehaviour
 {
     [SerializeField] private CookingBoard cook;
     [SerializeField] private Transform[] pos;
-
+    [SerializeField] private Sprite[] pushMachineSprite;
+    [SerializeField] private Image pushMachineImage;
     [SerializeField] private Animator railAnimation;
     [SerializeField] private Animator pushAnimation;
 
     public bool isCooking;
 
-    private bool isCookingDrop;
+    public bool isCookingDrop;
     private bool isSelectCookingStyle;
     private ECookingStyle cookingStyle;
     public void CookDrop(CookingBoard cooking)
@@ -47,6 +48,9 @@ public class CookingMachine : MonoBehaviour
 
     private IEnumerator Cooking()
     {
+        pushMachineImage.sprite = pushMachineSprite[((int)cook.style)];
+
+
         isCooking = true;
         railAnimation.SetBool("IsPlay",true);
         float t = 0;

@@ -20,6 +20,21 @@ public class Cooking : Singleton<Cooking>
 
     public GameObject KitchenRoom;
 
+    public OrderSet AnswerOrder;
+
+
+    private void Start()
+    {
+        GameManager.Instance.asd = (EMainMatarials main, List<ESubMatarials> subs, int count, ECookingStyle style, int dishCount) =>
+        {
+            AnswerOrder.main = main;
+            AnswerOrder.sub = subs;
+            AnswerOrder.count = count;
+            AnswerOrder.style = style;
+            AnswerOrder.dishCount = dishCount;
+        };
+    }
+
     public void CookingTypePush(ESubMatarials type, Sprite[] thisSprites, CookingStyleSprites[] styleSprite)
     {
         myType = type;

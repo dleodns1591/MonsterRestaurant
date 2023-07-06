@@ -53,7 +53,10 @@ public class CuttingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         {
             if (item.gameObject.tag == "CookingMachine")
             {
-                item.gameObject.GetComponent<CookingMachine>().CookDrop(food);
+                if (Cooking.Instance.cookingMachine.isCookingDrop == true) return;
+
+                food.isCooking = true;
+                Cooking.Instance.cookingMachine.CookDrop(food);
                 CreateFood();
             }
             else if (item.gameObject.tag == "Packaging")
