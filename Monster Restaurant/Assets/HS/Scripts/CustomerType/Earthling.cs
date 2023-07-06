@@ -25,7 +25,7 @@ public class Earthling : MonoBehaviour, I_CustomerType
     {
         if (GameManager.Instance.Satisfaction >= 40)
         {
-            switch (OrderManager.Instance.Earthling_SuccessPoint)
+            switch (OrderManager.Instance.Earthling_SuccessPoint - 1)
             {
                 case 0:
                     return "감사합니다. 드디어 먹을 수 있는 가게를 찾았네요.";

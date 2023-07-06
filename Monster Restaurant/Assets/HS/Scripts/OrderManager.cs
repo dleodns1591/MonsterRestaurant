@@ -103,6 +103,7 @@ public class OrderManager : Singleton<OrderManager>
 
     private void Start()
     {
+        //OrderManager.Instance.EndingProduction(Eending.Earth);
         RandomOrderMaterial();
         OrderLoop();
         OrderToCook();
@@ -763,11 +764,33 @@ public class OrderManager : Singleton<OrderManager>
 
         IEnumerator EndingDelay(string speech, Sprite spr)
         {
+            bool isEndLine = false;
             EndingCanvas.SetActive(true);
             FadeInOut.Instance.FadeOut();
             EndingImg.sprite = spr;
             EndingImg.DOFade(1, FadeInOut.Instance.fadeTime);
             yield return new WaitForSeconds(FadeInOut.Instance.fadeTime + 1);
+
+            StartCoroutine(Typing(speech));
+            IEnumerator Typing(string str)
+            {
+                string[] line = str.Split('\n');
+                var wait = new WaitForSeconds(0.05f);
+                yield return wait;
+                for (int i = 0; i <= line.Length; i++)
+                {
+                    print(line[i]);
+                    EndingExplanTxt.DOText(line[i], 0.05f * line[i].Length - 1).OnComplete(() =>
+                    {
+                        isEndLine = true;
+                    });
+                    while(!(Input.GetMouseButton(0) && isEndLine))
+                    {
+                        yield return null;
+                    }
+                    isEndLine = false;
+                }
+            }
             EndingExplanTxt.DOText(speech, 0.05f * speech.Length).OnComplete(() =>
             {
                 //EndingExplanTxt.text = "";
