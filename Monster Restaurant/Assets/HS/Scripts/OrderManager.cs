@@ -103,7 +103,6 @@ public class OrderManager : Singleton<OrderManager>
 
     private void Start()
     {
-        //OrderManager.Instance.EndingProduction(Eending.Earth);
         RandomOrderMaterial();
         OrderLoop();
         OrderToCook();
@@ -290,7 +289,7 @@ public class OrderManager : Singleton<OrderManager>
         {
             string[] cell = line[i].Split('\t');
 
-            Sentence[i] = cell[7 + OrderSequence];
+            Sentence[i] = cell[7 + (OrderSequence * 2)];
         }
         return Sentence;
     }
@@ -777,25 +776,23 @@ public class OrderManager : Singleton<OrderManager>
                 string[] line = str.Split('\n');
                 var wait = new WaitForSeconds(0.05f);
                 yield return wait;
-                for (int i = 0; i <= line.Length; i++)
+                for (int i = 0; i < line.Length; i++)
                 {
                     print(line[i]);
-                    EndingExplanTxt.DOText(line[i], 0.05f * line[i].Length - 1).OnComplete(() =>
+                    EndingExplanTxt.DOText(line[i], 0.05f * line[i].Length).OnComplete(() =>
                     {
                         isEndLine = true;
                     });
-                    while(!(Input.GetMouseButton(0) && isEndLine))
+                    while(true)
                     {
                         yield return null;
+                        if (Input.GetMouseButtonDown(0) && isEndLine)
+                            break;
                     }
                     isEndLine = false;
+                    EndingExplanTxt.text = "";
                 }
             }
-            EndingExplanTxt.DOText(speech, 0.05f * speech.Length).OnComplete(() =>
-            {
-                //EndingExplanTxt.text = "";
-                //EndingCanvas.SetActive(false);
-            });
         }
     }
     #endregion
