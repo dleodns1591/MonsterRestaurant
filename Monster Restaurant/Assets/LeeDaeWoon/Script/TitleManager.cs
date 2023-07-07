@@ -16,6 +16,16 @@ public class TitleManager : MonoBehaviour
     [SerializeField] Button contentBtn;
     bool isContent = false;
 
+    [Header("엔딩")]
+    [SerializeField] CanvasGroup endingGroup;
+    [SerializeField] GameObject endingWindow;
+    [SerializeField] Animator endingAnimation;
+
+    [SerializeField] Button endingBtn;
+    [SerializeField] Button endingCancleBtn;
+    [SerializeField] Button endingLeftBtn;
+    [SerializeField] Button endingRightBtn;
+
     [Header("설정")]
     [SerializeField] CanvasGroup settingGroup;
     [SerializeField] GameObject settingWidnow;
@@ -47,13 +57,14 @@ public class TitleManager : MonoBehaviour
 
     void Start()
     {
+        EndingBtns();
         SettingBtns();
         LanguageBtns();
     }
 
     void Update()
     {
-
+        EndingAnimation();
     }
 
     void LanguageSetting(int index) =>
@@ -214,5 +225,44 @@ public class TitleManager : MonoBehaviour
                 LanguageSetting(1);
             }
         });
+    }
+
+    void EndingBtns()
+    {
+        endingBtn.onClick.AddListener(() =>
+        {
+            endingGroup.alpha = 1;
+
+            endingWindow.transform.DOLocalMoveY(0, 0.2f).SetEase(Ease.Linear);
+            endingGroup.gameObject.SetActive(true);
+        });
+
+        endingCancleBtn.onClick.AddListener(() =>
+        {
+            endingGroup.DOFade(0, 0.2f).SetEase(Ease.Linear).OnComplete(() =>
+            {
+                endingWindow.transform.DOLocalMoveY(-1050, 0.5f).SetEase(Ease.OutBack);
+                endingGroup.gameObject.SetActive(false);
+            });
+        });
+
+        endingLeftBtn.onClick.AddListener(() =>
+        {
+            endingAnimation.SetBool("Left", true);
+        });
+
+        endingRightBtn.onClick.AddListener(() =>
+        {
+            endingAnimation.SetBool("Right", true);
+        });
+    }
+
+    void EndingAnimation()
+    {
+        if(endingAnimation.GetCurrentAnimatorStateInfo(0).IsName("Book_Left") && endingAnimation.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            endingAnimation.SetBool("Left", false);
+
+        if (endingAnimation.GetCurrentAnimatorStateInfo(0).IsName("Book_Right") && endingAnimation.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            endingAnimation.SetBool("Right", false);
     }
 }
