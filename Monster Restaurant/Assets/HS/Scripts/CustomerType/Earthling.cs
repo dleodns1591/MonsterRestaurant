@@ -43,6 +43,7 @@ public class Earthling : MonoBehaviour, I_CustomerType
         }
         else
         {
+            GameManager.Instance.isEarthlingRefuse = true;
             return "......죄송합니다, 다음 가게를 찾아야 하네..";
         }
     }
