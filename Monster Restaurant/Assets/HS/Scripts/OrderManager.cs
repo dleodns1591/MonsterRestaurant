@@ -13,13 +13,6 @@ public struct EndingType
     public Sprite EndingSpr;
 }
 
-public enum Eending
-{
-    Bankruptcy,
-    Earth,
-    Rich
-}
-
 public class OrderManager : Singleton<OrderManager>
 {
     public TextAsset OrderTalkTxt, AnswerTalkTxt;
@@ -92,8 +85,6 @@ public class OrderManager : Singleton<OrderManager>
     [HideInInspector] public string[] OrderTalk = new string[3], AskTalk = new string[3];
     [HideInInspector] public string AnswerTalk;
     [HideInInspector] public bool isNext;
-    [HideInInspector] public bool isBloom;
-    [HideInInspector] public bool isHoldingFlower;
     [HideInInspector] public int Beggar_SuccessPoint = 0;
     [HideInInspector] public int Earthling_SuccessPoint = 0;
     [HideInInspector] public int dialogNumber;
@@ -230,7 +221,7 @@ public class OrderManager : Singleton<OrderManager>
                 NormalCustomerSetting(type);
                 break;
             default:
-                int randomType = 5;
+                int randomType = 1;
                 GameManager.Instance.SpecialType = randomType;
                 switch ((EeventCustomerType)randomType)
                 {
@@ -570,7 +561,7 @@ public class OrderManager : Singleton<OrderManager>
         {
             if (i % 2 != 0)
             {
-                print("asd");
+                print("ConditionSetting");
                 MemoTexts[i].text = AskTalk[AskCheck];
                 print(AskTalk[AskCheck]);
                 AskCheck++;
@@ -777,7 +768,7 @@ public class OrderManager : Singleton<OrderManager>
         {
             MapScrollMG.Instance.StartSet();
             OrderSet order = GameManager.Instance.orderSets[GameManager.Instance.randomCustomerNum];
-            GameManager.Instance.asd(order.main, order.sub, order.count, order.style, order.dishCount);
+            GameManager.Instance.ConditionSetting(order.main, order.sub, order.count, order.style, order.dishCount);
 
             GameManager.Instance.Satisfaction = 100;
             CookingScene.transform.DOMoveY(0, 1).SetEase(Ease.OutBounce).OnComplete(() =>

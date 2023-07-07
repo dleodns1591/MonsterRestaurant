@@ -114,7 +114,7 @@ public class Earthling : MonoBehaviour, I_CustomerType
         {
             ESubMatarials.NULL
         };
-            GameManager.Instance.asd(EMainMatarials.Rice, subs,     0, ECookingStyle.Roast, 1);
+            GameManager.Instance.ConditionSetting(EMainMatarials.Rice, subs,     0, ECookingStyle.Roast, 1);
         });
         ask.text = "저희가 메인 재료만 팔지 않아서 안 될 것 같습니다.";
         askBtn.onClick.RemoveAllListeners();
@@ -158,7 +158,7 @@ public class Earthling : MonoBehaviour, I_CustomerType
                 {
                     ESubMatarials.NULL
                 };
-                GameManager.Instance.asd(EMainMatarials.Meat, subs, 0, ECookingStyle.Roast, 1);
+                GameManager.Instance.ConditionSetting(EMainMatarials.Meat, subs, 0, ECookingStyle.Roast, 1);
 
 
                 askBtn.gameObject.SetActive(false);
@@ -198,7 +198,7 @@ public class Earthling : MonoBehaviour, I_CustomerType
         {
             ESubMatarials.NULL
         };
-            GameManager.Instance.asd(EMainMatarials.Noodle, subs, 0, ECookingStyle.Boil, 1);
+            GameManager.Instance.ConditionSetting(EMainMatarials.Noodle, subs, 0, ECookingStyle.Boil, 1);
         });
 
         ask.text = "이번에는 힘들 것 같습니다.";
@@ -232,7 +232,7 @@ public class Earthling : MonoBehaviour, I_CustomerType
         {
             ESubMatarials.NULL
         };
-            GameManager.Instance.asd(EMainMatarials.Bread, subs, 0, ECookingStyle.Roast, 1);
+            GameManager.Instance.ConditionSetting(EMainMatarials.Bread, subs, 0, ECookingStyle.Roast, 1);
         });
         ask.text = "이번에는 힘들 것 같습니다.";
         askBtn.onClick.RemoveAllListeners();
@@ -265,7 +265,7 @@ public class Earthling : MonoBehaviour, I_CustomerType
         {
             ESubMatarials.NULL
         };
-            GameManager.Instance.asd(EMainMatarials.Rice, subs, 0, ECookingStyle.Roast, 1);
+            GameManager.Instance.ConditionSetting(EMainMatarials.Rice, subs, 0, ECookingStyle.Roast, 1);
         });
         ask.text = "이번에는 힘들 것 같습니다.";
         askBtn.onClick.RemoveAllListeners();

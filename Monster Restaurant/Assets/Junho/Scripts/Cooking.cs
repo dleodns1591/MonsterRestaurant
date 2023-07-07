@@ -28,7 +28,7 @@ public class Cooking : Singleton<Cooking>
 
     private void Start()
     {
-        GameManager.Instance.asd = (EMainMatarials main, List<ESubMatarials> subs, int count, ECookingStyle style, int dishCount) =>
+        GameManager.Instance.ConditionSetting = (EMainMatarials main, List<ESubMatarials> subs, int count, ECookingStyle style, int dishCount) =>
         {
             AnswerOrder.main = main;
             AnswerOrder.sub = subs;

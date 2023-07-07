@@ -294,7 +294,7 @@ public class Beggar : MonoBehaviour, I_CustomerType
             OrderManager.Instance.dialogNumber++;
 
             SucsessCook();
-            GameManager.Instance.asd(EMainMatarials.NULL, subs, 0, ECookingStyle.None, 3);
+            GameManager.Instance.ConditionSetting(EMainMatarials.NULL, subs, 0, ECookingStyle.None, 3);
 
             GameManager.Instance.Money += 10000000000;
             //개천에서 용난다 엔딩 ON

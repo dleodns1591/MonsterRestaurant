@@ -10,7 +10,7 @@ public class Shop : MonoBehaviour
 {
     [SerializeField] private Image Desk;
 
-    [SerializeField] private Item ManEatingPlant;
+    public Item ManEatingPlant;
 
     private int ManEatingPlantEvolutionaryNum;
     private int purchaseDay;
@@ -23,6 +23,8 @@ public class Shop : MonoBehaviour
     public Action ShopOpen;
 
     public Coroutine ReturnScript;
+
+    public bool isFinalEvolution;
 
     private void Start()
     {
@@ -39,7 +41,12 @@ public class Shop : MonoBehaviour
     //식인 식물 진화체크 (일차 지날때마다 호출)
     public void PurchaseDayCheck() 
     {
-        if (ManEatingPlantEvolutionaryNum >= 2) return;
+        if (ManEatingPlantEvolutionaryNum >= 2)
+        {
+            isFinalEvolution = true; 
+            return;
+        }
+
 
         if (ManEatingPlant.isBuy)
         {

@@ -4,6 +4,17 @@ using UnityEngine;
 using System;
 using UnityEditor;
 
+public enum EendingType
+{
+    Mine,
+    Salve,
+    Loser,
+    Eating,
+    LookStar,
+    WormHole,
+    Dragon
+}
+
 public struct OrderSet
 {
     public EMainMatarials main;
@@ -17,6 +28,7 @@ public struct OrderSet
 public class GameManager : Singleton<GameManager>
 {
     public OrderSet[] orderSets;
+    public bool[] isEndingOpens = new bool[Enum.GetValues(typeof(EendingType)).Length];
     private float money = 100000;
     public float Money
     {
@@ -45,7 +57,6 @@ public class GameManager : Singleton<GameManager>
 
     public int BasicRevenue = 200, SalesRevenue = 2890, TaxCost = 289, SettlementCost;
     public float MarterialCost;
-    public bool Bloom;
     public bool isBeggarRefuse, isEarthlingRefuse;
     public bool dayEndCheck = false;
     public int CanNotMask;
@@ -88,7 +99,7 @@ public class GameManager : Singleton<GameManager>
     public Action ReturnSpecialOrder;
     public Action ReturnOrder;
     public Action ReturnCook;
-    public Action<EMainMatarials, List<ESubMatarials>, int, ECookingStyle, int> asd;
+    public Action<EMainMatarials, List<ESubMatarials>, int, ECookingStyle, int> ConditionSetting;
     public Action ShopAppearProd;
 
     public Shop shop;

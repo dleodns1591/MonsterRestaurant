@@ -19,7 +19,7 @@ public class Thief : MonoBehaviour, I_CustomerType
 
     public void SpecialType(TextMeshProUGUI cook, TextMeshProUGUI ask)
     {
-        if(OrderManager.Instance.isHoldingFlower == false)
+        if(GameManager.Instance.shop.isFinalEvolution == false)
         {
             NotBloom(cook, ask);
         }
@@ -50,7 +50,7 @@ public class Thief : MonoBehaviour, I_CustomerType
 
             OrderManager.Instance.OrderTalk[1] = "왜.. 한 번에 못알아 들어? 너도 내가 만만해?";
             OrderManager.Instance.isNext = true;
-            if (OrderManager.Instance.isBloom)
+            if (GameManager.Instance.shop.ManEatingPlant.isBuy)
             {
                 cook.text = "식인 식물을 보여준다.";
                 ask.text = "죄송합니다.";
@@ -66,6 +66,7 @@ public class Thief : MonoBehaviour, I_CustomerType
                     //다음 손님
                     OrderManager.Instance.ExitAndComein();
                 });
+
                 askBtn.onClick.RemoveAllListeners();
                 askBtn.onClick.AddListener(() =>
                 {
