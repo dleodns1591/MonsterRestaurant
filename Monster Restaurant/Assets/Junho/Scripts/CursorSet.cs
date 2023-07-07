@@ -9,26 +9,20 @@ public class CursorSet : MonoBehaviour
 
     [SerializeField] private Texture2D[] grapImages;
 
-    public Action CursorSetting;
-
-    private void Start()
+    public void GrapImageChange(EMainMatarials main)
     {
-        CursorSetting = () =>
-        {
-
-        };
+        grapImage = grapImages[((int)main)];
     }
-
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Cursor.SetCursor(grapImage, Vector2.zero, CursorMode.Auto);
+            Cursor.SetCursor(grapImage, Vector2.zero, CursorMode.ForceSoftware);
         }
         if (Input.GetMouseButtonUp(0))
         {
-            Cursor.SetCursor(basicImage, Vector2.zero, CursorMode.Auto);
+            Cursor.SetCursor(basicImage, Vector2.zero, CursorMode.ForceSoftware);
         }
     }
 }

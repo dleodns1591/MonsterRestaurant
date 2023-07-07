@@ -24,6 +24,8 @@ public class Cooking : Singleton<Cooking>
 
     public Transform foodPool;
 
+    public CursorSet cursorSet;
+
     private void Start()
     {
         GameManager.Instance.asd = (EMainMatarials main, List<ESubMatarials> subs, int count, ECookingStyle style, int dishCount) =>

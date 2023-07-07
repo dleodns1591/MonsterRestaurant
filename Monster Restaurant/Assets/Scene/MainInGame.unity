@@ -2294,6 +2294,7 @@ MonoBehaviour:
   cookingMachine: {fileID: 401699154}
   KitchenRoom: {fileID: 975579623}
   foodPool: {fileID: 685737025}
+  cursorSet: {fileID: 368171684}
 --- !u!1 &393972776
 GameObject:
   m_ObjectHideFlags: 0

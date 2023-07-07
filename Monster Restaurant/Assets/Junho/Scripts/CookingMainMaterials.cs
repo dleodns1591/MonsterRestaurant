@@ -29,11 +29,15 @@ public class CookingMainMaterials : MonoBehaviour, IPointerDownHandler, IPointer
     public void OnPointerDown(PointerEventData eventData)
     {
         Cooking.Instance.myType = ESubMatarials.NULL;
+        Cooking.Instance.cursorSet.GrapImageChange(myMainType);
     }
 
     // 마우스 땟을때 MixedBaord 에 닿았는지 체크
     public void OnPointerUp(PointerEventData eventData)
     {
+        Cooking.Instance.cursorSet.GrapImageChange(EMainMatarials.NULL);
+
+
         ped.position = eventData.position;
         List<RaycastResult> results = new List<RaycastResult>();
         gr.Raycast(ped, results);
