@@ -6126,6 +6126,7 @@ GameObject:
   - component: {fileID: 945262610}
   - component: {fileID: 945262609}
   - component: {fileID: 945262611}
+  - component: {fileID: 945262612}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -6314,6 +6315,41 @@ MonoBehaviour:
   randomCustomerNum: 0
   SpecialType: 0
   shop: {fileID: 1313066260}
+  eventCheck: {fileID: 945262612}
+--- !u!114 &945262612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945262608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f36dccd77217b540bb1125d0a52f274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChecks:
+  - eventCheckList: 00
+  - eventCheckList: 010001000000
+  - eventCheckList: 000000000001
+  - eventCheckList: 000101000000
+  - eventCheckList: 010000010000
+  - eventCheckList: 000001000100
+  - eventCheckList: 000100000001
+  - eventCheckList: 010001000000
+  - eventCheckList: 000000010000
+  - eventCheckList: 000101000000
+  - eventCheckList: 010000000001
+  - eventCheckList: 000001000100
+  - eventCheckList: 000100010000
+  - eventCheckList: 010001000000
+  - eventCheckList: 000000000001
+  - eventCheckList: 000101000000
+  - eventCheckList: 010000010000
+  - eventCheckList: 000001000100
+  - eventCheckList: 000100000001
+  - eventCheckList: 010001000000
+  returnEventCustomer: 
 --- !u!1 &947319172
 GameObject:
   m_ObjectHideFlags: 0

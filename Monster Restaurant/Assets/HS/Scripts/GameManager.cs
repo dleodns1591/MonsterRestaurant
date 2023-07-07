@@ -106,5 +106,6 @@ public class GameManager : Singleton<GameManager>
     public Action WormHoleDraw;
 
     public Shop shop;
+    public ReturnEvent eventCheck;
 }
 
