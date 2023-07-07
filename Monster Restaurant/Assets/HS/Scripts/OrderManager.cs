@@ -77,11 +77,8 @@ public class OrderManager : Singleton<OrderManager>
     private GameObject EndingCanvas => EndingImg.transform.parent.gameObject;
 
     [Header("상점 관련")]
-    [SerializeField] private GameObject CounterDesk;
-    [SerializeField] private Button StopBuyBtn;
-    [SerializeField] private Button[] BuyBtns;
-    [SerializeField] private GameObject RightClick, LeftClick;
-
+    public Button StopBuyBtn;
+    public GameObject MouseGuide;
 
     [Header("내부 변수들")]
     private Tween TextTween, DayTween;
@@ -233,8 +230,8 @@ public class OrderManager : Singleton<OrderManager>
                 NormalCustomerSetting(type);
                 break;
             default:
-                int randomType = 0;
-                GameManager.Instance.SpecialType = 0;
+                int randomType = 5;
+                GameManager.Instance.SpecialType = randomType;
                 switch ((EeventCustomerType)randomType)
                 {
                     case EeventCustomerType.Human:
@@ -271,6 +268,7 @@ public class OrderManager : Singleton<OrderManager>
                         break;
                     case EeventCustomerType.SalesMan:
                         EeventCustomerSetting(randomType);
+                        CustomerType = gameObject.AddComponent<SalesMan>();
                         break;
                     case EeventCustomerType.FoodCleanTester:
                         CustomerType = gameObject.AddComponent<FoodCleanTester>();
@@ -611,18 +609,37 @@ public class OrderManager : Singleton<OrderManager>
 
     private void ShopProduction()
     {
+        StopBuyBtn.onClick.AddListener(() =>
+        {
+            GameManager.Instance.shop.ShopCloseBtn();
+            StartCoroutine(RefuseOrderDelay());
+            IEnumerator RefuseOrderDelay()
+            {
+                OrderTalk[1] = "응 조까 병신아 니 김어진 따까리 라고할뻔 김어진이 너 따까리 ㅋ";
+                isNext = true;
+                BtnCookText.transform.parent.gameObject.SetActive(false);
+                BtnAskText.transform.parent.gameObject.SetActive(false);
+                StopBuyBtn.gameObject.SetActive(false);
+                yield return new WaitForSeconds(1.5f);
+                StartCoroutine(ExitAndComein());
+            }
+        });
+
         GameManager.Instance.ShopAppearProd = () =>
         {
             StartCoroutine(Delay());
             IEnumerator Delay()
             {
-                FadeInOut.Instance.Fade();
-                GameManager.Instance.shop.ShopOpen();
-                yield return new WaitForSeconds(FadeInOut.Instance.fadeTime);
                 FadeInOut.Instance.FadeOut();
                 yield return new WaitForSeconds(FadeInOut.Instance.fadeTime);
+                GameManager.Instance.shop.ShopOpen();
+                FadeInOut.Instance.Fade();
+                yield return new WaitForSeconds(FadeInOut.Instance.fadeTime);
+                StopBuyBtn.gameObject.SetActive(true);
                 OrderText.text = "";
                 SpeakOrder("마음에 드시는 제품 있으시면 구매해주세요.");
+                yield return new WaitForSeconds("살래? 말래? 난 이대운 병신이야 ㅋ".Length * 0.05f);
+                MouseGuide.SetActive(true);
             }
 
         };

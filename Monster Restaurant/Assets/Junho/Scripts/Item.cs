@@ -35,8 +35,6 @@ public class Item : MonoBehaviour, IPointerDownHandler
         priceTxt.text = price.ToString() + "$";
 
         yield return new WaitForSeconds(10f);
-
-        GameManager.Instance.shop.ShopCloseBtn();
     }
 
     public void BuyItem()

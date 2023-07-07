@@ -1634,6 +1634,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 194254937}
   m_CullTransparentMesh: 1
+--- !u!1 &196175858
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 196175859}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &196175859
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196175858}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -14.2496395, y: 0.21032324, z: 385.48828}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &217625260
 GameObject:
   m_ObjectHideFlags: 0
@@ -6224,11 +6255,8 @@ MonoBehaviour:
       \"\uAE00\uC384? \uC6DC\uD640\uC744 \uD0C0\uC9C0 \uC54A\uB294 \uC774\uC0C1 \uD55C
       2\uAC1C\uC6D4 \uC815\uB3C4 \uAC78\uB9B4 \uAC78?\"\r"
     EndingSpr: {fileID: 21300000, guid: fd8c19a0b27fa854d8032c8a35c93278, type: 3}
-  CounterDesk: {fileID: 0}
-  StopBuyBtn: {fileID: 0}
-  BuyBtns: []
-  RightClick: {fileID: 0}
-  LeftClick: {fileID: 0}
+  StopBuyBtn: {fileID: 169778453}
+  MouseGuide: {fileID: 196175858}
   isCookingSuccess: 0
   isBeggar: 0
   orderType: 0

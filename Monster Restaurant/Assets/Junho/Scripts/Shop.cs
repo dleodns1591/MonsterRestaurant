@@ -30,8 +30,6 @@ public class Shop : MonoBehaviour
         {
             Desk.transform.DOMoveX(-17.75f, 1f).SetEase(Ease.InOutSine);
         };
-
-        ShopOpen();
     }
     public void ShopCloseBtn()
     {

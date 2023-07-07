@@ -61,6 +61,7 @@ public class NormalCustomer : MonoBehaviour, I_CustomerType
         {
             OrderManager.Instance.AskTalk[0] = "≥◊?";
             OrderManager.Instance.dialogNumber++;
+            GameManager.Instance.Satisfaction -= 8;
 
             OrderManager.Instance.isNext = true;
             //º’¥‘¿Ã ¥Î»≠«œ¥œ±Ò
@@ -83,6 +84,7 @@ public class NormalCustomer : MonoBehaviour, I_CustomerType
             {
                 OrderManager.Instance.AskTalk[1] = "≥◊?";
                 OrderManager.Instance.dialogNumber++;
+                GameManager.Instance.Satisfaction -= 8;
 
                 OrderManager.Instance.isNext = true;
                 //º’¥‘¿Ã ¥Î»≠«œ¥œ±Ò
