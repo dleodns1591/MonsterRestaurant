@@ -91,7 +91,8 @@ public class GameManager : Singleton<GameManager>
         }
         else
         {
-            OrderManager.Instance.EndingProduction(Eending.Bankruptcy);
+            OrderManager.Instance.EndingProduction(EendingType.Eating);
+            isEndingOpens[(int)EendingType.Eating] = true;
         }
         return false;
     }
@@ -101,6 +102,8 @@ public class GameManager : Singleton<GameManager>
     public Action ReturnCook;
     public Action<EMainMatarials, List<ESubMatarials>, int, ECookingStyle, int> ConditionSetting;
     public Action ShopAppearProd;
+    public Action BuyTalking;
+    public Action WormHoleDraw;
 
     public Shop shop;
 }

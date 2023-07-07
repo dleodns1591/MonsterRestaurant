@@ -606,7 +606,7 @@ public class OrderManager : Singleton<OrderManager>
             StartCoroutine(RefuseOrderDelay());
             IEnumerator RefuseOrderDelay()
             {
-                OrderTalk[1] = "응 조까 병신아 니 김어진 따까리 라고할뻔 김어진이 너 따까리 ㅋ";
+                OrderTalk[1] = "이용해 주셔서 감사합니다.";
                 isNext = true;
                 BtnCookText.transform.parent.gameObject.SetActive(false);
                 BtnAskText.transform.parent.gameObject.SetActive(false);
@@ -615,6 +615,37 @@ public class OrderManager : Singleton<OrderManager>
                 StartCoroutine(ExitAndComein());
             }
         });
+
+        GameManager.Instance.WormHoleDraw = () =>
+        {
+            int rand = UnityEngine.Random.Range(1, 10);
+            if(rand >= 7)
+            {
+                EndingProduction(EendingType.WormHole);
+                GameManager.Instance.isEndingOpens[(int)EendingType.WormHole] = true;
+            }
+            else
+            {
+                EndingProduction(EendingType.WormHole);
+                GameManager.Instance.isEndingOpens[(int)EendingType.WormHole] = true;
+            }
+        };
+
+        GameManager.Instance.BuyTalking = () =>
+        {
+            int rand = UnityEngine.Random.Range(0, 2);
+            string[] speechs = new string[3] { "탁월한 선택이시네요.", "역시.. 보는 눈이 있으시네요.", "구매해 주셔서 감사합니다." };
+
+            SpeakOrder(speechs[rand]);
+
+            StartCoroutine(Delay());
+            IEnumerator Delay()
+            {
+                yield return new WaitForSeconds(3 + (speechs[rand].Length * 0.05f));
+
+                OrderText.text = "";
+            }
+        };
 
         GameManager.Instance.ShopAppearProd = () =>
         {
@@ -629,7 +660,7 @@ public class OrderManager : Singleton<OrderManager>
                 StopBuyBtn.gameObject.SetActive(true);
                 OrderText.text = "";
                 SpeakOrder("마음에 드시는 제품 있으시면 구매해주세요.");
-                yield return new WaitForSeconds("살래? 말래? 난 이대운 병신이야 ㅋ".Length * 0.05f);
+                yield return new WaitForSeconds("마음에 드시는 제품 있으시면 구매해주세요.".Length * 0.05f);
                 MouseGuide.SetActive(true);
             }
 
@@ -800,7 +831,7 @@ public class OrderManager : Singleton<OrderManager>
         SatisfactionCoroutine = StartCoroutine(SatisfactionUpdate());
     }
 
-    public void EndingProduction(Eending endingType)
+    public void EndingProduction(EendingType endingType)
     {
         StartCoroutine(EndingDelay(endingTypes[(int)endingType].Speech, endingTypes[(int)endingType].EndingSpr));
 

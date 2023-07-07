@@ -34,10 +34,10 @@ public class SalesMan : MonoBehaviour, I_CustomerType
         cookBtn = cook.transform.parent.GetComponent<Button>();
         askBtn = ask.transform.parent.GetComponent<Button>();
 
-        OrderManager.Instance.OrderTalk[0] = "살래? 말래? 난 이대운 병신이야 ㅋ";
+        OrderManager.Instance.OrderTalk[0] = "안녕하세요. 몬스터 아웃핏터스 회사의 영업사원을 맡게 된 리시드입니다. 제가 아주 좋은 물건\r\n들을 가지고 왔는데.. 한 번 확인해 보시겠습니까?";
 
         OrderManager.Instance.dialogNumber++;
-        cook.text = "살래";
+        cook.text = "확인하겠습니다.";
         cookBtn.onClick.RemoveAllListeners();
         cookBtn.onClick.AddListener(() =>
         {
@@ -47,11 +47,11 @@ public class SalesMan : MonoBehaviour, I_CustomerType
             GameManager.Instance.ShopAppearProd();
         });
 
-        ask.text = "말래";
+        ask.text = "나가주세요.";
         askBtn.onClick.RemoveAllListeners();
         askBtn.onClick.AddListener(() =>
         {
-            OrderManager.Instance.OrderTalk[1] = "이걸 안사누...;;;;;";
+            OrderManager.Instance.OrderTalk[1] = "이런.. 실례를 범했군요..";
 
             RefuseOrder();
         });

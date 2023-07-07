@@ -37,7 +37,6 @@ public class Shop : MonoBehaviour
     {
         Desk.transform.DOMoveX(0f, 1f).SetEase(Ease.InOutSine);
     }
-
     //식인 식물 진화체크 (일차 지날때마다 호출)
     public void PurchaseDayCheck() 
     {

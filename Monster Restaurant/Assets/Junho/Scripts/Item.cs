@@ -44,11 +44,12 @@ public class Item : MonoBehaviour, IPointerDownHandler
         soldOutImg.SetActive(true);
         ObjImage.SetActive(false);
         //event
-
+        GameManager.Instance.BuyTalking();
         switch (type)
         {
             case EItem.WormHole:
-                // 새로운 엔딩 이벤트
+                GameManager.Instance.WormHoleDraw();
+                //
                 break;
             default:
                 Obj.SetActive(true);
