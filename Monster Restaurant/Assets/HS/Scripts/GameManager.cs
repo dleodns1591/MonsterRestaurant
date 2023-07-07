@@ -89,7 +89,7 @@ public class GameManager : Singleton<GameManager>
     public Action ReturnOrder;
     public Action ReturnCook;
     public Action<EMainMatarials, List<ESubMatarials>, int, ECookingStyle, int> asd;
-
+    public Action ShopAppearProd;
 
     public Shop shop;
 }

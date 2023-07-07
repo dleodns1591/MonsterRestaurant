@@ -105,6 +105,7 @@ public class OrderManager : Singleton<OrderManager>
     {
         RandomOrderMaterial();
         OrderLoop();
+        ShopProduction();
         OrderToCook();
         CookToOrder();
     }
@@ -442,6 +443,7 @@ public class OrderManager : Singleton<OrderManager>
         FadeInOut.Instance.LittleFadeOut();
         FadeInOut.Instance.RevenueFadeOut();
 
+        GameManager.Instance.shop.PurchaseDayCheck();
         GameManager.Instance.Money += 200;
         GameManager.Instance.TaxCost = GameManager.Instance.SalesRevenue / 10;
         GameManager.Instance.Money -= GameManager.Instance.TaxCost;
@@ -606,6 +608,33 @@ public class OrderManager : Singleton<OrderManager>
     #endregion
 
     #region 게임 루틴 관련
+
+    private void ShopProduction()
+    {
+        GameManager.Instance.ShopAppearProd = () =>
+        {
+            StartCoroutine(Delay());
+            IEnumerator Delay()
+            {
+                FadeInOut.Instance.Fade();
+                GameManager.Instance.shop.ShopOpen();
+                yield return new WaitForSeconds(FadeInOut.Instance.fadeTime);
+                FadeInOut.Instance.FadeOut();
+                yield return new WaitForSeconds(FadeInOut.Instance.fadeTime);
+                OrderText.text = "";
+                SpeakOrder("마음에 드시는 제품 있으시면 구매해주세요.");
+            }
+
+        };
+    }
+
+    public void SpeakOrder(string speech)
+    {
+        OrderText.text = "";
+        if (TextTween != null)
+            TextTween.Kill();
+        TextTween = OrderText.DOText(speech, 0.05f * speech.Length);
+    }
 
     public void CookToOrder()
     {
