@@ -736,11 +736,10 @@ public class OrderManager : Singleton<OrderManager>
             GameManager.Instance.Satisfaction = 100;
             CookingScene.transform.DOMoveY(0, 1).SetEase(Ease.OutBounce).OnComplete(() =>
             {
-                if (!isBeggar)
+                SatisfactionCoroutine = StartCoroutine(SatisfactionUpdate());
+                if (isBeggar)
                 {
-                    if (SatisfactionCoroutine != null)
                         StopCoroutine(SatisfactionUpdate());
-                    SatisfactionCoroutine = StartCoroutine(SatisfactionUpdate());
                 }
             });
         };
