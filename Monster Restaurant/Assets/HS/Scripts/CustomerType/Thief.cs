@@ -112,6 +112,7 @@ public class Thief : MonoBehaviour, I_CustomerType
         OrderManager.Instance.OrderTalk[0] = "돈 내놔!";
 
         cook.text = "네?";
+        cookBtn.onClick.RemoveAllListeners();
         cookBtn.onClick.AddListener(() =>
         {
             OrderManager.Instance.AskTalk[0] = "네?";
@@ -127,6 +128,8 @@ public class Thief : MonoBehaviour, I_CustomerType
             OrderManager.Instance.ExitAndComein();
         });
         ask.text = "잠..잠시만요..";
+
+        cookBtn.onClick.RemoveAllListeners();
         askBtn.onClick.AddListener(() =>
         {
             OrderManager.Instance.AskTalk[0] = "잠..잠시만요..";

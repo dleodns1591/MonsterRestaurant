@@ -75,7 +75,7 @@ public class OrderManager : Singleton<OrderManager>
 
     [Header("내부 변수들")]
     private Tween TextTween, DayTween;
-    private Coroutine SatisfactionCoroutine, Ordercoroutine;
+    private Coroutine SatisfactionCoroutine, Ordercoroutine, BuyTextCoroutine;
     private int firstMoney;
     private I_CustomerType CustomerType;
     private bool isSatisfactionStop;
@@ -221,7 +221,7 @@ public class OrderManager : Singleton<OrderManager>
                 NormalCustomerSetting(type);
                 break;
             default:
-                int randomType = 1;
+                int randomType = 5;
                 GameManager.Instance.SpecialType = randomType;
                 switch ((EeventCustomerType)randomType)
                 {
@@ -638,7 +638,13 @@ public class OrderManager : Singleton<OrderManager>
 
             SpeakOrder(speechs[rand]);
 
-            StartCoroutine(Delay());
+            if(BuyTextCoroutine != null)
+            {
+                StopCoroutine(BuyTextCoroutine);
+                OrderText.text = "";
+            }
+
+            BuyTextCoroutine = StartCoroutine(Delay());
             IEnumerator Delay()
             {
                 yield return new WaitForSeconds(3 + (speechs[rand].Length * 0.05f));
