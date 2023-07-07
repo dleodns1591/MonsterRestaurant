@@ -17,7 +17,7 @@ public struct OrderSet
 public class GameManager : Singleton<GameManager>
 {
     public OrderSet[] orderSets;
-    private float money = 100;
+    private float money = 100000;
     public float Money
     {
         get { return money; }
@@ -89,5 +89,8 @@ public class GameManager : Singleton<GameManager>
     public Action ReturnOrder;
     public Action ReturnCook;
     public Action<EMainMatarials, List<ESubMatarials>, int, ECookingStyle, int> asd;
+
+
+    public Shop shop;
 }
 
