@@ -51,6 +51,8 @@ public class Earthling : MonoBehaviour, I_CustomerType
 
     public void SpecialType(TextMeshProUGUI cook, TextMeshProUGUI ask)
     {
+        OrderManager.Instance.StopOrderCoroutine();
+
         switch (OrderManager.Instance.Earthling_SuccessPoint)
         {
             case 0:
@@ -79,6 +81,11 @@ public class Earthling : MonoBehaviour, I_CustomerType
         StartCoroutine(RefuseOrderDelay());
         IEnumerator RefuseOrderDelay()
         {
+            for (int i = 0; i < OrderManager.Instance.OrderTalk.Length; i++)
+            {
+                print(OrderManager.Instance.OrderTalk[i]);
+            }
+
             GameManager.Instance.isEarthlingRefuse = true;
             OrderManager.Instance.isNext = true;
             cookBtn.gameObject.SetActive(false);
@@ -156,6 +163,8 @@ public class Earthling : MonoBehaviour, I_CustomerType
 
                 askBtn.gameObject.SetActive(false);
             });
+
+            askBtn.onClick.RemoveAllListeners();
         });
 
         ask.text = "이번에는 힘들 것 같습니다.";
@@ -191,6 +200,7 @@ public class Earthling : MonoBehaviour, I_CustomerType
         };
             GameManager.Instance.asd(EMainMatarials.Noodle, subs, 0, ECookingStyle.Boil, 1);
         });
+
         ask.text = "이번에는 힘들 것 같습니다.";
         askBtn.onClick.RemoveAllListeners();
         askBtn.onClick.AddListener(() =>

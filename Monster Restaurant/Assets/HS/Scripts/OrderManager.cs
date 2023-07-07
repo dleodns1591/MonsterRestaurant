@@ -85,7 +85,7 @@ public class OrderManager : Singleton<OrderManager>
 
     [Header("내부 변수들")]
     private Tween TextTween, DayTween;
-    private Coroutine SatisfactionCoroutine;
+    private Coroutine SatisfactionCoroutine, Ordercoroutine;
     private int firstMoney;
     private I_CustomerType CustomerType;
     private bool isSatisfactionStop;
@@ -380,13 +380,13 @@ public class OrderManager : Singleton<OrderManager>
         GameManager.Instance.MarterialCost = 0;
         GameManager.Instance.TaxCost = 0;
         GameManager.Instance.SettlementCost = 0;
-        StartCoroutine(Order());
+        Ordercoroutine = StartCoroutine(Order());
 
         if (DayTween != null)
             DayTween.Kill();
         TimeFill.fillAmount = 1;
 
-        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 300)
+        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 180)
         .OnComplete(() => //시간이 다 지났을때
         {
             GameManager.Instance.dayEndCheck = true;
@@ -716,8 +716,15 @@ public class OrderManager : Singleton<OrderManager>
         yield return new WaitForSeconds(1f);
         EmotionText.text = "100%";
         FaceImage.sprite = FaceSprites[(int)EFaceType.Happy];
-        StartCoroutine(Order());
+        Ordercoroutine = StartCoroutine(Order());
     }
+
+    public void StopOrderCoroutine()
+    {
+        if (Ordercoroutine != null)
+            StopCoroutine(Ordercoroutine);
+    }
+
     public void OrderToCook()
     {
         GameManager.Instance.ReturnCook = () =>
@@ -729,11 +736,10 @@ public class OrderManager : Singleton<OrderManager>
             GameManager.Instance.Satisfaction = 100;
             CookingScene.transform.DOMoveY(0, 1).SetEase(Ease.OutBounce).OnComplete(() =>
             {
-                if (!isBeggar)
+                SatisfactionCoroutine = StartCoroutine(SatisfactionUpdate());
+                if (isBeggar)
                 {
-                    if (SatisfactionCoroutine != null)
                         StopCoroutine(SatisfactionUpdate());
-                    SatisfactionCoroutine = StartCoroutine(SatisfactionUpdate());
                 }
             });
         };
