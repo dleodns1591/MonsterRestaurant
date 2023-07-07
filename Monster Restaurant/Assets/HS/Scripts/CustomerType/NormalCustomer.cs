@@ -26,7 +26,9 @@ public enum EeventCustomerType
 
     GroupOrder,
     SalesMan,
-    FoodCleanTester
+    FoodCleanTester,
+
+    NULL
 }
 public class NormalCustomer : MonoBehaviour, I_CustomerType
 {
