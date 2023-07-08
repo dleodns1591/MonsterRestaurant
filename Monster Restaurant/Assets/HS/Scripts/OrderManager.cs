@@ -77,6 +77,7 @@ public class OrderManager : Singleton<OrderManager>
 
     [Header("내부 변수들")]
     private Tween TextTween, DayTween;
+    public int ReQuestionCount;
     private List<EeventCustomerType> EventTypes = new List<EeventCustomerType>();
     private Coroutine SatisfactionCoroutine, Ordercoroutine, BuyTextCoroutine;
     private int firstMoney, GuestOfTheDay;
@@ -201,14 +202,14 @@ public class OrderManager : Singleton<OrderManager>
             EventTypes.Clear();
         foreach (var item in GameManager.Instance.eventCheck.returnEventCustomer)
         {
-            print("asdasdasd");
             EventTypes.Add(item);
         }
 
         int types;
+            print(GuestOfTheDay);
         if (GuestOfTheDay % 2 == 0 && EventTypes.Count >= GuestOfTheDay / 2 && EventTypes.Count != 0)
         {
-            types = (int)EventTypes[GuestOfTheDay / 2];
+            types = (int)EventTypes[(GuestOfTheDay / 2) - 1];
             switch ((EeventCustomerType)types)
             {
                 case EeventCustomerType.Human:
@@ -560,7 +561,7 @@ public class OrderManager : Singleton<OrderManager>
                 RevenuePopup.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 GameManager.Instance.dayEndCheck = false;
                 GuestOfTheDay = 0;
-
+                ReQuestionCount = 0;
                 OrderLoop();
             }
         }
@@ -890,6 +891,11 @@ public class OrderManager : Singleton<OrderManager>
     {
         while (true)
         {
+            if(ReQuestionCount != 0)
+            {
+                GameManager.Instance.Satisfaction -= (ReQuestionCount * 8);
+                ReQuestionCount = 0;
+            }
             if (!GameManager.Instance.isGroupOrder)
             {
                 if (GameManager.Instance.Satisfaction <= 60)
@@ -906,6 +912,7 @@ public class OrderManager : Singleton<OrderManager>
             if (isSatisfactionStop == true)
             {
                 EmotionText.text = $"{GameManager.Instance.Satisfaction}%";
+                FaceImage.sprite = FaceSprites[(int)EFaceType.Angry];
                 isSatisfactionStop = false;
                 yield break;
             }
