@@ -20,6 +20,7 @@ public class Packaging : MonoBehaviour
     {
         Cooking.Instance.cookingMachine.isCooking = false;
 
+        packQuantity++;
 
         cook.transform.parent = transform;
         cook.transform.SetAsFirstSibling();
