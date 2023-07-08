@@ -22,7 +22,7 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         new Vector2(324, 295) // π‰, ∏È ªÁ¿Ã¡Ó
     };
 
-    public ECookingStyle style;
+    public ECookingStyle style = ECookingStyle.None;
     public EMainMatarials mainMaterial;
     public List<SubMaterialImages> subMaterials = new List<SubMaterialImages>();
 
@@ -187,10 +187,10 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         if (Cooking.Instance.AnswerOrder.count < subMaterials.Count) checkList++;
 
 
-        int num = 0;
 
         if(Cooking.Instance.AnswerOrder.sub[0] != ESubMatarials.NULL)
         {
+            int num = 0;
             bool isReturn = false;
             
             for (int i = 0; i < 3; i++)
