@@ -88,7 +88,7 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         mainMaterialImage.color = new Vector4(1, 1, 1, 1);
 
         // ¼Ò¸® 
-        SoundManager.instance.PlaySoundClip("MainIngredient_SFX", SoundType.SFX);
+        SoundManager.instance.PlaySoundClip("MainIngredient_SFX", SoundType.SFX, 10);
     }
 
     private IEnumerator BoardMove()
