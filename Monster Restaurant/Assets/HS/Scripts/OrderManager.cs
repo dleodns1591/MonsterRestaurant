@@ -5,8 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
-using System.Net.NetworkInformation;
-using UnityEditor.SceneManagement;
 using Object = UnityEngine.Object;
 using UnityEngine.SceneManagement;
 
@@ -400,7 +398,7 @@ public class OrderManager : Singleton<OrderManager>
             DayTween.Kill();
         TimeFill.fillAmount = 1;
 
-        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 180)
+        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 60)
         .OnComplete(() => //시간이 다 지났을때
         {
             GameManager.Instance.dayEndCheck = true;
@@ -453,6 +451,26 @@ public class OrderManager : Singleton<OrderManager>
 
     void DayEnd()
     {
+        if(GameManager.Instance.Day >= 21)
+        {
+            if (GameManager.Instance.Money < 2500)
+            {
+                EndingProduction(EendingType.Loser);
+                GameManager.Instance.isEndingOpens[(int)EendingType.Loser] = true;
+            }
+            else if(GameManager.Instance.Money < 5000)
+            {
+                EndingProduction(EendingType.Salve);
+                GameManager.Instance.isEndingOpens[(int)EendingType.Salve] = true;
+            }
+            else
+            {
+                EndingProduction(EendingType.Mine);
+                GameManager.Instance.isEndingOpens[(int)EendingType.Mine] = true;
+            }
+
+            return;
+        }
         FadeInOut.Instance.LittleFadeOut();
         FadeInOut.Instance.RevenueFadeOut();
 
