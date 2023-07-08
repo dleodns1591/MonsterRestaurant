@@ -6702,7 +6702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventChecks:
-  - eventCheckList: 00
+  - eventCheckList: 000000000000
   - eventCheckList: 010001000000
   - eventCheckList: 000000000001
   - eventCheckList: 000101000000
