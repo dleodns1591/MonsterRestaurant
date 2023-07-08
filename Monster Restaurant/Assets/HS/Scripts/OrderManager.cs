@@ -77,7 +77,7 @@ public class OrderManager : Singleton<OrderManager>
 
     [Header("내부 변수들")]
     private Tween TextTween, DayTween;
-    private List<EeventCustomerType> EventTypes;
+    private List<EeventCustomerType> EventTypes = new List<EeventCustomerType>();
     private Coroutine SatisfactionCoroutine, Ordercoroutine, BuyTextCoroutine;
     private int firstMoney, GuestOfTheDay;
     private I_CustomerType CustomerType;
@@ -195,11 +195,18 @@ public class OrderManager : Singleton<OrderManager>
             OrderTalk[i] = RandomOrderSpeech(i)[GameManager.Instance.randomCustomerNum];
         }
 
-        int types;
-        if (GuestOfTheDay % 2 == 0 && GameManager.Instance.Day != 1)
+        if (EventTypes != null)
+            EventTypes.Clear();
+        foreach (var item in GameManager.Instance.eventCheck.returnEventCustomer)
         {
-            types = (int)GameManager.Instance.eventCheck.returnEventCustomer[(GuestOfTheDay / 2) - 1];
-            switch (GameManager.Instance.eventCheck.returnEventCustomer[GuestOfTheDay / 2])
+            EventTypes.Add(item);
+        }
+
+        int types;
+        if (GuestOfTheDay % 2 == 0 && EventTypes != null)
+        {
+            types = (int)EventTypes[GuestOfTheDay / 2];
+            switch ((EeventCustomerType)types)
             {
                 case EeventCustomerType.Human:
                     if (GameManager.Instance.isEarthlingRefuse)
@@ -386,7 +393,7 @@ public class OrderManager : Singleton<OrderManager>
     /// 손님을 받는 이벤트? 들이 시작하는 함수
     /// </summary>
     void OrderLoop()
-    {
+    { 
         firstMoney = (int)GameManager.Instance.Money;
         GameManager.Instance.SalesRevenue = 0;
         GameManager.Instance.MarterialCost = 0;
@@ -398,7 +405,7 @@ public class OrderManager : Singleton<OrderManager>
             DayTween.Kill();
         TimeFill.fillAmount = 1;
 
-        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 60)
+        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 30)
         .OnComplete(() => //시간이 다 지났을때
         {
             GameManager.Instance.dayEndCheck = true;
@@ -543,13 +550,7 @@ public class OrderManager : Singleton<OrderManager>
                 RevenuePopup.GetComponent<Image>().color = new Color(1, 1, 1, 0);
                 RevenuePopup.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 GameManager.Instance.dayEndCheck = false;
-                if(EventTypes != null)
-                    EventTypes.Clear();
                 GuestOfTheDay = 0;
-                foreach (var item in GameManager.Instance.eventCheck.returnEventCustomer)
-                {
-                    EventTypes.Add(item);
-                }
 
                 OrderLoop();
             }
