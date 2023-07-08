@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Localization;
-using UnityEngine.Localization.Settings;
 using DG.Tweening;
 
 public class SettingSystem : MonoBehaviour
@@ -47,8 +45,8 @@ public class SettingSystem : MonoBehaviour
 
     }
 
-    void LanguageSetting(int index) =>
-        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
+   // void LanguageSetting(int index) =>
+     //   LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
 
     void SettingBtns()
     {
@@ -160,7 +158,7 @@ public class SettingSystem : MonoBehaviour
                 isLanguage = false;
                 englishBtn.GetComponent<Image>().color = Color.gray;
                 koreaBtn.GetComponent<Image>().color = Color.white;
-                LanguageSetting(0);
+             //   LanguageSetting(0);
             }
         });
 
@@ -171,7 +169,7 @@ public class SettingSystem : MonoBehaviour
                 isLanguage = true;
                 koreaBtn.GetComponent<Image>().color = Color.gray;
                 englishBtn.GetComponent<Image>().color = Color.white;
-                LanguageSetting(1);
+              //  LanguageSetting(1);
             }
         });
     }
