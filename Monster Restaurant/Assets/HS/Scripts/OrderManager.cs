@@ -196,7 +196,7 @@ public class OrderManager : Singleton<OrderManager>
         }
 
         int types;
-        if (GuestOfTheDay % 2 == 0)
+        if (GuestOfTheDay % 2 == 0 && GuestOfTheDay != 0)
         {
             types = (int)GameManager.Instance.eventCheck.returnEventCustomer[GuestOfTheDay / 2];
             switch (GameManager.Instance.eventCheck.returnEventCustomer[GuestOfTheDay / 2])
