@@ -54,7 +54,7 @@ public class Cooking : Singleton<Cooking>
         AnimationControl();
     }
 
-    private void AnimationControl()
+    public void AnimationControl()
     {
         //임시 누른 이미지
 
