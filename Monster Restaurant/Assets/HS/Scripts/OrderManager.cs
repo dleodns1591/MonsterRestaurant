@@ -76,6 +76,7 @@ public class OrderManager : Singleton<OrderManager>
     public GameObject MouseGuide;
 
     [Header("내부 변수들")]
+    private int EndingDate = 20;
     private Tween TextTween, DayTween;
     public int ReQuestionCount;
     private List<EeventCustomerType> EventTypes = new List<EeventCustomerType>();
@@ -106,6 +107,19 @@ public class OrderManager : Singleton<OrderManager>
     private void Update()
     {
         MoneyText.text = ((int)GameManager.Instance.Money).ToString();
+
+        if(Input.GetKeyDown(KeyCode.O))
+        {
+            EndingDate = 1;
+        }
+        else if(Input.GetKeyDown(KeyCode.P))
+        {
+            EndingDate = 20;
+        }
+        else if(Input.GetKeyDown(KeyCode.L))
+        {
+            GameManager.Instance.Money += 1000;
+        }
     }
 
     string NameKoreanReturn(string name)
@@ -462,7 +476,7 @@ public class OrderManager : Singleton<OrderManager>
 
     void DayEnd()
     {
-        if(GameManager.Instance.Day >= 20)
+        if(GameManager.Instance.Day >= EndingDate)
         {
             if (GameManager.Instance.Money < 2500)
             {
