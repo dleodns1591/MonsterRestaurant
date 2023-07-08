@@ -190,7 +190,7 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
         if (Cooking.Instance.AnswerOrder.style != style) checkList++;
         if (Cooking.Instance.AnswerOrder.main != mainMaterial) checkList++;
-        if (Cooking.Instance.AnswerOrder.count < subMaterials.Count) checkList++;
+        if (Cooking.Instance.AnswerOrder.count > subMaterials.Count) checkList++;
 
 
 
