@@ -30,7 +30,7 @@ public struct OrderSet
 public class GameManager : Singleton<GameManager>
 {
     public OrderSet[] orderSets;
-    public bool[] isEndingOpens = new bool[Enum.GetValues(typeof(EendingType)).Length];
+    [HideInInspector] public bool[] isEndingOpens = new bool[Enum.GetValues(typeof(EendingType)).Length];
     private float money = 100;
     public float Money
     {

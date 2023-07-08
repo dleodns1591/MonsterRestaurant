@@ -6674,7 +6674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEndingOpens: 00000000000000
-  BasicRevenue: 0
+  BasicRevenue: 200
   SalesRevenue: 0
   TaxCost: 0
   SettlementCost: 0
