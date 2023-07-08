@@ -108,15 +108,15 @@ public class OrderManager : Singleton<OrderManager>
     {
         MoneyText.text = ((int)GameManager.Instance.Money).ToString();
 
-        if(Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.O))
         {
             EndingDate = 1;
         }
-        else if(Input.GetKeyDown(KeyCode.P))
+        else if (Input.GetKeyDown(KeyCode.P))
         {
             EndingDate = 20;
         }
-        else if(Input.GetKeyDown(KeyCode.L))
+        else if (Input.GetKeyDown(KeyCode.L))
         {
             GameManager.Instance.Money += 1000;
         }
@@ -220,7 +220,7 @@ public class OrderManager : Singleton<OrderManager>
         }
 
         int types;
-            print(GuestOfTheDay);
+        print(GuestOfTheDay);
         if (GuestOfTheDay % 2 == 0 && EventTypes.Count >= GuestOfTheDay / 2 && EventTypes.Count != 0)
         {
             types = (int)EventTypes[(GuestOfTheDay / 2) - 1];
@@ -411,12 +411,15 @@ public class OrderManager : Singleton<OrderManager>
     /// 손님을 받는 이벤트? 들이 시작하는 함수
     /// </summary>
     void OrderLoop()
-    { 
+    {
         firstMoney = (int)GameManager.Instance.Money;
         GameManager.Instance.SalesRevenue = 0;
         GameManager.Instance.MarterialCost = 0;
         GameManager.Instance.TaxCost = 0;
         GameManager.Instance.SettlementCost = 0;
+        NextCustomerReady();
+        normalGuestType = UnityEngine.Random.Range(0, 9);
+        SetCustomerType(normalGuestType);
         Ordercoroutine = StartCoroutine(Order());
 
         if (DayTween != null)
@@ -476,7 +479,7 @@ public class OrderManager : Singleton<OrderManager>
 
     void DayEnd()
     {
-        if(GameManager.Instance.Day >= EndingDate)
+        if (GameManager.Instance.Day >= EndingDate)
         {
             if (GameManager.Instance.Money < 2500)
             {
@@ -485,7 +488,7 @@ public class OrderManager : Singleton<OrderManager>
                 GameManager.Instance.isEndingOpens[(int)EendingType.Loser] = true;
                 SaveManager.Instance.isEndingOpens[(int)EendingType.Loser] = true;
             }
-            else if(GameManager.Instance.Money < 5000)
+            else if (GameManager.Instance.Money < 5000)
             {
 
                 EndingProduction(EendingType.Salve);
@@ -589,9 +592,6 @@ public class OrderManager : Singleton<OrderManager>
             DayEnd();
             yield break;
         }
-        NextCustomerReady();
-        normalGuestType = UnityEngine.Random.Range(0, 9);
-        SetCustomerType(normalGuestType);
         yield return StartCoroutine(customer.Moving());
 
         ReAskBtn.gameObject.SetActive(true);
@@ -691,7 +691,7 @@ public class OrderManager : Singleton<OrderManager>
                 MouseGuide.SetActive(false);
                 StopBuyBtn.gameObject.SetActive(false);
                 yield return new WaitForSeconds(1.5f);
-                StartCoroutine(ExitAndComein());
+                StartCoroutine(ExitAndComein(false));
             }
         });
 
@@ -849,7 +849,7 @@ public class OrderManager : Singleton<OrderManager>
             {
                 OrderText.DOText(AnswerTalk, 0.05f * AnswerTalk.Length).OnComplete(() =>
                 {
-                    StartCoroutine(ExitAndComein());
+                    StartCoroutine(ExitAndComein(false));
                     MemoOff();
                 });
             });
@@ -857,7 +857,7 @@ public class OrderManager : Singleton<OrderManager>
         };
 
     }
-    public IEnumerator ExitAndComein()
+    public IEnumerator ExitAndComein(bool isEvent)
     {
         yield return new WaitForSeconds(1.5f);
 
@@ -871,12 +871,18 @@ public class OrderManager : Singleton<OrderManager>
         EmotionText.text = "100%";
         GameManager.Instance.Satisfaction = 100;
         FaceImage.sprite = FaceSprites[(int)EFaceType.Happy];
+        if (isEvent == false)
+        {
+            NextCustomerReady();
+            normalGuestType = UnityEngine.Random.Range(0, 9);
+            SetCustomerType(normalGuestType);
+        }
         Ordercoroutine = StartCoroutine(Order());
     }
 
     public void StopOrderCoroutine()
     {
-            StopCoroutine("Order");
+        StopCoroutine("Order");
     }
 
     public void OrderToCook()
@@ -908,7 +914,7 @@ public class OrderManager : Singleton<OrderManager>
     {
         while (true)
         {
-            if(ReQuestionCount != 0)
+            if (ReQuestionCount != 0)
             {
                 GameManager.Instance.Satisfaction -= (ReQuestionCount * 8);
                 ReQuestionCount = 0;
@@ -974,10 +980,10 @@ public class OrderManager : Singleton<OrderManager>
                     }
                     isEndLine = false;
                 }
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        SceneManager.LoadScene("Title");
-                    }
+                if (Input.GetMouseButtonDown(0))
+                {
+                    SceneManager.LoadScene("Title");
+                }
             }
         }
     }

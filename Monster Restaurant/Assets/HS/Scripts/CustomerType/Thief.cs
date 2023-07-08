@@ -50,7 +50,7 @@ public class Thief : MonoBehaviour, I_CustomerType
             cookBtn.gameObject.SetActive(false);
             askBtn.gameObject.SetActive(false);
             yield return new WaitForSeconds(1.5f);
-            StartCoroutine(OrderManager.Instance.ExitAndComein());
+            StartCoroutine(OrderManager.Instance.ExitAndComein(true));
         }
 
     }
