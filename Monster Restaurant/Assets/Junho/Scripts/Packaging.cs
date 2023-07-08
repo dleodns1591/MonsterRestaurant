@@ -12,6 +12,10 @@ public class Packaging : MonoBehaviour
     readonly Vector3 startUnder = new Vector3(1722, -8, 0);
     readonly Vector3 startUp = new Vector3(200, 230, 0);
 
+
+    private int orderQuantity = Cooking.Instance.AnswerOrder.dishCount;
+    private int packQuantity = 0;
+
     public IEnumerator CheckPack(GameObject cook)
     {
         Cooking.Instance.cookingMachine.isCooking = false;
@@ -28,11 +32,19 @@ public class Packaging : MonoBehaviour
 
         yield return Pack();
 
-        //GameManager.Instance.orderSets[0].
-        // 음식 제출
-        GameManager.Instance.ReturnOrder();
-        // 체크 
-        MapScrollMG.Instance.StopMouseCheck();
+
+        if(packQuantity >= orderQuantity)
+        {
+
+            packQuantity = 0;
+
+            // 음식 제출
+            GameManager.Instance.ReturnOrder();
+            // 체크 
+            MapScrollMG.Instance.StopMouseCheck();
+        }
+
+
 
         StartSet();
 
