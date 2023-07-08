@@ -201,11 +201,12 @@ public class OrderManager : Singleton<OrderManager>
             EventTypes.Clear();
         foreach (var item in GameManager.Instance.eventCheck.returnEventCustomer)
         {
+            print("asdasdasd");
             EventTypes.Add(item);
         }
 
         int types;
-        if (GuestOfTheDay % 2 == 0 && EventTypes.Count >= GuestOfTheDay / 2)
+        if (GuestOfTheDay % 2 == 0 && EventTypes.Count >= GuestOfTheDay / 2 && EventTypes.Count != 0)
         {
             types = (int)EventTypes[GuestOfTheDay / 2];
             switch ((EeventCustomerType)types)
