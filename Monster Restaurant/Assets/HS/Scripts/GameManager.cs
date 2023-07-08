@@ -45,6 +45,7 @@ public class GameManager : Singleton<GameManager>
             {
                 if (isEndingOpens[i] == true)
                 {
+                    print("이대운 바보 ㅋㅋ");
                     SaveManager.Instance.isEndingOpens[i] = true;
                 }
             }
