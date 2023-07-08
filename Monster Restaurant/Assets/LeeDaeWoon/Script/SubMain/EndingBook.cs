@@ -41,6 +41,8 @@ public class EndingBook : MonoBehaviour
     {
         endingCancleBtn.onClick.AddListener(() =>
         {
+            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+
             endingGroup.DOFade(0, 0.2f).SetEase(Ease.Linear).OnComplete(() =>
             {
                 endingWindow.transform.DOLocalMoveY(-1050, 0.5f).SetEase(Ease.OutBack);
@@ -50,6 +52,8 @@ public class EndingBook : MonoBehaviour
 
         endingLeftBtn.onClick.AddListener(() =>
         {
+            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+
             if (0 < endingCount)
             {
                 --endingCount;
@@ -59,6 +63,8 @@ public class EndingBook : MonoBehaviour
 
         endingRightBtn.onClick.AddListener(() =>
         {
+            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+
             if (endingCount < (endingSprite.Count / 2) - 1)
             {
                 ++endingCount;
