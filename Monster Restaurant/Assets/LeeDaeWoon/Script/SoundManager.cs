@@ -27,7 +27,8 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-
+        isBGMCheck = true;
+        isSFXCheck = true;
     }
 
     private void Update()
