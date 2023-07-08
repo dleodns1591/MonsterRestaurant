@@ -6594,13 +6594,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEndingOpens: 00000000000000
-  BasicRevenue: 200
-  SalesRevenue: 2890
-  TaxCost: 289
+  BasicRevenue: 0
+  SalesRevenue: 0
+  TaxCost: 0
   SettlementCost: 0
   MarterialCost: 0
   isBeggarRefuse: 0
   isEarthlingRefuse: 0
+  isGroupOrder: 0
   dayEndCheck: 0
   CanNotMask: 0
   HumanLike: 0
@@ -9014,7 +9015,7 @@ MonoBehaviour:
   - {x: 219, y: 447}
   - {x: 211, y: 482}
   - {x: 245, y: 516}
-  isFinalEvolution: 1
+  isFinalEvolution: 0
 --- !u!1 &1314161187
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ using TMPro;
 using System.Net.NetworkInformation;
 using UnityEditor.SceneManagement;
 using Object = UnityEngine.Object;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public struct EndingType
@@ -78,8 +79,9 @@ public class OrderManager : Singleton<OrderManager>
 
     [Header("내부 변수들")]
     private Tween TextTween, DayTween;
+    private List<EeventCustomerType> EventTypes;
     private Coroutine SatisfactionCoroutine, Ordercoroutine, BuyTextCoroutine;
-    private int firstMoney;
+    private int firstMoney, GuestOfTheDay;
     private I_CustomerType CustomerType;
     public bool isSatisfactionStop;
     [HideInInspector] public bool isCookingSuccess;
@@ -187,19 +189,64 @@ public class OrderManager : Singleton<OrderManager>
     {
         Destroy((Object)CustomerType);
 
-        foreach (var item in GameManager.Instance.eventCheck.returnEventCustomer)
-        {
+        GuestOfTheDay++;
 
-        }
         GameManager.Instance.randomCustomerNum = UnityEngine.Random.Range(0, OrderTalkTxt.text.Split('\n').Length);
         for (int i = 0; i < OrderTalk.Length; i++)
         {
             OrderTalk[i] = RandomOrderSpeech(i)[GameManager.Instance.randomCustomerNum];
         }
 
+        int types;
+        if (GuestOfTheDay % 2 == 0)
+        {
+            types = (int)GameManager.Instance.eventCheck.returnEventCustomer[GuestOfTheDay / 2];
+            switch (GameManager.Instance.eventCheck.returnEventCustomer[GuestOfTheDay / 2])
+            {
+                case EeventCustomerType.Human:
+                    if (GameManager.Instance.isEarthlingRefuse)
+                    {
+                        normalGuestType = UnityEngine.Random.Range(0, 8);
+                        SetCustomerType(normalGuestType);
+                        return;
+                    }
+                    CustomerType = gameObject.AddComponent<Earthling>();
+                    EeventCustomerSetting(types);
+                    break;
+                case EeventCustomerType.Thief:
+                    CustomerType = gameObject.AddComponent<Thief>();
+                    EeventCustomerSetting(types);
+                    break;
+                case EeventCustomerType.Beggar:
+                    if (GameManager.Instance.isBeggarRefuse)
+                    {
+                        normalGuestType = UnityEngine.Random.Range(0, 8);
+                        SetCustomerType(normalGuestType);
+                        return;
+                    }
+                    CustomerType = gameObject.AddComponent<Beggar>();
+                    EeventCustomerSetting(types);
+                    break;
+                case EeventCustomerType.GroupOrder:
+                    CustomerType = gameObject.AddComponent<GroupOrder>();
+                    EeventCustomerSetting(types);
+                    break;
+                case EeventCustomerType.SalesMan:
+                    EeventCustomerSetting(types);
+                    CustomerType = gameObject.AddComponent<SalesMan>();
+                    break;
+                case EeventCustomerType.FoodCleanTester:
+                    CustomerType = gameObject.AddComponent<FoodCleanTester>();
+                    EeventCustomerSetting(types);
+                    break;
+            }
+
+            CustomerType.SpecialType(BtnCookText, BtnAskText);
+            return;
+        }
+
+
         CustomerType = gameObject.AddComponent<NormalCustomer>();
-
-
         switch ((EcustomerType)type)
         {
             case EcustomerType.Alien:
@@ -231,49 +278,6 @@ public class OrderManager : Singleton<OrderManager>
                 break;
             default:
                 Destroy((Object)CustomerType);
-                int randomType = 4;
-                GameManager.Instance.SpecialType = randomType;
-                switch ((EeventCustomerType)randomType)
-                {
-                    case EeventCustomerType.Human:
-                        if (GameManager.Instance.isEarthlingRefuse)
-                        {
-                            normalGuestType = UnityEngine.Random.Range(0, 8);
-                            SetCustomerType(normalGuestType);
-
-                            return;
-                        }
-                        CustomerType = gameObject.AddComponent<Earthling>();
-                        EeventCustomerSetting(randomType);
-                        break;
-                    case EeventCustomerType.Thief:
-                        CustomerType = gameObject.AddComponent<Thief>();
-                        EeventCustomerSetting(randomType);
-                        break;
-                    case EeventCustomerType.Beggar:
-                        if (GameManager.Instance.isBeggarRefuse)
-                        {
-                            normalGuestType = UnityEngine.Random.Range(0, 8);
-                            SetCustomerType(normalGuestType);
-
-                            return;
-                        }
-                        CustomerType = gameObject.AddComponent<Beggar>();
-                        EeventCustomerSetting(randomType);
-                        break;
-                    case EeventCustomerType.GroupOrder:
-                        CustomerType = gameObject.AddComponent<GroupOrder>();
-                        EeventCustomerSetting(randomType);
-                        break;
-                    case EeventCustomerType.SalesMan:
-                        EeventCustomerSetting(randomType);
-                        CustomerType = gameObject.AddComponent<SalesMan>();
-                        break;
-                    case EeventCustomerType.FoodCleanTester:
-                        CustomerType = gameObject.AddComponent<FoodCleanTester>();
-                        EeventCustomerSetting(randomType);
-                        break;
-                }
                 break;
         }
         CustomerType.SpecialType(BtnCookText, BtnAskText);
@@ -503,6 +507,7 @@ public class OrderManager : Singleton<OrderManager>
                     IEnumerator DayProduction()
                     {
                         GameManager.Instance.Day++;
+                        GameManager.Instance.eventCheck.Check();
                         DayText.text = $"{GameManager.Instance.Day}일차....!";
                         DayText.DOFade(1, 1);
                         yield return new WaitForSeconds(1.5f);
@@ -520,6 +525,14 @@ public class OrderManager : Singleton<OrderManager>
                 RevenuePopup.GetComponent<Image>().color = new Color(1, 1, 1, 0);
                 RevenuePopup.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 GameManager.Instance.dayEndCheck = false;
+
+                EventTypes.Clear();
+                GuestOfTheDay = 0;
+                foreach (var item in GameManager.Instance.eventCheck.returnEventCustomer)
+                {
+                    EventTypes.Add(item);
+                }
+
                 OrderLoop();
             }
         }
@@ -534,7 +547,7 @@ public class OrderManager : Singleton<OrderManager>
         }
         NextCustomerReady();
         normalGuestType = UnityEngine.Random.Range(0, 8);
-        SetCustomerType(9);
+        SetCustomerType(normalGuestType);
         yield return StartCoroutine(customer.Moving());
 
         ReAskBtn.gameObject.SetActive(true);
@@ -639,6 +652,7 @@ public class OrderManager : Singleton<OrderManager>
         GameManager.Instance.WormHoleDraw = () =>
         {
             int rand = UnityEngine.Random.Range(1, 10);
+            GameManager.Instance.isEndingOpens[(int)EendingType.WormHole] = true;
             if (rand >= 7)
             {
                 EndingProduction(EendingType.WormHole_FindHouse);
@@ -886,7 +900,8 @@ public class OrderManager : Singleton<OrderManager>
                 yield return wait;
                 for (int i = 0; i < line.Length; i++)
                 {
-                    print(line[i]);
+                    print(line.Length);
+                    EndingExplanTxt.text = "";
                     EndingExplanTxt.DOText(line[i], 0.05f * line[i].Length).OnComplete(() =>
                     {
                         isEndLine = true;
@@ -898,8 +913,11 @@ public class OrderManager : Singleton<OrderManager>
                             break;
                     }
                     isEndLine = false;
-                    EndingExplanTxt.text = "";
                 }
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        SceneManager.LoadScene("Title");
+                    }
             }
         }
     }

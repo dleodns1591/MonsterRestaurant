@@ -13,7 +13,8 @@ public enum EendingType
     LookStar,
     WormHole_FindHouse,
     WormHole_SpaceAdventure,
-    Dragon
+    Dragon,
+    WormHole
 }
 
 public struct OrderSet
@@ -30,7 +31,7 @@ public class GameManager : Singleton<GameManager>
 {
     public OrderSet[] orderSets;
     public bool[] isEndingOpens = new bool[Enum.GetValues(typeof(EendingType)).Length];
-    private float money = 100000;
+    private float money = 100;
     public float Money
     {
         get { return money; }
