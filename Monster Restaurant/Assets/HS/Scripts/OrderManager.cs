@@ -299,7 +299,7 @@ public class OrderManager : Singleton<OrderManager>
                 case "°í±â":
                     return EMainMatarials.Meat;
                 default:
-                    return EMainMatarials.Bread;
+                    return EMainMatarials.NULL;
             }
         }
         ESubMatarials eSub(string cell)
@@ -331,14 +331,24 @@ public class OrderManager : Singleton<OrderManager>
                 case "¿Ü°è Ç®":
                     return ESubMatarials.AlienPlant;
                 default:
-                    return ESubMatarials.Battery;
+                    return ESubMatarials.NULL;
 
             }
         }
 
         ECookingStyle eStyle(string cell)
         {
-            return ECookingStyle.Fry;
+            switch (cell)
+            {
+                case "²ú±â":
+                    return ECookingStyle.Boil;
+                case "Æ¢±â±â":
+                    return ECookingStyle.Fry;
+                case "±Á±â":
+                    return ECookingStyle.Roast;
+                default:
+                    return ECookingStyle.None;
+            }
         }
 
         string[] line = OrderTalkTxt.text.Split('\n');
