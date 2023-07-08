@@ -935,7 +935,7 @@ public class OrderManager : Singleton<OrderManager>
                 yield return wait;
                 for (int i = 0; i < line.Length; i++)
                 {
-                    print(line.Length);
+                    //print(line.Length);
                     EndingExplanTxt.text = "";
                     EndingExplanTxt.DOText(line[i], 0.05f * line[i].Length).OnComplete(() =>
                     {
