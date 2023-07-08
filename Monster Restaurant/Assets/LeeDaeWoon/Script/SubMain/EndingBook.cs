@@ -53,6 +53,7 @@ public class EndingBook : MonoBehaviour
         endingLeftBtn.onClick.AddListener(() =>
         {
             SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+            SoundManager.instance.PlaySoundClip("page-flip-3", SoundType.SFX);
 
             if (0 < endingCount)
             {
@@ -64,6 +65,7 @@ public class EndingBook : MonoBehaviour
         endingRightBtn.onClick.AddListener(() =>
         {
             SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+            SoundManager.instance.PlaySoundClip("page-flip-3", SoundType.SFX);
 
             if (endingCount < (endingSprite.Count / 2) - 1)
             {

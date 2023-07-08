@@ -6687,7 +6687,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2f2c7f10fe62964d9ec6131e802b992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEndingOpens: 00000000000000
   BasicRevenue: 200
   SalesRevenue: 0
   TaxCost: 0
@@ -13945,6 +13944,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37aadc1b59ca1141937d672b599d3ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBGMCheck: 0
+  isSFXCheck: 0
 --- !u!4 &2134136335
 Transform:
   m_ObjectHideFlags: 0

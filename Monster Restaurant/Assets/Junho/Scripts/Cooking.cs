@@ -60,14 +60,13 @@ public class Cooking : Singleton<Cooking>
 
         for (int i = 0; i < animators.Length; i++)
         {
-
             if (i == ((int)myType))
             {
                 testAnimators[i].color = Color.gray;
             }
             else testAnimators[i].color = Color.white;
 
-            print("Color");
+            //print("Color");
         }
 
 
