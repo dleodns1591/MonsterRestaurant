@@ -11,14 +11,18 @@ public class TitleManager : MonoBehaviour
 
     void Start()
     {
+        SoundManager.instance.PlaySoundClip("Title_bgm", SoundType.BGM);
+
         StartBtn();
     }
     
     void StartBtn()
     {
-        SoundManager.instance.PlaySoundClip("Title_bgm", SoundType.BGM);
+
         startBtn.onClick.AddListener(() =>
         {
+            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+
             DOTween.KillAll();
             SceneManager.LoadScene(1);
         });

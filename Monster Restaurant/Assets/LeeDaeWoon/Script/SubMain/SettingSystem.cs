@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Localization;
-using UnityEngine.Localization.Settings;
 using DG.Tweening;
 
 public class SettingSystem : MonoBehaviour
@@ -39,7 +37,7 @@ public class SettingSystem : MonoBehaviour
     void Start()
     {
         SettingBtns();
-        LanguageBtns();
+        //LanguageBtns();
     }
 
     void Update()
@@ -47,8 +45,8 @@ public class SettingSystem : MonoBehaviour
 
     }
 
-    void LanguageSetting(int index) =>
-        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
+    //void LanguageSetting(int index) =>
+    //    LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
 
     void SettingBtns()
     {
@@ -59,6 +57,8 @@ public class SettingSystem : MonoBehaviour
 
         settingCancleBtn.onClick.AddListener(() =>
         {
+            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+
             settingGroup.DOFade(0, 0.2f).SetEase(Ease.Linear).OnComplete(() =>
             {
                 settingWidnow.transform.DOLocalMoveY(1050, 0).SetEase(Ease.Linear);
@@ -69,6 +69,8 @@ public class SettingSystem : MonoBehaviour
         // 배경음 버튼을 눌렀을 시
         bgmBtn.onClick.AddListener(() =>
         {
+            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+
             if (!isBGM)
             {
                 isBGM = true;
@@ -86,6 +88,7 @@ public class SettingSystem : MonoBehaviour
         // 효과음 버튼을 눌렀을 시
         sfxBtn.onClick.AddListener(() =>
         {
+            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
 
             if (!isSFX)
             {
@@ -103,6 +106,7 @@ public class SettingSystem : MonoBehaviour
         // 진동 버튼을 눌렀을 시
         vibrationBtn.onClick.AddListener(() =>
         {
+            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
 
             if (!isVirbration)
             {
@@ -120,6 +124,7 @@ public class SettingSystem : MonoBehaviour
         // 알림 버튼을 눌렀을 시
         notificationBtn.onClick.AddListener(() =>
         {
+            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
 
             if (!isNotification)
             {
@@ -135,44 +140,44 @@ public class SettingSystem : MonoBehaviour
         });
     }
 
-    void LanguageBtns()
-    {
-        koreaBtn.GetComponent<Image>().color = Color.gray;
+    //void LanguageBtns()
+    //{
+    //    koreaBtn.GetComponent<Image>().color = Color.gray;
 
-        languageBtn.onClick.AddListener(() =>
-        {
-            languageWindow.alpha = 1;
-            languageWindow.gameObject.SetActive(true);
-        });
+    //    languageBtn.onClick.AddListener(() =>
+    //    {
+    //        languageWindow.alpha = 1;
+    //        languageWindow.gameObject.SetActive(true);
+    //    });
 
-        languageCancleBtn.onClick.AddListener(() =>
-        {
-            languageWindow.DOFade(0, 0.2f).SetEase(Ease.Linear).OnComplete(() =>
-            {
-                languageWindow.gameObject.SetActive(false);
-            });
-        });
+    //    languageCancleBtn.onClick.AddListener(() =>
+    //    {
+    //        languageWindow.DOFade(0, 0.2f).SetEase(Ease.Linear).OnComplete(() =>
+    //        {
+    //            languageWindow.gameObject.SetActive(false);
+    //        });
+    //    });
 
-        englishBtn.onClick.AddListener(() =>
-        {
-            if (isLanguage)
-            {
-                isLanguage = false;
-                englishBtn.GetComponent<Image>().color = Color.gray;
-                koreaBtn.GetComponent<Image>().color = Color.white;
-                LanguageSetting(0);
-            }
-        });
+    //    englishBtn.onClick.AddListener(() =>
+    //    {
+    //        if (isLanguage)
+    //        {
+    //            isLanguage = false;
+    //            englishBtn.GetComponent<Image>().color = Color.gray;
+    //            koreaBtn.GetComponent<Image>().color = Color.white;
+    //            LanguageSetting(0);
+    //        }
+    //    });
 
-        koreaBtn.onClick.AddListener(() =>
-        {
-            if (!isLanguage)
-            {
-                isLanguage = true;
-                koreaBtn.GetComponent<Image>().color = Color.gray;
-                englishBtn.GetComponent<Image>().color = Color.white;
-                LanguageSetting(1);
-            }
-        });
-    }
+    //    koreaBtn.onClick.AddListener(() =>
+    //    {
+    //        if (!isLanguage)
+    //        {
+    //            isLanguage = true;
+    //            koreaBtn.GetComponent<Image>().color = Color.gray;
+    //            englishBtn.GetComponent<Image>().color = Color.white;
+    //            LanguageSetting(1);
+    //        }
+    //    });
+    //}
 }

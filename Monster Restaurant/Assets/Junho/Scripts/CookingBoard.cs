@@ -88,9 +88,7 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         mainMaterialImage.color = new Vector4(1, 1, 1, 1);
 
         // 家府 
-
-
-
+        SoundManager.instance.PlaySoundClip("MainIngredient_SFX", SoundType.SFX);
     }
 
     private IEnumerator BoardMove()
@@ -137,8 +135,7 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
             sub.GetComponent<Image>().raycastTarget = false;
 
             // 家府
-
-
+            SoundManager.instance.PlaySoundClip("Sub-Materials_SFX", SoundType.SFX);
 
             subMaterials.Add(sub.GetComponent<SubMaterialImages>());
         }

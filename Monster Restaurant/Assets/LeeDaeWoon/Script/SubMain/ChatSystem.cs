@@ -47,6 +47,8 @@ public class ChatSystem : MonoBehaviour
     {
         chatBtn.onClick.AddListener(() =>
         {
+            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+
             switch (chatNum)
             {
                 case 0:
@@ -76,6 +78,8 @@ public class ChatSystem : MonoBehaviour
 
         leftBtn.onClick.AddListener(() =>
         {
+            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+
             int saveChat = chatList.Count;
 
             chatList.Insert(0, chatList[saveChat - 1]);
@@ -84,6 +88,8 @@ public class ChatSystem : MonoBehaviour
 
         rightBtn.onClick.AddListener(() =>
         {
+            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+
             chatList.Add(chatList[0]);
             chatList.RemoveAt(0);
         });
