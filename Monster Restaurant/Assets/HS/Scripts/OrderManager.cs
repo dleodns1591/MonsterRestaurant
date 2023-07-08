@@ -221,7 +221,7 @@ public class OrderManager : Singleton<OrderManager>
                 NormalCustomerSetting(type);
                 break;
             default:
-                int randomType = 5;
+                int randomType = 1;
                 GameManager.Instance.SpecialType = randomType;
                 switch ((EeventCustomerType)randomType)
                 {
@@ -270,7 +270,7 @@ public class OrderManager : Singleton<OrderManager>
         }
         CustomerType.SpecialType(BtnCookText, BtnAskText);
     }
-    string[] RandomOrderSpeech(int OrderSequence)
+    public string[] RandomOrderSpeech(int OrderSequence)
     {
         string[] line = OrderTalkTxt.text.Split('\n');
         string[] Sentence = new string[line.Length];
@@ -710,7 +710,6 @@ public class OrderManager : Singleton<OrderManager>
                 if (cell[1] == "성공")
                 {
                     SucsessTalk[(int)NameToEnumReturn(cell[0]), sucsessCnt] = cell[2];
-                    print(sucsessCnt);
                     sucsessCnt++;
                 }
                 else if (cell[1] == "실패")
@@ -821,7 +820,6 @@ public class OrderManager : Singleton<OrderManager>
 
     private IEnumerator SatisfactionUpdate()
     {
-        print(GameManager.Instance.Satisfaction);
         if (GameManager.Instance.Satisfaction <= 60)
             FaceImage.sprite = FaceSprites[(int)EFaceType.Umm];
         if (GameManager.Instance.Satisfaction <= 20)
@@ -829,6 +827,7 @@ public class OrderManager : Singleton<OrderManager>
         yield return new WaitForSeconds(1f);
         if (GameManager.Instance.Satisfaction <= 0 || isSatisfactionStop == true)
         {
+            EmotionText.text = $"{GameManager.Instance.Satisfaction}%";
             isSatisfactionStop = false;
             yield break;
         }
