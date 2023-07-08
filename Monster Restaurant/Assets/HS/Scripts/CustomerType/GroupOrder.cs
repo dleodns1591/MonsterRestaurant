@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +11,7 @@ public class GroupOrder : MonoBehaviour, I_CustomerType
     int rand;
     public string SpecialAnswer()
     {
-        if (OrderManager.Instance.isCookingSuccess)
+        if (GameManager.Instance.Satisfaction >= 55)
         {
             GameManager.Instance.Money += 700;
             return "빠르게 만들어주셔서 감사합니다. 아이들이 좋아할 거예요";
@@ -47,7 +48,7 @@ public class GroupOrder : MonoBehaviour, I_CustomerType
         IEnumerator Delay()
         {
             yield return new WaitForSeconds(1.5f);
-            askBtn.gameObject.SetActive(true);
+            askBtn.gameObject.SetActive(false);
             askBtn.GetComponent<Image>().enabled = true;
         }
 
@@ -58,17 +59,18 @@ public class GroupOrder : MonoBehaviour, I_CustomerType
         {
             ESubMatarials.NULL
         };
-        GameManager.Instance.ConditionSetting((EMainMatarials)rand, subs, 0, ECookingStyle.Roast, 10);
+        GameManager.Instance.ConditionSetting((EMainMatarials)rand, subs, 0, ECookingStyle.Roast, 5);
     }
 
     public void SpecialType(TextMeshProUGUI cook, TextMeshProUGUI ask)
     {
+        GameManager.Instance.isGroupOrder = true;
         rand = UnityEngine.Random.Range(0, 3);
 
         cookBtn = cook.transform.parent.GetComponent<Button>();
         askBtn = ask.transform.parent.GetComponent<Button>();
         
-        OrderManager.Instance.OrderTalk[0] = $"안녕하세요. 옆 건물에서 어린이집 교사로 일하고 있습니다. 현재 급식 배분에 문제가 생겨서 그러는데 30초 안에 10개의 구운 {eMain((EMainMatarials)rand)}을 만들어 주실 수 있나요 ?";
+        OrderManager.Instance.OrderTalk[0] = $"안녕하세요. 옆 건물에서 어린이집 교사로 일하고 있습니다. 현재 급식 배분에 문제가 생겨서 그러는데 30초 안에 5개의 구운 {eMain((EMainMatarials)rand)}을 만들어 주실 수 있나요 ?";
         OrderManager.Instance.dialogNumber++;
 
         cook.text = "알겠습니다";
