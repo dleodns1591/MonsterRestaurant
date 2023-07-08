@@ -33,10 +33,11 @@ public class SoundManager : MonoBehaviour
 
     private void Update()
     {
-        if (!isBGMCheck)
-            StopSoundClip(SoundType.BGM);
         if (!isSFXCheck)
             StopSoundClip(SoundType.SFX);
+
+        if (!isBGMCheck)
+            StopSoundClip(SoundType.BGM);
     }
 
     private void Awake()
