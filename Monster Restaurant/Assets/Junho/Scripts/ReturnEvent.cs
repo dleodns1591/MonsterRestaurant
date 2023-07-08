@@ -11,7 +11,6 @@ public class EventCheck
 public class ReturnEvent : MonoBehaviour
 {
     const int maxDay = 20;
-    int Day;
 
     [SerializeField] private List<EventCheck> eventChecks = new List<EventCheck>();
     public List<EeventCustomerType> returnEventCustomer = new List<EeventCustomerType>();
@@ -22,27 +21,38 @@ public class ReturnEvent : MonoBehaviour
 
         returnEventCustomer.Clear();
 
-        foreach (var item in eventChecks[Day].eventCheckList)
+        print(GameManager.Instance.Day - 1);
+
+        foreach (bool item in eventChecks[GameManager.Instance.Day - 1].eventCheckList)
         {
             if (item == true)
             {
-                if (num == 0)
+                switch (num)
                 {
-                    if(Rand(45) == true)
-                    returnEventCustomer.Add((EeventCustomerType)num);
-
+                    case 0:
+                        if (Rand(45) == true)
+                            returnEventCustomer.Add(EeventCustomerType.Human);
+                        break;
+                    case 1:
+                        returnEventCustomer.Add(EeventCustomerType.Thief);
+                        break;
+                    case 2:
+                        if (Rand(40) == true)
+                            returnEventCustomer.Add(EeventCustomerType.Beggar);
+                        break;
+                    case 3:
+                        returnEventCustomer.Add(EeventCustomerType.GroupOrder);
+                        break;
+                    case 4:
+                        returnEventCustomer.Add(EeventCustomerType.SalesMan);
+                        break;
+                    case 5:
+                        returnEventCustomer.Add(EeventCustomerType.FoodCleanTester);
+                        break;
                 }
-                else if(num == 2)
-                {
-                    if (Rand(40) == true)
-                        returnEventCustomer.Add((EeventCustomerType)num);
-                }
-                else returnEventCustomer.Add((EeventCustomerType)num);
             }
-
             num++;
         } 
-        Day++;
     }
 
     public bool Rand(int percent)
