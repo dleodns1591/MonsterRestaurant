@@ -29,6 +29,8 @@ public class CookingMainMaterials : MonoBehaviour, IPointerDownHandler, IPointer
     public void OnPointerDown(PointerEventData eventData)
     {
         Cooking.Instance.myType = ESubMatarials.NULL;
+        Cooking.Instance.AnimationControl();
+
         Cooking.Instance.cursorSet.GrapImageChange(myMainType);
     }
 
