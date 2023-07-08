@@ -194,7 +194,7 @@ public class OrderManager : Singleton<OrderManager>
         CustomerImg.sprite = GuestDefualts[type];
         NameBallonText.text = NameKoreanReturn(Enum.GetName(typeof(EcustomerType), type));
     }
-    void EeventCustomerSetting(int randomType)
+    public void EeventCustomerSetting(int randomType)
     {
         CustomerImg.sprite = EventGuestDefualts[randomType];
         NameBallonText.text = NameKoreanReturn(Enum.GetName(typeof(EeventCustomerType), randomType));
@@ -590,7 +590,7 @@ public class OrderManager : Singleton<OrderManager>
             yield break;
         }
         NextCustomerReady();
-        normalGuestType = UnityEngine.Random.Range(0, 8);
+        normalGuestType = UnityEngine.Random.Range(0, 9);
         SetCustomerType(normalGuestType);
         yield return StartCoroutine(customer.Moving());
 
@@ -608,6 +608,7 @@ public class OrderManager : Singleton<OrderManager>
             if (TextTween != null)
                 TextTween.Kill();
             OrderText.text = "";
+            print(OrderTalk[i]);
             TextTween = OrderText.DOText(OrderTalk[i], 0.05f * OrderTalk[i].Length);
             while (!isNext)
             {
@@ -875,8 +876,7 @@ public class OrderManager : Singleton<OrderManager>
 
     public void StopOrderCoroutine()
     {
-        if (Ordercoroutine != null)
-            StopCoroutine(Ordercoroutine);
+            StopCoroutine("Order");
     }
 
     public void OrderToCook()

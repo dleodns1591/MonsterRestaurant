@@ -13,6 +13,7 @@ public class Beggar : MonoBehaviour, I_CustomerType
 
     public string SpecialAnswer()
     {
+        OrderManager.Instance.EeventCustomerSetting((int)EeventCustomerType.Beggar);
         OrderManager.Instance.CustomerImg.sprite = OrderManager.Instance.EventGuestSuccess[(int)EeventCustomerType.Beggar];
         switch (OrderManager.Instance.Beggar_SuccessPoint)
         {

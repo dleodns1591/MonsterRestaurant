@@ -13,6 +13,7 @@ public class GroupOrder : MonoBehaviour, I_CustomerType
     {
         if (GameManager.Instance.Satisfaction >= 55)
         {
+            OrderManager.Instance.EeventCustomerSetting((int)EeventCustomerType.GroupOrder);
             OrderManager.Instance.CustomerImg.sprite = OrderManager.Instance.EventGuestSuccess[(int)EeventCustomerType.GroupOrder];
             GameManager.Instance.Money += 700;
             GameManager.Instance.SalesRevenue += 700;
@@ -20,6 +21,7 @@ public class GroupOrder : MonoBehaviour, I_CustomerType
         }
         else
         {
+            OrderManager.Instance.EeventCustomerSetting((int)EeventCustomerType.GroupOrder);
             OrderManager.Instance.CustomerImg.sprite = OrderManager.Instance.EventGuestFails[(int)EeventCustomerType.GroupOrder];
             GameManager.Instance.Money -= 20;
             GameManager.Instance.SalesRevenue -= 20;
