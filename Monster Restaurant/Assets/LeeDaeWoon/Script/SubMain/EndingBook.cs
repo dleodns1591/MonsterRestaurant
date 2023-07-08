@@ -80,15 +80,6 @@ public class EndingBook : MonoBehaviour
 
     void EndingCheck()
     {
-        endingSprite[1].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.Eating];
-        endingSprite[2].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.Loser];
-        endingSprite[3].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.Salve];
-        endingSprite[4].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.Mine];
-        endingSprite[5].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.WormHole];
-        endingSprite[6].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.Eating];
-        endingSprite[7].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.Eating];
-        endingSprite[8].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.Eating];
-        endingSprite[9].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.];
 
     }
 }
