@@ -34,7 +34,6 @@ public class CookingMainMaterials : MonoBehaviour, IPointerDownHandler, IPointer
         Cooking.Instance.cursorSet.GrapImageChange(myMainType);
     }
 
-    // 마우스 땟을때 MixedBaord 에 닿았는지 체크
     public void OnPointerUp(PointerEventData eventData)
     {
         Cooking.Instance.cursorSet.GrapImageChange(EMainMatarials.NULL);

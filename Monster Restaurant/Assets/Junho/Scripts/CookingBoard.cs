@@ -86,6 +86,11 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         }
         mainMaterialImage.rectTransform.sizeDelta = imageSize;
         mainMaterialImage.color = new Vector4(1, 1, 1, 1);
+
+        // 家府 
+
+
+
     }
 
     private IEnumerator BoardMove()
@@ -130,6 +135,10 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
             sub.transform.position = inputPos;
             sub.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360)));
             sub.GetComponent<Image>().raycastTarget = false;
+
+            // 家府
+
+
 
             subMaterials.Add(sub.GetComponent<SubMaterialImages>());
         }
