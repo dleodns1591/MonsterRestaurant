@@ -531,7 +531,7 @@ public class OrderManager : Singleton<OrderManager>
         normalGuestType = UnityEngine.Random.Range(0, 8);
         SetCustomerType(9);
         yield return StartCoroutine(customer.Moving());
-        
+
         ReAskBtn.gameObject.SetActive(true);
         CookingBtn.gameObject.SetActive(true);
         SpeechBallon.gameObject.SetActive(true);
@@ -634,7 +634,7 @@ public class OrderManager : Singleton<OrderManager>
         GameManager.Instance.WormHoleDraw = () =>
         {
             int rand = UnityEngine.Random.Range(1, 10);
-            if(rand >= 7)
+            if (rand >= 7)
             {
                 EndingProduction(EendingType.WormHole_FindHouse);
                 GameManager.Instance.isEndingOpens[(int)EendingType.WormHole_FindHouse] = true;
@@ -653,7 +653,7 @@ public class OrderManager : Singleton<OrderManager>
 
             SpeakOrder(speechs[rand]);
 
-            if(BuyTextCoroutine != null)
+            if (BuyTextCoroutine != null)
             {
                 StopCoroutine(BuyTextCoroutine);
                 OrderText.text = "";
@@ -767,6 +767,7 @@ public class OrderManager : Singleton<OrderManager>
             }
 
             isBeggar = false;
+            GameManager.Instance.isGroupOrder = false;
             if (!CustomerType.SpecialAnswer().Equals(""))
             {
                 EeventCustomerSetting(GameManager.Instance.SpecialType);
@@ -833,12 +834,20 @@ public class OrderManager : Singleton<OrderManager>
 
     private IEnumerator SatisfactionUpdate()
     {
-        while(true)
+        while (true)
         {
-            if (GameManager.Instance.Satisfaction <= 60)
-                FaceImage.sprite = FaceSprites[(int)EFaceType.Umm];
-            if (GameManager.Instance.Satisfaction <= 20)
-                FaceImage.sprite = FaceSprites[(int)EFaceType.Angry];
+            if (!GameManager.Instance.isGroupOrder)
+            {
+                if (GameManager.Instance.Satisfaction <= 60)
+                    FaceImage.sprite = FaceSprites[(int)EFaceType.Umm];
+                if (GameManager.Instance.Satisfaction <= 20)
+                    FaceImage.sprite = FaceSprites[(int)EFaceType.Angry];
+            }
+            else
+            {
+                if (GameManager.Instance.Satisfaction <= 55)
+                    FaceImage.sprite = FaceSprites[(int)EFaceType.Angry];
+            }
             yield return new WaitForSeconds(1f);
             if (isSatisfactionStop == true)
             {
@@ -877,7 +886,7 @@ public class OrderManager : Singleton<OrderManager>
                     {
                         isEndLine = true;
                     });
-                    while(true)
+                    while (true)
                     {
                         yield return null;
                         if (Input.GetMouseButtonDown(0) && isEndLine)
