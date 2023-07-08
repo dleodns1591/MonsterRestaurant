@@ -76,7 +76,10 @@ public class GameManager : Singleton<GameManager>
                 satisfaction = value;
 
             if (satisfaction < 0)
+            {
                 satisfaction = 0;
+                OrderManager.Instance.isSatisfactionStop = true;
+            }
 
             print(satisfaction);
         }

@@ -9,6 +9,7 @@ public class Thief : MonoBehaviour, I_CustomerType
 {
     Button cookBtn;
     Button askBtn;
+    int rand;
     public string SpecialAnswer()
     {
         if (OrderManager.Instance.isCookingSuccess)
@@ -27,6 +28,7 @@ public class Thief : MonoBehaviour, I_CustomerType
         OrderManager.Instance.StopOrderCoroutine();
         cookBtn = cook.transform.parent.GetComponent<Button>();
         askBtn = ask.transform.parent.GetComponent<Button>();
+        rand = UnityEngine.Random.Range(0, OrderManager.Instance.OrderTalkTxt.text.Split('\n').Length);
 
         if (GameManager.Instance.shop.isFinalEvolution == false)
         {
@@ -58,14 +60,17 @@ public class Thief : MonoBehaviour, I_CustomerType
         
         //요리
         GameManager.Instance.ReturnCook();
+            GameManager.Instance.ConditionSetting(GameManager.Instance.orderSets[rand].main, GameManager.Instance.orderSets[rand].sub, GameManager.Instance.orderSets[rand].count, GameManager.Instance.orderSets[rand].style, GameManager.Instance.orderSets[rand].dishCount);
     }
 
     void Bloom(TextMeshProUGUI cook, TextMeshProUGUI ask)
     {
-        OrderManager.Instance.OrderTalk[0] = OrderManager.Instance.RandomOrderSpeech(0)[UnityEngine.Random.Range(0, OrderManager.Instance.OrderTalkTxt.text.Split('\n').Length)];
+        OrderManager.Instance.OrderTalk[0] = OrderManager.Instance.RandomOrderSpeech(0)[rand];
+
         OrderManager.Instance.dialogNumber++;
 
         cook.text = "알겠습니다";
+        cookBtn.onClick.RemoveAllListeners();
         cookBtn.onClick.AddListener(() =>
         {
             OrderManager.Instance.AskTalk[0] = "알겠습니다";
@@ -75,6 +80,7 @@ public class Thief : MonoBehaviour, I_CustomerType
             SucsessCook();
         });
         ask.text = "네?";
+        askBtn.onClick.RemoveAllListeners();
         askBtn.onClick.AddListener(() =>
         {
             OrderManager.Instance.AskTalk[0] = "네?";

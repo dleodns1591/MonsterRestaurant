@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
+using System.Net.NetworkInformation;
+using UnityEditor.SceneManagement;
+using Object = UnityEngine.Object;
 
 [Serializable]
 public struct EndingType
@@ -78,7 +81,7 @@ public class OrderManager : Singleton<OrderManager>
     private Coroutine SatisfactionCoroutine, Ordercoroutine, BuyTextCoroutine;
     private int firstMoney;
     private I_CustomerType CustomerType;
-    private bool isSatisfactionStop;
+    public bool isSatisfactionStop;
     [HideInInspector] public bool isCookingSuccess;
     [HideInInspector] public bool isBeggar;
     [HideInInspector] public int orderType;
@@ -182,6 +185,7 @@ public class OrderManager : Singleton<OrderManager>
 
     void SetCustomerType(int type)
     {
+        Destroy((Object)CustomerType);
         GameManager.Instance.randomCustomerNum = UnityEngine.Random.Range(0, OrderTalkTxt.text.Split('\n').Length);
         for (int i = 0; i < OrderTalk.Length; i++)
         {
@@ -221,6 +225,7 @@ public class OrderManager : Singleton<OrderManager>
                 NormalCustomerSetting(type);
                 break;
             default:
+                Destroy((Object)CustomerType);
                 int randomType = 1;
                 GameManager.Instance.SpecialType = randomType;
                 switch ((EeventCustomerType)randomType)
@@ -360,10 +365,12 @@ public class OrderManager : Singleton<OrderManager>
             string[] cell = line[i].Split('\t');
 
             GameManager.Instance.orderSets[i].main = eMain(cell[0]);
-            GameManager.Instance.orderSets[i].sub = new List<ESubMatarials>() { ESubMatarials.AlienPlant, ESubMatarials.AlienPlant, ESubMatarials.AlienPlant };
-            GameManager.Instance.orderSets[i].sub[0] = eSub(cell[1]);
-            GameManager.Instance.orderSets[i].sub[1] = eSub(cell[2]);
-            GameManager.Instance.orderSets[i].sub[2] = eSub(cell[3]);
+            GameManager.Instance.orderSets[i].sub = new List<ESubMatarials>
+            {
+                eSub(cell[1]),
+                eSub(cell[2]),
+                eSub(cell[3])
+            };
             GameManager.Instance.orderSets[i].style = eStyle(cell[4]);
             GameManager.Instance.orderSets[i].count = int.Parse(cell[5]);
             GameManager.Instance.orderSets[i].dishCount = int.Parse(cell[6]);
@@ -695,7 +702,6 @@ public class OrderManager : Singleton<OrderManager>
     {
         GameManager.Instance.ReturnOrder = () =>
         {
-
             string[] line = AnswerTalkTxt.text.Split('\n');
 
             string[,] SucsessTalk = new string[Enum.GetValues(typeof(EcustomerType)).Length, 3];
@@ -783,11 +789,6 @@ public class OrderManager : Singleton<OrderManager>
     }
     public IEnumerator ExitAndComein()
     {
-        if (SatisfactionCoroutine != null)
-        {
-            isSatisfactionStop = true;
-        }
-
         yield return new WaitForSeconds(1.5f);
 
         SpeechBallon.gameObject.SetActive(false);
@@ -817,12 +818,16 @@ public class OrderManager : Singleton<OrderManager>
             GameManager.Instance.ConditionSetting(order.main, order.sub, order.count, order.style, order.dishCount);
 
             GameManager.Instance.Satisfaction = 100;
+
+            //if(SatisfactionCoroutine != null)
+            //StopCoroutine(SatisfactionCoroutine);
+
             CookingScene.transform.DOMoveY(0, 1).SetEase(Ease.OutBounce).OnComplete(() =>
             {
                 SatisfactionCoroutine = StartCoroutine(SatisfactionUpdate());
                 if (isBeggar)
                 {
-                        StopCoroutine(SatisfactionUpdate());
+                    StopCoroutine(SatisfactionCoroutine);
                 }
             });
         };
@@ -830,20 +835,22 @@ public class OrderManager : Singleton<OrderManager>
 
     private IEnumerator SatisfactionUpdate()
     {
-        if (GameManager.Instance.Satisfaction <= 60)
-            FaceImage.sprite = FaceSprites[(int)EFaceType.Umm];
-        if (GameManager.Instance.Satisfaction <= 20)
-            FaceImage.sprite = FaceSprites[(int)EFaceType.Angry];
-        yield return new WaitForSeconds(1f);
-        if (GameManager.Instance.Satisfaction <= 0 || isSatisfactionStop == true)
+        while(true)
         {
+            if (GameManager.Instance.Satisfaction <= 60)
+                FaceImage.sprite = FaceSprites[(int)EFaceType.Umm];
+            if (GameManager.Instance.Satisfaction <= 20)
+                FaceImage.sprite = FaceSprites[(int)EFaceType.Angry];
+            yield return new WaitForSeconds(1f);
+            if (isSatisfactionStop == true)
+            {
+                EmotionText.text = $"{GameManager.Instance.Satisfaction}%";
+                isSatisfactionStop = false;
+                yield break;
+            }
+            GameManager.Instance.Satisfaction--;
             EmotionText.text = $"{GameManager.Instance.Satisfaction}%";
-            isSatisfactionStop = false;
-            yield break;
         }
-        GameManager.Instance.Satisfaction--;
-        EmotionText.text = $"{GameManager.Instance.Satisfaction}%";
-        SatisfactionCoroutine = StartCoroutine(SatisfactionUpdate());
     }
 
     public void EndingProduction(EendingType endingType)
