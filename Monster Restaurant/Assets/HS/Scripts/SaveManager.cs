@@ -30,6 +30,9 @@ public class SaveManager : MonoBehaviour
 
     private void OnSceneUnloaded(Scene scene)
     {
-        isEndingOpens = GameManager.Instance.isEndingOpens;
+        for (int i = 0; i < isEndingOpens.Length; i++)
+        {
+            isEndingOpens[i] = GameManager.Instance.isEndingOpens[i];
+        }
     }
 }

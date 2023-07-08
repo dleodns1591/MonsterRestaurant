@@ -94,6 +94,8 @@ public class OrderManager : Singleton<OrderManager>
 
     private void Start()
     {
+        SoundManager.instance.PlaySoundClip("Ingame_bgm", SoundType.BGM);
+
         RandomOrderMaterial();
         OrderLoop();
         ShopProduction();
@@ -462,16 +464,19 @@ public class OrderManager : Singleton<OrderManager>
         {
             if (GameManager.Instance.Money < 2500)
             {
+
                 EndingProduction(EendingType.Loser);
                 GameManager.Instance.isEndingOpens[(int)EendingType.Loser] = true;
             }
             else if(GameManager.Instance.Money < 5000)
             {
+
                 EndingProduction(EendingType.Salve);
                 GameManager.Instance.isEndingOpens[(int)EendingType.Salve] = true;
             }
             else
             {
+
                 EndingProduction(EendingType.Mine);
                 GameManager.Instance.isEndingOpens[(int)EendingType.Mine] = true;
             }
@@ -674,11 +679,13 @@ public class OrderManager : Singleton<OrderManager>
             GameManager.Instance.isEndingOpens[(int)EendingType.WormHole] = true;
             if (rand >= 7)
             {
+
                 EndingProduction(EendingType.WormHole_FindHouse);
                 GameManager.Instance.isEndingOpens[(int)EendingType.WormHole_FindHouse] = true;
             }
             else
             {
+
                 EndingProduction(EendingType.WormHole_SpaceAdventure);
                 GameManager.Instance.isEndingOpens[(int)EendingType.WormHole_SpaceAdventure] = true;
             }
@@ -902,6 +909,7 @@ public class OrderManager : Singleton<OrderManager>
 
     public void EndingProduction(EendingType endingType)
     {
+        SoundManager.instance.PlaySoundClip("Ending_bgm", SoundType.BGM);
         StartCoroutine(EndingDelay(endingTypes[(int)endingType].Speech, endingTypes[(int)endingType].EndingSpr));
 
         IEnumerator EndingDelay(string speech, Sprite spr)

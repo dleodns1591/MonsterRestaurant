@@ -83,7 +83,7 @@ public class GameManager : Singleton<GameManager>
                 OrderManager.Instance.isSatisfactionStop = true;
             }
 
-            print(satisfaction);
+            //print(satisfaction);
         }
     }
 

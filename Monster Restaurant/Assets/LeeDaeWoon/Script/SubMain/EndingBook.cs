@@ -75,17 +75,18 @@ public class EndingBook : MonoBehaviour
 
     void EndingCheck()
     {
-        endingSprite[1].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.Eating];
-        endingSprite[2].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.Loser];
-        endingSprite[3].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.Salve];
-        endingSprite[4].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.Mine];
-        //endingSprite[5].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.WormHole];
-        endingSprite[6].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.WormHole_SpaceAdventure];
-        endingSprite[7].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.WormHole_FindHouse];
-        endingSprite[8].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.Dragon];
-        endingSprite[9].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.LookStar];
+        endingSprite[1].isEndingcheck = SaveManager.Instance.isEndingOpens[(int)EendingType.Eating];
+        endingSprite[2].isEndingcheck = SaveManager.Instance.isEndingOpens[(int)EendingType.Loser];
+        endingSprite[3].isEndingcheck = SaveManager.Instance.isEndingOpens[(int)EendingType.Salve];
+        endingSprite[4].isEndingcheck = SaveManager.Instance.isEndingOpens[(int)EendingType.Mine];
+        endingSprite[5].isEndingcheck = SaveManager.Instance.isEndingOpens[(int)EendingType.WormHole];
+        endingSprite[6].isEndingcheck = SaveManager.Instance.isEndingOpens[(int)EendingType.WormHole_SpaceAdventure];
+        endingSprite[7].isEndingcheck = SaveManager.Instance.isEndingOpens[(int)EendingType.WormHole_FindHouse];
+        endingSprite[8].isEndingcheck = SaveManager.Instance.isEndingOpens[(int)EendingType.Dragon];
+        endingSprite[9].isEndingcheck = SaveManager.Instance.isEndingOpens[(int)EendingType.LookStar];
 
-        for(int i = 1; i < endingSprite.Count; i++)
+
+        for (int i = 1; i < endingSprite.Count; i++)
         {
             if(endingSprite[i].isEndingcheck)
                 Book.instnace.bookPages[i] = endingSprite[i].endingsprite;

@@ -74,4 +74,8 @@ public class SoundManager : MonoBehaviour
         return clip;
     }
 
+    public void StopSoundClip(SoundType type)
+    {
+        audioSourceClasses[type].audioSource.Stop();
+    }
 }
