@@ -186,6 +186,11 @@ public class OrderManager : Singleton<OrderManager>
     void SetCustomerType(int type)
     {
         Destroy((Object)CustomerType);
+
+        foreach (var item in GameManager.Instance.eventCheck.returnEventCustomer)
+        {
+
+        }
         GameManager.Instance.randomCustomerNum = UnityEngine.Random.Range(0, OrderTalkTxt.text.Split('\n').Length);
         for (int i = 0; i < OrderTalk.Length; i++)
         {
