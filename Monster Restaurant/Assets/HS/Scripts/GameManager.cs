@@ -11,7 +11,8 @@ public enum EendingType
     Loser,
     Eating,
     LookStar,
-    WormHole,
+    WormHole_FindHouse,
+    WormHole_SpaceAdventure,
     Dragon
 }
 

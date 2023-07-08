@@ -226,7 +226,7 @@ public class OrderManager : Singleton<OrderManager>
                 break;
             default:
                 Destroy((Object)CustomerType);
-                int randomType = 6;
+                int randomType = 4;
                 GameManager.Instance.SpecialType = randomType;
                 switch ((EeventCustomerType)randomType)
                 {
@@ -256,10 +256,8 @@ public class OrderManager : Singleton<OrderManager>
                         CustomerType = gameObject.AddComponent<Beggar>();
                         EeventCustomerSetting(randomType);
                         break;
-                    case EeventCustomerType.Rich:
-                        EeventCustomerSetting(randomType);
-                        break;
                     case EeventCustomerType.GroupOrder:
+                        CustomerType = gameObject.AddComponent<GroupOrder>();
                         EeventCustomerSetting(randomType);
                         break;
                     case EeventCustomerType.SalesMan:
@@ -638,13 +636,13 @@ public class OrderManager : Singleton<OrderManager>
             int rand = UnityEngine.Random.Range(1, 10);
             if(rand >= 7)
             {
-                EndingProduction(EendingType.WormHole);
-                GameManager.Instance.isEndingOpens[(int)EendingType.WormHole] = true;
+                EndingProduction(EendingType.WormHole_FindHouse);
+                GameManager.Instance.isEndingOpens[(int)EendingType.WormHole_FindHouse] = true;
             }
             else
             {
-                EndingProduction(EendingType.WormHole);
-                GameManager.Instance.isEndingOpens[(int)EendingType.WormHole] = true;
+                EndingProduction(EendingType.WormHole_SpaceAdventure);
+                GameManager.Instance.isEndingOpens[(int)EendingType.WormHole_SpaceAdventure] = true;
             }
         };
 
