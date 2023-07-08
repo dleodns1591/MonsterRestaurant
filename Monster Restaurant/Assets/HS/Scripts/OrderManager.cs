@@ -203,7 +203,7 @@ public class OrderManager : Singleton<OrderManager>
         }
 
         int types;
-        if (GuestOfTheDay % 2 == 0 && EventTypes != null)
+        if (GuestOfTheDay % 2 == 0 && EventTypes.Count >= GuestOfTheDay / 2)
         {
             types = (int)EventTypes[GuestOfTheDay / 2];
             switch ((EeventCustomerType)types)
@@ -405,7 +405,7 @@ public class OrderManager : Singleton<OrderManager>
             DayTween.Kill();
         TimeFill.fillAmount = 1;
 
-        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 30)
+        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 60)
         .OnComplete(() => //시간이 다 지났을때
         {
             GameManager.Instance.dayEndCheck = true;
@@ -836,6 +836,7 @@ public class OrderManager : Singleton<OrderManager>
 
         yield return new WaitForSeconds(1f);
         EmotionText.text = "100%";
+        GameManager.Instance.Satisfaction = 100;
         FaceImage.sprite = FaceSprites[(int)EFaceType.Happy];
         Ordercoroutine = StartCoroutine(Order());
     }
@@ -855,9 +856,10 @@ public class OrderManager : Singleton<OrderManager>
             GameManager.Instance.ConditionSetting(order.main, order.sub, order.count, order.style, order.dishCount);
 
             GameManager.Instance.Satisfaction = 100;
+            EmotionText.text = $"{GameManager.Instance.Satisfaction}%";
 
-            //if(SatisfactionCoroutine != null)
-            //StopCoroutine(SatisfactionCoroutine);
+            if (SatisfactionCoroutine != null)
+                StopCoroutine(SatisfactionCoroutine);
 
             CookingScene.transform.DOMoveY(0, 1).SetEase(Ease.OutBounce).OnComplete(() =>
             {
