@@ -2206,6 +2206,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37aadc1b59ca1141937d672b599d3ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBGMCheck: 1
+  isSFXCheck: 1
 --- !u!4 &1142235519
 Transform:
   m_ObjectHideFlags: 0

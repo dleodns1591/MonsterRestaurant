@@ -71,15 +71,15 @@ public class SettingSystem : MonoBehaviour
         {
             SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
 
-            if (!isBGM)
+            if (SoundManager.instance.isBGMCheck)
             {
-                isBGM = true;
+                SoundManager.instance.isBGMCheck = false;
                 bgmBtn.GetComponent<Image>().sprite = bgmCancle;
             }
 
             else
             {
-                isBGM = false;
+                SoundManager.instance.isBGMCheck = true;
                 bgmBtn.GetComponent<Image>().sprite = bgmBasic;
             }
 
@@ -90,15 +90,15 @@ public class SettingSystem : MonoBehaviour
         {
             SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
 
-            if (!isSFX)
+            if (SoundManager.instance.isSFXCheck)
             {
-                isSFX = true;
+                SoundManager.instance.isSFXCheck = false;
                 sfxBtn.GetComponent<Image>().sprite = sfxCancle;
             }
 
             else
             {
-                isSFX = false;
+                SoundManager.instance.isSFXCheck = true;
                 sfxBtn.GetComponent<Image>().sprite = sfxBasic;
             }
         });

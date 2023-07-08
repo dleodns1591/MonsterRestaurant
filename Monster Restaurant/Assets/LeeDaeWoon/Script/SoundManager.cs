@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+
 public enum SoundType
 {
     SFX,
@@ -20,6 +21,22 @@ public class SoundManager : MonoBehaviour
 
     public Dictionary<string, AudioClip> audioClips = new Dictionary<string, AudioClip>();
     public Dictionary<SoundType, AudioSourceClass> audioSourceClasses = new Dictionary<SoundType, AudioSourceClass>();
+
+    public bool isBGMCheck = false;
+    public bool isSFXCheck = false;
+
+    private void Start()
+    {
+
+    }
+
+    private void Update()
+    {
+        if (!isBGMCheck)
+            StopSoundClip(SoundType.BGM);
+        if (!isSFXCheck)
+            StopSoundClip(SoundType.SFX);
+    }
 
     private void Awake()
     {
