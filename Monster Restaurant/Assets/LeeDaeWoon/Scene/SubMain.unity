@@ -2704,7 +2704,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -1050}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1130583896
@@ -2987,7 +2987,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bfe23bbacef083847ab1ef379bb1f5b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a6c608b5b7b83a54c97fd6f741bf2750, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4438,16 +4438,17 @@ MonoBehaviour:
   BookPanel: {fileID: 1486890548}
   background: {fileID: 21300000, guid: 3c47abcf3fb3d12408efe3073b2e379f, type: 3}
   bookPages:
-  - {fileID: 21300000, guid: bfe23bbacef083847ab1ef379bb1f5b0, type: 3}
-  - {fileID: 21300000, guid: bfe23bbacef083847ab1ef379bb1f5b0, type: 3}
-  - {fileID: 21300000, guid: 1c96574a6981ff843afb49fa8932f008, type: 3}
-  - {fileID: 21300000, guid: f1599772d2731ff4298bc284969b05e5, type: 3}
-  - {fileID: 21300000, guid: e481b07475cb09948ae1c49e06ad3fae, type: 3}
-  - {fileID: 21300000, guid: 0836b084e904c2748a3b85530ee8fca7, type: 3}
-  - {fileID: 21300000, guid: 9e367b0e5488e0b4a904f56ee6b798d3, type: 3}
-  - {fileID: 21300000, guid: 2ea723aaaee0e274ebb3b2d7d65963ba, type: 3}
-  - {fileID: 21300000, guid: 84d9289173c028b44a3a7ed3cdfced0e, type: 3}
-  - {fileID: 21300000, guid: 3885c9d05b60b1d479b6f58703926325, type: 3}
+  - {fileID: 21300000, guid: a6c608b5b7b83a54c97fd6f741bf2750, type: 3}
+  - {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
+  - {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
+  - {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
+  - {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
+  - {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
+  - {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
+  - {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
+  - {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
+  - {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
+  - {fileID: 21300000, guid: 5aae1baf4e9c47e4d8192b433dc507b1, type: 3}
   interactable: 0
   enableShadowEffect: 1
   currentPage: 0
@@ -4561,6 +4562,66 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1528035788}
   m_CullTransparentMesh: 0
+--- !u!1 &1637638024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1637638026}
+  - component: {fileID: 1637638025}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1637638025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637638024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f2c7f10fe62964d9ec6131e802b992, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEndingOpens: 0000000000000000
+  BasicRevenue: 200
+  SalesRevenue: 2890
+  TaxCost: 289
+  SettlementCost: 0
+  MarterialCost: 0
+  isBeggarRefuse: 0
+  isEarthlingRefuse: 0
+  isGroupOrder: 0
+  dayEndCheck: 0
+  CanNotMask: 0
+  HumanLike: 0
+  randomCustomerNum: 0
+  SpecialType: 0
+  shop: {fileID: 0}
+  eventCheck: {fileID: 0}
+--- !u!4 &1637638026
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637638024}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1653705347
 GameObject:
   m_ObjectHideFlags: 0
@@ -4741,11 +4802,28 @@ MonoBehaviour:
   endingCancleBtn: {fileID: 460627274}
   endingLeftBtn: {fileID: 2072505554}
   endingRightBtn: {fileID: 1229070208}
+  endingCount: 0
   endingSprite:
-  - {fileID: 0}
-  - {fileID: 0}
-  endingAlbum: {fileID: 0}
-  endingPage: {fileID: 0}
+  - endingsprite: {fileID: 21300000, guid: a6c608b5b7b83a54c97fd6f741bf2750, type: 3}
+    isEndingcheck: 0
+  - endingsprite: {fileID: 21300000, guid: bfe23bbacef083847ab1ef379bb1f5b0, type: 3}
+    isEndingcheck: 0
+  - endingsprite: {fileID: 21300000, guid: 1c96574a6981ff843afb49fa8932f008, type: 3}
+    isEndingcheck: 0
+  - endingsprite: {fileID: 21300000, guid: f1599772d2731ff4298bc284969b05e5, type: 3}
+    isEndingcheck: 0
+  - endingsprite: {fileID: 21300000, guid: e481b07475cb09948ae1c49e06ad3fae, type: 3}
+    isEndingcheck: 0
+  - endingsprite: {fileID: 21300000, guid: 0836b084e904c2748a3b85530ee8fca7, type: 3}
+    isEndingcheck: 0
+  - endingsprite: {fileID: 21300000, guid: 9e367b0e5488e0b4a904f56ee6b798d3, type: 3}
+    isEndingcheck: 0
+  - endingsprite: {fileID: 21300000, guid: 2ea723aaaee0e274ebb3b2d7d65963ba, type: 3}
+    isEndingcheck: 0
+  - endingsprite: {fileID: 21300000, guid: 84d9289173c028b44a3a7ed3cdfced0e, type: 3}
+    isEndingcheck: 0
+  - endingsprite: {fileID: 21300000, guid: 3885c9d05b60b1d479b6f58703926325, type: 3}
+    isEndingcheck: 0
 --- !u!225 &1746800493
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4754,7 +4832,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746800490}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0

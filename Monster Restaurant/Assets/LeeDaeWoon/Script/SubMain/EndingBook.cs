@@ -21,7 +21,7 @@ public class EndingBook : MonoBehaviour
     [SerializeField] Button endingCancleBtn;
     [SerializeField] Button endingLeftBtn;
     [SerializeField] Button endingRightBtn;
-    int endingCount = 0;
+    [SerializeField] int endingCount = 0;
 
     [Space(10)]
     [SerializeField] List<endingCheck> endingSprite = new List<endingCheck>();
@@ -35,6 +35,10 @@ public class EndingBook : MonoBehaviour
     void Update()
     {
         EndingAnimation();
+        EndingCheck();
+
+        if(Input.GetKeyDown(KeyCode.Q))
+            GameManager.Instance.isEndingOpens[(int)EendingType.Mine] = true;
     }
 
     void EndingBtns()
@@ -60,7 +64,7 @@ public class EndingBook : MonoBehaviour
 
         endingRightBtn.onClick.AddListener(() =>
         {
-            if (endingCount < endingSprite.Count)
+            if (endingCount < (endingSprite.Count / 2) - 1)
             {
                 ++endingCount;
                 endingAnimation.SetBool("Right", true);
@@ -80,6 +84,20 @@ public class EndingBook : MonoBehaviour
 
     void EndingCheck()
     {
+        endingSprite[1].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.Eating];
+        endingSprite[2].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.Loser];
+        endingSprite[3].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.Salve];
+        endingSprite[4].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.Mine];
+        //endingSprite[5].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.];
+        endingSprite[6].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.WormHole_SpaceAdventure];
+        endingSprite[7].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.WormHole_FindHouse];
+        endingSprite[8].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.Dragon];
+        endingSprite[9].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.LookStar];
 
+        for(int i = 1; i < endingSprite.Count; i++)
+        {
+            if(endingSprite[i].isEndingcheck)
+                Book.instnace.bookPages[i] = endingSprite[i].endingsprite;
+        }
     }
 }
