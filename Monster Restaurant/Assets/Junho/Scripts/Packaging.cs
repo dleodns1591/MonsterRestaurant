@@ -12,8 +12,6 @@ public class Packaging : MonoBehaviour
     readonly Vector3 startUnder = new Vector3(1722, -8, 0);
     readonly Vector3 startUp = new Vector3(200, 230, 0);
 
-
-    private int orderQuantity = Cooking.Instance.AnswerOrder.dishCount;
     private int packQuantity = 0;
 
     public IEnumerator CheckPack(GameObject cook)
@@ -34,7 +32,7 @@ public class Packaging : MonoBehaviour
         yield return Pack();
 
 
-        if(packQuantity >= orderQuantity)
+        if(packQuantity >= Cooking.Instance.AnswerOrder.dishCount)
         {
 
             packQuantity = 0;
