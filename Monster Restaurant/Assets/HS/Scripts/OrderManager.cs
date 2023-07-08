@@ -466,19 +466,22 @@ public class OrderManager : Singleton<OrderManager>
             {
 
                 EndingProduction(EendingType.Loser);
-                GameManager.Instance[(int)EendingType.Loser] = true;
+                GameManager.Instance.isEndingOpens[(int)EendingType.Loser] = true;
+                SaveManager.Instance.isEndingOpens[(int)EendingType.Loser] = true;
             }
             else if(GameManager.Instance.Money < 5000)
             {
 
                 EndingProduction(EendingType.Salve);
-                GameManager.Instance[(int)EendingType.Salve] = true;
+                GameManager.Instance.isEndingOpens[(int)EendingType.Salve] = true;
+                SaveManager.Instance.isEndingOpens[(int)EendingType.Salve] = true;
             }
             else
             {
 
                 EndingProduction(EendingType.Mine);
-                GameManager.Instance[(int)EendingType.Mine] = true;
+                GameManager.Instance.isEndingOpens[(int)EendingType.Mine] = true;
+                SaveManager.Instance.isEndingOpens[(int)EendingType.Mine] = true;
             }
 
             return;
@@ -676,18 +679,21 @@ public class OrderManager : Singleton<OrderManager>
         GameManager.Instance.WormHoleDraw = () =>
         {
             int rand = UnityEngine.Random.Range(1, 10);
-            GameManager.Instance[(int)EendingType.WormHole] = true;
+            GameManager.Instance.isEndingOpens[(int)EendingType.WormHole] = true;
+            SaveManager.Instance.isEndingOpens[(int)EendingType.WormHole] = true;
             if (rand >= 7)
             {
 
                 EndingProduction(EendingType.WormHole_FindHouse);
-                GameManager.Instance[(int)EendingType.WormHole_FindHouse] = true;
+                GameManager.Instance.isEndingOpens[(int)EendingType.WormHole_FindHouse] = true;
+                SaveManager.Instance.isEndingOpens[(int)EendingType.WormHole_FindHouse] = true;
             }
             else
             {
 
                 EndingProduction(EendingType.WormHole_SpaceAdventure);
-                GameManager.Instance[(int)EendingType.WormHole_SpaceAdventure] = true;
+                GameManager.Instance.isEndingOpens[(int)EendingType.WormHole_SpaceAdventure] = true;
+                SaveManager.Instance.isEndingOpens[(int)EendingType.WormHole_SpaceAdventure] = true;
             }
         };
 
