@@ -31,16 +31,10 @@ public class CookingMaterials : MonoBehaviour
     [SerializeField] private Sprite[] sprites;
     [SerializeField] private CookingStyleSprites[] cookingStyleSprites;
 
- 
-
-
     public void CookingSubMaterialPush()
     {
-
         ESubMatarials type = (Cooking.Instance.myType == myType) ? ESubMatarials.NULL: myType;
             
         Cooking.Instance.CookingTypePush(type, sprites, cookingStyleSprites);
     }
-
-    
 }

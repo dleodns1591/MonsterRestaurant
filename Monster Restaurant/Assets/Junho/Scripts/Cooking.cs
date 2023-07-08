@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Cooking : Singleton<Cooking>
 {
@@ -27,6 +28,7 @@ public class Cooking : Singleton<Cooking>
     public CursorSet cursorSet;
 
     [SerializeField] private Animator[] animators;
+    [SerializeField] private Image[] testAnimators;
 
     private void Start()
     {
@@ -49,24 +51,41 @@ public class Cooking : Singleton<Cooking>
 
         materialPrice = SubMaterialsPriece[((int)type)];
 
-        //AnimationControl();
+        AnimationControl();
     }
 
     private void AnimationControl()
     {
+        //임시 누른 이미지
 
         for (int i = 0; i < animators.Length; i++)
         {
-            bool pickupCheck;
 
             if (i == ((int)myType))
             {
-                pickupCheck = true;
+                testAnimators[i].color = Color.gray;
             }
-            else pickupCheck = false;
+            else testAnimators[i].color = Color.white;
 
-            animators[i].SetBool("IsPickup", pickupCheck);
+            print("Color");
         }
+
+
+
+        //애니메이션
+
+        //for (int i = 0; i < animators.Length; i++)
+        //{
+        //    bool pickupCheck;
+
+        //    if (i == ((int)myType))
+        //    {
+        //        pickupCheck = true;
+        //    }
+        //    else pickupCheck = false;
+
+        //    animators[i].SetBool("IsPickup", pickupCheck);
+        //}
 
     }
 
