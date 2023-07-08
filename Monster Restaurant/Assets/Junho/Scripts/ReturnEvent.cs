@@ -20,6 +20,8 @@ public class ReturnEvent : MonoBehaviour
     {
         int num = 0;
 
+        returnEventCustomer.Clear();
+
         foreach (var item in eventChecks[Day].eventCheckList)
         {
             if (item == true)
@@ -38,8 +40,6 @@ public class ReturnEvent : MonoBehaviour
 
             num++;
         } 
-
-
         Day++;
     }
 
