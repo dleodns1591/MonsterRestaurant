@@ -1,7 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+
 [RequireComponent(typeof(Book))]
 public class AutoFlip : MonoBehaviour {
+
+    public static AutoFlip instnace;
+    void Awake() => instnace = this;
+
     public FlipMode Mode;
     public float PageFlipTime = 1;
     public float TimeBetweenPages = 1;
@@ -17,7 +22,10 @@ public class AutoFlip : MonoBehaviour {
         if (AutoStartFlip)
             StartFlipping();
         ControledBook.OnFlip.AddListener(new UnityEngine.Events.UnityAction(PageFlipped));
-	}
+
+        FlipRightPage();
+    }
+
     void PageFlipped()
     {
         isFlipping = false;

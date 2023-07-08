@@ -2,13 +2,19 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.Events;
+
 public enum FlipMode
 {
     RightToLeft,
     LeftToRight
 }
+
 [ExecuteInEditMode]
-public class Book : MonoBehaviour {
+public class Book : MonoBehaviour 
+{
+    public static Book instnace;
+    void Awake() => instnace = this;
+
     public Canvas canvas;
     [SerializeField]
     RectTransform BookPanel;
@@ -75,10 +81,12 @@ public class Book : MonoBehaviour {
 
         float pageWidth = BookPanel.rect.width / 2.0f;
         float pageHeight = BookPanel.rect.height;
-        NextPageClip.rectTransform.sizeDelta = new Vector2(pageWidth, pageHeight + pageHeight * 2);
+        //NextPageClip.rectTransform.sizeDelta = new Vector2(pageWidth, pageHeight + pageHeight * 2);
+        NextPageClip.rectTransform.sizeDelta = new Vector2(1400,1600);
 
 
-        ClippingPlane.rectTransform.sizeDelta = new Vector2(pageWidth * 2 + pageHeight, pageHeight + pageHeight * 2);
+        //ClippingPlane.rectTransform.sizeDelta = new Vector2(pageWidth * 2 + pageHeight, pageHeight + pageHeight * 2);
+        ClippingPlane.rectTransform.sizeDelta = new Vector2(1300,2000);
 
         //hypotenous (diagonal) page length
         float hyp = Mathf.Sqrt(pageWidth * pageWidth + pageHeight * pageHeight);
