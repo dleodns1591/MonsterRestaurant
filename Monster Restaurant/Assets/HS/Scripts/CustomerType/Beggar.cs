@@ -302,6 +302,7 @@ public class Beggar : MonoBehaviour, I_CustomerType
             //개천에서 용난다 엔딩 ON
             OrderManager.Instance.EndingProduction(EendingType.Dragon);
             GameManager.Instance.isEndingOpens[(int)EendingType.Dragon] = true;
+            SaveManager.Instance.isEndingOpens[(int)EendingType.Dragon] = true;
         });
     }
 }
