@@ -16,6 +16,7 @@ public class TitleManager : MonoBehaviour
     
     void StartBtn()
     {
+        SoundManager.instance.PlaySoundClip("Title_bgm", SoundType.BGM);
         startBtn.onClick.AddListener(() =>
         {
             DOTween.KillAll();

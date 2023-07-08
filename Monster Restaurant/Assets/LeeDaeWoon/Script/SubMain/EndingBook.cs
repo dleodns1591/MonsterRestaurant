@@ -34,11 +34,7 @@ public class EndingBook : MonoBehaviour
 
     void Update()
     {
-        EndingAnimation();
         EndingCheck();
-
-        if(Input.GetKeyDown(KeyCode.Q))
-            GameManager.Instance.isEndingOpens[(int)EendingType.Mine] = true;
     }
 
     void EndingBtns()
@@ -57,7 +53,6 @@ public class EndingBook : MonoBehaviour
             if (0 < endingCount)
             {
                 --endingCount;
-                endingAnimation.SetBool("Left", true);
                 AutoFlip.instnace.FlipLeftPage();
             }
         });
@@ -67,19 +62,9 @@ public class EndingBook : MonoBehaviour
             if (endingCount < (endingSprite.Count / 2) - 1)
             {
                 ++endingCount;
-                endingAnimation.SetBool("Right", true);
                 AutoFlip.instnace.FlipRightPage();
             }
         });
-    }
-
-    void EndingAnimation()
-    {
-        if (endingAnimation.GetCurrentAnimatorStateInfo(0).IsName("Book_Left") && endingAnimation.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
-            endingAnimation.SetBool("Left", false);
-
-        if (endingAnimation.GetCurrentAnimatorStateInfo(0).IsName("Book_Right") && endingAnimation.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
-            endingAnimation.SetBool("Right", false);
     }
 
     void EndingCheck()
@@ -88,7 +73,7 @@ public class EndingBook : MonoBehaviour
         endingSprite[2].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.Loser];
         endingSprite[3].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.Salve];
         endingSprite[4].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.Mine];
-        //endingSprite[5].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.];
+        //endingSprite[5].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.WormHole];
         endingSprite[6].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.WormHole_SpaceAdventure];
         endingSprite[7].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.WormHole_FindHouse];
         endingSprite[8].isEndingcheck = GameManager.Instance.isEndingOpens[(int)EendingType.Dragon];

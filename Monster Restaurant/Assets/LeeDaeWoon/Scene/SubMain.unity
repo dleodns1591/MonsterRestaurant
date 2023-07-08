@@ -2052,7 +2052,6 @@ GameObject:
   - component: {fileID: 995799911}
   - component: {fileID: 995799914}
   - component: {fileID: 995799913}
-  - component: {fileID: 995799912}
   m_Layer: 5
   m_Name: Book
   m_TagString: Untagged
@@ -2080,26 +2079,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &995799912
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 995799910}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 571107bbe9cdc324fba32fb66f049204, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &995799913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4798,7 +4777,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endingGroup: {fileID: 1746800493}
   endingWindow: {fileID: 1117051063}
-  endingAnimation: {fileID: 995799912}
+  endingAnimation: {fileID: 0}
   endingCancleBtn: {fileID: 460627274}
   endingLeftBtn: {fileID: 2072505554}
   endingRightBtn: {fileID: 1229070208}
