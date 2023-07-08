@@ -226,7 +226,7 @@ public class OrderManager : Singleton<OrderManager>
                 break;
             default:
                 Destroy((Object)CustomerType);
-                int randomType = 1;
+                int randomType = 6;
                 GameManager.Instance.SpecialType = randomType;
                 switch ((EeventCustomerType)randomType)
                 {
