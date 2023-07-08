@@ -31,7 +31,9 @@ public class CookingMaterials : MonoBehaviour
     [SerializeField] private Sprite[] sprites;
     [SerializeField] private CookingStyleSprites[] cookingStyleSprites;
 
-    
+ 
+
+
     public void CookingSubMaterialPush()
     {
 
@@ -39,4 +41,6 @@ public class CookingMaterials : MonoBehaviour
             
         Cooking.Instance.CookingTypePush(type, sprites, cookingStyleSprites);
     }
+
+    
 }

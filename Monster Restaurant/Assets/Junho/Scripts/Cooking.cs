@@ -26,6 +26,8 @@ public class Cooking : Singleton<Cooking>
 
     public CursorSet cursorSet;
 
+    [SerializeField] private Animator[] animators;
+
     private void Start()
     {
         GameManager.Instance.ConditionSetting = (EMainMatarials main, List<ESubMatarials> subs, int count, ECookingStyle style, int dishCount) =>
@@ -46,5 +48,26 @@ public class Cooking : Singleton<Cooking>
         styleSprites = styleSprite;
 
         materialPrice = SubMaterialsPriece[((int)type)];
+
+        //AnimationControl();
     }
+
+    private void AnimationControl()
+    {
+
+        for (int i = 0; i < animators.Length; i++)
+        {
+            bool pickupCheck;
+
+            if (i == ((int)myType))
+            {
+                pickupCheck = true;
+            }
+            else pickupCheck = false;
+
+            animators[i].SetBool("IsPickup", pickupCheck);
+        }
+
+    }
+
 }
