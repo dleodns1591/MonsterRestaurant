@@ -26,6 +26,11 @@ public class TitleManager : MonoBehaviour
     [SerializeField] Button endingLeftBtn;
     [SerializeField] Button endingRightBtn;
 
+    [SerializeField] List<Sprite> endingSprite = new List<Sprite>();
+    [SerializeField] Image endingAlbum;
+    [SerializeField] GameObject endingPage;
+    int endingCount = 0;
+
     [Header("¼³Á¤")]
     [SerializeField] CanvasGroup settingGroup;
     [SerializeField] GameObject settingWidnow;
@@ -231,6 +236,7 @@ public class TitleManager : MonoBehaviour
     {
         endingBtn.onClick.AddListener(() =>
         {
+            endingCount = 0;
             endingGroup.alpha = 1;
 
             endingWindow.transform.DOLocalMoveY(0, 0.2f).SetEase(Ease.Linear);
@@ -248,18 +254,26 @@ public class TitleManager : MonoBehaviour
 
         endingLeftBtn.onClick.AddListener(() =>
         {
-            endingAnimation.SetBool("Left", true);
+            if (0 < endingCount)
+            {
+                --endingCount;
+                endingAnimation.SetBool("Left", true);
+            }
         });
 
         endingRightBtn.onClick.AddListener(() =>
         {
-            endingAnimation.SetBool("Right", true);
+            if (endingCount < endingSprite.Count)
+            {
+                ++endingCount;
+                endingAnimation.SetBool("Right", true);
+            }
         });
     }
 
     void EndingAnimation()
     {
-        if(endingAnimation.GetCurrentAnimatorStateInfo(0).IsName("Book_Left") && endingAnimation.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        if (endingAnimation.GetCurrentAnimatorStateInfo(0).IsName("Book_Left") && endingAnimation.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
             endingAnimation.SetBool("Left", false);
 
         if (endingAnimation.GetCurrentAnimatorStateInfo(0).IsName("Book_Right") && endingAnimation.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
