@@ -79,6 +79,8 @@ public class SettingSystem : MonoBehaviour
 
             else
             {
+                SoundManager.instance.PlaySoundClip("Title_bgm", SoundType.BGM);
+
                 SoundManager.instance.isBGMCheck = true;
                 bgmBtn.GetComponent<Image>().sprite = bgmBasic;
             }
