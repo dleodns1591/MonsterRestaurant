@@ -4,8 +4,11 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 
-public class FadeInOut : Singleton<FadeInOut>
+public class FadeInOut : MonoBehaviour
 {
+    public static FadeInOut instance;
+    void Awake() => instance = this;
+
     public float fadeTime = 0;
 
     void Start()

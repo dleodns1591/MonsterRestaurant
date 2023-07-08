@@ -478,8 +478,8 @@ public class OrderManager : Singleton<OrderManager>
 
             return;
         }
-        FadeInOut.Instance.LittleFadeOut();
-        FadeInOut.Instance.RevenueFadeOut();
+        FadeInOut.instance.LittleFadeOut();
+        FadeInOut.instance.RevenueFadeOut();
 
         GameManager.Instance.shop.PurchaseDayCheck();
         GameManager.Instance.Money += 200;
@@ -489,7 +489,7 @@ public class OrderManager : Singleton<OrderManager>
         StartCoroutine(NumberAni());
         IEnumerator NumberAni()
         {
-            yield return new WaitForSeconds(FadeInOut.Instance.fadeTime);
+            yield return new WaitForSeconds(FadeInOut.instance.fadeTime);
             BasicRevenue.text = "";
             SalesRevenue.text = "";
             MarterialCost.text = "";
@@ -536,9 +536,9 @@ public class OrderManager : Singleton<OrderManager>
                         DayText.text = $"{GameManager.Instance.Day}일차....!";
                         DayText.DOFade(1, 1);
                         yield return new WaitForSeconds(1.5f);
-                        FadeInOut.Instance.LittleFade();
-                        DayText.DOFade(0, FadeInOut.Instance.fadeTime);
-                        yield return new WaitForSeconds(FadeInOut.Instance.fadeTime);
+                        FadeInOut.instance.LittleFade();
+                        DayText.DOFade(0, FadeInOut.instance.fadeTime);
+                        yield return new WaitForSeconds(FadeInOut.instance.fadeTime);
                     }
                     StartCoroutine(DayProduction());
                     StartCoroutine(Reset());
@@ -546,7 +546,7 @@ public class OrderManager : Singleton<OrderManager>
             });
             IEnumerator Reset()
             {
-                yield return new WaitForSeconds(FadeInOut.Instance.fadeTime);
+                yield return new WaitForSeconds(FadeInOut.instance.fadeTime);
                 RevenuePopup.GetComponent<Image>().color = new Color(1, 1, 1, 0);
                 RevenuePopup.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 GameManager.Instance.dayEndCheck = false;
@@ -711,11 +711,11 @@ public class OrderManager : Singleton<OrderManager>
             StartCoroutine(Delay());
             IEnumerator Delay()
             {
-                FadeInOut.Instance.FadeOut();
-                yield return new WaitForSeconds(FadeInOut.Instance.fadeTime);
+                FadeInOut.instance.FadeOut();
+                yield return new WaitForSeconds(FadeInOut.instance.fadeTime);
                 GameManager.Instance.shop.ShopOpen();
-                FadeInOut.Instance.Fade();
-                yield return new WaitForSeconds(FadeInOut.Instance.fadeTime);
+                FadeInOut.instance.Fade();
+                yield return new WaitForSeconds(FadeInOut.instance.fadeTime);
                 StopBuyBtn.gameObject.SetActive(true);
                 OrderText.text = "";
                 SpeakOrder("마음에 드시는 제품 있으시면 구매해주세요.");
@@ -906,10 +906,10 @@ public class OrderManager : Singleton<OrderManager>
         {
             bool isEndLine = false;
             EndingCanvas.SetActive(true);
-            FadeInOut.Instance.FadeOut();
+            FadeInOut.instance.FadeOut();
             EndingImg.sprite = spr;
-            EndingImg.DOFade(1, FadeInOut.Instance.fadeTime);
-            yield return new WaitForSeconds(FadeInOut.Instance.fadeTime + 1);
+            EndingImg.DOFade(1, FadeInOut.instance.fadeTime);
+            yield return new WaitForSeconds(FadeInOut.instance.fadeTime + 1);
 
             StartCoroutine(Typing(speech));
             IEnumerator Typing(string str)
