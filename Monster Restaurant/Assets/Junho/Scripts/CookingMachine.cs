@@ -45,11 +45,16 @@ public class CookingMachine : MonoBehaviour
 
         cook.style = cookingStyle;
 
+        //버튼 소리
+
         StartCoroutine(Cooking());
     }
 
     private IEnumerator Cooking()
     {
+
+        //작동 소리
+
         pushMachineImage.sprite = pushMachineSprite[((int)cookingStyle)];
 
 
@@ -70,6 +75,9 @@ public class CookingMachine : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         cook.style = cookingStyle;
         cook.CookingComplete();
+        // 내려 찍는 소리
+
+
         yield return new WaitForSeconds(0.9f);
 
         pushAnimation.ResetTrigger("IsPlay");

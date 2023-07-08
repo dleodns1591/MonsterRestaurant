@@ -50,6 +50,10 @@ public class Packaging : MonoBehaviour
     }
     private IEnumerator Pack()
     {
+        // 포장 소리
+
+
+
         int ran = Random.Range(0, stickers.Length);
         stickers[ran].SetActive(true);
 
