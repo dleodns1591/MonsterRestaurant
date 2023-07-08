@@ -8680,7 +8680,7 @@ MonoBehaviour:
   - {x: 219, y: 447}
   - {x: 211, y: 482}
   - {x: 245, y: 516}
-  isFinalEvolution: 0
+  isFinalEvolution: 1
 --- !u!1 &1314161187
 GameObject:
   m_ObjectHideFlags: 0

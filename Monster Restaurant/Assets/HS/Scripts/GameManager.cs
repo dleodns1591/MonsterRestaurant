@@ -71,11 +71,14 @@ public class GameManager : Singleton<GameManager>
         }
         set
         {
+
             if (!OrderManager.Instance.isBeggar)
                 satisfaction = value;
 
             if (satisfaction < 0)
                 satisfaction = 0;
+
+            print(satisfaction);
         }
     }
 
