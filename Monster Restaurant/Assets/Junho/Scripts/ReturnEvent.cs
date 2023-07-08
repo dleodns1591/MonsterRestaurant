@@ -26,14 +26,16 @@ public class ReturnEvent : MonoBehaviour
         {
             if (item == true)
             {
-                if (num == 0 && Rand(45) == true)
+                if (num == 0)
                 {
+                    if(Rand(45) == true)
                     returnEventCustomer.Add((EeventCustomerType)num);
 
                 }
-                else if(num == 2 && Rand(40) == true)
+                else if(num == 2)
                 {
-                    returnEventCustomer.Add((EeventCustomerType)num);
+                    if (Rand(40) == true)
+                        returnEventCustomer.Add((EeventCustomerType)num);
                 }
                 else returnEventCustomer.Add((EeventCustomerType)num);
             }
