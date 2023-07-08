@@ -30,7 +30,27 @@ public struct OrderSet
 public class GameManager : Singleton<GameManager>
 {
     public OrderSet[] orderSets;
-    [HideInInspector] public bool[] isEndingOpens = new bool[Enum.GetValues(typeof(EendingType)).Length];
+    [HideInInspector] private bool[] isEndingOpens = new bool[Enum.GetValues(typeof(EendingType)).Length];
+    public bool[] IsEndingOpens
+    {
+        get
+        {
+            return isEndingOpens;
+        }
+
+        set
+        {
+            isEndingOpens = value;
+            for (int i = 0; i < isEndingOpens.Length; i++)
+            {
+                if (isEndingOpens[i] == true)
+                {
+                    SaveManager.Instance.isEndingOpens[i] = true;
+                }
+            }
+        }
+    }
+
     private float money = 100;
     public float Money
     {
@@ -100,7 +120,7 @@ public class GameManager : Singleton<GameManager>
         else
         {
             OrderManager.Instance.EndingProduction(EendingType.Eating);
-            isEndingOpens[(int)EendingType.Eating] = true;
+            IsEndingOpens[(int)EendingType.Eating] = true;
         }
         return false;
     }

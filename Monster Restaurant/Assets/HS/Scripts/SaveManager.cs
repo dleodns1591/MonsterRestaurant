@@ -22,17 +22,4 @@ public class SaveManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
-    private void Start()
-    {
-        SceneManager.sceneUnloaded += OnSceneUnloaded;
-    }
-
-    private void OnSceneUnloaded(Scene scene)
-    {
-        for (int i = 0; i < isEndingOpens.Length; i++)
-        {
-            isEndingOpens[i] = GameManager.Instance.isEndingOpens[i];
-        }
-    }
 }
