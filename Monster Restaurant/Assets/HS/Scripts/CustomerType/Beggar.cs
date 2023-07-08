@@ -33,6 +33,8 @@ public class Beggar : MonoBehaviour, I_CustomerType
 
     public void SpecialType(TextMeshProUGUI cook, TextMeshProUGUI ask)
     {
+        OrderManager.Instance.StopOrderCoroutine();
+
         cookBtn = cook.transform.parent.GetComponent<Button>();
         askBtn = ask.transform.parent.GetComponent<Button>();
 
@@ -298,8 +300,8 @@ public class Beggar : MonoBehaviour, I_CustomerType
 
             GameManager.Instance.Money += 10000000000;
             //개천에서 용난다 엔딩 ON
-            OrderManager.Instance.EndingProduction(EendingType.Mine);
-            GameManager.Instance.isEndingOpens[(int)EendingType.Mine] = true;
+            OrderManager.Instance.EndingProduction(EendingType.Dragon);
+            GameManager.Instance.isEndingOpens[(int)EendingType.Dragon] = true;
         });
     }
 }

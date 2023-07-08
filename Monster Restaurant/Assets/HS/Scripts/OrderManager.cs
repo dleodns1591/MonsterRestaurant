@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
+using System.Net.NetworkInformation;
+using UnityEditor.SceneManagement;
+using Object = UnityEngine.Object;
 
 [Serializable]
 public struct EndingType
@@ -78,7 +81,7 @@ public class OrderManager : Singleton<OrderManager>
     private Coroutine SatisfactionCoroutine, Ordercoroutine, BuyTextCoroutine;
     private int firstMoney;
     private I_CustomerType CustomerType;
-    private bool isSatisfactionStop;
+    public bool isSatisfactionStop;
     [HideInInspector] public bool isCookingSuccess;
     [HideInInspector] public bool isBeggar;
     [HideInInspector] public int orderType;
@@ -182,6 +185,12 @@ public class OrderManager : Singleton<OrderManager>
 
     void SetCustomerType(int type)
     {
+        Destroy((Object)CustomerType);
+
+        foreach (var item in GameManager.Instance.eventCheck.returnEventCustomer)
+        {
+
+        }
         GameManager.Instance.randomCustomerNum = UnityEngine.Random.Range(0, OrderTalkTxt.text.Split('\n').Length);
         for (int i = 0; i < OrderTalk.Length; i++)
         {
@@ -221,7 +230,8 @@ public class OrderManager : Singleton<OrderManager>
                 NormalCustomerSetting(type);
                 break;
             default:
-                int randomType = 5;
+                Destroy((Object)CustomerType);
+                int randomType = 4;
                 GameManager.Instance.SpecialType = randomType;
                 switch ((EeventCustomerType)randomType)
                 {
@@ -251,10 +261,8 @@ public class OrderManager : Singleton<OrderManager>
                         CustomerType = gameObject.AddComponent<Beggar>();
                         EeventCustomerSetting(randomType);
                         break;
-                    case EeventCustomerType.Rich:
-                        EeventCustomerSetting(randomType);
-                        break;
                     case EeventCustomerType.GroupOrder:
+                        CustomerType = gameObject.AddComponent<GroupOrder>();
                         EeventCustomerSetting(randomType);
                         break;
                     case EeventCustomerType.SalesMan:
@@ -270,7 +278,7 @@ public class OrderManager : Singleton<OrderManager>
         }
         CustomerType.SpecialType(BtnCookText, BtnAskText);
     }
-    string[] RandomOrderSpeech(int OrderSequence)
+    public string[] RandomOrderSpeech(int OrderSequence)
     {
         string[] line = OrderTalkTxt.text.Split('\n');
         string[] Sentence = new string[line.Length];
@@ -299,7 +307,7 @@ public class OrderManager : Singleton<OrderManager>
                 case "°í±â":
                     return EMainMatarials.Meat;
                 default:
-                    return EMainMatarials.Bread;
+                    return EMainMatarials.NULL;
             }
         }
         ESubMatarials eSub(string cell)
@@ -331,14 +339,24 @@ public class OrderManager : Singleton<OrderManager>
                 case "¿Ü°è Ç®":
                     return ESubMatarials.AlienPlant;
                 default:
-                    return ESubMatarials.Battery;
+                    return ESubMatarials.NULL;
 
             }
         }
 
         ECookingStyle eStyle(string cell)
         {
-            return ECookingStyle.Fry;
+            switch (cell)
+            {
+                case "²ú±â":
+                    return ECookingStyle.Boil;
+                case "Æ¢±â±â":
+                    return ECookingStyle.Fry;
+                case "±Á±â":
+                    return ECookingStyle.Roast;
+                default:
+                    return ECookingStyle.None;
+            }
         }
 
         string[] line = OrderTalkTxt.text.Split('\n');
@@ -350,10 +368,12 @@ public class OrderManager : Singleton<OrderManager>
             string[] cell = line[i].Split('\t');
 
             GameManager.Instance.orderSets[i].main = eMain(cell[0]);
-            GameManager.Instance.orderSets[i].sub = new List<ESubMatarials>() { ESubMatarials.AlienPlant, ESubMatarials.AlienPlant, ESubMatarials.AlienPlant };
-            GameManager.Instance.orderSets[i].sub[0] = eSub(cell[1]);
-            GameManager.Instance.orderSets[i].sub[1] = eSub(cell[2]);
-            GameManager.Instance.orderSets[i].sub[2] = eSub(cell[3]);
+            GameManager.Instance.orderSets[i].sub = new List<ESubMatarials>
+            {
+                eSub(cell[1]),
+                eSub(cell[2]),
+                eSub(cell[3])
+            };
             GameManager.Instance.orderSets[i].style = eStyle(cell[4]);
             GameManager.Instance.orderSets[i].count = int.Parse(cell[5]);
             GameManager.Instance.orderSets[i].dishCount = int.Parse(cell[6]);
@@ -516,7 +536,7 @@ public class OrderManager : Singleton<OrderManager>
         normalGuestType = UnityEngine.Random.Range(0, 8);
         SetCustomerType(9);
         yield return StartCoroutine(customer.Moving());
-        
+
         ReAskBtn.gameObject.SetActive(true);
         CookingBtn.gameObject.SetActive(true);
         SpeechBallon.gameObject.SetActive(true);
@@ -619,15 +639,15 @@ public class OrderManager : Singleton<OrderManager>
         GameManager.Instance.WormHoleDraw = () =>
         {
             int rand = UnityEngine.Random.Range(1, 10);
-            if(rand >= 7)
+            if (rand >= 7)
             {
-                EndingProduction(EendingType.WormHole);
-                GameManager.Instance.isEndingOpens[(int)EendingType.WormHole] = true;
+                EndingProduction(EendingType.WormHole_FindHouse);
+                GameManager.Instance.isEndingOpens[(int)EendingType.WormHole_FindHouse] = true;
             }
             else
             {
-                EndingProduction(EendingType.WormHole);
-                GameManager.Instance.isEndingOpens[(int)EendingType.WormHole] = true;
+                EndingProduction(EendingType.WormHole_SpaceAdventure);
+                GameManager.Instance.isEndingOpens[(int)EendingType.WormHole_SpaceAdventure] = true;
             }
         };
 
@@ -638,7 +658,7 @@ public class OrderManager : Singleton<OrderManager>
 
             SpeakOrder(speechs[rand]);
 
-            if(BuyTextCoroutine != null)
+            if (BuyTextCoroutine != null)
             {
                 StopCoroutine(BuyTextCoroutine);
                 OrderText.text = "";
@@ -685,7 +705,6 @@ public class OrderManager : Singleton<OrderManager>
     {
         GameManager.Instance.ReturnOrder = () =>
         {
-
             string[] line = AnswerTalkTxt.text.Split('\n');
 
             string[,] SucsessTalk = new string[Enum.GetValues(typeof(EcustomerType)).Length, 3];
@@ -710,7 +729,6 @@ public class OrderManager : Singleton<OrderManager>
                 if (cell[1] == "¼º°ø")
                 {
                     SucsessTalk[(int)NameToEnumReturn(cell[0]), sucsessCnt] = cell[2];
-                    print(sucsessCnt);
                     sucsessCnt++;
                 }
                 else if (cell[1] == "½ÇÆÐ")
@@ -754,6 +772,7 @@ public class OrderManager : Singleton<OrderManager>
             }
 
             isBeggar = false;
+            GameManager.Instance.isGroupOrder = false;
             if (!CustomerType.SpecialAnswer().Equals(""))
             {
                 EeventCustomerSetting(GameManager.Instance.SpecialType);
@@ -774,11 +793,6 @@ public class OrderManager : Singleton<OrderManager>
     }
     public IEnumerator ExitAndComein()
     {
-        if (SatisfactionCoroutine != null)
-        {
-            isSatisfactionStop = true;
-        }
-
         yield return new WaitForSeconds(1.5f);
 
         SpeechBallon.gameObject.SetActive(false);
@@ -808,12 +822,16 @@ public class OrderManager : Singleton<OrderManager>
             GameManager.Instance.ConditionSetting(order.main, order.sub, order.count, order.style, order.dishCount);
 
             GameManager.Instance.Satisfaction = 100;
+
+            //if(SatisfactionCoroutine != null)
+            //StopCoroutine(SatisfactionCoroutine);
+
             CookingScene.transform.DOMoveY(0, 1).SetEase(Ease.OutBounce).OnComplete(() =>
             {
                 SatisfactionCoroutine = StartCoroutine(SatisfactionUpdate());
                 if (isBeggar)
                 {
-                        StopCoroutine(SatisfactionUpdate());
+                    StopCoroutine(SatisfactionCoroutine);
                 }
             });
         };
@@ -821,20 +839,30 @@ public class OrderManager : Singleton<OrderManager>
 
     private IEnumerator SatisfactionUpdate()
     {
-        print(GameManager.Instance.Satisfaction);
-        if (GameManager.Instance.Satisfaction <= 60)
-            FaceImage.sprite = FaceSprites[(int)EFaceType.Umm];
-        if (GameManager.Instance.Satisfaction <= 20)
-            FaceImage.sprite = FaceSprites[(int)EFaceType.Angry];
-        yield return new WaitForSeconds(1f);
-        if (GameManager.Instance.Satisfaction <= 0 || isSatisfactionStop == true)
+        while (true)
         {
-            isSatisfactionStop = false;
-            yield break;
+            if (!GameManager.Instance.isGroupOrder)
+            {
+                if (GameManager.Instance.Satisfaction <= 60)
+                    FaceImage.sprite = FaceSprites[(int)EFaceType.Umm];
+                if (GameManager.Instance.Satisfaction <= 20)
+                    FaceImage.sprite = FaceSprites[(int)EFaceType.Angry];
+            }
+            else
+            {
+                if (GameManager.Instance.Satisfaction <= 55)
+                    FaceImage.sprite = FaceSprites[(int)EFaceType.Angry];
+            }
+            yield return new WaitForSeconds(1f);
+            if (isSatisfactionStop == true)
+            {
+                EmotionText.text = $"{GameManager.Instance.Satisfaction}%";
+                isSatisfactionStop = false;
+                yield break;
+            }
+            GameManager.Instance.Satisfaction--;
+            EmotionText.text = $"{GameManager.Instance.Satisfaction}%";
         }
-        GameManager.Instance.Satisfaction--;
-        EmotionText.text = $"{GameManager.Instance.Satisfaction}%";
-        SatisfactionCoroutine = StartCoroutine(SatisfactionUpdate());
     }
 
     public void EndingProduction(EendingType endingType)
@@ -863,7 +891,7 @@ public class OrderManager : Singleton<OrderManager>
                     {
                         isEndLine = true;
                     });
-                    while(true)
+                    while (true)
                     {
                         yield return null;
                         if (Input.GetMouseButtonDown(0) && isEndLine)

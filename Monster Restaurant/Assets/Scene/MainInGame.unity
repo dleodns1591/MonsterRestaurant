@@ -467,6 +467,7 @@ GameObject:
   - component: {fileID: 40486574}
   - component: {fileID: 40486573}
   - component: {fileID: 40486572}
+  - component: {fileID: 40486576}
   m_Layer: 5
   m_Name: Poop
   m_TagString: Untagged
@@ -547,13 +548,13 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_SelectedColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
+    m_DisabledColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -622,6 +623,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 40486570}
   m_CullTransparentMesh: 1
+--- !u!95 &40486576
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40486570}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6438d75a3f33ded4ab6965dddeb4b61b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &48065054
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,6 +656,7 @@ GameObject:
   - component: {fileID: 48065058}
   - component: {fileID: 48065057}
   - component: {fileID: 48065056}
+  - component: {fileID: 48065060}
   m_Layer: 5
   m_Name: AlienPlant
   m_TagString: Untagged
@@ -711,13 +733,13 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_SelectedColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
+    m_DisabledColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -786,6 +808,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 48065054}
   m_CullTransparentMesh: 1
+--- !u!95 &48065060
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48065054}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1f37504ec6e77a1418dd610aa9f11d37, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &76291592
 GameObject:
   m_ObjectHideFlags: 0
@@ -1758,6 +1800,7 @@ GameObject:
   - component: {fileID: 251505434}
   - component: {fileID: 251505433}
   - component: {fileID: 251505432}
+  - component: {fileID: 251505436}
   m_Layer: 5
   m_Name: Fur
   m_TagString: Untagged
@@ -1838,13 +1881,13 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_SelectedColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
+    m_DisabledColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1913,6 +1956,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 251505430}
   m_CullTransparentMesh: 1
+--- !u!95 &251505436
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251505430}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 93fa686a2ba744d49a5cc3694327982f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &257585318
 GameObject:
   m_ObjectHideFlags: 0
@@ -2326,6 +2389,32 @@ MonoBehaviour:
   KitchenRoom: {fileID: 975579623}
   foodPool: {fileID: 685737025}
   cursorSet: {fileID: 368171684}
+  animators:
+  - {fileID: 48065060}
+  - {fileID: 1629214774}
+  - {fileID: 957717435}
+  - {fileID: 488054497}
+  - {fileID: 725196250}
+  - {fileID: 251505436}
+  - {fileID: 1703389739}
+  - {fileID: 697791793}
+  - {fileID: 1085633685}
+  - {fileID: 40486576}
+  - {fileID: 894450852}
+  - {fileID: 1381103061}
+  testAnimators:
+  - {fileID: 48065058}
+  - {fileID: 1629214772}
+  - {fileID: 957717433}
+  - {fileID: 488054495}
+  - {fileID: 725196248}
+  - {fileID: 251505434}
+  - {fileID: 1703389737}
+  - {fileID: 697791791}
+  - {fileID: 1085633683}
+  - {fileID: 40486574}
+  - {fileID: 894450850}
+  - {fileID: 1381103059}
 --- !u!1 &393972776
 GameObject:
   m_ObjectHideFlags: 0
@@ -2972,7 +3061,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 225}
-  m_SizeDelta: {x: 171, y: 450}
+  m_SizeDelta: {x: 187, y: 451}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &459423884
 MonoBehaviour:
@@ -2994,7 +3083,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 64ddd5733b9d30d42a0b6410e63f37bb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4c4b1293975af5c4b9010fe634a59c95, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3025,6 +3114,7 @@ GameObject:
   - component: {fileID: 488054495}
   - component: {fileID: 488054494}
   - component: {fileID: 488054493}
+  - component: {fileID: 488054497}
   m_Layer: 5
   m_Name: Bolt
   m_TagString: Untagged
@@ -3097,13 +3187,13 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_SelectedColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
+    m_DisabledColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -3172,6 +3262,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 488054491}
   m_CullTransparentMesh: 1
+--- !u!95 &488054497
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488054491}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1399e4a1f038c8242ba3eb1149433660, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &495883194
 GameObject:
   m_ObjectHideFlags: 0
@@ -4414,6 +4524,7 @@ GameObject:
   - component: {fileID: 697791791}
   - component: {fileID: 697791790}
   - component: {fileID: 697791789}
+  - component: {fileID: 697791793}
   m_Layer: 5
   m_Name: Money
   m_TagString: Untagged
@@ -4486,13 +4597,13 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_SelectedColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
+    m_DisabledColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -4561,6 +4672,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 697791787}
   m_CullTransparentMesh: 1
+--- !u!95 &697791793
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697791787}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ee06e33f273630c42a349691866f8da9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &713841025
 GameObject:
   m_ObjectHideFlags: 0
@@ -4605,6 +4736,7 @@ GameObject:
   - component: {fileID: 725196248}
   - component: {fileID: 725196247}
   - component: {fileID: 725196246}
+  - component: {fileID: 725196250}
   m_Layer: 5
   m_Name: Eyes
   m_TagString: Untagged
@@ -4689,13 +4821,13 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_SelectedColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
+    m_DisabledColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -4764,6 +4896,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725196244}
   m_CullTransparentMesh: 1
+--- !u!95 &725196250
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725196244}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3b842cc46e9b8ab4abdea2bfed95f255, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &746978467
 GameObject:
   m_ObjectHideFlags: 0
@@ -5807,6 +5959,7 @@ GameObject:
   - component: {fileID: 894450850}
   - component: {fileID: 894450849}
   - component: {fileID: 894450848}
+  - component: {fileID: 894450852}
   m_Layer: 5
   m_Name: Preservatives
   m_TagString: Untagged
@@ -5883,13 +6036,13 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_SelectedColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
+    m_DisabledColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -5958,6 +6111,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 894450846}
   m_CullTransparentMesh: 1
+--- !u!95 &894450852
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894450846}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5c26c18af127f3049a107e1f5a7ec2fd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &913075541
 GameObject:
   m_ObjectHideFlags: 0
@@ -6238,26 +6411,145 @@ MonoBehaviour:
   EndingImg: {fileID: 1365479691}
   EndingExplanTxt: {fileID: 947319174}
   endingTypes:
-  - Speech: "\n\uC218\uB9CE\uC740 \uC190\uB2D8\uB4E4\uC758 \uC18C\uC1A1\uACFC \uD56D\uC758\uB85C
-      \uC2DD\uB2F9\uC740 \uD3D0\uC5C5\uD558\uAC8C \uB418\uC5C8\uB2E4.  \r\n\uADF8
-      \uB300\uAC00\uB85C \uC8FC\uC778\uACF5\uC740 \uC6B0\uC8FC \uC554\uC2DC\uC7A5\uC5D0
-      \uC2DD\uC6A9\uC73C\uB85C \uD314\uB838\uB2E4."
+  - Speech: "\uC0DD\uAC01\uBCF4\uB2E4 \uC774 \uC54C\uBC14\uC5D0 \uC7AC\uB2A5\uC774
+      \uC788\uB294 \uAC74\uC9C0 \uC608\uC0C1\uBCF4\uB2E4 \uB3C8\uC744 \uB9CE\uC774
+      \uBC8C\uC5C8\uC2B5\uB2C8\uB2E4.\r\n\uC774 \uB3C8\uC744 \uC5B4\uB5BB\uAC8C \uC4F8\uAE4C
+      \uACE0\uBBFC\uD558\uB2E4\uAC00 \uADF8\uB0E5 \uC2DD\uB2F9\uC744 \uC778\uC218\uD574\uBC84\uB9AC\uAE30\uB85C
+      \uD588\uC5B4\uC694. \uC778\uC0DD\uC740 \uB3C4\uC804\uC758 \uC5F0\uC18D\uC774\uC8E0.\r\n\uC9C0\uAD6C\uB85C
+      \uB3CC\uC544\uAC00\uC11C \uD559\uC790\uAE08 \uB300\uCD9C\uC744 \uAC1A\uC73C\uBA70,
+      \uC544\uB465\uBC14\uB465 \uC0B4\uBC14\uC5D0\uB294 \uCC28\uB77C\uB9AC \uC774\uAC8C
+      \uB354 \uB098\uC744 \uC218\uB3C4 \uC788\uACA0\uB2E4\uACE0 \uC0DD\uAC01\uD588\uC5B4\uC694.\r\n\uC774\uB807\uAC8C
+      \uB41C \uAC70 \uC0C8\uB85C \uB9AC\uBAA8\uB378\uB9C1\uB3C4 \uD558\uACE0 \uBA54\uB274\uB3C4
+      \uCD94\uAC00\uD574\uC11C \uC6B0\uC8FC \uCD5C\uACE0\uC758 \uC2DD\uB2F9\uC73C\uB85C
+      \uB9CC\uB4E4\uC5B4 \uBCF4\uACA0\uC2B5\uB2C8\uB2E4. \uAE30\uB300\uD558\uC138\uC694.\r\n\uC5D4\uB529
+      \uD574\uAE08: \"\uC774 \uC2DD\uB2F9\uC740 \uC774\uC81C\uBD80\uD130 \uC81C \uAC81\uB2C8\uB2E4\""
+    EndingSpr: {fileID: 21300000, guid: 8d22f92f49cee4e4fa78ac8d056a58bf, type: 3}
+  - Speech: "\uC0AC\uC7A5\uB2D8\uAED8\uC11C \uC81C\uAC00 \uC0DD\uAC01\uBCF4\uB2E4
+      \uC77C\uC744 \uC798\uD55C\uB2E4\uBA70, \uAC15\uC81C\uC801\uC73C\uB85C \uC5F0\uC7A5
+      \uACC4\uC57D\uC744 \uD588\uC5B4\uC694.\r\n\uADF8\uB807\uAC8C \uC800\uB294 \uC774
+      \uC2DD\uB2F9\uC5D0\uC11C \uACC4\uC18D \uC77C\uC744 \uD558\uAC8C \uB418\uC5C8\uC2B5\uB2C8\uB2E4.\r\n\uC544...
+      \uC7A0\uC2DC\uB9CC\uC694 \uC190\uB2D8\uC774 \uC624\uC168\uC5B4\uC694.\r\n\uC5B4\uC11C
+      \uC624\uC138\uC694! \uC190\uB2D8 \uC138\uC0C1\uC758 \uBAA8\uB4E0 \uB9DB\uC744
+      \uB290\uB084 \uC218 \uC788\uB294 \uACF3 \uBAAC\uC2A4\uD130 \uC2DD\uB2F9\uC785\uB2C8\uB2E4.
+      \uBB34\uC5C7\uC744 \uB3C4\uC640\uB4DC\uB9B4\uAE4C\uC694?\r\n\uC5D4\uB529 \uD574\uAE08:
+      \"\uC4F8\uB9CC\uD55C \uB178\uC608\""
+    EndingSpr: {fileID: 21300000, guid: d355a0bb04597d544866bdfa484eab72, type: 3}
+  - Speech: "\uC0AC\uC7A5\uB2D8\uAED8\uC11C \uC81C\uAC00 \uC0DD\uAC01\uBCF4\uB2E4
+      \uC77C\uC744 \uC798\uD55C\uB2E4\uBA70, \uAC15\uC81C\uC801\uC73C\uB85C \uC5F0\uC7A5
+      \uACC4\uC57D\uC744 \uD588\uC5B4\uC694.\r\n\uADF8\uB807\uAC8C \uC800\uB294 \uC774
+      \uC2DD\uB2F9\uC5D0\uC11C \uACC4\uC18D \uC77C\uC744 \uD558\uAC8C \uB418\uC5C8\uC2B5\uB2C8\uB2E4.\r\n\uC544...
+      \uC7A0\uC2DC\uB9CC\uC694 \uC190\uB2D8\uC774 \uC624\uC168\uC5B4\uC694.\r\n\uC5B4\uC11C
+      \uC624\uC138\uC694! \uC190\uB2D8 \uC138\uC0C1\uC758 \uBAA8\uB4E0 \uB9DB\uC744
+      \uB290\uB084 \uC218 \uC788\uB294 \uACF3 \uBAAC\uC2A4\uD130 \uC2DD\uB2F9\uC785\uB2C8\uB2E4.
+      \uBB34\uC5C7\uC744 \uB3C4\uC640\uB4DC\uB9B4\uAE4C\uC694?\r\n\uC5D4\uB529 \uD574\uAE08:
+      \"\uC4F8\uB9CC\uD55C \uB178\uC608\""
+    EndingSpr: {fileID: 21300000, guid: d355a0bb04597d544866bdfa484eab72, type: 3}
+  - Speech: "\uC218\uB9CE\uC740 \uC190\uB2D8\uB4E4\uC758 \uC18C\uC1A1\uACFC \uD56D\uC758\uB85C
+      \uC2DD\uB2F9\uC740 \uD3D0\uC5C5\uD558\uAC8C \uB418\uC5C8\uC2B5\uB2C8\uB2E4. 
+      \r\n\uC800\uB294 \uACE0\uAE30\uAC00 \uB418\uC5C8\uACE0, \uC800\uC758 \uACE0\uAE30\uB294
+      \uC6B0\uC8FC \uC554\uC2DC\uC7A5\uC5D0 \uC2DD\uC6A9\uC73C\uB85C \uD314\uB9AC\uACE0
+      \uB9D0\uC558\uC2B5\uB2C8\uB2E4.\r\n\uC800\uB294 \uC6B0\uC8FC \uC554\uC2DC\uC7A5\uC5D0\uC11C
+      \uB1CC\uAC00 \uAC00\uC7A5 \uBE44\uC2F8\uAC8C \uD314\uB9B0\uB2E4\uB294 \uC0AC\uC2E4\uC744
+      \uC54C\uACE0 \uC2F6\uC9C0 \uC54A\uC558\uC5B4\uC694.\r\n\uC5D4\uB529 \uD574\uAE08:
+      \"\uB108\uC758 \uB1CC\uB97C \uBA39\uACE0 \uC2F6\uC5B4\""
     EndingSpr: {fileID: 21300000, guid: fe2ef20f8d13358469bc5c9f74c9e06d, type: 3}
-  - Speech: "\uC815\uB9D0 \uB2E4\uD589\uC774\uAC8C\uB3C4, \uC2A4\uD154\uB77C\uAC00
-      \uB098\uB97C \uC9C0\uAD6C\uB85C \uB370\uB824\uAC00\uAE30 \uC704\uD574 \uC6B0\uC8FC\uC120\uC744
-      \uAC00\uC838\uC654\uB2E4\uACE0 \uD55C\uB2E4\r\n\uADF8\uB807\uAC8C \uB098\uB294
+  - Speech: "\uC2A4\uD154\uB77C: \"\uB098\uB791 \uBCC4 \uBCF4\uB7EC\uAC00\uC9C0 \uC54A\uC744\uB798?\"\r\n\uC2A4\uD154\uB77C\uB294
+      \uC800\uC640 \uBCC4\uC744 \uBCF4\uACE0 \uC2F6\uB2E4\uBA70 \uC790\uC2E0\uC758
+      \uC6B0\uC8FC\uC120\uC5D0 \uAC19\uC774 \uD0C0\uC790\uACE0 \uD588\uC5B4\uC694.\r\n\uC800\uB294
+      \uC0AC\uC815\uC744 \uC124\uBA85\uD558\uACE0 \uC800\uB97C \uC9C0\uAD6C\uC5D0
+      \uB370\uB824\uB2E4 \uB2EC\uB77C\uACE0 \uBD80\uD0C1\uD588\uC8E0.\r\n\uC2A4\uD154\uB77C\uB294
+      \uBD80\uD0C1\uC744 \uB4E4\uC5B4\uC92C\uACE0, \uADF8\uB807\uAC8C \uC800\uB294
       \uC2A4\uD154\uB77C\uC640 \uD568\uAED8 \uC6B0\uC8FC\uC120\uC744 \uD0C0\uACE0
-      \uC9C0\uAD6C\uB85C \uAC14\uB2E4. \r\n\uC194\uC9C1\uD55C \uB0B4 \uC2EC\uC815\uC744
-      \uB9D0\uD558\uC790\uBA74 \uC5B4\uC0C9\uD574\uC11C \uB3CC\uC544\uBC84\uB9AC\uACA0\uB2E4.\r\n\uC774\uC131\uC774\uB791
+      \uC9C0\uAD6C\uB85C \uAC00\uAE30\uB85C \uD588\uC2B5\uB2C8\uB2E4. \r\n\uADF8\uB7F0\uB370
+      \uC9C0\uAE08 \uC194\uC9C1\uD55C \uC81C \uC2EC\uC815\uC744 \uB9D0\uD558\uC790\uBA74
+      \uC5B4\uC0C9\uD574\uC11C \uB3CC\uC544\uBC84\uB9B4 \uAC83 \uAC19\uC544\uC694.\r\n\uC774\uC131\uC774\uB791
       \uB2E8 \uB458\uC774 \uC788\uB294 \uAC74 \uCD08\uB4F1\uD559\uAD50 \uCCAD\uC18C\uB2F9\uBC88
       \uC774\uD6C4\uB85C \uCC98\uC74C\uC774\uC5B4\uC11C \uC5B4\uB5BB\uAC8C \uB300\uD654\uB97C
-      \uC2DC\uC791 \uD574\uC57C\uD560\uC9C0 \uBAA8\uB974\uACA0\uB2E4.\r\n\"\uADF8..\u3148..\uC9C0\uAD6C\uC5D0\uB294
-      \uC5B8\uC81C\uCBE4 \uB3C4\uCC29\uD560 \uC218 \uC788\uC744\uAE4C?\"\r\n\uC2A4\uD154\uB77C:
-      \"\uAE00\uC384? \uC6DC\uD640\uC744 \uD0C0\uC9C0 \uC54A\uB294 \uC774\uC0C1 \uD55C
-      2\uAC1C\uC6D4 \uC815\uB3C4 \uAC78\uB9B4 \uAC78?\"\r"
+      \uC2DC\uC791 \uD574\uC57C\uD560\uC9C0 \uBAA8\uB974\uACA0\uAC70\uB4E0\uC694.\r\n\uC2A4\uD154\uB77C\uAC00
+      \uADF8\uB7EC\uAE38 \uC9C0\uAD6C\uAE4C\uC9C0\uB294 \uCD5C\uC18C \uD55C \uB2EC\uC740
+      \uAC78\uB9B4 \uAC70\uB77C\uACE0 \uD558\uB294\uB370... \uC5ED\uC2DC \uCE5C\uD574\uC9C0\uB294
+      \uAC8C \uC88B\uC744 \uAC70 \uAC19\uC544\uC694. \uB9D0\uC744 \uAC78\uC5B4\uBD10\uC57C\uACA0\uC5B4\uC694.\r\n\"\u3147..\uC6B0\uC640
+      \uB0A0\uC528 \uC88B\uB2E4 \uADF8\uCE58?\"\r\n\uC2A4\uD154\uB77C: \"\uC6B0\uC8FC\uC5D0
+      \uB0A0\uC528\uAC00 \uC788\uC5B4?\u314B\u314B\"\r\n\uC544... \uB9DD\uD55C \uAC70
+      \uAC19\uC544\uC694. \uADF8\uB0E5 \uAC00\uB9CC\uD788 \uC788\uC744 \uAC78\r\n\uADF8\uB798\uB3C4
+      \uC6C3\uB294\uB2E4\uB294 \uAC74 \uAE0D\uC815\uC801\uC778 \uC2E0\uD638 \uC544\uB2D0\uAE4C\uC694?
+      \uADF8\uB807\uC8E0?\r\n\uC5D4\uB529 \uD574\uAE08: \"\uB098\uB791 \uBCC4 \uBCF4\uB7EC\uAC00\uC9C0
+      \uC54A\uC744\uB798?\""
     EndingSpr: {fileID: 21300000, guid: fd8c19a0b27fa854d8032c8a35c93278, type: 3}
+  - Speech: "\uB9AC\uC2DC\uB4DC\uC5D0\uAC8C \uAD6C\uB9E4\uD55C \uC6DC\uD640 \uC774\uC6A9\uAD8C\uC744
+      \uC0AC\uC6A9\uD558\uC5EC \uC6DC\uD640\uC744 \uD0C0\uACE0 \uC9C0\uAD6C\uB85C
+      \uD0C8\uCD9C\uD558\uAE30\uB85C \uD588\uC2B5\uB2C8\uB2E4\r\n\uB9AC\uC2DC\uB4DC\uAC00
+      \uAC00\uBC29\uC744 \uC5F4\uC790 \uC774\uC0C1\uD55C \uACF5\uAC04\uC774 \uBCF4\uC774\uB294\uB370...\r\n\uB9AC\uC2DC\uB4DC:
+      \"\uC774 \uAC00\uBC29 \uC548\uC73C\uB85C \uB4E4\uC5B4\uAC00\uC2DC\uBA74 \uB429\uB2C8\uB2E4\"\r\n\uB9AC\uC2DC\uB4DC:
+      \"\uC81C\uD488 \uC0AC\uC6A9 \uC2DC \uC138 \uAC00\uC9C0 \uC8FC\uC758\uC0AC\uD56D\uB9CC
+      \uCC38\uACE0\uD574 \uC8FC\uC138\uC694.\"\r\n\uB9AC\uC2DC\uB4DC: \"\uCCAB\uC9F8
+      \uACFC\uB3C4\uD55C \uC6C0\uC9C1\uC784\uC740 \uC790\uC81C\uD560 \uAC83\"\r\n\uB9AC\uC2DC\uB4DC:
+      \"\uB458\uC9F8 101\uD638\uB77C\uACE0 \uC801\uD600\uC9C4 \uBB38\uC740 \uC808\uB300
+      \uC5F4\uC9C0 \uB9D0 \uAC83\"\r\n\uB9AC\uC2DC\uB4DC: \"\uC14B\uC9F8 \uC6DC\uD640
+      \uC548\uC5D0 \uB204\uAD70\uAC00 \uC788\uB2E4\uBA74 \uC808\uB300 \uB208\uC744
+      \uB9C8\uC8FC\uCE58\uC9C0 \uB9D0 \uAC83. \uC774\uC0C1\uC785\uB2C8\uB2E4.\"\r\n\uB9AC\uC2DC\uB4DC:
+      \"\uC544 \uCC38\uACE0\uB85C \uC81C\uD488\uC73C\uB85C \uC778\uD55C \uBD80\uC0C1\uC774\uB098
+      \uC0AC\uACE0\uC5D0 \uB300\uD574 \uC804\uD600 \uCC45\uC784\uC9C0\uC9C0 \uC54A\uC73C\uBA70,
+      \uC0C1\uD488 \uBD88\uB7C9 \uC2DC \uAD50\uD658 \uD658\uBD88\uC740 \uBD88\uAC00\uB2A5\uD569\uB2C8\uB2E4\"\r\n\uB9AC\uC2DC\uB4DC\uC758
+      \uC758\uBBF8\uC2EC\uC7A5\uD55C \uB9D0\uC744 \uB4A4\uB85C\uD558\uACE0 \uC800\uB294
+      \uC6DC\uD640\uC744 \uD0D4\uC2B5\uB2C8\uB2E4. \uADF8\uB9AC\uACE0 \uBB34\uC0AC\uD788
+      \uC9C0\uAD6C\uC758 \uB545\uC744 \uBC1F\uC744 \uC218 \uC788\uC5C8\uC2B5\uB2C8\uB2E4.\r\n\uADF8\uB7F0\uB370
+      \uBD88\uC548\uD55C \uB290\uB08C\uC774 \uB4DC\uB294\uB370? \uACBD\uACE0 \uD45C\uC9C0\uD310\uC774
+      \uAC00\uB4DD\uD558\uACE0 \uC0AC\uB78C\uC774 \uC548 \uBCF4\uC5EC\uC694.\r\n\uC800\uB294
+      \uACBD\uACE0 \uD45C\uC9C0\uD310\uC744 \uC77D\uC5B4 \uBCF4\uC558\uC2B5\uB2C8\uB2E4
+      \r\n\uC544\uBB34\uB798\uB3C4 \uC5EC\uAE30\uB294 51\uAD6C\uC5ED \uC778\uAC00
+      \uBD10\uC694.\r\n \uC800.. \uC9D1\uC5D0 \uC5B4\uB5BB\uAC8C \uAC00\uC8E0...?"
+    EndingSpr: {fileID: 21300000, guid: d1cbe60873e059d4a807fca92024e78e, type: 3}
+  - Speech: "\uB9AC\uC2DC\uB4DC\uC5D0\uAC8C \uAD6C\uB9E4\uD55C \uC6DC\uD640 \uC774\uC6A9\uAD8C\uC744
+      \uC0AC\uC6A9\uD558\uC5EC \uC6DC\uD640\uC744 \uD0C0\uACE0 \uC9C0\uAD6C\uB85C
+      \uD0C8\uCD9C\uD558\uAE30\uB85C \uD588\uC2B5\uB2C8\uB2E4\r\n\uB9AC\uC2DC\uB4DC\uAC00
+      \uAC00\uBC29\uC744 \uC5F4\uC790 \uC774\uC0C1\uD55C \uACF5\uAC04\uC774 \uBCF4\uC774\uB294\uB370...\r\n\uB9AC\uC2DC\uB4DC:
+      \"\uC774 \uAC00\uBC29 \uC548\uC73C\uB85C \uB4E4\uC5B4\uAC00\uC2DC\uBA74 \uB429\uB2C8\uB2E4\"\r\n\uB9AC\uC2DC\uB4DC:
+      \"\uC81C\uD488 \uC0AC\uC6A9 \uC2DC \uC138 \uAC00\uC9C0 \uC8FC\uC758\uC0AC\uD56D\uB9CC
+      \uCC38\uACE0\uD574 \uC8FC\uC138\uC694.\"\r\n\uB9AC\uC2DC\uB4DC: \"\uCCAB\uC9F8
+      \uACFC\uB3C4\uD55C \uC6C0\uC9C1\uC784\uC740 \uC790\uC81C\uD560 \uAC83\"\r\n\uB9AC\uC2DC\uB4DC:
+      \"\uB458\uC9F8 101\uD638\uB77C\uACE0 \uC801\uD600\uC9C4 \uBB38\uC740 \uC808\uB300
+      \uC5F4\uC9C0 \uB9D0 \uAC83\"\r\n\uB9AC\uC2DC\uB4DC: \"\uC14B\uC9F8 \uC6DC\uD640
+      \uC548\uC5D0 \uB204\uAD70\uAC00 \uC788\uB2E4\uBA74 \uC808\uB300 \uB208\uC744
+      \uB9C8\uC8FC\uCE58\uC9C0 \uB9D0 \uAC83. \uC774\uC0C1\uC785\uB2C8\uB2E4.\"\r\n\uB9AC\uC2DC\uB4DC:
+      \"\uC544 \uCC38\uACE0\uB85C \uC81C\uD488\uC73C\uB85C \uC778\uD55C \uBD80\uC0C1\uC774\uB098
+      \uC0AC\uACE0\uC5D0 \uB300\uD574 \uC804\uD600 \uCC45\uC784\uC9C0\uC9C0 \uC54A\uC73C\uBA70,
+      \uC0C1\uD488 \uBD88\uB7C9 \uC2DC \uAD50\uD658 \uD658\uBD88\uC740 \uBD88\uAC00\uB2A5\uD569\uB2C8\uB2E4\"\r\n\uB9AC\uC2DC\uB4DC\uC758
+      \uC758\uBBF8\uC2EC\uC7A5\uD55C \uB9D0\uC744 \uB4A4\uB85C\uD558\uACE0 \uC800\uB294
+      \uC6DC\uD640\uC744 \uD0D4\uC2B5\uB2C8\uB2E4. \uADF8\uB9AC\uACE0 \uC800\uB294
+      \uBB34\uC0AC\uD788 \uB3C4\uCC29 \uD55C...\r\n\uC904 \uC54C\uC558\uB294\uB370?
+      \uC544\uBB34\uAC83\uB3C4 \uC548 \uBCF4\uC5EC\uC694.\r\n\uC800\uB294 \uC81C\uAC00
+      \uADF8 \uC5B4\uB5A0\uD55C \uC7A5\uBE44\uB3C4 \uC5C6\uC774 \uC6B0\uC8FC\uC5D0
+      \uC788\uC74C\uC744 \uAE68\uB2EC\uC558\uC2B5\uB2C8\uB2E4.\r\n\uADF8 \uC774\uD6C4\uB85C\uB294
+      \uAE30\uC5B5\uC774 \uC548 \uB098\uC694... \uC18C\uD589\uC131 \uAC19\uC740 \uAC83\uC5D0
+      \uB9DE\uC544\uC11C \uC628\uBAB8\uC774 \uCC22\uAE30\uB294 \uAC83 \uAC19\uC558\uB294\uB370...\r\n\uADF8\uB798\uB3C4
+      \uAE0D\uC815\uC801\uC73C\uB85C \uC0DD\uAC01\uD574 \uBD05\uC2DC\uB2E4. \uC800\uB294
+      \uC778\uAC04 \uCD5C\uCD08\uB85C \uC6B0\uC8FC\uC5D0\uC11C \uC18C\uD589\uC131\uC5D0
+      \uB9DE\uC544 \uC8FD\uC5C8\uB2E4\uACE0\uC694!\r\n\uC5D4\uB529 \uD574\uAE08:
+      \"\uAD50\uD658 \uD658\uBD88\uC740 \uBD88\uAC00\uB2A5\uD569\uB2C8\uB2E4 - \uC6B0\uC8FC
+      \uD0D0\uD5D8\""
+    EndingSpr: {fileID: 21300000, guid: f79d10493ff49e54da64422dde26db9e, type: 3}
+  - Speech: "\uC591\uB9D0\uC544\uC800\uC528\uB294 \uC800\uC5D0\uAC8C \uAC10\uC0AC\uB97C
+      \uD45C\uD558\uBA70 \uC9C0\uAE08\uAE4C\uC9C0\uC758 \uD638\uC758\uC5D0 \uB300\uD574
+      \uBCF4\uB2F5\uD558\uACE0 \uC2F6\uB2E4\uACE0 \uD588\uC2B5\uB2C8\uB2E4.\r\n\uC544\uC800\uC528\uB294
+      \uC800\uC5D0\uAC8C \uC591\uBCF5\uC744 \uC785\uD788\uACE0, \uACE0\uAE09 \uB808\uC2A4\uD1A0\uB791\uC5D0\uC11C
+      \uB9DB\uC788\uB294 \uC2DD\uC0AC\uB97C \uB300\uC811\uD55C \uB4A4 \uC800\uB97C
+      \uC5B4\uB514\uB860\uAC00 \uB370\uB824\uAC14\uC2B5\uB2C8\uB2E4.\r\n\uC544\uC800\uC528\uB294
+      \uC790\uC2E0\uC774 \uAC70\uC9C0\uC600\uC744 \uC801 \uC81C\uAC00 \uC900 \uC74C\uC2DD\uC744
+      \uBA39\uC73C\uBA70 \uC774\uACF3\uC5D0\uC11C \uB3C4\uC2DC\uC758 \uC57C\uACBD\uC744
+      \uBCF4\uACE4 \uD588\uB2E4\uACE0 \uD569\uB2C8\uB2E4.\r\n\uADF8\uB807\uAE30\uC5D0
+      \uC800\uB97C \uC774\uACF3\uC5D0 \uAF2D \uB370\uB824\uC624\uACE0 \uC2F6\uC5C8\uB2E4\uACE0
+      \uD569\uB2C8\uB2E4.\r\n\uC591\uB9D0 \uC544\uC800\uC528\uC5D0\uAC8C\uB294 \uBBF8\uC548\uD55C
+      \uB9D0\uC774\uC9C0\uB9CC, \uC591\uB9D0\uC544\uC800\uC528\uB294 \uC138\uD0C1\uAE30\uC5D0\uC11C
+      \uC0E4\uC6CC\uB97C \uC880 \uD574\uC57C\uD558\uC9C0 \uC54A\uC744\uAE4C \uC2F6\uC5B4\uC694.
+      \uB0C4\uC0C8\uAC00 \uB9CE\uC774 \uC2EC\uD558\uC2ED\uB2C8\uB2E4.\r\n\uB098\uC911\uC5D0
+      \uB3C8\uC744 \uB9CE\uC774 \uBC8C\uBA74 \uAF2D \uC138\uD0C1\uAE30\uB97C \uC120\uBB3C\uB85C
+      \uB4DC\uB824\uC57C \uACA0\uC5B4\uC694.\r\n\uC5D4\uB529 \uD574\uAE08: \"\uAC1C\uCC9C\uC5D0\uC11C
+      \uC6A9\uB09C\uB2E4\""
+    EndingSpr: {fileID: 21300000, guid: 9e5b26e771081c346aa03ad33b5134a6, type: 3}
   StopBuyBtn: {fileID: 169778453}
   MouseGuide: {fileID: 196175858}
+  isSatisfactionStop: 0
   isCookingSuccess: 0
   isBeggar: 0
   orderType: 0
@@ -6565,6 +6857,7 @@ GameObject:
   - component: {fileID: 957717433}
   - component: {fileID: 957717432}
   - component: {fileID: 957717431}
+  - component: {fileID: 957717435}
   m_Layer: 5
   m_Name: Bismuth
   m_TagString: Untagged
@@ -6641,13 +6934,13 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_SelectedColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
+    m_DisabledColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -6716,6 +7009,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 957717429}
   m_CullTransparentMesh: 1
+--- !u!95 &957717435
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957717429}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 858a030d2bbf61a4694379a9e8ca1406, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &961267118
 GameObject:
   m_ObjectHideFlags: 0
@@ -7551,6 +7864,7 @@ GameObject:
   - component: {fileID: 1085633683}
   - component: {fileID: 1085633682}
   - component: {fileID: 1085633681}
+  - component: {fileID: 1085633685}
   m_Layer: 5
   m_Name: Paper
   m_TagString: Untagged
@@ -7627,13 +7941,13 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_SelectedColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
+    m_DisabledColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -7702,6 +8016,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085633679}
   m_CullTransparentMesh: 1
+--- !u!95 &1085633685
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085633679}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 239e685333a81a242be0b12d9ff924c7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1091713325
 GameObject:
   m_ObjectHideFlags: 0
@@ -8680,7 +9014,7 @@ MonoBehaviour:
   - {x: 219, y: 447}
   - {x: 211, y: 482}
   - {x: 245, y: 516}
-  isFinalEvolution: 0
+  isFinalEvolution: 1
 --- !u!1 &1314161187
 GameObject:
   m_ObjectHideFlags: 0
@@ -9190,6 +9524,7 @@ GameObject:
   - component: {fileID: 1381103059}
   - component: {fileID: 1381103058}
   - component: {fileID: 1381103057}
+  - component: {fileID: 1381103061}
   m_Layer: 5
   m_Name: Sticker
   m_TagString: Untagged
@@ -9274,13 +9609,13 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_SelectedColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
+    m_DisabledColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -9349,6 +9684,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1381103055}
   m_CullTransparentMesh: 1
+--- !u!95 &1381103061
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381103055}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5b71d9fc1de8dff4f8fd668e0ae189df, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1385508513
 GameObject:
   m_ObjectHideFlags: 0
@@ -10201,6 +10556,7 @@ GameObject:
   - component: {fileID: 1629214772}
   - component: {fileID: 1629214771}
   - component: {fileID: 1629214770}
+  - component: {fileID: 1629214774}
   m_Layer: 5
   m_Name: Battery
   m_TagString: Untagged
@@ -10277,13 +10633,13 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_SelectedColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
+    m_DisabledColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -10352,6 +10708,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1629214768}
   m_CullTransparentMesh: 1
+--- !u!95 &1629214774
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629214768}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 640d4dccc9720734fb57ee4e8b515e83, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1629872266
 GameObject:
   m_ObjectHideFlags: 0
@@ -10751,6 +11127,7 @@ GameObject:
   - component: {fileID: 1703389737}
   - component: {fileID: 1703389736}
   - component: {fileID: 1703389735}
+  - component: {fileID: 1703389739}
   m_Layer: 5
   m_Name: Jewelry
   m_TagString: Untagged
@@ -10827,13 +11204,13 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_SelectedColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
+    m_DisabledColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -10902,6 +11279,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1703389733}
   m_CullTransparentMesh: 1
+--- !u!95 &1703389739
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703389733}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d88f1087db97d6d4abfe4f339f11fd7a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1720223304
 GameObject:
   m_ObjectHideFlags: 0
@@ -11609,6 +12006,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1827810774}
   m_CullTransparentMesh: 1
+--- !u!1 &1842869008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1842869010}
+  - component: {fileID: 1842869009}
+  m_Layer: 0
+  m_Name: GameObject (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!95 &1842869009
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842869008}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1f37504ec6e77a1418dd610aa9f11d37, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!4 &1842869010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842869008}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.960043, y: -6.3807573, z: 149.21559}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1852886125
 GameObject:
   m_ObjectHideFlags: 0
@@ -11817,8 +12266,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 17.7, y: 258}
-  m_SizeDelta: {x: 245, y: 516}
+  m_AnchoredPosition: {x: 0, y: 223.89}
+  m_SizeDelta: {x: 219, y: 447}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1884931194
 MonoBehaviour:
@@ -11840,7 +12289,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5071ce6c037e1904c9caf40aa20a56a2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d7c5808940d100f45a0241eaa134af11, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12035,7 +12484,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 223.5}
-  m_SizeDelta: {x: 219, y: 447}
+  m_SizeDelta: {x: 171, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1903571174
 MonoBehaviour:
@@ -12057,7 +12506,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d7c5808940d100f45a0241eaa134af11, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 64ddd5733b9d30d42a0b6410e63f37bb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12424,7 +12873,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 225.5}
-  m_SizeDelta: {x: 187, y: 451}
+  m_SizeDelta: {x: 231, y: 233}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1994234478
 MonoBehaviour:
@@ -12446,7 +12895,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4c4b1293975af5c4b9010fe634a59c95, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b963a7625eb03ce4f9ed4e281dadccec, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

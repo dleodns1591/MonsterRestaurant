@@ -294,7 +294,6 @@ public class Earthling : MonoBehaviour, I_CustomerType
         cookBtn.onClick.RemoveAllListeners();
         cookBtn.onClick.AddListener(() =>
         {
-            print("¿£µù");
             OrderManager.Instance.EndingProduction(EendingType.LookStar);
             GameManager.Instance.isEndingOpens[(int)EendingType.LookStar] = true;
             askBtn.GetComponent<Image>().enabled = true;

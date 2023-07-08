@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Cooking : Singleton<Cooking>
 {
@@ -26,6 +27,9 @@ public class Cooking : Singleton<Cooking>
 
     public CursorSet cursorSet;
 
+    [SerializeField] private Animator[] animators;
+    [SerializeField] private Image[] testAnimators;
+
     private void Start()
     {
         GameManager.Instance.ConditionSetting = (EMainMatarials main, List<ESubMatarials> subs, int count, ECookingStyle style, int dishCount) =>
@@ -46,5 +50,43 @@ public class Cooking : Singleton<Cooking>
         styleSprites = styleSprite;
 
         materialPrice = SubMaterialsPriece[((int)type)];
+
+        AnimationControl();
     }
+
+    public void AnimationControl()
+    {
+        //임시 누른 이미지
+
+        for (int i = 0; i < animators.Length; i++)
+        {
+
+            if (i == ((int)myType))
+            {
+                testAnimators[i].color = Color.gray;
+            }
+            else testAnimators[i].color = Color.white;
+
+            print("Color");
+        }
+
+
+
+        //애니메이션
+
+        //for (int i = 0; i < animators.Length; i++)
+        //{
+        //    bool pickupCheck;
+
+        //    if (i == ((int)myType))
+        //    {
+        //        pickupCheck = true;
+        //    }
+        //    else pickupCheck = false;
+
+        //    animators[i].SetBool("IsPickup", pickupCheck);
+        //}
+
+    }
+
 }

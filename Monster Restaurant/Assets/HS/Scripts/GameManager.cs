@@ -11,7 +11,8 @@ public enum EendingType
     Loser,
     Eating,
     LookStar,
-    WormHole,
+    WormHole_FindHouse,
+    WormHole_SpaceAdventure,
     Dragon
 }
 
@@ -57,7 +58,7 @@ public class GameManager : Singleton<GameManager>
 
     public int BasicRevenue = 200, SalesRevenue = 2890, TaxCost = 289, SettlementCost;
     public float MarterialCost;
-    public bool isBeggarRefuse, isEarthlingRefuse;
+    public bool isBeggarRefuse, isEarthlingRefuse, isGroupOrder;
     public bool dayEndCheck = false;
     public int CanNotMask;
     public int HumanLike;
@@ -71,11 +72,17 @@ public class GameManager : Singleton<GameManager>
         }
         set
         {
+
             if (!OrderManager.Instance.isBeggar)
                 satisfaction = value;
 
             if (satisfaction < 0)
+            {
                 satisfaction = 0;
+                OrderManager.Instance.isSatisfactionStop = true;
+            }
+
+            print(satisfaction);
         }
     }
 
