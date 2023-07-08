@@ -561,6 +561,7 @@ public class OrderManager : Singleton<OrderManager>
                 RevenuePopup.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 GameManager.Instance.dayEndCheck = false;
                 GuestOfTheDay = 0;
+                isSatisfactionStop = false;
                 ReQuestionCount = 0;
                 OrderLoop();
             }
