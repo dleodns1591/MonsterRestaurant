@@ -31,24 +31,17 @@ public class GameManager : Singleton<GameManager>
 {
     public OrderSet[] orderSets;
     [HideInInspector] private bool[] isEndingOpens = new bool[Enum.GetValues(typeof(EendingType)).Length];
-    public bool[] IsEndingOpens
+    public bool this[int index]
     {
         get
         {
-            return isEndingOpens;
+            return isEndingOpens[index];
         }
 
         set
         {
-            isEndingOpens = value;
-            for (int i = 0; i < isEndingOpens.Length; i++)
-            {
-                if (isEndingOpens[i] == true)
-                {
-                    print("이대운 바보 ㅋㅋ");
-                    SaveManager.Instance.isEndingOpens[i] = true;
-                }
-            }
+            isEndingOpens[index] = value;
+            SaveManager.Instance.isEndingOpens[index] = true;
         }
     }
 
@@ -121,7 +114,7 @@ public class GameManager : Singleton<GameManager>
         else
         {
             OrderManager.Instance.EndingProduction(EendingType.Eating);
-            IsEndingOpens[(int)EendingType.Eating] = true;
+            isEndingOpens[(int)EendingType.Eating] = true;
         }
         return false;
     }
