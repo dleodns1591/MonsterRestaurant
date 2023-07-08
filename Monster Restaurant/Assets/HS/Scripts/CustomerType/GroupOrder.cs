@@ -13,12 +13,16 @@ public class GroupOrder : MonoBehaviour, I_CustomerType
     {
         if (GameManager.Instance.Satisfaction >= 55)
         {
+            OrderManager.Instance.CustomerImg.sprite = OrderManager.Instance.EventGuestSuccess[(int)EeventCustomerType.GroupOrder];
             GameManager.Instance.Money += 700;
+            GameManager.Instance.SalesRevenue += 700;
             return "빠르게 만들어주셔서 감사합니다. 아이들이 좋아할 거예요";
         }
         else
         {
+            OrderManager.Instance.CustomerImg.sprite = OrderManager.Instance.EventGuestFails[(int)EeventCustomerType.GroupOrder];
             GameManager.Instance.Money -= 20;
+            GameManager.Instance.SalesRevenue -= 20;
             return "늦게 주시면 어떡해요..! 현재 급식 배분을 잘 처리해서 다행이지만, 돈은 못드리겠네요";
         }
     }

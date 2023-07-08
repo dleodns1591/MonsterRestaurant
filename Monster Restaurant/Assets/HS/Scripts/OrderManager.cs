@@ -29,10 +29,10 @@ public class OrderManager : Singleton<OrderManager>
     [SerializeField] private Image TimeFill;
 
     [Header("손님 관련")]
-    [SerializeField] private Image CustomerImg;
+    [SerializeField] public Image CustomerImg;
     [SerializeField] private Sprite[] GuestDefualts, EventGuestDefualts;
-    [SerializeField] private Sprite[] GuestSuccess, EventGuestSuccess;
-    [SerializeField] private Sprite[] GuestFails, EventGuestFails;
+    [SerializeField] public Sprite[] GuestSuccess, EventGuestSuccess;
+    [SerializeField] public Sprite[] GuestFails, EventGuestFails;
     [SerializeField] public Customer customer;
     private int normalGuestType;
 
@@ -58,7 +58,7 @@ public class OrderManager : Singleton<OrderManager>
 
     [Header("메모 관련")]
     [SerializeField] private RectTransform MemoPaper;
-    [SerializeField] private UIText[] MemoTexts;
+    [SerializeField] private TextMeshProUGUI[] MemoTexts;
     [SerializeField] private Image MemoPaperBackground;
     private readonly Vector2[] MemoOnTextSizes = { new Vector2(-72.51f, 80.92996f), new Vector2(-3, 6.999878f), new Vector2(-72.51f, -64.00003f), new Vector2(-3, -138), new Vector2(-72.51f, -204) };
 
@@ -409,7 +409,7 @@ public class OrderManager : Singleton<OrderManager>
             DayTween.Kill();
         TimeFill.fillAmount = 1;
 
-        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 60)
+        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 120)
         .OnComplete(() => //시간이 다 지났을때
         {
             GameManager.Instance.dayEndCheck = true;
@@ -462,7 +462,7 @@ public class OrderManager : Singleton<OrderManager>
 
     void DayEnd()
     {
-        if(GameManager.Instance.Day >= 21)
+        if(GameManager.Instance.Day >= 20)
         {
             if (GameManager.Instance.Money < 2500)
             {
@@ -673,6 +673,7 @@ public class OrderManager : Singleton<OrderManager>
                 isNext = true;
                 BtnCookText.transform.parent.gameObject.SetActive(false);
                 BtnAskText.transform.parent.gameObject.SetActive(false);
+                MouseGuide.SetActive(false);
                 StopBuyBtn.gameObject.SetActive(false);
                 yield return new WaitForSeconds(1.5f);
                 StartCoroutine(ExitAndComein());
@@ -834,6 +835,7 @@ public class OrderManager : Singleton<OrderManager>
                 OrderText.DOText(AnswerTalk, 0.05f * AnswerTalk.Length).OnComplete(() =>
                 {
                     StartCoroutine(ExitAndComein());
+                    MemoOff();
                 });
             });
             OrderText.text = "";

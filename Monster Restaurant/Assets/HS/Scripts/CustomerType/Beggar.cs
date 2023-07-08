@@ -13,6 +13,7 @@ public class Beggar : MonoBehaviour, I_CustomerType
 
     public string SpecialAnswer()
     {
+        OrderManager.Instance.CustomerImg.sprite = OrderManager.Instance.EventGuestSuccess[(int)EeventCustomerType.Beggar];
         switch (OrderManager.Instance.Beggar_SuccessPoint)
         {
             case 0:
@@ -28,7 +29,6 @@ public class Beggar : MonoBehaviour, I_CustomerType
             default:
                 return " ";
         }
-
     }
 
     public void SpecialType(TextMeshProUGUI cook, TextMeshProUGUI ask)

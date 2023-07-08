@@ -22,8 +22,10 @@ public class Earthling : MonoBehaviour, I_CustomerType
 
     public string SpecialAnswer()
     {
+
         if (GameManager.Instance.Satisfaction >= 40)
         {
+        OrderManager.Instance.CustomerImg.sprite = OrderManager.Instance.EventGuestSuccess[(int)EeventCustomerType.Human];
             switch (OrderManager.Instance.Earthling_SuccessPoint - 1)
             {
                 case 0:
@@ -42,6 +44,8 @@ public class Earthling : MonoBehaviour, I_CustomerType
         }
         else
         {
+            OrderManager.Instance.CustomerImg.sprite = OrderManager.Instance.EventGuestFails[(int)EeventCustomerType.Human];
+
             GameManager.Instance.isEarthlingRefuse = true;
             return "......죄송합니다, 다음 가게를 찾아야 하네..";
         }

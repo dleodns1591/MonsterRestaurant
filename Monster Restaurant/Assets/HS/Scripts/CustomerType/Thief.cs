@@ -19,6 +19,7 @@ public class Thief : MonoBehaviour, I_CustomerType
         else
         {
             GameManager.Instance.Money -= 10;
+            GameManager.Instance.SalesRevenue -= 10;
             return "제대로 만들 것이지.. 쯧...";
         }
     }
