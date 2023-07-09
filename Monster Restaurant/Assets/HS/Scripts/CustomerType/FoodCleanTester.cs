@@ -17,18 +17,19 @@ public class FoodCleanTester : MonoBehaviour, I_CustomerType
         StartCoroutine(RefuseOrderDelay());
         IEnumerator RefuseOrderDelay()
         {
+            OrderManager.Instance.StopOrderCoroutine();
             OrderManager.Instance.isNext = true;
             cookBtn.gameObject.SetActive(false);
             askBtn.gameObject.SetActive(false);
             yield return new WaitForSeconds(2.5f);
             StartCoroutine(OrderManager.Instance.ExitAndComein(true));
-            OrderManager.Instance.StopOrderCoroutine();
         }
 
     }
 
     public void SpecialType(TextMeshProUGUI cook, TextMeshProUGUI ask)
     {
+        OrderManager.Instance.StopOrderCoroutine();
         cookBtn = cook.transform.parent.GetComponent<Button>();
         askBtn = ask.transform.parent.GetComponent<Button>();
 

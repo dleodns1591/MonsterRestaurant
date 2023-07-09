@@ -91,12 +91,12 @@ public class Earthling : MonoBehaviour, I_CustomerType
             }
 
             GameManager.Instance.isEarthlingRefuse = true;
+            OrderManager.Instance.StopOrderCoroutine();
             OrderManager.Instance.isNext = true;
             cookBtn.gameObject.SetActive(false);
             askBtn.gameObject.SetActive(false);
             yield return new WaitForSeconds(1.5f);
             StartCoroutine(OrderManager.Instance.ExitAndComein(true));
-            OrderManager.Instance.StopOrderCoroutine();
 
         }
 

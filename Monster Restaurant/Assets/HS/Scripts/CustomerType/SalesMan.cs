@@ -15,12 +15,12 @@ public class SalesMan : MonoBehaviour, I_CustomerType
         StartCoroutine(RefuseOrderDelay());
         IEnumerator RefuseOrderDelay()
         {
+            OrderManager.Instance.StopOrderCoroutine();
             OrderManager.Instance.isNext = true;
             cookBtn.gameObject.SetActive(false);
             askBtn.gameObject.SetActive(false);
             yield return new WaitForSeconds(1.5f);
             StartCoroutine(OrderManager.Instance.ExitAndComein(true));
-            OrderManager.Instance.StopOrderCoroutine();
         }
     }
 

@@ -884,7 +884,6 @@ public class OrderManager : Singleton<OrderManager>
     {
         if (Ordercoroutine != null)
             StopCoroutine(Ordercoroutine);
-        StopCoroutine("Order");
     }
 
     public void OrderToCook()
