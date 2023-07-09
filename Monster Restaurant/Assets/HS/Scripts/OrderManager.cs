@@ -838,7 +838,7 @@ public class OrderManager : Singleton<OrderManager>
 
             isBeggar = false;
             GameManager.Instance.isGroupOrder = false;
-            if (!CustomerType.SpecialAnswer().Equals(""))
+            if (!(CustomerType is NormalCustomer))
             {
                 EeventCustomerSetting(GameManager.Instance.SpecialType);
                 AnswerTalk = CustomerType.SpecialAnswer();
@@ -882,6 +882,8 @@ public class OrderManager : Singleton<OrderManager>
 
     public void StopOrderCoroutine()
     {
+        if (Ordercoroutine != null)
+            StopCoroutine(Ordercoroutine);
         StopCoroutine("Order");
     }
 

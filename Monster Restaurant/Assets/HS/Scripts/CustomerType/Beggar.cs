@@ -34,7 +34,6 @@ public class Beggar : MonoBehaviour, I_CustomerType
 
     public void SpecialType(TextMeshProUGUI cook, TextMeshProUGUI ask)
     {
-        OrderManager.Instance.StopOrderCoroutine();
 
         cookBtn = cook.transform.parent.GetComponent<Button>();
         askBtn = ask.transform.parent.GetComponent<Button>();
@@ -73,6 +72,11 @@ public class Beggar : MonoBehaviour, I_CustomerType
         OrderManager.Instance.isBeggar = true;
         //¿ä¸®
         GameManager.Instance.ReturnCook();
+        List<ESubMatarials> subs = new List<ESubMatarials>
+        {
+            ESubMatarials.NULL
+        };
+        GameManager.Instance.ConditionSetting(EMainMatarials.NULL, subs, 0, ECookingStyle.None, 1);
     }
     void RefuseOrder()
     {
@@ -85,6 +89,7 @@ public class Beggar : MonoBehaviour, I_CustomerType
             askBtn.gameObject.SetActive(false);
             yield return new WaitForSeconds(1.5f);
             StartCoroutine(OrderManager.Instance.ExitAndComein(true));
+            OrderManager.Instance.StopOrderCoroutine();
         }
 
     }

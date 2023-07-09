@@ -96,6 +96,8 @@ public class Earthling : MonoBehaviour, I_CustomerType
             askBtn.gameObject.SetActive(false);
             yield return new WaitForSeconds(1.5f);
             StartCoroutine(OrderManager.Instance.ExitAndComein(true));
+            OrderManager.Instance.StopOrderCoroutine();
+
         }
 
     }
