@@ -57,10 +57,7 @@ public class OrderManager : Singleton<OrderManager>
     [SerializeField] private Text DayText;
 
     [Header("메모 관련")]
-    [SerializeField] private RectTransform MemoPaper;
-    [SerializeField] private TextMeshProUGUI[] MemoTexts;
-    [SerializeField] private Image MemoPaperBackground;
-    private readonly Vector2[] MemoOnTextSizes = { new Vector2(-72.51f, 80.92996f), new Vector2(-3, 6.999878f), new Vector2(-72.51f, -64.00003f), new Vector2(-3, -138), new Vector2(-72.51f, -204) };
+    public MemoManager memoManager;
 
     [Header("기타부타타")]
     public GameObject CookingScene;
@@ -441,10 +438,8 @@ public class OrderManager : Singleton<OrderManager>
 
         dialogNumber = 0;
 
-        for (int i = 0; i < MemoTexts.Length; i++)
-        {
-            MemoTexts[i].text = "";
-        }
+        memoManager.ResetMemo();
+
         OrderText.text = "";
         BtnCookText.text = "";
         BtnAskText.text = "";
@@ -617,62 +612,6 @@ public class OrderManager : Singleton<OrderManager>
             isNext = false;
         }
     }
-
-    #region 메모 관련
-    public void MemoOn()
-    {
-        MemoPaper.gameObject.SetActive(true);
-        MemoPaperBackground.gameObject.SetActive(true);
-        MemoPaperBackground.DOFade(163 / 255f, 0.5f);
-        MemoPaper.DOSizeDelta(new Vector2(650, 549), 0.3f).SetEase(Ease.OutQuint);
-        MemoPaper.DOAnchorPos(new Vector2(91, 0), 0.2f).SetEase(Ease.OutQuint).OnComplete(OnMemoTexts);
-        void OnMemoTexts()
-        {
-            for (int i = 0; i < dialogNumber; i++)
-            {
-                MemoTexts[i].gameObject.SetActive(true);
-            }
-        }
-        int OrderCheck = 0;
-        int AskCheck = 0;
-        for (int i = 0; i < dialogNumber; i++)
-        {
-            if (i % 2 != 0)
-            {
-                print("ConditionSetting");
-                MemoTexts[i].text = AskTalk[AskCheck];
-                print(AskTalk[AskCheck]);
-                AskCheck++;
-            }
-            else
-            {
-                MemoTexts[i].text = OrderTalk[OrderCheck];
-                print(AskTalk[OrderCheck]);
-                OrderCheck++;
-            }
-            MemoTexts[i].rectTransform.DOAnchorPos(MemoOnTextSizes[i], 0.3f).SetEase(Ease.OutQuint);
-        }
-    }
-    public void MemoOff()
-    {
-        for (int i = 0; i < MemoTexts.Length; i++)
-        {
-            MemoTexts[i].gameObject.SetActive(false);
-        }
-        StartCoroutine(MemoTextOff());
-        MemoPaper.DOSizeDelta(new Vector2(150, 120), 0.3f);
-        MemoPaper.DOAnchorPos(new Vector2(-158, 0), 0.3f);
-
-        MemoPaperBackground.DOColor(new Color(0, 0, 0, 0), 0.3f);
-
-        IEnumerator MemoTextOff()
-        {
-            yield return new WaitForSeconds(0.3f);
-            MemoPaper.gameObject.SetActive(false);
-            MemoPaperBackground.gameObject.SetActive(false);
-        }
-    }
-    #endregion
 
     #region 게임 루틴 관련
 
@@ -850,7 +789,6 @@ public class OrderManager : Singleton<OrderManager>
                 OrderText.DOText(AnswerTalk, 0.05f * AnswerTalk.Length).OnComplete(() =>
                 {
                     StartCoroutine(ExitAndComein(false));
-                    MemoOff();
                 });
             });
             OrderText.text = "";
