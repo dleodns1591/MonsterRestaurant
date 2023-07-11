@@ -23,7 +23,7 @@ public class AutoFlip : MonoBehaviour {
             StartFlipping();
         ControledBook.OnFlip.AddListener(new UnityEngine.Events.UnityAction(PageFlipped));
 
-        FlipRightPage();
+        //FlipRightPage();
     }
 
     void PageFlipped()
