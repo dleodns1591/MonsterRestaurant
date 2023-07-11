@@ -1997,7 +1997,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1050}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1136769844
@@ -2159,7 +2159,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a6c608b5b7b83a54c97fd6f741bf2750, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3048,7 +3048,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3c47abcf3fb3d12408efe3073b2e379f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a6c608b5b7b83a54c97fd6f741bf2750, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3279,10 +3279,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 1877007430}
   BookPanel: {fileID: 1486890548}
-  background: {fileID: 21300000, guid: 3c47abcf3fb3d12408efe3073b2e379f, type: 3}
+  background: {fileID: 21300000, guid: a6c608b5b7b83a54c97fd6f741bf2750, type: 3}
   bookPages:
-  - {fileID: 21300000, guid: a6c608b5b7b83a54c97fd6f741bf2750, type: 3}
-  - {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
   - {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
   - {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
   - {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
@@ -3587,8 +3585,6 @@ MonoBehaviour:
   endingRightBtn: {fileID: 1229070208}
   endingCount: 0
   endingSprite:
-  - endingsprite: {fileID: 21300000, guid: a6c608b5b7b83a54c97fd6f741bf2750, type: 3}
-    isEndingcheck: 0
   - endingsprite: {fileID: 21300000, guid: bfe23bbacef083847ab1ef379bb1f5b0, type: 3}
     isEndingcheck: 0
   - endingsprite: {fileID: 21300000, guid: 1c96574a6981ff843afb49fa8932f008, type: 3}
@@ -3615,7 +3611,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746800490}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
