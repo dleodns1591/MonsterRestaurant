@@ -57,7 +57,7 @@ public class OrderManager : Singleton<OrderManager>
     [SerializeField] private Text DayText;
 
     [Header("메모 관련")]
-    public MemoManager memoManager;
+    [SerializeField] private MemoManager memoManager;
 
     [Header("기타부타타")]
     public GameObject CookingScene;
@@ -69,8 +69,7 @@ public class OrderManager : Singleton<OrderManager>
     private GameObject EndingCanvas => EndingImg.transform.parent.gameObject;
 
     [Header("상점 관련")]
-    public Button StopBuyBtn;
-    public GameObject MouseGuide;
+    [SerializeField] private Shop shop;
 
     [Header("내부 변수들")]
     private int EndingDate = 20;
@@ -93,6 +92,8 @@ public class OrderManager : Singleton<OrderManager>
 
     private void Start()
     {
+        shop = GameManager.Instance.shop;
+
         SoundManager.instance.PlaySoundClip("Ingame_bgm", SoundType.BGM);
 
         RandomOrderMaterial();
@@ -617,7 +618,7 @@ public class OrderManager : Singleton<OrderManager>
 
     private void ShopProduction()
     {
-        StopBuyBtn.onClick.AddListener(() =>
+        shop.StopBuyBtn.onClick.AddListener(() =>
         {
             GameManager.Instance.shop.ShopCloseBtn();
             StartCoroutine(RefuseOrderDelay());
@@ -627,8 +628,8 @@ public class OrderManager : Singleton<OrderManager>
                 isNext = true;
                 BtnCookText.transform.parent.gameObject.SetActive(false);
                 BtnAskText.transform.parent.gameObject.SetActive(false);
-                MouseGuide.SetActive(false);
-                StopBuyBtn.gameObject.SetActive(false);
+                shop.MouseGuide.SetActive(false);
+                shop.StopBuyBtn.gameObject.SetActive(false);
                 yield return new WaitForSeconds(1.5f);
                 StartCoroutine(ExitAndComein(false));
             }
@@ -687,11 +688,11 @@ public class OrderManager : Singleton<OrderManager>
                 GameManager.Instance.shop.ShopOpen();
                 FadeInOut.instance.Fade();
                 yield return new WaitForSeconds(FadeInOut.instance.fadeTime);
-                StopBuyBtn.gameObject.SetActive(true);
+                shop.StopBuyBtn.gameObject.SetActive(true);
                 OrderText.text = "";
                 SpeakOrder("마음에 드시는 제품 있으시면 구매해주세요.");
                 yield return new WaitForSeconds("마음에 드시는 제품 있으시면 구매해주세요.".Length * 0.05f);
-                MouseGuide.SetActive(true);
+                shop.MouseGuide.SetActive(true);
             }
 
         };

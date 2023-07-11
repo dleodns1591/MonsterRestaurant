@@ -6635,8 +6635,7 @@ MonoBehaviour:
       \uB4DC\uB824\uC57C \uACA0\uC5B4\uC694.\r\n\uC5D4\uB529 \uD574\uAE08: \"\uAC1C\uCC9C\uC5D0\uC11C
       \uC6A9\uB09C\uB2E4\""
     EndingSpr: {fileID: 21300000, guid: 9e5b26e771081c346aa03ad33b5134a6, type: 3}
-  StopBuyBtn: {fileID: 169778453}
-  MouseGuide: {fileID: 1707749676}
+  shop: {fileID: 0}
   ReQuestionCount: 0
   isSatisfactionStop: 0
   isCookingSuccess: 0
@@ -9147,6 +9146,8 @@ MonoBehaviour:
   - {x: 219, y: 447}
   - {x: 211, y: 482}
   - {x: 245, y: 516}
+  StopBuyBtn: {fileID: 169778453}
+  MouseGuide: {fileID: 1707749676}
   isFinalEvolution: 0
 --- !u!1 &1314161187
 GameObject:

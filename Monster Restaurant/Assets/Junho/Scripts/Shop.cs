@@ -20,6 +20,9 @@ public class Shop : MonoBehaviour
     [SerializeField] private Image ManEatingPlantObj;
     [SerializeField] private Vector2[] ManEatingPlantSize;
 
+    public Button StopBuyBtn;
+    public GameObject MouseGuide;
+
     public Action ShopOpen;
 
     public Coroutine ReturnScript;
