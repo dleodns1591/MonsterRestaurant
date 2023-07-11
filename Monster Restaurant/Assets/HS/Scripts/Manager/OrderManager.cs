@@ -8,13 +8,6 @@ using TMPro;
 using Object = UnityEngine.Object;
 using UnityEngine.SceneManagement;
 
-[Serializable]
-public struct EndingType
-{
-    [TextArea] public string Speech;
-    public Sprite EndingSpr;
-}
-
 public class OrderManager : Singleton<OrderManager>
 {
     public TextAsset OrderTalkTxt, AnswerTalkTxt;
@@ -63,10 +56,7 @@ public class OrderManager : Singleton<OrderManager>
     public GameObject CookingScene;
 
     [Header("엔딩 관련")]
-    [SerializeField] private Image EndingImg;
-    [SerializeField] private Text EndingExplanTxt;
-    public EndingType[] endingTypes;
-    private GameObject EndingCanvas => EndingImg.transform.parent.gameObject;
+    [SerializeField] public EndingManager endingManager;
 
     [Header("상점 관련")]
     [SerializeField] private Shop shop;
@@ -480,21 +470,21 @@ public class OrderManager : Singleton<OrderManager>
             if (GameManager.Instance.Money < 2500)
             {
 
-                EndingProduction(EendingType.Loser);
+                endingManager.EndingProduction(EendingType.Loser);
                 GameManager.Instance.isEndingOpens[(int)EendingType.Loser] = true;
                 SaveManager.Instance.isEndingOpens[(int)EendingType.Loser] = true;
             }
             else if (GameManager.Instance.Money < 5000)
             {
 
-                EndingProduction(EendingType.Salve);
+                endingManager.EndingProduction(EendingType.Salve);
                 GameManager.Instance.isEndingOpens[(int)EendingType.Salve] = true;
                 SaveManager.Instance.isEndingOpens[(int)EendingType.Salve] = true;
             }
             else
             {
 
-                EndingProduction(EendingType.Mine);
+                endingManager.EndingProduction(EendingType.Mine);
                 GameManager.Instance.isEndingOpens[(int)EendingType.Mine] = true;
                 SaveManager.Instance.isEndingOpens[(int)EendingType.Mine] = true;
             }
@@ -643,14 +633,14 @@ public class OrderManager : Singleton<OrderManager>
             if (rand >= 7)
             {
 
-                EndingProduction(EendingType.WormHole_FindHouse);
+                endingManager.EndingProduction(EendingType.WormHole_FindHouse);
                 GameManager.Instance.isEndingOpens[(int)EendingType.WormHole_FindHouse] = true;
                 SaveManager.Instance.isEndingOpens[(int)EendingType.WormHole_FindHouse] = true;
             }
             else
             {
 
-                EndingProduction(EendingType.WormHole_SpaceAdventure);
+                endingManager.EndingProduction(EendingType.WormHole_SpaceAdventure);
                 GameManager.Instance.isEndingOpens[(int)EendingType.WormHole_SpaceAdventure] = true;
                 SaveManager.Instance.isEndingOpens[(int)EendingType.WormHole_SpaceAdventure] = true;
             }
@@ -881,50 +871,6 @@ public class OrderManager : Singleton<OrderManager>
             }
             GameManager.Instance.Satisfaction--;
             EmotionText.text = $"{GameManager.Instance.Satisfaction}%";
-        }
-    }
-
-    public void EndingProduction(EendingType endingType)
-    {
-        SoundManager.instance.PlaySoundClip("Ending_bgm", SoundType.BGM);
-        StartCoroutine(EndingDelay(endingTypes[(int)endingType].Speech, endingTypes[(int)endingType].EndingSpr));
-
-        IEnumerator EndingDelay(string speech, Sprite spr)
-        {
-            bool isEndLine = false;
-            EndingCanvas.SetActive(true);
-            FadeInOut.instance.FadeOut();
-            EndingImg.sprite = spr;
-            EndingImg.DOFade(1, FadeInOut.instance.fadeTime);
-            yield return new WaitForSeconds(FadeInOut.instance.fadeTime + 1);
-
-            StartCoroutine(Typing(speech));
-            IEnumerator Typing(string str)
-            {
-                string[] line = str.Split('\n');
-                var wait = new WaitForSeconds(0.05f);
-                yield return wait;
-                for (int i = 0; i < line.Length; i++)
-                {
-                    //print(line.Length);
-                    EndingExplanTxt.text = "";
-                    EndingExplanTxt.DOText(line[i], 0.05f * line[i].Length).OnComplete(() =>
-                    {
-                        isEndLine = true;
-                    });
-                    while (true)
-                    {
-                        yield return null;
-                        if (Input.GetMouseButtonDown(0) && isEndLine)
-                            break;
-                    }
-                    isEndLine = false;
-                }
-                if (Input.GetMouseButtonDown(0))
-                {
-                    SceneManager.LoadScene("Title");
-                }
-            }
         }
     }
     #endregion

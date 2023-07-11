@@ -100,7 +100,7 @@ public class GameManager : Singleton<GameManager>
         }
         else
         {
-            OrderManager.Instance.EndingProduction(EendingType.Eating);
+            OrderManager.Instance.endingManager.EndingProduction(EendingType.Eating);
             isEndingOpens[(int)EendingType.Eating] = true;
             SaveManager.Instance.isEndingOpens[(int)EendingType.Eating] = true;
         }
