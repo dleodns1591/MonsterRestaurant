@@ -35,14 +35,6 @@ public class EndingBook : MonoBehaviour
     void Update()
     {
         EndingCheck();
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            for (int i = 0; i < endingSprite.Count; i++)
-            {
-                endingSprite[i].isEndingcheck = true;
-            }
-        }
     }
 
     void EndingBtns()
@@ -87,15 +79,15 @@ public class EndingBook : MonoBehaviour
     {
         SaveManager saveManager = SaveManager.Instance;
 
-        //endingSprite[0].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.Eating];
-        //endingSprite[1].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.Loser];
-        //endingSprite[2].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.Salve];
-        //endingSprite[3].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.Mine];
-        //endingSprite[4].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.WormHole];
-        //endingSprite[5].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.WormHole_SpaceAdventure];
-        //endingSprite[6].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.WormHole_FindHouse];
-        //endingSprite[7].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.Dragon];
-        //endingSprite[8].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.LookStar];
+        endingSprite[0].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.Eating];
+        endingSprite[1].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.Loser];
+        endingSprite[2].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.Salve];
+        endingSprite[3].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.Mine];
+        endingSprite[4].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.WormHole];
+        endingSprite[5].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.WormHole_SpaceAdventure];
+        endingSprite[6].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.WormHole_FindHouse];
+        endingSprite[7].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.Dragon];
+        endingSprite[8].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.LookStar];
 
 
         for (int i = 0; i < endingSprite.Count; i++)
