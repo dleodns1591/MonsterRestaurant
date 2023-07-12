@@ -7,16 +7,6 @@ using System.Linq;
 using System.Collections.Generic;
 using HS_Tree;
 using System;
-
-
-public enum EFaceType
-{
-    Happy,
-    Umm,
-    Angry
-}
-
-
 namespace HS_Tree
 {
     public class TreeNode<T>

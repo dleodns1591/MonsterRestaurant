@@ -29,6 +29,8 @@ public class MemoManager : MonoBehaviour
 
     public void ResetMemo()
     {
+        OM.dialogNumber = 0;
+
         for (int i = 0; i < MemoTexts.Length; i++)
         {
             MemoTexts[i].text = "";

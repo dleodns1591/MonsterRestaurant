@@ -68,10 +68,8 @@ public class GameManager : Singleton<GameManager>
     private int satisfaction = 100;
     public int Satisfaction
     {
-        get
-        {
-            return satisfaction;
-        }
+        get { return satisfaction; }
+
         set
         {
 
@@ -81,10 +79,8 @@ public class GameManager : Singleton<GameManager>
             if (satisfaction < 0)
             {
                 satisfaction = 0;
-                OrderManager.Instance.isSatisfactionStop = true;
+                OrderManager.Instance.satisfactionManager.LoopStop();
             }
-
-            //print(satisfaction);
         }
     }
 

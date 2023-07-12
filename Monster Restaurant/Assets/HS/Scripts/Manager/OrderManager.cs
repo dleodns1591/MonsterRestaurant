@@ -36,9 +36,7 @@ public class OrderManager : Singleton<OrderManager>
     private Text NameBallonText => NameBallon.transform.GetComponentInChildren<Text>();
 
     [Header("요리 당 만족도 관련")]
-    [SerializeField] private Sprite[] FaceSprites;
-    [SerializeField] private Image FaceImage;
-    [SerializeField] private Text EmotionText;
+    public SatisfactionManager satisfactionManager;
 
     [Header("UI 관련")]
     [SerializeField] private Text MoneyText;
@@ -56,7 +54,7 @@ public class OrderManager : Singleton<OrderManager>
     public GameObject CookingScene;
 
     [Header("엔딩 관련")]
-    [SerializeField] public EndingManager endingManager;
+    public EndingManager endingManager;
 
     [Header("상점 관련")]
     [SerializeField] private Shop shop;
@@ -66,10 +64,9 @@ public class OrderManager : Singleton<OrderManager>
     private Tween TextTween, DayTween;
     public int ReQuestionCount;
     private List<EeventCustomerType> EventTypes = new List<EeventCustomerType>();
-    private Coroutine SatisfactionCoroutine, Ordercoroutine, BuyTextCoroutine;
+    private Coroutine Ordercoroutine, BuyTextCoroutine;
     private int firstMoney, GuestOfTheDay;
     private I_CustomerType CustomerType;
-    public bool isSatisfactionStop;
     [HideInInspector] public bool isCookingSuccess;
     [HideInInspector] public bool isBeggar;
     [HideInInspector] public int orderType;
@@ -427,8 +424,6 @@ public class OrderManager : Singleton<OrderManager>
         Array.Clear(OrderTalk, 0, OrderTalk.Length);
         Array.Clear(AskTalk, 0, AskTalk.Length);
 
-        dialogNumber = 0;
-
         memoManager.ResetMemo();
 
         OrderText.text = "";
@@ -564,7 +559,6 @@ public class OrderManager : Singleton<OrderManager>
                 RevenuePopup.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 GameManager.Instance.dayEndCheck = false;
                 GuestOfTheDay = 0;
-                isSatisfactionStop = false;
                 ReQuestionCount = 0;
                 OrderLoop();
             }
@@ -797,9 +791,6 @@ public class OrderManager : Singleton<OrderManager>
         customer.Exit();
 
         yield return new WaitForSeconds(1f);
-        EmotionText.text = "100%";
-        GameManager.Instance.Satisfaction = 100;
-        FaceImage.sprite = FaceSprites[(int)EFaceType.Happy];
         if (isEvent == false)
         {
             NextCustomerReady();
@@ -823,55 +814,12 @@ public class OrderManager : Singleton<OrderManager>
             OrderSet order = GameManager.Instance.orderSets[GameManager.Instance.randomCustomerNum];
             GameManager.Instance.ConditionSetting(order.main, order.sub, order.count, order.style, order.dishCount);
 
-            GameManager.Instance.Satisfaction = 100;
-            EmotionText.text = $"{GameManager.Instance.Satisfaction}%";
 
-            if (SatisfactionCoroutine != null)
-                StopCoroutine(SatisfactionCoroutine);
-
+                satisfactionManager.LoopStart();
             CookingScene.transform.DOMoveY(0, 1).SetEase(Ease.OutBounce).OnComplete(() =>
             {
-                SatisfactionCoroutine = StartCoroutine(SatisfactionUpdate());
-                if (isBeggar)
-                {
-                    StopCoroutine(SatisfactionCoroutine);
-                }
             });
         };
-    }
-
-    private IEnumerator SatisfactionUpdate()
-    {
-        while (true)
-        {
-            if (ReQuestionCount != 0)
-            {
-                GameManager.Instance.Satisfaction -= (ReQuestionCount * 8);
-                ReQuestionCount = 0;
-            }
-            if (!GameManager.Instance.isGroupOrder)
-            {
-                if (GameManager.Instance.Satisfaction <= 60)
-                    FaceImage.sprite = FaceSprites[(int)EFaceType.Umm];
-                if (GameManager.Instance.Satisfaction <= 20)
-                    FaceImage.sprite = FaceSprites[(int)EFaceType.Angry];
-            }
-            else
-            {
-                if (GameManager.Instance.Satisfaction <= 55)
-                    FaceImage.sprite = FaceSprites[(int)EFaceType.Angry];
-            }
-            yield return new WaitForSeconds(1f);
-            if (isSatisfactionStop == true)
-            {
-                EmotionText.text = $"{GameManager.Instance.Satisfaction}%";
-                FaceImage.sprite = FaceSprites[(int)EFaceType.Angry];
-                isSatisfactionStop = false;
-                yield break;
-            }
-            GameManager.Instance.Satisfaction--;
-            EmotionText.text = $"{GameManager.Instance.Satisfaction}%";
-        }
     }
     #endregion
 

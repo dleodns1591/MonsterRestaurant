@@ -6477,12 +6477,7 @@ MonoBehaviour:
   customer: {fileID: 410546290}
   OrderText: {fileID: 1748135909}
   NameBallon: {fileID: 1985689347}
-  FaceSprites:
-  - {fileID: 21300000, guid: 6eeb72ee9514ca348b5c853b4381927c, type: 3}
-  - {fileID: 21300000, guid: f8d760e690049b246ac885df46a2381b, type: 3}
-  - {fileID: 21300000, guid: 38e59e7f452f8b44b9c0743d7bc6ed76, type: 3}
-  FaceImage: {fileID: 4877039913537373230}
-  EmotionText: {fileID: 4877039912817528320}
+  satisfactionManager: {fileID: 4877039913111676460}
   MoneyText: {fileID: 393972778}
   RevenuePopup: {fileID: 1553822643}
   NextButton: {fileID: 1345126913}
@@ -6499,7 +6494,6 @@ MonoBehaviour:
   endingManager: {fileID: 945262613}
   shop: {fileID: 0}
   ReQuestionCount: 0
-  isSatisfactionStop: 0
   isCookingSuccess: 0
   isBeggar: 0
   orderType: 0
@@ -14716,13 +14710,32 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4877039913111676458}
+  - component: {fileID: 4877039913111676460}
   m_Layer: 5
-  m_Name: KitchenUI
+  m_Name: Satisfaction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4877039913111676460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4877039913111676459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae96e8bec3a4e5740810d68b7f852d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FaceSprites:
+  - {fileID: 21300000, guid: 6eeb72ee9514ca348b5c853b4381927c, type: 3}
+  - {fileID: 21300000, guid: f8d760e690049b246ac885df46a2381b, type: 3}
+  - {fileID: 21300000, guid: 38e59e7f452f8b44b9c0743d7bc6ed76, type: 3}
+  FaceImage: {fileID: 4877039913537373230}
+  EmotionText: {fileID: 4877039912817528320}
 --- !u!224 &4877039913402657680
 RectTransform:
   m_ObjectHideFlags: 0
