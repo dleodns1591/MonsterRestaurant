@@ -365,6 +365,7 @@ GameObject:
   - component: {fileID: 39444527}
   - component: {fileID: 39444526}
   - component: {fileID: 39444525}
+  - component: {fileID: 39444528}
   m_Layer: 5
   m_Name: RevenueCanvas
   m_TagString: Untagged
@@ -454,6 +455,28 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 32767
   m_TargetDisplay: 0
+--- !u!114 &39444528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39444523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74912c0f50ab2884fa00955475bb668f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RevenuePopup: {fileID: 1553822643}
+  NextButton: {fileID: 1345126913}
+  Principal: {fileID: 1685585982}
+  BasicRevenue: {fileID: 325255720}
+  SalesRevenue: {fileID: 1267541269}
+  MarterialCost: {fileID: 1507961473}
+  TaxCost: {fileID: 495883196}
+  SettlementCost: {fileID: 2146760798}
+  Total: {fileID: 863779334}
+  DayText: {fileID: 615712427}
 --- !u!1 &40486570
 GameObject:
   m_ObjectHideFlags: 0
@@ -6393,7 +6416,6 @@ GameObject:
   - component: {fileID: 945262610}
   - component: {fileID: 945262611}
   - component: {fileID: 945262609}
-  - component: {fileID: 945262613}
   - component: {fileID: 945262612}
   m_Layer: 0
   m_Name: Managers
@@ -6419,6 +6441,8 @@ MonoBehaviour:
   BtnCookText: {fileID: 756368583}
   BtnAskText: {fileID: 1751038924}
   TimeFill: {fileID: 601277343}
+  firstMoney: 0
+  resultManager: {fileID: 39444528}
   CustomerImg: {fileID: 410546293}
   GuestDefualts:
   - {fileID: 21300000, guid: d56bdf0dec37d4644a86fbc51665ec55, type: 3}
@@ -6478,22 +6502,12 @@ MonoBehaviour:
   OrderText: {fileID: 1748135909}
   NameBallon: {fileID: 1985689347}
   satisfactionManager: {fileID: 4877039913111676460}
-  MoneyText: {fileID: 393972778}
-  RevenuePopup: {fileID: 1553822643}
-  NextButton: {fileID: 1345126913}
-  Principal: {fileID: 1685585982}
-  BasicRevenue: {fileID: 325255720}
-  SalesRevenue: {fileID: 1267541269}
-  MarterialCost: {fileID: 1507961473}
-  TaxCost: {fileID: 495883196}
-  SettlementCost: {fileID: 2146760798}
-  Total: {fileID: 863779334}
-  DayText: {fileID: 615712427}
   memoManager: {fileID: 1802100778}
+  endingManager: {fileID: 1160866549}
   CookingScene: {fileID: 1152493739}
-  endingManager: {fileID: 945262613}
   shop: {fileID: 0}
   ReQuestionCount: 0
+  GuestOfTheDay: 0
   isCookingSuccess: 0
   isBeggar: 0
   orderType: 0
@@ -6538,6 +6552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEndingOpens: 000000000000000000
+  MoneyText: {fileID: 393972778}
   BasicRevenue: 200
   SalesRevenue: 0
   TaxCost: 0
@@ -6587,21 +6602,6 @@ MonoBehaviour:
   - eventCheckList: 000100000001
   - eventCheckList: 010001000000
   returnEventCustomer: 
---- !u!114 &945262613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 945262608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6b41fe1b23c23544b5a8fc7b745778a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EndingImg: {fileID: 1365479691}
-  EndingExplanTxt: {fileID: 947319174}
-  EndingTypes: {fileID: 11400000, guid: 71d529b3eb55526478c8b66b2eae7b15, type: 2}
 --- !u!1 &947319172
 GameObject:
   m_ObjectHideFlags: 0
@@ -8262,6 +8262,7 @@ GameObject:
   - component: {fileID: 1160866547}
   - component: {fileID: 1160866546}
   - component: {fileID: 1160866545}
+  - component: {fileID: 1160866549}
   m_Layer: 5
   m_Name: EndingCanvas
   m_TagString: Untagged
@@ -8352,6 +8353,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1160866549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160866544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6b41fe1b23c23544b5a8fc7b745778a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EndingImg: {fileID: 1365479691}
+  EndingExplanTxt: {fileID: 947319174}
+  EndingTypes: {fileID: 11400000, guid: 71d529b3eb55526478c8b66b2eae7b15, type: 2}
 --- !u!1 &1200896031
 GameObject:
   m_ObjectHideFlags: 0

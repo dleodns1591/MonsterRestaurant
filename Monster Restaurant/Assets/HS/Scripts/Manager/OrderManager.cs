@@ -19,7 +19,11 @@ public class OrderManager : Singleton<OrderManager>
     private Button ReAskBtn => BtnAskText.transform.parent.GetComponent<Button>();
 
     [Header("하루 시간 관련")]
-    [SerializeField] private Image TimeFill;
+    public Image TimeFill;
+
+    [Header("결과 창 관련")]
+    public int firstMoney;
+    [SerializeField] private ResultManager resultManager;
 
     [Header("손님 관련")]
     [SerializeField] public Image CustomerImg;
@@ -38,34 +42,23 @@ public class OrderManager : Singleton<OrderManager>
     [Header("요리 당 만족도 관련")]
     public SatisfactionManager satisfactionManager;
 
-    [Header("UI 관련")]
-    [SerializeField] private Text MoneyText;
-
-    [Header("결과 창 관련")]
-    [SerializeField] private GameObject RevenuePopup;
-    [SerializeField] private Button NextButton;
-    [SerializeField] private Text Principal, BasicRevenue, SalesRevenue, MarterialCost, TaxCost, SettlementCost, Total;
-    [SerializeField] private Text DayText;
-
     [Header("메모 관련")]
     [SerializeField] private MemoManager memoManager;
 
-    [Header("기타부타타")]
-    public GameObject CookingScene;
-
     [Header("엔딩 관련")]
     public EndingManager endingManager;
+
+    [Header("기타부타타")]
+    public GameObject CookingScene;
 
     [Header("상점 관련")]
     [SerializeField] private Shop shop;
 
     [Header("내부 변수들")]
-    private int EndingDate = 20;
     private Tween TextTween, DayTween;
-    public int ReQuestionCount;
+    public int ReQuestionCount, GuestOfTheDay;
     private List<EeventCustomerType> EventTypes = new List<EeventCustomerType>();
     private Coroutine Ordercoroutine, BuyTextCoroutine;
-    private int firstMoney, GuestOfTheDay;
     private I_CustomerType CustomerType;
     [HideInInspector] public bool isCookingSuccess;
     [HideInInspector] public bool isBeggar;
@@ -79,6 +72,8 @@ public class OrderManager : Singleton<OrderManager>
 
     private void Start()
     {
+        GameManager.Instance.Money = 100;
+
         shop = GameManager.Instance.shop;
 
         SoundManager.instance.PlaySoundClip("Ingame_bgm", SoundType.BGM);
@@ -88,23 +83,6 @@ public class OrderManager : Singleton<OrderManager>
         ShopProduction();
         OrderToCook();
         CookToOrder();
-    }
-    private void Update()
-    {
-        MoneyText.text = ((int)GameManager.Instance.Money).ToString();
-
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            EndingDate = 1;
-        }
-        else if (Input.GetKeyDown(KeyCode.P))
-        {
-            EndingDate = 20;
-        }
-        else if (Input.GetKeyDown(KeyCode.L))
-        {
-            GameManager.Instance.Money += 1000;
-        }
     }
 
     string NameKoreanReturn(string name)
@@ -395,9 +373,12 @@ public class OrderManager : Singleton<OrderManager>
     /// <summary>
     /// 손님을 받는 이벤트? 들이 시작하는 함수
     /// </summary>
-    void OrderLoop()
+    public void OrderLoop()
     {
         firstMoney = (int)GameManager.Instance.Money;
+        GuestOfTheDay = 0;
+        ReQuestionCount = 0;
+
         GameManager.Instance.SalesRevenue = 0;
         GameManager.Instance.MarterialCost = 0;
         GameManager.Instance.TaxCost = 0;
@@ -409,7 +390,6 @@ public class OrderManager : Singleton<OrderManager>
 
         if (DayTween != null)
             DayTween.Kill();
-        TimeFill.fillAmount = 1;
 
         DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 120)
         .OnComplete(() => //시간이 다 지났을때
@@ -458,118 +438,11 @@ public class OrderManager : Singleton<OrderManager>
             .OnUpdate(() => numberText.text = currentNumber.ToString());
     }
 
-    void DayEnd()
-    {
-        if (GameManager.Instance.Day >= EndingDate)
-        {
-            if (GameManager.Instance.Money < 2500)
-            {
-
-                endingManager.EndingProduction(EendingType.Loser);
-                GameManager.Instance.isEndingOpens[(int)EendingType.Loser] = true;
-                SaveManager.Instance.isEndingOpens[(int)EendingType.Loser] = true;
-            }
-            else if (GameManager.Instance.Money < 5000)
-            {
-
-                endingManager.EndingProduction(EendingType.Salve);
-                GameManager.Instance.isEndingOpens[(int)EendingType.Salve] = true;
-                SaveManager.Instance.isEndingOpens[(int)EendingType.Salve] = true;
-            }
-            else
-            {
-
-                endingManager.EndingProduction(EendingType.Mine);
-                GameManager.Instance.isEndingOpens[(int)EendingType.Mine] = true;
-                SaveManager.Instance.isEndingOpens[(int)EendingType.Mine] = true;
-            }
-
-            return;
-        }
-        FadeInOut.instance.LittleFadeOut();
-        FadeInOut.instance.RevenueFadeOut();
-
-        GameManager.Instance.shop.PurchaseDayCheck();
-        GameManager.Instance.Money += 200;
-        GameManager.Instance.TaxCost = GameManager.Instance.SalesRevenue / 10;
-        GameManager.Instance.Money -= GameManager.Instance.TaxCost;
-        GameManager.Instance.Money -= GameManager.Instance.SettlementCost;
-        StartCoroutine(NumberAni());
-        IEnumerator NumberAni()
-        {
-            yield return new WaitForSeconds(FadeInOut.instance.fadeTime);
-            BasicRevenue.text = "";
-            SalesRevenue.text = "";
-            MarterialCost.text = "";
-            TaxCost.text = "";
-            SettlementCost.text = "";
-            Total.text = "";
-            for (int i = 0; i < RevenuePopup.transform.childCount; i++)
-            {
-                RevenuePopup.transform.GetChild(i).gameObject.SetActive(true);
-            }
-            NextButton.gameObject.SetActive(false);
-
-            NumberAnimation(firstMoney, 1.3f, Principal);
-            yield return new WaitForSeconds(1.5f);
-            NumberAnimation(GameManager.Instance.BasicRevenue, 1.3f, BasicRevenue);
-            yield return new WaitForSeconds(1.5f);
-            NumberAnimation(GameManager.Instance.SalesRevenue, 1.3f, SalesRevenue);
-            yield return new WaitForSeconds(1.5f);
-            NumberAnimation((int)GameManager.Instance.MarterialCost, 1.3f, MarterialCost);
-            yield return new WaitForSeconds(1.5f);
-            NumberAnimation(GameManager.Instance.TaxCost, 1.3f, TaxCost);
-            yield return new WaitForSeconds(1.5f);
-            NumberAnimation(GameManager.Instance.SettlementCost, 1.3f, SettlementCost);
-            yield return new WaitForSeconds(1.5f);
-            NumberAnimation((int)GameManager.Instance.Money, 1.3f, Total);
-            yield return new WaitForSeconds(2.0f);
-            NextButton.gameObject.SetActive(true);
-            NextButton.onClick.RemoveAllListeners();
-            NextButton.onClick.AddListener(() =>
-            {
-                NextButton.gameObject.SetActive(false);
-                RevenuePopup.GetComponent<RectTransform>().DOAnchorPosY(865, 2.5f).OnComplete(() =>
-                {
-                    for (int i = 0; i < RevenuePopup.transform.childCount; i++)
-                    {
-                        RevenuePopup.transform.GetChild(i).gameObject.SetActive(false);
-                    }
-                    TimeFill.fillAmount = 1;
-
-                    IEnumerator DayProduction()
-                    {
-                        GameManager.Instance.Day++;
-                        GameManager.Instance.eventCheck.Check();
-                        DayText.text = $"{GameManager.Instance.Day}일차....!";
-                        DayText.DOFade(1, 1);
-                        yield return new WaitForSeconds(1.5f);
-                        FadeInOut.instance.LittleFade();
-                        DayText.DOFade(0, FadeInOut.instance.fadeTime);
-                        yield return new WaitForSeconds(FadeInOut.instance.fadeTime);
-                    }
-                    StartCoroutine(DayProduction());
-                    StartCoroutine(Reset());
-                });
-            });
-            IEnumerator Reset()
-            {
-                yield return new WaitForSeconds(FadeInOut.instance.fadeTime);
-                RevenuePopup.GetComponent<Image>().color = new Color(1, 1, 1, 0);
-                RevenuePopup.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-                GameManager.Instance.dayEndCheck = false;
-                GuestOfTheDay = 0;
-                ReQuestionCount = 0;
-                OrderLoop();
-            }
-        }
-    }
-
     IEnumerator Order()
     {
         if (GameManager.Instance.dayEndCheck)
         {
-            DayEnd();
+            resultManager.DayEnd();
             yield break;
         }
         yield return StartCoroutine(customer.Moving());
@@ -694,6 +567,8 @@ public class OrderManager : Singleton<OrderManager>
     {
         GameManager.Instance.ReturnOrder = () =>
         {
+            satisfactionManager.LoopStop();
+
             string[] line = AnswerTalkTxt.text.Split('\n');
 
             string[,] SucsessTalk = new string[Enum.GetValues(typeof(EcustomerType)).Length, 3];

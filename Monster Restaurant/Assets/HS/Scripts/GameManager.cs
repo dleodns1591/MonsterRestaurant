@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using UnityEditor;
+using UnityEngine.UI;
 
 public enum EendingType
 {
@@ -32,13 +32,17 @@ public class GameManager : Singleton<GameManager>
     public OrderSet[] orderSets;
     [HideInInspector] public bool[] isEndingOpens = new bool[Enum.GetValues(typeof(EendingType)).Length];
 
-    private float money = 100;
+
+    [SerializeField] private Text MoneyText;
+    private float money;
     public float Money
     {
         get { return money; }
         set
         {
             money = value;
+
+            MoneyText.text = ((int)Money).ToString();
             //OrderManager.Instance.MoneyText.text = money.ToString() + " $";
             if (money < 0)
             {
