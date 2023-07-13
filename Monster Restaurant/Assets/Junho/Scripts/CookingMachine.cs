@@ -70,13 +70,14 @@ public class CookingMachine : MonoBehaviour
                 (pos[0].position, pos[1].position, t/0.5f);
         }
 
+        // 내려 찍는 소리
+        SoundManager.instance.PlaySoundClip("CookingSFX", SoundType.SFX);
+
         pushAnimation.SetTrigger("IsPlay");
 
         yield return new WaitForSeconds(0.1f);
         cook.style = cookingStyle;
         cook.CookingComplete();
-        // 내려 찍는 소리
-
 
         yield return new WaitForSeconds(0.9f);
 
