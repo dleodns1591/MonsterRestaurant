@@ -26,7 +26,8 @@ public class SettingSystem : MonoBehaviour
     bool isNotification = false;
 
     [Header("¾ð¾î")]
-    [SerializeField] CanvasGroup languageWindow;
+    [SerializeField] CanvasGroup languageGroup;
+    [SerializeField] GameObject languageWindow;
     [SerializeField] Button languageBtn;
     [SerializeField] Button languageCancleBtn;
     [SerializeField] Button englishBtn;
@@ -37,16 +38,13 @@ public class SettingSystem : MonoBehaviour
     void Start()
     {
         SettingBtns();
-        //LanguageBtns();
+        LanguageBtn();
     }
 
     void Update()
     {
 
     }
-
-    //void LanguageSetting(int index) =>
-    //    LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
 
     void SettingBtns()
     {
@@ -142,44 +140,33 @@ public class SettingSystem : MonoBehaviour
         });
     }
 
-    //void LanguageBtns()
-    //{
-    //    koreaBtn.GetComponent<Image>().color = Color.gray;
+    void LanguageBtn()
+    {
+        languageBtn.onClick.AddListener(() =>
+        {
+            languageGroup.alpha = 1;
 
-    //    languageBtn.onClick.AddListener(() =>
-    //    {
-    //        languageWindow.alpha = 1;
-    //        languageWindow.gameObject.SetActive(true);
-    //    });
+            languageWindow.transform.DOLocalMoveY(0, 0.2f).SetEase(Ease.Linear);
+            languageGroup.gameObject.SetActive(true);
+        });
 
-    //    languageCancleBtn.onClick.AddListener(() =>
-    //    {
-    //        languageWindow.DOFade(0, 0.2f).SetEase(Ease.Linear).OnComplete(() =>
-    //        {
-    //            languageWindow.gameObject.SetActive(false);
-    //        });
-    //    });
+        languageCancleBtn.onClick.AddListener(() =>
+        {
+            languageGroup.DOFade(0, 0.2f).SetEase(Ease.Linear).OnComplete(() =>
+            {
+                languageWindow.transform.DOLocalMoveY(1050, 0).SetEase(Ease.Linear);
+                languageGroup.gameObject.SetActive(false);
+            });
+        });
 
-    //    englishBtn.onClick.AddListener(() =>
-    //    {
-    //        if (isLanguage)
-    //        {
-    //            isLanguage = false;
-    //            englishBtn.GetComponent<Image>().color = Color.gray;
-    //            koreaBtn.GetComponent<Image>().color = Color.white;
-    //            LanguageSetting(0);
-    //        }
-    //    });
+        koreaBtn.onClick.AddListener(() =>
+        {
+            LanguageManager.Instance.LanguageSetting(1);
+        });
 
-    //    koreaBtn.onClick.AddListener(() =>
-    //    {
-    //        if (!isLanguage)
-    //        {
-    //            isLanguage = true;
-    //            koreaBtn.GetComponent<Image>().color = Color.gray;
-    //            englishBtn.GetComponent<Image>().color = Color.white;
-    //            LanguageSetting(1);
-    //        }
-    //    });
-    //}
+        englishBtn.onClick.AddListener(() =>
+        {
+            LanguageManager.Instance.LanguageSetting(0);
+        });
+    }
 }

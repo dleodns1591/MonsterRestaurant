@@ -8,8 +8,9 @@ using DG.Tweening;
 [System.Serializable]
 class Chat
 {
-    public string chat;
     public int num = 0;
+    public string koChat;
+    public string enChat;
 }
 
 public class ChatSystem : MonoBehaviour
@@ -39,8 +40,23 @@ public class ChatSystem : MonoBehaviour
 
     void Update()
     {
-        chatText.text = chatList[0].chat;
+        ChatSetting();
+    }
+
+    void ChatSetting()
+    {
         chatNum = chatList[0].num;
+
+        switch (LanguageManager.Instance.languageNum)
+        {
+            case 0:
+                chatText.text = chatList[0].enChat;
+                break;
+
+            case 1:
+                chatText.text = chatList[0].koChat;
+                break;
+        }
     }
 
     void Btns()
@@ -75,7 +91,7 @@ public class ChatSystem : MonoBehaviour
                     break;
             }
         });
-
+        
         leftBtn.onClick.AddListener(() =>
         {
             SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
