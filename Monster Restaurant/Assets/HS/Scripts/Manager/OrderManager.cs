@@ -34,6 +34,8 @@ public class OrderManager : Singleton<OrderManager>
     private int normalGuestType;
 
     [Header("손님의 말풍선 관련")]
+    [SerializeField] private OrderMessageManager orderMessageManager;
+
     [SerializeField] private UIText OrderText;
     [SerializeField] private GameObject NameBallon;
     private Image SpeechBallon => OrderText.transform.parent.GetComponent<Image>();
@@ -155,12 +157,12 @@ public class OrderManager : Singleton<OrderManager>
     void NormalCustomerSetting(int type)
     {
         CustomerImg.sprite = GuestDefualts[type];
-        NameBallonText.text = NameKoreanReturn(Enum.GetName(typeof(EcustomerType), type));
+        orderMessageManager.NameBallonSetting(NameKoreanReturn(Enum.GetName(typeof(EcustomerType), type)));
     }
     public void EeventCustomerSetting(int randomType)
     {
         CustomerImg.sprite = EventGuestDefualts[randomType];
-        NameBallonText.text = NameKoreanReturn(Enum.GetName(typeof(EeventCustomerType), randomType));
+        orderMessageManager.NameBallonSetting(NameKoreanReturn(Enum.GetName(typeof(EcustomerType), randomType)));
     }
 
     void SetCustomerType(int type)
@@ -449,8 +451,8 @@ public class OrderManager : Singleton<OrderManager>
 
         ReAskBtn.gameObject.SetActive(true);
         CookingBtn.gameObject.SetActive(true);
-        SpeechBallon.gameObject.SetActive(true);
-        NameBallon.gameObject.SetActive(true);
+
+        orderMessageManager.BallonSetActive(true);
 
         for (int i = 0; i < OrderTalk.Length; i++)
         {
@@ -659,8 +661,7 @@ public class OrderManager : Singleton<OrderManager>
     {
         yield return new WaitForSeconds(1.5f);
 
-        SpeechBallon.gameObject.SetActive(false);
-        NameBallon.gameObject.SetActive(false);
+        orderMessageManager.BallonSetActive(false);
         //다시 시작
 
         customer.Exit();
