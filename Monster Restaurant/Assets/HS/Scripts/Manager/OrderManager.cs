@@ -33,13 +33,8 @@ public class OrderManager : Singleton<OrderManager>
     [SerializeField] public Customer customer;
     private int normalGuestType;
 
-    [Header("손님의 말풍선 관련")]
+    [Header("손님의 대사 관련")]
     [SerializeField] private OrderMessageManager orderMessageManager;
-
-    [SerializeField] private UIText OrderText;
-    [SerializeField] private GameObject NameBallon;
-    private Image SpeechBallon => OrderText.transform.parent.GetComponent<Image>();
-    private Text NameBallonText => NameBallon.transform.GetComponentInChildren<Text>();
 
     [Header("요리 당 만족도 관련")]
     public SatisfactionManager satisfactionManager;
@@ -57,7 +52,7 @@ public class OrderManager : Singleton<OrderManager>
     [SerializeField] private Shop shop;
 
     [Header("내부 변수들")]
-    private Tween TextTween, DayTween;
+    private Tween DayTween;
     public int ReQuestionCount, GuestOfTheDay;
     private List<EeventCustomerType> EventTypes = new List<EeventCustomerType>();
     private Coroutine Ordercoroutine, BuyTextCoroutine;
@@ -408,7 +403,7 @@ public class OrderManager : Singleton<OrderManager>
 
         memoManager.ResetMemo();
 
-        OrderText.text = "";
+        orderMessageManager.ResetText();
         BtnCookText.text = "";
         BtnAskText.text = "";
     }
@@ -460,11 +455,13 @@ public class OrderManager : Singleton<OrderManager>
             {
                 continue;
             }
-            if (TextTween != null)
-                TextTween.Kill();
-            OrderText.text = "";
+            
+            orderMessageManager.StopTalking();
+            orderMessageManager.ResetText();
+
             print(OrderTalk[i]);
-            TextTween = OrderText.DOText(OrderTalk[i], 0.05f * OrderTalk[i].Length);
+            orderMessageManager.TalkingText(OrderTalk[i]);
+
             while (!isNext)
             {
                 yield return null;
@@ -525,7 +522,8 @@ public class OrderManager : Singleton<OrderManager>
             if (BuyTextCoroutine != null)
             {
                 StopCoroutine(BuyTextCoroutine);
-                OrderText.text = "";
+                orderMessageManager.ResetText();
+
             }
 
             BuyTextCoroutine = StartCoroutine(Delay());
@@ -533,7 +531,8 @@ public class OrderManager : Singleton<OrderManager>
             {
                 yield return new WaitForSeconds(3 + (speechs[rand].Length * 0.05f));
 
-                OrderText.text = "";
+                orderMessageManager.ResetText();
+
             }
         };
 
@@ -548,7 +547,7 @@ public class OrderManager : Singleton<OrderManager>
                 FadeInOut.instance.Fade();
                 yield return new WaitForSeconds(FadeInOut.instance.fadeTime);
                 shop.StopBuyBtn.gameObject.SetActive(true);
-                OrderText.text = "";
+                orderMessageManager.ResetText();
                 SpeakOrder("마음에 드시는 제품 있으시면 구매해주세요.");
                 yield return new WaitForSeconds("마음에 드시는 제품 있으시면 구매해주세요.".Length * 0.05f);
                 shop.MouseGuide.SetActive(true);
@@ -559,10 +558,9 @@ public class OrderManager : Singleton<OrderManager>
 
     public void SpeakOrder(string speech)
     {
-        OrderText.text = "";
-        if (TextTween != null)
-            TextTween.Kill();
-        TextTween = OrderText.DOText(speech, 0.05f * speech.Length);
+        orderMessageManager.StopTalking();
+        orderMessageManager.ResetText();
+        orderMessageManager.TalkingText(speech);
     }
 
     public void CookToOrder()
@@ -648,12 +646,13 @@ public class OrderManager : Singleton<OrderManager>
             print(AnswerTalk);
             CookingScene.transform.DOMoveY(-10, 1).SetEase(Ease.OutBounce).OnComplete(() =>
             {
-                OrderText.DOText(AnswerTalk, 0.05f * AnswerTalk.Length).OnComplete(() =>
+                orderMessageManager.AfterOrder = () =>
                 {
                     StartCoroutine(ExitAndComein(false));
-                });
+                };
+                orderMessageManager.TalkingText(AnswerTalk);
             });
-            OrderText.text = "";
+            orderMessageManager.ResetText();
         };
 
     }

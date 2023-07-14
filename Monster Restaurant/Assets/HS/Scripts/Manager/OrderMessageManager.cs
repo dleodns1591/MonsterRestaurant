@@ -6,13 +6,17 @@ using UnityEngine;
 using UnityEngine.UI;
 public class OrderMessageManager : MonoBehaviour
 {
-    [Header("손님의 말풍선 관련")]
+    [Header("손님의 대사 관련")]
     [SerializeField] private UIText OrderText;
     [SerializeField] private GameObject NameBallon;
     private Image SpeechBallon => OrderText.transform.parent.GetComponent<Image>();
     private Text NameBallonText => NameBallon.transform.GetComponentInChildren<Text>();
 
+    private Tween TalkingDotween;
+
     public Action AfterOrder;
+
+
 
     /// <summary>
     /// 대사 말하는 연출이 끝난 뒤
@@ -25,7 +29,7 @@ public class OrderMessageManager : MonoBehaviour
     {
         OrderText.text = "";
 
-        OrderText.DOText(speech, 0.05f * speech.Length).OnComplete(() =>
+        TalkingDotween = OrderText.DOText(speech, 0.05f * speech.Length).OnComplete(() =>
         {
             if(AfterOrder != null)
             {
@@ -44,5 +48,18 @@ public class OrderMessageManager : MonoBehaviour
     public void NameBallonSetting(string name)
     {
         NameBallonText.text = name;
+    }
+
+    public void ResetText()
+    {
+        OrderText.text = "";
+    }
+
+    public void StopTalking()
+    {
+        if (TalkingDotween != null)
+        {
+            TalkingDotween.Kill();
+        }
     }
 }
