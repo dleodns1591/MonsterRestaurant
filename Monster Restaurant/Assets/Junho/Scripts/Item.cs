@@ -64,6 +64,7 @@ public class Item : MonoBehaviour, IPointerDownHandler
             if (GameManager.Instance.BuyCheck(price) == true)
             {
                 BuyItem();
+                SoundManager.instance.PlaySoundClip("BuySFX", SoundType.SFX);
             }
         }
         else if (Input.GetMouseButton(1))
