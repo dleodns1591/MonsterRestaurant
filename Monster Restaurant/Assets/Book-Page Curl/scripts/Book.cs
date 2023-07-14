@@ -365,8 +365,18 @@ public class Book : MonoBehaviour
                 TweenBack();
             else
                 TweenForward();
+
+            StartCoroutine(EndingCheck());
         }
     }
+
+    IEnumerator EndingCheck()
+    {
+        yield return new WaitForSeconds(0.2f);
+        EndingBook.instnace.isEndingLeft = false;
+        EndingBook.instnace.isEndingRight = false;
+    }
+
     Coroutine currentCoroutine;
     void UpdateSprites()
     {

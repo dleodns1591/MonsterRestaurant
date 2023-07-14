@@ -13,6 +13,9 @@ class endingCheck
 
 public class EndingBook : MonoBehaviour
 {
+    public static EndingBook instnace;
+    void Awake() => instnace = this;
+
     [Header("¿£µù")]
     [SerializeField] CanvasGroup endingGroup;
     [SerializeField] GameObject endingWindow;
@@ -26,6 +29,8 @@ public class EndingBook : MonoBehaviour
     [Space(10)]
     [SerializeField] List<endingCheck> endingSprite = new List<endingCheck>();
 
+    public bool isEndingLeft = false;
+    public bool isEndingRight = false;
 
     void Start()
     {
@@ -35,6 +40,7 @@ public class EndingBook : MonoBehaviour
     void Update()
     {
         EndingCheck();
+        EndingBtnCheck();
     }
 
     void EndingBtns()
@@ -52,11 +58,12 @@ public class EndingBook : MonoBehaviour
 
         endingLeftBtn.onClick.AddListener(() =>
         {
-            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
-            SoundManager.instance.PlaySoundClip("page-flip-3", SoundType.SFX);
-
-            if (0 < endingCount)
+            if (0 < endingCount && !isEndingLeft)
             {
+                isEndingLeft = true;
+                SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+                SoundManager.instance.PlaySoundClip("page-flip-3", SoundType.SFX, 0.8f);
+
                 --endingCount;
                 AutoFlip.instnace.FlipLeftPage();
             }
@@ -64,15 +71,30 @@ public class EndingBook : MonoBehaviour
 
         endingRightBtn.onClick.AddListener(() =>
         {
-            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
-            SoundManager.instance.PlaySoundClip("page-flip-3", SoundType.SFX);
-
-            if (endingCount < (endingSprite.Count / 2))
+            if (endingCount < (endingSprite.Count / 2) && !isEndingRight)
             {
+                isEndingRight = true;
+                SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+                SoundManager.instance.PlaySoundClip("page-flip-3", SoundType.SFX, 0.8f);
+
                 ++endingCount;
                 AutoFlip.instnace.FlipRightPage();
             }
         });
+    }
+
+    void EndingBtnCheck()
+    {
+        if (0 < endingCount)
+            endingLeftBtn.gameObject.SetActive(true);
+        else
+            endingLeftBtn.gameObject.SetActive(false);
+
+        if (endingCount < (endingSprite.Count / 2))
+            endingRightBtn.gameObject.SetActive(true);
+        else
+            endingRightBtn.gameObject.SetActive(false);
+
     }
 
     void EndingCheck()
@@ -89,7 +111,6 @@ public class EndingBook : MonoBehaviour
         endingSprite[7].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.Dragon];
         endingSprite[8].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.LookStar];
 
-
         for (int i = 0; i < endingSprite.Count; i++)
         {
             if (endingSprite[i].isEndingcheck)
@@ -97,7 +118,7 @@ public class EndingBook : MonoBehaviour
                 if (i == 0)
                     Book.instnace.background = endingSprite[0].endingsprite;
                 else
-                    Book.instnace.bookPages[i-1] = endingSprite[i].endingsprite;
+                    Book.instnace.bookPages[i - 1] = endingSprite[i].endingsprite;
             }
         }
     }
