@@ -50,8 +50,6 @@ public class MapScrollMG : Singleton<MapScrollMG>
     {
         myBgXPos += num;
 
-        print(myBgXPos);
-
         if (myBgXPos <= 0) myBgXPos = 0;
         else if (myBgXPos >= BgXPos.Length - 1) myBgXPos = BgXPos.Length - 1;
 
