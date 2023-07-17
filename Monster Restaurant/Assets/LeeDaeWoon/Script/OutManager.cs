@@ -27,15 +27,16 @@ public class OutManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && !isOutClick)
         {
             if (!isOut)
-                OutSetting(0, 0.5f, true);
+                OutSetting(0, 0.5f, true, true);
             else
-                OutSetting(1, 0, false);
+                OutSetting(1, 0, false, false);
         }
     }
 
-    void OutSetting(int time, float fadeCount, bool isOutCheck)
+    void OutSetting(int time, float fadeCount, bool isOutCheck ,bool isSetactive)
     {
         isOut = isOutCheck;
+        outWindow.gameObject.SetActive(isSetactive);
         outFade.DOFade(fadeCount, 0.2f).SetEase(Ease.Linear).SetUpdate(true);
         outWindow.DOFade(fadeCount * 2, 0.2f).SetEase(Ease.Linear).SetUpdate(true);
         Time.timeScale = time;
@@ -52,9 +53,9 @@ public class OutManager : MonoBehaviour
             {
                 SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
                 if (!isOut)
-                    OutSetting(0, 0.5f, true);
+                    OutSetting(0, 0.5f, true, true);
                 else
-                    OutSetting(1, 0, false);
+                    OutSetting(1, 0, false, false);
             }
         });
 
@@ -74,7 +75,7 @@ public class OutManager : MonoBehaviour
         outNoBtn.onClick.AddListener(() =>
         {
             SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
-            OutSetting(1, 0, false);
+            OutSetting(1, 0, false, false);
         });
     }
 }
