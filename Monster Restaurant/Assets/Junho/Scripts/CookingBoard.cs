@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEditor;
 
 public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
@@ -184,17 +183,31 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     }
 
+
+    private int SubMatarialsCount()
+    {
+        int num = 0;
+        foreach (var item in subMaterials)
+        {
+            if (item.subM == Cooking.Instance.AnswerOrder.sub[0])
+            {
+                num++;
+            }
+        }
+
+        return num;
+    }
+
     public void OrderCheck()
     {
         int checkList = 0;
 
         if (Cooking.Instance.AnswerOrder.style != style) checkList++;
         if (Cooking.Instance.AnswerOrder.main != mainMaterial) checkList++;
-        if (Cooking.Instance.AnswerOrder.count > subMaterials.Count) checkList++;
+        if (Cooking.Instance.AnswerOrder.count > SubMatarialsCount()) checkList++;
 
 
-
-        if(Cooking.Instance.AnswerOrder.sub[0] != ESubMatarials.NULL)
+        if (Cooking.Instance.AnswerOrder.sub[0] != ESubMatarials.NULL)
         {
             int num = 0;
             bool isReturn;
@@ -216,8 +229,6 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
             }
             checkList += (Cooking.Instance.AnswerOrder.sub.Count - num);
         }
-
-
 
         GameManager.Instance.Satisfaction -= (checkList * 20) / Cooking.Instance.AnswerOrder.dishCount;
     }
