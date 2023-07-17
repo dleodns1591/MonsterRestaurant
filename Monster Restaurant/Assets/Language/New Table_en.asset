@@ -26,6 +26,11 @@ MonoBehaviour:
     m_Localized: Pardon?
     m_Metadata:
       m_Items: []
+  - m_Id: 1475790222077952
+    m_Localized: Are you sure you want to quit? You will lose the progress of the
+      event.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -47,10 +47,10 @@ public class OutManager : MonoBehaviour
 
         outBtn.onClick.AddListener(() =>
         {
-            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
 
             if (!isOutClick)
             {
+                SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
                 if (!isOut)
                     OutSetting(0, 0.5f, true);
                 else
