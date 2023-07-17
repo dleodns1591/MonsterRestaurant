@@ -47,6 +47,8 @@ public class OutManager : MonoBehaviour
 
         outBtn.onClick.AddListener(() =>
         {
+            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+
             if (!isOutClick)
             {
                 if (!isOut)
@@ -59,6 +61,7 @@ public class OutManager : MonoBehaviour
         outYesBtn.onClick.AddListener(() =>
         {
             isOutClick = true;
+            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
 
             fade.DOFade(1, 0.5f).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() =>
             {
@@ -70,6 +73,7 @@ public class OutManager : MonoBehaviour
 
         outNoBtn.onClick.AddListener(() =>
         {
+            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
             OutSetting(1, 0, false);
         });
     }
