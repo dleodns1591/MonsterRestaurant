@@ -2422,6 +2422,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bg: {fileID: 975579626}
+  LeftUpPos: {x: 1820, y: 800}
+  RightDownPos: {x: 100, y: 125}
   maxX: 1720
   minX: 200
   BgXPos:

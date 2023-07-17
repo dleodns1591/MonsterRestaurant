@@ -5,8 +5,9 @@ using UnityEngine;
 public class MapScrollMG : Singleton<MapScrollMG>
 {
     [SerializeField] private RectTransform bg;
-    [SerializeField] private float maxX;
-    [SerializeField] private float minX;
+    [SerializeField] private Vector2 LeftUpPos;
+    [SerializeField] private Vector2 RightDownPos;
+
     [SerializeField] private Vector3[] BgXPos;
     [SerializeField] private int myBgXPos;
 
@@ -35,14 +36,15 @@ public class MapScrollMG : Singleton<MapScrollMG>
         {
             yield return null;
 
-            if (Input.mousePosition.x > maxX) yield return MapMove(1);
-            else if (Input.mousePosition.x < minX) yield return MapMove(-1);
 
-            //if (Input.GetMouseButtonUp(0))
-            //{
-            //    print("End");
-            //    break;
-            //}
+            bool isPosYCheck = (Input.mousePosition.y <= LeftUpPos.y && Input.mousePosition.y >= RightDownPos.y);
+
+            if (isPosYCheck)
+            {
+                if (Input.mousePosition.x > LeftUpPos.x) yield return MapMove(1);
+                else if (Input.mousePosition.x < RightDownPos.x) yield return MapMove(-1);
+            }
+
         }
     }
 
