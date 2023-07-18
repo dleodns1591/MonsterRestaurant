@@ -35,6 +35,7 @@ public class ChatSystem : MonoBehaviour
 
     void Start()
     {
+        SoundManager.instance.PlaySoundClip("Title_bgm", SoundType.BGM);
         Btns();
     }
 

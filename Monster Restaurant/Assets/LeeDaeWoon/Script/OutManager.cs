@@ -27,19 +27,25 @@ public class OutManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && !isOutClick)
         {
             if (!isOut)
-                OutSetting(0, 0.5f, true, true);
+            {
+                FadeInOut.instance.GetComponent<Image>().DOFade(0, 0).SetUpdate(true);
+                OutSetting(0, 0, 0.3f, 0.5f, true, true);
+            }
             else
-                OutSetting(1, 0, false, false);
+                OutSetting(1, 1050, 0, 0, false, false);
         }
     }
 
-    void OutSetting(int time, float fadeCount, bool isOutCheck ,bool isSetactive)
+    void OutSetting(int time, int windowPosY, float windowTime, float fadeCount, bool isOutCheck, bool isSetactive)
     {
+
+
         isOut = isOutCheck;
+        Time.timeScale = time;
         outWindow.gameObject.SetActive(isSetactive);
         outFade.DOFade(fadeCount, 0.2f).SetEase(Ease.Linear).SetUpdate(true);
         outWindow.DOFade(fadeCount * 2, 0.2f).SetEase(Ease.Linear).SetUpdate(true);
-        Time.timeScale = time;
+        outWindow.transform.DOLocalMoveY(windowPosY, windowTime).SetEase(Ease.Linear).SetUpdate(true);
     }
 
     void OutBtn()
@@ -48,20 +54,28 @@ public class OutManager : MonoBehaviour
 
         outBtn.onClick.AddListener(() =>
         {
-
             if (!isOutClick)
             {
                 SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
                 if (!isOut)
-                    OutSetting(0, 0.5f, true, true);
+                {
+                    FadeInOut.instance.GetComponent<Image>().DOFade(0, 0).SetUpdate(true);
+                    OutSetting(0, 0, 0.3f, 0.5f, true, true);
+                }
                 else
-                    OutSetting(1, 0, false, false);
+                    OutSetting(1, 1050, 0, 0, false, false);
             }
         });
 
         outYesBtn.onClick.AddListener(() =>
         {
             isOutClick = true;
+            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+            OutSetting(1, 1050, 0, 0, false, false);
+        });
+
+        outNoBtn.onClick.AddListener(() =>
+        {
             SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
 
             fade.DOFade(1, 0.5f).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() =>
@@ -70,12 +84,6 @@ public class OutManager : MonoBehaviour
                 DOTween.KillAll();
                 SceneManager.LoadScene(1);
             });
-        });
-
-        outNoBtn.onClick.AddListener(() =>
-        {
-            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
-            OutSetting(1, 0, false, false);
         });
     }
 }
