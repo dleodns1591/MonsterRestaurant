@@ -14,7 +14,6 @@ public class OutManager : MonoBehaviour
     [SerializeField] CanvasGroup outWindow;
 
     bool isOut = false;
-    bool isOutClick = false;
 
 
     void Start()
@@ -24,7 +23,7 @@ public class OutManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !isOutClick)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (!isOut)
             {
@@ -69,7 +68,6 @@ public class OutManager : MonoBehaviour
 
         outYesBtn.onClick.AddListener(() =>
         {
-            isOutClick = true;
             SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
             OutSetting(1, 1050, 0, 0, false, false);
         });
