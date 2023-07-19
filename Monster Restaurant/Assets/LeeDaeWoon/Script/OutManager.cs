@@ -53,17 +53,14 @@ public class OutManager : MonoBehaviour
 
         outBtn.onClick.AddListener(() =>
         {
-            if (!isOutClick)
+            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+            if (!isOut)
             {
-                SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
-                if (!isOut)
-                {
-                    FadeInOut.instance.GetComponent<Image>().DOFade(0, 0).SetUpdate(true);
-                    OutSetting(0, 0, 0.3f, 0.5f, true, true);
-                }
-                else
-                    OutSetting(1, 1050, 0, 0, false, false);
+                FadeInOut.instance.GetComponent<Image>().DOFade(0, 0).SetUpdate(true);
+                OutSetting(0, 0, 0.3f, 0.5f, true, true);
             }
+            else
+                OutSetting(1, 1050, 0, 0, false, false);
         });
 
         outYesBtn.onClick.AddListener(() =>
