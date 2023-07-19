@@ -37,8 +37,6 @@ public class OutManager : MonoBehaviour
 
     void OutSetting(int time, int windowPosY, float windowTime, float fadeCount, bool isOutCheck, bool isSetactive)
     {
-
-
         isOut = isOutCheck;
         Time.timeScale = time;
         outWindow.gameObject.SetActive(isSetactive);
