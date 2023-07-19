@@ -87,6 +87,9 @@ public class ChatSystem : MonoBehaviour
                 case 3:
                     settingGroup.alpha = 1;
 
+                    SettingSystem.instance.amongSetting.transform.DOLocalMoveX(0, 0).SetEase(Ease.Linear);
+                    SettingSystem.instance.rightSetting.transform.DOLocalMoveX(1050, 0).SetEase(Ease.Linear);
+
                     settingGroup.gameObject.SetActive(true);
                     settingWidnow.transform.DOLocalMoveY(0, 0.2f).SetEase(Ease.Linear);
                     break;

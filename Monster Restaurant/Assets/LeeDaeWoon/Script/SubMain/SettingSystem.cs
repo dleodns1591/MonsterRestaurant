@@ -6,6 +6,9 @@ using DG.Tweening;
 
 public class SettingSystem : MonoBehaviour
 {
+    public static SettingSystem instance;
+    void Awake() => instance = this;
+
     [Header("설정")]
     [SerializeField] CanvasGroup settingGroup;
     [SerializeField] GameObject settingWidnow;
@@ -20,18 +23,19 @@ public class SettingSystem : MonoBehaviour
     [SerializeField] Sprite vibarationCancle;
     [SerializeField] Sprite notificationCancle;
 
+    public GameObject amongSetting;
+    public GameObject rightSetting;
+
     bool isBGM = false;
     bool isSFX = false;
     bool isVirbration = false;
     bool isNotification = false;
 
     [Header("언어")]
-    [SerializeField] CanvasGroup languageGroup;
-    [SerializeField] GameObject languageWindow;
     [SerializeField] Button languageBtn;
-    [SerializeField] Button languageCancleBtn;
     [SerializeField] Button englishBtn;
     [SerializeField] Button koreaBtn;
+    [SerializeField] Button backBtn;
 
     bool isLanguage = true;
 
@@ -144,19 +148,8 @@ public class SettingSystem : MonoBehaviour
     {
         languageBtn.onClick.AddListener(() =>
         {
-            languageGroup.alpha = 1;
-
-            languageWindow.transform.DOLocalMoveY(0, 0.2f).SetEase(Ease.Linear);
-            languageGroup.gameObject.SetActive(true);
-        });
-
-        languageCancleBtn.onClick.AddListener(() =>
-        {
-            languageGroup.DOFade(0, 0.2f).SetEase(Ease.Linear).OnComplete(() =>
-            {
-                languageWindow.transform.DOLocalMoveY(1050, 0).SetEase(Ease.Linear);
-                languageGroup.gameObject.SetActive(false);
-            });
+            amongSetting.transform.DOLocalMoveX(-1050, 0.2f).SetEase(Ease.Linear);
+            rightSetting.transform.DOLocalMoveX(0, 0.2f).SetEase(Ease.Linear);
         });
 
         koreaBtn.onClick.AddListener(() =>
@@ -167,6 +160,12 @@ public class SettingSystem : MonoBehaviour
         englishBtn.onClick.AddListener(() =>
         {
             LanguageManager.Instance.LanguageSetting(0);
+        });
+
+        backBtn.onClick.AddListener(() =>
+        {
+            amongSetting.transform.DOLocalMoveX(0, 0.2f).SetEase(Ease.Linear);
+            rightSetting.transform.DOLocalMoveX(1050, 0.2f).SetEase(Ease.Linear);
         });
     }
 }
