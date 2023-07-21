@@ -13,11 +13,14 @@ public class OutManager : MonoBehaviour
     [SerializeField] Image outFade;
     [SerializeField] CanvasGroup outWindow;
 
+    Image fade;
     bool isOut = false;
 
 
     void Start()
     {
+        fade = FadeInOut.instance.GetComponent<Image>();
+
         OutBtn();
     }
 
@@ -27,11 +30,14 @@ public class OutManager : MonoBehaviour
         {
             if (!isOut)
             {
-                FadeInOut.instance.GetComponent<Image>().DOFade(0, 0).SetUpdate(true);
+                fade.DOFade(0, 0).SetUpdate(true);
                 OutSetting(0, 0, 0.3f, 0.5f, true, true);
             }
             else
+            {
+                fade.DOKill();
                 OutSetting(1, 1050, 0, 0, false, false);
+            }
         }
     }
 
@@ -47,14 +53,12 @@ public class OutManager : MonoBehaviour
 
     void OutBtn()
     {
-        Image fade = FadeInOut.instance.GetComponent<Image>();
-
         outBtn.onClick.AddListener(() =>
         {
             SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
             if (!isOut)
             {
-                FadeInOut.instance.GetComponent<Image>().DOFade(0, 0).SetUpdate(true);
+                fade.DOFade(0, 0).SetUpdate(true);
                 OutSetting(0, 0, 0.3f, 0.5f, true, true);
             }
             else
@@ -70,6 +74,8 @@ public class OutManager : MonoBehaviour
         outNoBtn.onClick.AddListener(() =>
         {
             SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+
+            fade.DOKill();
 
             fade.DOFade(1, 0.5f).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() =>
             {
