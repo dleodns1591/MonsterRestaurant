@@ -7,7 +7,8 @@ using DG.Tweening;
 [System.Serializable]
 class endingCheck
 {
-    public Sprite endingsprite;
+    public Sprite endingspriteKO;
+    public Sprite endingspriteENG;
     public bool isEndingcheck = false;
 }
 
@@ -52,7 +53,7 @@ public class EndingBook : MonoBehaviour
             endingGroup.DOFade(0, 0.2f).SetEase(Ease.Linear).OnComplete(() =>
             {
                 endingWindow.transform.DOLocalMoveY(-1050, 0.5f).SetEase(Ease.OutBack);
-                endingGroup.gameObject.SetActive(false);
+                //endingGroup.gameObject.SetActive(false);
             });
         });
 
@@ -115,10 +116,22 @@ public class EndingBook : MonoBehaviour
         {
             if (endingSprite[i].isEndingcheck)
             {
-                if (i == 0)
-                    Book.instnace.background = endingSprite[0].endingsprite;
-                else
-                    Book.instnace.bookPages[i - 1] = endingSprite[i].endingsprite;
+                switch (LanguageManager.Instance.languageNum)
+                {
+                    case 0:
+                        if (i == 0)
+                            Book.instnace.background = endingSprite[0].endingspriteENG;
+                        else
+                            Book.instnace.bookPages[i - 1] = endingSprite[i].endingspriteENG;
+                        break;
+
+                    case 1:
+                        if (i == 0)
+                            Book.instnace.background = endingSprite[0].endingspriteKO;
+                        else
+                            Book.instnace.bookPages[i - 1] = endingSprite[i].endingspriteKO;
+                        break;
+                }
             }
         }
     }
