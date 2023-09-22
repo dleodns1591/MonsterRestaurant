@@ -148,22 +148,30 @@ public class SettingSystem : MonoBehaviour
     {
         languageBtn.onClick.AddListener(() =>
         {
+            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+
             amongSetting.transform.DOLocalMoveX(-1050, 0.2f).SetEase(Ease.Linear);
             rightSetting.transform.DOLocalMoveX(0, 0.2f).SetEase(Ease.Linear);
         });
 
         koreaBtn.onClick.AddListener(() =>
         {
+            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+
             LanguageManager.Instance.LanguageSetting(1);
         });
 
         englishBtn.onClick.AddListener(() =>
         {
+            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+
             LanguageManager.Instance.LanguageSetting(0);
         });
 
         backBtn.onClick.AddListener(() =>
         {
+            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+
             amongSetting.transform.DOLocalMoveX(0, 0.2f).SetEase(Ease.Linear);
             rightSetting.transform.DOLocalMoveX(1050, 0.2f).SetEase(Ease.Linear);
         });

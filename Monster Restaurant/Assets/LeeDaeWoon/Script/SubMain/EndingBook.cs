@@ -53,7 +53,6 @@ public class EndingBook : MonoBehaviour
             endingGroup.DOFade(0, 0.2f).SetEase(Ease.Linear).OnComplete(() =>
             {
                 endingWindow.transform.DOLocalMoveY(-1050, 0.5f).SetEase(Ease.OutBack);
-                //endingGroup.gameObject.SetActive(false);
             });
         });
 
