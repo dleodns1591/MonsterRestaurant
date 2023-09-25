@@ -32,6 +32,7 @@ public class EndingBook : MonoBehaviour
 
     public bool isEndingLeft = false;
     public bool isEndingRight = false;
+    public bool isEndingCancle = false;
 
     void Start()
     {
@@ -40,7 +41,8 @@ public class EndingBook : MonoBehaviour
 
     void Update()
     {
-        EndingCheck();
+        //EndingCheck();
+        StartCoroutine(EndingCheck());
         EndingBtnCheck();
     }
 
@@ -52,6 +54,7 @@ public class EndingBook : MonoBehaviour
 
             endingGroup.DOFade(0, 0.2f).SetEase(Ease.Linear).OnComplete(() =>
             {
+                isEndingCancle = true;
                 endingWindow.transform.DOLocalMoveY(-1050, 0.5f).SetEase(Ease.OutBack);
             });
         });
@@ -97,7 +100,7 @@ public class EndingBook : MonoBehaviour
 
     }
 
-    void EndingCheck()
+    IEnumerator EndingCheck()
     {
         SaveManager saveManager = SaveManager.Instance;
 
@@ -131,6 +134,31 @@ public class EndingBook : MonoBehaviour
                             Book.instnace.bookPages[i - 1] = endingSprite[i].endingspriteKO;
                         break;
                 }
+            }
+        }
+
+        if (isEndingCancle)
+        {
+            isEndingCancle = false;
+
+            int count = endingCount;
+            AutoFlip.instnace.AnimationFramesCount = 5;
+            AutoFlip.instnace.PageFlipTime = 0.01f;
+
+            for (int i = 0; i < count; i++)
+            {
+                endingCount--;
+                AutoFlip.instnace.FlipLeftPage();
+
+                yield return new WaitForSeconds(0.2f);
+            }
+
+            if (endingCount == 0)
+            {
+                Book.instnace.currentPage = 0;
+                AutoFlip.instnace.TimeBetweenPages = 0;
+                AutoFlip.instnace.PageFlipTime = 0.4f;
+                AutoFlip.instnace.AnimationFramesCount = 40;
             }
         }
     }

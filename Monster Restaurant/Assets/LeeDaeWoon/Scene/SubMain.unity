@@ -4553,6 +4553,7 @@ MonoBehaviour:
     isEndingcheck: 0
   isEndingLeft: 0
   isEndingRight: 0
+  isEndingCancle: 0
 --- !u!225 &1746800493
 CanvasGroup:
   m_ObjectHideFlags: 0
