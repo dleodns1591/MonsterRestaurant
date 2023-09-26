@@ -5,8 +5,8 @@ using UnityEngine;
 public class MapScrollMG : Singleton<MapScrollMG>
 {
     [SerializeField] private RectTransform bg;
-    [SerializeField] private Vector2 LeftUpPos;
-    [SerializeField] private Vector2 RightDownPos;
+    private Vector2 LeftUpPos = new Vector2(1820, 800);
+    private Vector2 RightDownPos = new Vector2(100, 125);
 
     [SerializeField] private Vector3[] BgXPos;
     [SerializeField] private int myBgXPos;
@@ -35,6 +35,8 @@ public class MapScrollMG : Singleton<MapScrollMG>
         while (true)
         {
             yield return null;
+
+            if (Input.GetMouseButtonDown(0)) print(Input.mousePosition);
 
 
             bool isPosYCheck = (Input.mousePosition.y <= LeftUpPos.y && Input.mousePosition.y >= RightDownPos.y);
