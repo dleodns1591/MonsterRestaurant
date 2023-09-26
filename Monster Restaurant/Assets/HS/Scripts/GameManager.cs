@@ -30,7 +30,20 @@ public struct OrderSet
 public class GameManager : Singleton<GameManager>
 {
     public OrderSet[] orderSets;
-    [HideInInspector] public bool[] isEndingOpens = new bool[Enum.GetValues(typeof(EendingType)).Length];
+    private bool[] isEndingOpens = new bool[Enum.GetValues(typeof(EendingType)).Length];
+    public bool[] IsEndingOpens
+    {
+        get
+        {
+            return isEndingOpens;
+        }
+
+        set
+        {
+            isEndingOpens = value;
+            SaveManager.Instance.isEndingOpens = isEndingOpens;
+        }
+    }
 
 
     [SerializeField] private Text MoneyText;
@@ -79,6 +92,8 @@ public class GameManager : Singleton<GameManager>
 
             if (!OrderManager.Instance.isBeggar)
                 satisfaction = value;
+            else
+                satisfaction = 100;
 
             if (satisfaction < 0)
             {

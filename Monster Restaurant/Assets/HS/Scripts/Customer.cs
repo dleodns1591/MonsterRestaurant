@@ -5,53 +5,27 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 using System.Collections.Generic;
-using HS_Tree;
 using System;
-namespace HS_Tree
-{
-    public class TreeNode<T>
-    {
-        private List<TreeNode<T>> children = new List<TreeNode<T>>();
-
-        public T Value { get; set; }
-
-        public TreeNode(T value)
-        {
-            Value = value;
-        }
-
-        public List<TreeNode<T>> Children
-        {
-            get { return children; }
-        }
-
-        public void AddChild(TreeNode<T> node)
-        {
-            children.Add(node);
-        }
-    }
-
-}
-
 
 public class Customer : MonoBehaviour
 {
-    [SerializeField]
-    private Transform[] SlowMovingPos, OrderPos;
-    [SerializeField]
-    private Transform FastMovingPos, OriginalPos;
-    [SerializeField]
-    private Sprite[] GuestDefualts, EventGuestDefualts;
+    [Header("손님 관련")]
+    [SerializeField] public Image CustomerImg;
+    [SerializeField] public Sprite[] GuestDefualts, EventGuestDefualts;
+    [SerializeField] public Sprite[] GuestSuccess, EventGuestSuccess;
+    [SerializeField] public Sprite[] GuestFails, EventGuestFails;
+
+    [Header("등장 연출의 위치 관련")]
+    [SerializeField] private Transform[] SlowMovingPos, OrderPos;
+    [SerializeField] private Transform FastMovingPos, OriginalPos;
+
+
     [SerializeField, Tooltip("배경 위에 보이기 하기 위한")]
     private GameObject BackgroundCanvas;
     [SerializeField]
     private RectTransform MemoPaper;
     [SerializeField]
     private FadeInOut fadeInOut;
-    [SerializeField]
-    private UIText[] MemoTexts;
-    [SerializeField]
-    private Image MemoPaperBackground;
     [SerializeField] private GameObject Window;
 
     private string[] memo = new string[5];

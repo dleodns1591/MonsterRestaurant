@@ -1,43 +1,58 @@
-using HS_Tree;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Thief : MonoBehaviour, I_CustomerType
 {
+    OrderManager OM;
+    GameManager GM;
+    OrderButtonObject BtnObjects;
     Button cookBtn;
     Button askBtn;
-    int rand;
+    TextMeshProUGUI cook, ask;
+    List<ESubMatarials> subs;
+
+    int mainMatarialRand;
     public string SpecialAnswer()
     {
-        if (OrderManager.Instance.isCookingSuccess)
+        if (GM.Satisfaction >= 70)
         {
-            return "쳇... 음식 덕분에 산 줄 알아라..";
+            OM.customerManager.EeventCustomerSetting((int)EeventCustomerType.Thief);
+            return "음식이 널 살린 줄 알아...";
         }
         else
         {
-            GameManager.Instance.Money -= 10;
-            GameManager.Instance.SalesRevenue -= 10;
-            return "제대로 만들 것이지.. 쯧...";
+            OM.customerManager.EeventCustomerSetting((int)EeventCustomerType.Thief);
+            OM.customer.CustomerImg.sprite = OM.customer.EventGuestFails[(int)EeventCustomerType.Thief];
+            GM.Money -= 30;
+            GM.SalesRevenue -= 30;
+            return "빠르게 만들 것이지.. 쳇...";
         }
     }
 
-    public void SpecialType(TextMeshProUGUI cook, TextMeshProUGUI ask)
+    public void SpecialType()
     {
-        OrderManager.Instance.StopOrderCoroutine();
-        cookBtn = cook.transform.parent.GetComponent<Button>();
-        askBtn = ask.transform.parent.GetComponent<Button>();
-        rand = UnityEngine.Random.Range(0, OrderManager.Instance.OrderTalkTxt.text.Split('\n').Length);
+        BtnObjects = OrderButtonObject.Instance;
+        OM = OrderManager.Instance;
+        GM = GameManager.Instance;
 
-        if (GameManager.Instance.shop.isFinalEvolution == false)
+        cookBtn = BtnObjects.CookingBtn;
+        askBtn = BtnObjects.ReAskBtn;
+        cook = BtnObjects.BtnCookText;
+        ask = BtnObjects.BtnAskText;
+
+
+        if (GM.shop.ManEatingPlant.isBuy == false)
         {
-            NotBloom(cook, ask);
+            NotBuy();
         }
         else
         {
-            Bloom(cook, ask);
+            Buy();
         }
     }
 
@@ -51,32 +66,33 @@ public class Thief : MonoBehaviour, I_CustomerType
             cookBtn.gameObject.SetActive(false);
             askBtn.gameObject.SetActive(false);
             yield return new WaitForSeconds(1.5f);
-            StartCoroutine(OrderManager.Instance.ExitAndComein(true));
-        }
+            StartCoroutine(OrderManager.Instance.ExitAndComein());
 
+        }
     }
     void SucsessCook()
     {
         cookBtn.gameObject.SetActive(false);
         askBtn.gameObject.SetActive(false);
-        
+
         //요리
-        GameManager.Instance.ReturnCook();
-            GameManager.Instance.ConditionSetting(GameManager.Instance.orderSets[rand].main, GameManager.Instance.orderSets[rand].sub, GameManager.Instance.orderSets[rand].count, GameManager.Instance.orderSets[rand].style, GameManager.Instance.orderSets[rand].dishCount);
+        subs = new List<ESubMatarials> { ESubMatarials.Money };
+        GM.ConditionSetting((EMainMatarials)mainMatarialRand, subs, 0, ECookingStyle.None, 1);
+        GM.ReturnCook();
     }
 
-    void Bloom(TextMeshProUGUI cook, TextMeshProUGUI ask)
+    void Buy()
     {
-        OrderManager.Instance.OrderTalk[0] = OrderManager.Instance.RandomOrderSpeech(0)[rand];
+        OM.OrderTalk[0] = $"야! 알바생! 돈을 감싼 {DrawMainMatarial()} 하나 가져와";
+        OM.dialogNumber++;
 
-        OrderManager.Instance.dialogNumber++;
 
         cook.text = "알겠습니다";
         cookBtn.onClick.RemoveAllListeners();
         cookBtn.onClick.AddListener(() =>
         {
-            OrderManager.Instance.AskTalk[0] = "알겠습니다";
-            OrderManager.Instance.dialogNumber++;
+            OM.AskTalk[0] = "알겠습니다";
+            OM.dialogNumber++;
 
             //요리
             SucsessCook();
@@ -85,12 +101,12 @@ public class Thief : MonoBehaviour, I_CustomerType
         askBtn.onClick.RemoveAllListeners();
         askBtn.onClick.AddListener(() =>
         {
-            OrderManager.Instance.AskTalk[0] = "네?";
+            OM.AskTalk[0] = "네?";
+             
+            OM.OrderTalk[1] = "왜.. 한 번에 못알아 들어? 너도 내가 만만해?";
+            OM.isNext = true;
 
-            OrderManager.Instance.OrderTalk[1] = "왜.. 한 번에 못알아 들어? 너도 내가 만만해?";
-            OrderManager.Instance.isNext = true;
-
-            if (GameManager.Instance.shop.isFinalEvolution == false)
+            if (GM.shop.isFinalEvolution == false)
             {
                 cookBtn.gameObject.SetActive(false);
                 cookBtn.onClick.RemoveAllListeners();
@@ -101,8 +117,8 @@ public class Thief : MonoBehaviour, I_CustomerType
                 cookBtn.onClick.RemoveAllListeners();
                 cookBtn.onClick.AddListener(() =>
                 {
-                    OrderManager.Instance.AskTalk[1] = "식인 식물을 보여준다.";
-                    OrderManager.Instance.OrderTalk[2] = "다..다음 부터 무..무시하지마..";
+                    OM.AskTalk[1] = "식인 식물을 보여준다.";
+                    OM.OrderTalk[2] = "다..다음 부터 무..무시하지마..";
 
                     RefuseOrder();
                 });
@@ -112,43 +128,70 @@ public class Thief : MonoBehaviour, I_CustomerType
             askBtn.onClick.RemoveAllListeners();
             askBtn.onClick.AddListener(() =>
             {
-                OrderManager.Instance.AskTalk[1] = "죄송합니다.";
-                OrderManager.Instance.OrderTalk[2] = "진작 그럴 것이지.. 쳇..";
+                OM.AskTalk[1] = "죄송합니다.";
+                OM.OrderTalk[2] = "진작 그럴 것이지.. 쳇..";
 
-                GameManager.Instance.Money = GameManager.Instance.Money / 4;
+                GM.Money = GM.Money / 5;
                 RefuseOrder();
             });
         });
     }
 
-    void NotBloom(TextMeshProUGUI cook, TextMeshProUGUI ask)
+    void NotBuy()
     {
-        Button cookBtn = cook.transform.parent.GetComponent<Button>();
-        Button askBtn = ask.transform.parent.GetComponent<Button>();
-
-        OrderManager.Instance.OrderTalk[0] = "돈 내놔!";
+        OM.OrderTalk[0] = "돈 내놔!";
 
         cook.text = "네?";
         cookBtn.onClick.RemoveAllListeners();
         cookBtn.onClick.AddListener(() =>
         {
-            print("asd");
-            OrderManager.Instance.AskTalk[0] = "네?";
+            OM.AskTalk[0] = "네?";
 
-            OrderManager.Instance.OrderTalk[1] = "내가 말해야 알아?";
-            GameManager.Instance.Money = GameManager.Instance.Money / 3;
+            OM.OrderTalk[1] = "내가 말해야 알아?";
+            GM.Money = GM.Money / 3;
             RefuseOrder();
         });
-        ask.text = "잠..잠시만요..";
 
+        ask.text = "잠..잠시만요..";
         askBtn.onClick.RemoveAllListeners();
         askBtn.onClick.AddListener(() =>
         {
-            OrderManager.Instance.AskTalk[0] = "잠..잠시만요..";
+            OM.AskTalk[0] = "잠..잠시만요..";
 
-            OrderManager.Instance.OrderTalk[1] = "큭큭.. 아주 좋아";
-            GameManager.Instance.Money = GameManager.Instance.Money / 5;
+            OM.OrderTalk[1] = "순순히 따른다면 나도 좋고 너도 좋은거라고.. 큭큭";
+            GM.Money = GM.Money / 4;
             RefuseOrder();
         });
+    }
+
+    /// <summary>
+    /// 고기를 제외한 메인 재료 뽑는 함수
+    /// </summary>
+    /// <returns></returns>
+    string DrawMainMatarial()
+    {
+        int NullCheck(int num)
+        {
+            if ((EMainMatarials)num == EMainMatarials.NULL)
+                num = NullCheck(UnityEngine.Random.Range(0, Enum.GetValues(typeof(EMainMatarials)).Length));
+
+            return num;
+        }
+
+        mainMatarialRand = UnityEngine.Random.Range(0, Enum.GetValues(typeof(EMainMatarials)).Length);
+        mainMatarialRand = NullCheck(mainMatarialRand);
+        switch ((EMainMatarials)mainMatarialRand)
+        {
+            case EMainMatarials.Meat:
+                return "고기";
+            case EMainMatarials.Bread:
+                return "빵";
+            case EMainMatarials.Noodle:
+                return "면";
+            case EMainMatarials.Rice:
+                return "밥";
+            default:
+                return "빵";
+        }
     }
 }

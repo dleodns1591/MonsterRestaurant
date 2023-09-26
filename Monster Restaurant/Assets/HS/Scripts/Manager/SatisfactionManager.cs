@@ -63,7 +63,7 @@ public class SatisfactionManager : MonoBehaviour
             }
             else
             {
-                if (GameManager.Instance.Satisfaction <= 55)
+                if (GameManager.Instance.Satisfaction <= OM.GroupOrderTimeLimit)
                     FaceImage.sprite = FaceSprites[(int)EFaceType.Angry];
             }
             yield return new WaitForSeconds(1f);

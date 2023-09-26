@@ -38,23 +38,31 @@ public class EndingManager : MonoBehaviour
                 yield return wait;
                 for (int i = 0; i < line.Length; i++)
                 {
-                    //print(line.Length);
                     EndingExplanTxt.text = "";
                     EndingExplanTxt.DOText(line[i], 0.05f * line[i].Length).OnComplete(() =>
                     {
-                        isEndLine = true;
+                        StartCoroutine(CompleteDelay());
                     });
                     while (true)
                     {
                         yield return null;
                         if (Input.GetMouseButtonDown(0) && isEndLine)
+                        {
+                            isEndLine = false;
                             break;
+                        }
                     }
-                    isEndLine = false;
                 }
                 if (Input.GetMouseButtonDown(0))
                 {
                     SceneManager.LoadScene("Title");
+                }
+
+
+                IEnumerator CompleteDelay()
+                {
+                    yield return new WaitForSeconds(0.8f);
+                    isEndLine = true;
                 }
             }
         }

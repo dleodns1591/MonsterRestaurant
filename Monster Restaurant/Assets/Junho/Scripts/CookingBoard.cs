@@ -219,6 +219,6 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
 
 
-        GameManager.Instance.Satisfaction -= (checkList * 20) / Cooking.Instance.AnswerOrder.dishCount;
+        GameManager.Instance.Satisfaction -= ((checkList * 20) * OrderManager.Instance.perfectMade_Earth) / Cooking.Instance.AnswerOrder.dishCount;
     }
 }

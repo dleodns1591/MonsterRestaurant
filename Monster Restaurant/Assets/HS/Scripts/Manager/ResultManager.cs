@@ -28,22 +28,19 @@ public class ResultManager : MonoBehaviour
             {
 
                 OM.endingManager.EndingProduction(EendingType.Loser);
-                GameManager.Instance.isEndingOpens[(int)EendingType.Loser] = true;
-                SaveManager.Instance.isEndingOpens[(int)EendingType.Loser] = true;
+                GameManager.Instance.IsEndingOpens[(int)EendingType.Loser] = true;
             }
             else if (GameManager.Instance.Money < 5000)
             {
 
                 OM.endingManager.EndingProduction(EendingType.Salve);
-                GameManager.Instance.isEndingOpens[(int)EendingType.Salve] = true;
-                SaveManager.Instance.isEndingOpens[(int)EendingType.Salve] = true;
+                GameManager.Instance.IsEndingOpens[(int)EendingType.Salve] = true;
             }
             else
             {
 
                 OM.endingManager.EndingProduction(EendingType.Mine);
-                GameManager.Instance.isEndingOpens[(int)EendingType.Mine] = true;
-                SaveManager.Instance.isEndingOpens[(int)EendingType.Mine] = true;
+                GameManager.Instance.IsEndingOpens[(int)EendingType.Mine] = true;
             }
 
             return;

@@ -32,80 +32,82 @@ public enum EeventCustomerType
 }
 public class NormalCustomer : MonoBehaviour, I_CustomerType
 {
+    OrderManager OM;
+    GameManager GM;
+    OrderButtonObject BtnObjects;
+    Button cookBtn;
+    Button askBtn;
+    TextMeshProUGUI cook, ask;
+
+    int ReaskCount;
+
     public string SpecialAnswer()
     {
         return "";
     }
 
-    public void SpecialType(TextMeshProUGUI cook, TextMeshProUGUI ask)
+    public void SpecialType()
     {
-        Button cookBtn = cook.transform.parent.GetComponent<Button>();
-        Button askBtn = ask.transform.parent.GetComponent<Button>();
+        ReaskCount = 0;
 
-        OrderManager.Instance.dialogNumber++;
+        BtnObjects = OrderButtonObject.Instance;
+        OM = OrderManager.Instance;
+        GM = GameManager.Instance;
 
-        cook.text = "알겠습니다";
-        cookBtn.onClick.RemoveAllListeners();
-        cookBtn.onClick.AddListener(() =>
-        {
-            OrderManager.Instance.AskTalk[0] = "알겠습니다";
-            OrderManager.Instance.dialogNumber++;
+        cookBtn = BtnObjects.CookingBtn;
+        askBtn = BtnObjects.ReAskBtn;
+        cook = BtnObjects.BtnCookText;
+        ask = BtnObjects.BtnAskText;
 
-            cookBtn.gameObject.SetActive(false);
-            askBtn.gameObject.SetActive(false);
+        OM.StopOrderCoroutine();
 
-            //요리
-            GameManager.Instance.ReturnCook();
-        });
+        OM.dialogNumber++;
+
+        CookBtnChange();
         ask.text = "네?";
         askBtn.onClick.RemoveAllListeners();
         askBtn.onClick.AddListener(() =>
         {
-            OrderManager.Instance.AskTalk[0] = "네?";
-            OrderManager.Instance.dialogNumber++;
-            OrderManager.Instance.ReQuestionCount++;
+            OM.AskTalk[0] = "네?";
+            ReAskContent();
 
-            OrderManager.Instance.isNext = true;
-            //손님이 대화하니깐
-            OrderManager.Instance.dialogNumber++;
-
-            //시간 깎기
-            cookBtn.onClick.RemoveAllListeners();
-            cookBtn.onClick.AddListener(() =>
-            {
-                OrderManager.Instance.AskTalk[1] = "알겠습니다";
-                OrderManager.Instance.dialogNumber++;
-
-                cookBtn.gameObject.SetActive(false);
-                askBtn.gameObject.SetActive(false);
-                //요리
-                GameManager.Instance.ReturnCook();
-            });
+            CookBtnChange();
             askBtn.onClick.RemoveAllListeners();
             askBtn.onClick.AddListener(() =>
             {
-                OrderManager.Instance.AskTalk[1] = "네?";
-                OrderManager.Instance.dialogNumber++;
-                OrderManager.Instance.ReQuestionCount++;
-
-
-                OrderManager.Instance.isNext = true;
-                //손님이 대화하니깐
-                OrderManager.Instance.dialogNumber++;
+                OM.AskTalk[1] = "네?";
+                ReAskContent();
 
                 askBtn.gameObject.SetActive(false);
 
-                cookBtn.onClick.RemoveAllListeners();
-                cookBtn.onClick.AddListener(() =>
-                {
-                    OrderManager.Instance.AskTalk[2] = "알겠습니다";
-
-                    cookBtn.gameObject.SetActive(false);
-                    askBtn.gameObject.SetActive(false);
-                    //요리
-                    GameManager.Instance.ReturnCook();
-                });
+                CookBtnChange();
             });
         });
+    }
+
+    void CookBtnChange()
+    {
+        cook.text = "알겠습니다";
+        cookBtn.onClick.RemoveAllListeners();
+        cookBtn.onClick.AddListener(() =>
+        {
+            OM.AskTalk[ReaskCount] = "알겠습니다";
+            OM.dialogNumber++;
+
+            cookBtn.gameObject.SetActive(false);
+            askBtn.gameObject.SetActive(false);
+
+            GM.ReturnCook();
+        });
+    }
+    
+    void ReAskContent()
+    {
+        ReaskCount++;
+        OM.dialogNumber++;
+        OM.ReQuestionCount++;
+        OM.isNext = true;
+        OM.dialogNumber++;
+        GM.Satisfaction -= 20;
     }
 }
