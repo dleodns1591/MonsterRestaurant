@@ -26,6 +26,47 @@ MonoBehaviour:
     m_Localized: Pardon?
     m_Metadata:
       m_Items: []
+  - m_Id: 1475790222077952
+    m_Localized: Are you sure you want to quit? You will lose the progress of the
+      event.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2153110981259264
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2153205902553088
+    m_Localized: Cancel data sharing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2153756472061952
+    m_Localized: Ask community questions
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2153909669015552
+    m_Localized: Clear Data
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2154204759273472
+    m_Localized: Korean
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2154317883846656
+    m_Localized: English
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2154383231102976
+    m_Localized: Return to
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2196511499956224
+    m_Localized: Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2196532135931904
+    m_Localized: Going out
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

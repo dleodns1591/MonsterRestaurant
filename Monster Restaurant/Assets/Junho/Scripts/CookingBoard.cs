@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEditor;
 
 public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
@@ -177,47 +176,56 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
             if (item.gameObject.tag == "Packaging")
             {
                 OrderCheck();
-
                 StartCoroutine(item.gameObject.GetComponent<Packaging>().CheckPack(gameObject));
             }
         }
 
     }
 
+
+    private int SubMatarialsCount()
+    {
+        int num = 0;
+        foreach (var item in subMaterials)
+        {
+            if (item.subM == Cooking.Instance.AnswerOrder.sub[0])
+            {
+                num++;
+            }
+        }
+
+        return num;
+    }
+
     public void OrderCheck()
     {
+
+        print("OrderCheckOn");
+
         int checkList = 0;
+
 
         if (Cooking.Instance.AnswerOrder.style != style) checkList++;
         if (Cooking.Instance.AnswerOrder.main != mainMaterial) checkList++;
-        if (Cooking.Instance.AnswerOrder.count > subMaterials.Count) checkList++;
+        if (Cooking.Instance.AnswerOrder.count > SubMatarialsCount()) checkList++;
 
 
-
-        if(Cooking.Instance.AnswerOrder.sub[0] != ESubMatarials.NULL)
+        if (Cooking.Instance.AnswerOrder.sub[0] != ESubMatarials.NULL)
         {
-            int num = 0;
-            bool isReturn;
-            
-            for (int i = 0; i < Cooking.Instance.AnswerOrder.sub.Count; i++)
+            bool isReturn = false;
+
+            foreach (var subM in subMaterials)
             {
-                isReturn = false;
-                foreach (var subM in subMaterials)
+                if (Cooking.Instance.AnswerOrder.sub[0] == subM.subM)
                 {
-                    if (Cooking.Instance.AnswerOrder.sub[i] == subM.subM)
-                    {
-                        if (isReturn == true) return;
-
-                        isReturn = true;
-                        num++;
-                    }
+                    isReturn = true;
                 }
-
             }
-            checkList += (Cooking.Instance.AnswerOrder.sub.Count - num);
+
+            if(isReturn == false) checkList ++;
         }
 
-
+        print("Satisfaction : "+(checkList * 20) / Cooking.Instance.AnswerOrder.dishCount);
 
         GameManager.Instance.Satisfaction -= ((checkList * 20) * OrderManager.Instance.perfectMade_Earth) / Cooking.Instance.AnswerOrder.dishCount;
     }
