@@ -42,19 +42,27 @@ public class Customer : MonoBehaviour
 
         Image CustomerImg = gameObject.GetComponent<Image>();
 
-        //와리가리 움직임
-        for (int i = 0; i < SlowMovingPos.Length; i++)
+        if (OrderManager.Instance.customerManager.isCurrentEventType == true)
         {
-            if (i != SlowMovingPos.Length - 1)
-                transform.DOMove(SlowMovingPos[i].position, delayTime);
-            else
-                transform.DOMove(SlowMovingPos[i].position, 0.25f);
+            //와리가리 움직임
+            for (int i = 0; i < SlowMovingPos.Length; i++)
+            {
+                if (i != SlowMovingPos.Length - 1)
+                    transform.DOMove(SlowMovingPos[i].position, delayTime);
+                else
+                    transform.DOMove(SlowMovingPos[i].position, 0.25f);
 
-            yield return new WaitForSeconds(delayTime);
+                yield return new WaitForSeconds(delayTime);
+
+            }
+            //빠르게 이동
+            transform.DOMove(FastMovingPos.position, delayTime);
+        }
+        else
+        {
+            transform.DOMove(FastMovingPos.position, 1.2f);
         }
 
-        //빠르게 이동
-        transform.DOMove(FastMovingPos.position, delayTime);
 
         yield return new WaitForSeconds(1.5f);
 

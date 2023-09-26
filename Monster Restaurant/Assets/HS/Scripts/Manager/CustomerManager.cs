@@ -9,6 +9,8 @@ public class CustomerManager : MonoBehaviour
     GameManager GM;
     Customer customer;
 
+    public bool isCurrentEventType;
+
     List<EeventCustomerType> EventTypes = new List<EeventCustomerType>();
 
     private void Awake()
@@ -41,6 +43,8 @@ public class CustomerManager : MonoBehaviour
         int types;
         if (OM.GuestOfTheDay % 2 == 0 && EventTypes.Count >= OM.GuestOfTheDay / 2 && EventTypes.Count != 0)
         {
+            isCurrentEventType = true;
+
             types = (int)EventTypes[(OM.GuestOfTheDay / 2) - 1];
             switch ((EeventCustomerType)types)
             {
@@ -86,7 +90,7 @@ public class CustomerManager : MonoBehaviour
             return;
         }
 
-
+        isCurrentEventType = false;
         OM.CustomerType = gameObject.AddComponent<NormalCustomer>();
         switch ((EcustomerType)type)
         {
