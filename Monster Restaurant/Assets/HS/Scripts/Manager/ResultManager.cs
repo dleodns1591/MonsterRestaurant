@@ -14,33 +14,35 @@ public class ResultManager : MonoBehaviour
     private int EndingDate = 20;
 
     OrderManager OM;
+    GameManager GM;
 
     private void Start()
     {
         OM = OrderManager.Instance;
+        GM = GameManager.Instance;
     }
 
     public void DayEnd()
     {
-        if (GameManager.Instance.Day >= EndingDate)
+        if (GM.Day >= EndingDate)
         {
-            if (GameManager.Instance.Money < 2500)
+            if (GM.Money < 2500)
             {
 
                 OM.endingManager.EndingProduction(EendingType.Loser);
-                GameManager.Instance.IsEndingOpens[(int)EendingType.Loser] = true;
+                GM.IsEndingOpens[(int)EendingType.Loser] = true;
             }
-            else if (GameManager.Instance.Money < 5000)
+            else if (GM.Money < 5000)
             {
 
                 OM.endingManager.EndingProduction(EendingType.Salve);
-                GameManager.Instance.IsEndingOpens[(int)EendingType.Salve] = true;
+                GM.IsEndingOpens[(int)EendingType.Salve] = true;
             }
             else
             {
 
                 OM.endingManager.EndingProduction(EendingType.Mine);
-                GameManager.Instance.IsEndingOpens[(int)EendingType.Mine] = true;
+                GM.IsEndingOpens[(int)EendingType.Mine] = true;
             }
 
             return;
@@ -48,11 +50,11 @@ public class ResultManager : MonoBehaviour
         FadeInOut.instance.LittleFadeOut();
         FadeInOut.instance.RevenueFadeOut();
 
-        GameManager.Instance.shop.PurchaseDayCheck();
-        GameManager.Instance.Money += 200;
-        GameManager.Instance.TaxCost = GameManager.Instance.SalesRevenue / 10;
-        GameManager.Instance.Money -= GameManager.Instance.TaxCost;
-        GameManager.Instance.Money -= GameManager.Instance.SettlementCost;
+        GM.shop.PurchaseDayCheck();
+        GM.Money += 200;
+        GM.TaxCost = GM.SalesRevenue / 10;
+        GM.Money -= GM.TaxCost;
+        GM.Money -= GM.SettlementCost;
         StartCoroutine(NumberAni());
         IEnumerator NumberAni()
         {
@@ -98,9 +100,9 @@ public class ResultManager : MonoBehaviour
 
                     IEnumerator DayProduction()
                     {
-                        GameManager.Instance.Day++;
-                        GameManager.Instance.eventCheck.Check();
-                        DayText.text = $"{GameManager.Instance.Day}일차....!";
+                        GM.Day++;
+                        GM.eventCheck.Check();
+                        DayText.text = $"{GM.Day}일차....!";
                         DayText.DOFade(1, 1);
                         yield return new WaitForSeconds(1.5f);
                         FadeInOut.instance.LittleFade();
@@ -116,7 +118,7 @@ public class ResultManager : MonoBehaviour
                 yield return new WaitForSeconds(FadeInOut.instance.fadeTime);
                 RevenuePopup.GetComponent<Image>().color = new Color(1, 1, 1, 0);
                 RevenuePopup.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-                GameManager.Instance.dayEndCheck = false;
+                GM.dayEndCheck = false;
                 OM.OrderLoop();
             }
         }

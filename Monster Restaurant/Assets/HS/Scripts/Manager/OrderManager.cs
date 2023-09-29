@@ -78,9 +78,6 @@ public class OrderManager : Singleton<OrderManager>
 
         shop = GameManager.Instance.shop;
 
-        GameManager.Instance.Day = 2;
-        GameManager.Instance.eventCheck.Check();
-
         SoundManager.instance.PlaySoundClip("Ingame_bgm", SoundType.BGM);
 
         materialSetting.RandomOrderMaterial();
@@ -101,7 +98,7 @@ public class OrderManager : Singleton<OrderManager>
     }
 
     /// <summary>
-    /// 손님을 받는 이벤트? 들이 시작하는 함수
+    /// 손님을 받는 내용들이 시작하는 함수
     /// </summary>
     public void OrderLoop()
     {
