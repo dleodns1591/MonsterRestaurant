@@ -6659,6 +6659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e03764fa78c6604b8959d8e6e8fc3cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCurrentEventType: 0
 --- !u!114 &945262615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9865,7 +9866,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c879ab01d01772645ac0ff1aae5078e9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 74002f40ab37c734c9443ca4942503f8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10285,6 +10286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BtnCookText: {fileID: 756368583}
   BtnAskText: {fileID: 1751038924}
+  ChallengeBtns: []
 --- !u!114 &1533417245
 MonoBehaviour:
   m_ObjectHideFlags: 0

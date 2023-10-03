@@ -79,7 +79,7 @@ public class Beggar : MonoBehaviour, I_CustomerType
 
         OM.isBeggar = true;
         //¿ä¸®
-        GameManager.Instance.ReturnCook();
+        GM.ReturnCook();
         List<ESubMatarials> subs = new List<ESubMatarials>
         {
             ESubMatarials.NULL

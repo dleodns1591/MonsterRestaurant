@@ -112,7 +112,10 @@ public class OrderManager : Singleton<OrderManager>
         GameManager.Instance.SettlementCost = 0;
         NextCustomerReady();
         normalGuestType = UnityEngine.Random.Range(0, 9);
-        customerManager.SetCustomerType(normalGuestType);
+
+        if (SaveManager.Instance.isChallenge == false) customerManager.SetCustomerType(normalGuestType);
+        else customerManager.SetCustomerType(0);
+        
         Ordercoroutine = StartCoroutine(Order());
 
         if (DayTween != null)

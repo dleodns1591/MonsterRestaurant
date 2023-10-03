@@ -22,7 +22,15 @@ public class CustomerManager : MonoBehaviour
 
     public void SetCustomerType(int type)
     {
-        print("¹Ù²Ù±â");
+        if(SaveManager.Instance.isChallenge == true)
+        {
+            Destroy((UnityEngine.Object)OM.CustomerType);
+            OM.CustomerType = gameObject.AddComponent<Challenge>();
+            EeventCustomerSetting((int)EeventCustomerType.GroupOrder);
+            OM.CustomerType.SpecialType();
+            return;
+        }
+
         Destroy((UnityEngine.Object)OM.CustomerType);
 
         OM.GuestOfTheDay++;
@@ -35,6 +43,7 @@ public class CustomerManager : MonoBehaviour
 
         if (EventTypes != null)
             EventTypes.Clear();
+
         foreach (var item in GameManager.Instance.eventCheck.returnEventCustomer)
         {
             EventTypes.Add(item);

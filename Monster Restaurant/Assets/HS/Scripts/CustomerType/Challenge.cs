@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 using Random = UnityEngine.Random;
 
 public class Challenge : MonoBehaviour, I_CustomerType
@@ -16,7 +17,6 @@ public class Challenge : MonoBehaviour, I_CustomerType
     int randomMain;
     ECookingStyle cookingStyle;
     List<ESubMatarials> subs;
-
 
     int difficulty;
     public string SpecialAnswer()
@@ -47,60 +47,42 @@ public class Challenge : MonoBehaviour, I_CustomerType
 
         ChallengeBtns = BtnObjects.ChallengeBtns;
 
-        OM.GroupOrderTimeLimit = Random.Range(30, 35);
-
         OM.OrderTalk[0] = $"챌린지 모드에 오신 것을 환영합니다. 원하시는 난이도를 선택해주세요.";
         OM.dialogNumber++;
+        OM.orderButtonManager.B
 
-        #region
-        //1번 버튼 텍스트
-        ChallengeBtns[0].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "이지모드";
-        ChallengeBtns[0].onClick.AddListener(() =>
-        {
-            //난이도 설정
-            difficulty = 1;
+        StartCoroutine(ButtonOnDelay());
 
-            subs = new List<ESubMatarials> { ESubMatarials.NULL };
-            OM.OrderTalk[1] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {DrawMainMatarial()}을 {DrawCookingStyle()} 만든 음식을 만들어 주십시오";
-            OM.isNext = true;
-
-            //1번 버튼 텍스트
-            ChallengeBtns[0].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "알겠습니다";
-            ChallengeBtns[0].onClick.RemoveAllListeners();
-            ChallengeBtns[0].onClick.AddListener(() =>
-            {
-                OM.OrderTalk[0] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {DrawMainMatarial()}을 {DrawCookingStyle()} 만든 음식을 만들어 주십시오";
-
-                //4개 다 비활성화
-                foreach (var item in ChallengeBtns) { item.gameObject.SetActive(false); }
-
-                SucsessCook();
-            });
-        });
-        #endregion
-
+        for (int i = 1; i < 5; i++) ButtonSetting(i);
     }
 
     void ButtonSetting(int diff)
-    {
+    {   
         ChallengeBtns[diff - 1].onClick.AddListener(() =>
         {
             //난이도 설정
             difficulty = diff;
 
-            if(diff != 4) subs = new List<ESubMatarials> { ESubMatarials.NULL };
-            else subs = new List<ESubMatarials> { (ESubMatarials)Random.Range(0, Enum.GetNames(typeof(ESubMatarials)).Length) };
+            if (diff != 4)
+            {
+                subs = new List<ESubMatarials> { ESubMatarials.NULL };
+                OM.OrderTalk[1] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {DrawMainMatarial()}을 {DrawCookingStyle()} 만든 음식을 만들어 주십시오";
 
-            OM.OrderTalk[1] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {DrawMainMatarial()}을 {DrawCookingStyle()} 만든 음식을 만들어 주십시오";
-            OM.isNext = true;
+            }
+            else
+            {
+                subs = new List<ESubMatarials> { (ESubMatarials)Random.Range(0, Enum.GetNames(typeof(ESubMatarials)).Length - 1 /*NULL 제외*/) };
+                OM.OrderTalk[1] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {SubString(subs[0])} 들어간 {DrawMainMatarial()}을 {DrawCookingStyle()} 만든 음식을 만들어 주십시오";
+            }
 
-            //1번 버튼 텍스트
+                OM.isNext = true;
+
             ChallengeBtns[diff - 1].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "알겠습니다";
             ChallengeBtns[diff - 1].onClick.RemoveAllListeners();
             ChallengeBtns[diff - 1].onClick.AddListener(() =>
             {
-                OM.OrderTalk[0] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {DrawMainMatarial()}을 {DrawCookingStyle()} 만든 음식을 만들어 주십시오";
-
+                if (diff != 4) OM.OrderTalk[0] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {DrawMainMatarial()}을 {DrawCookingStyle()} 만든 음식을 만들어 주십시오";
+                else OM.OrderTalk[0] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {SubString(subs[0])} 들어간 {DrawMainMatarial()}을 {DrawCookingStyle()} 만든 음식을 만들어 주십시오";
                 //4개 다 비활성화
                 foreach (var item in ChallengeBtns) { item.gameObject.SetActive(false); }
 
@@ -112,19 +94,8 @@ public class Challenge : MonoBehaviour, I_CustomerType
     void SucsessCook()
     {
         GM.ConditionSetting((EMainMatarials)randomMain, subs, 7, cookingStyle, DishCountSetting());
+        foreach(var item in ChallengeBtns) { item.gameObject.SetActive(false); }
 
-        cookBtn.gameObject.SetActive(false);
-        askBtn.gameObject.SetActive(false);
-
-        StartCoroutine(Delay());
-        IEnumerator Delay()
-        {
-            yield return new WaitForSeconds(1.5f);
-            askBtn.gameObject.SetActive(false);
-            askBtn.GetComponent<Image>().enabled = true;
-        }
-
-        //요리
         GameManager.Instance.ReturnCook();
     }
 
@@ -176,53 +147,40 @@ public class Challenge : MonoBehaviour, I_CustomerType
         }
     }
 
-    string SubString()
+    string SubString(ESubMatarials eSub)
     {
-        switch ((EMainMatarials)rand)
-        {
-            case EMainMatarials.Bread:
-                return "빵";
-            case EMainMatarials.Noodle:
-                return "면";
-            case EMainMatarials.Rice:
-                return "밥";
-            default:
-                return "빵";
-        }
-
-        switch (ESubMatarials)
+        switch (eSub)
         {
             case ESubMatarials.AlienPlant:
-                break;
+                return "외계 풀이"; 
             case ESubMatarials.Battery:
-                break;
+                return "건전지가";
             case ESubMatarials.Bismuth:
-                break;
+                return "비스무트가";
             case ESubMatarials.Bolt:
-                break;
+                return "너트가";
             case ESubMatarials.Eyes:
-                break;
+                return "눈알이";
             case ESubMatarials.Fur:
-                break;
+                return "털 뭉치가";
             case ESubMatarials.Jewelry:
-                break;
+                return "보석이";
             case ESubMatarials.Money:
-                break;
+                return "돈이";
             case ESubMatarials.Paper:
-                break;
+                return "종이가";
             case ESubMatarials.Poop:
-                break;
+                return "똥이";
             case ESubMatarials.Preservatives:
-                break;
+                return "방부제가";
             case ESubMatarials.Sticker:
-                break;
+                return "스티커가";
             case ESubMatarials.NULL:
-                break;
+                return "외계 풀이";
             default:
-                break;
+                return "외계 풀이";
         }
     }
-
     int LimitTimeSetting()
     {
         switch (difficulty)
@@ -254,5 +212,11 @@ public class Challenge : MonoBehaviour, I_CustomerType
             default:
                 return 1;
         }
+    }
+
+    IEnumerator ButtonOnDelay()
+    {
+        yield return new WaitForSeconds(5);
+        foreach (var item in ChallengeBtns) { item.gameObject.SetActive(true); }
     }
 }
