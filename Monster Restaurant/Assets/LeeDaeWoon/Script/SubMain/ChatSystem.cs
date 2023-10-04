@@ -29,6 +29,10 @@ public class ChatSystem : MonoBehaviour
     [SerializeField] GameObject endingWindow;
     int endingCount = 0;
 
+    [Header("나가기")]
+    [SerializeField] CanvasGroup exitGroup;
+    [SerializeField] GameObject exitWindow;
+
     [Header("설정")]
     [SerializeField] CanvasGroup settingGroup;
     [SerializeField] GameObject settingWidnow;
@@ -69,7 +73,10 @@ public class ChatSystem : MonoBehaviour
             switch (chatNum)
             {
                 case 0:
-                    Application.Quit();
+                    exitGroup.alpha = 1;
+
+                    exitGroup.gameObject.SetActive(true);
+                    exitWindow.transform.DOLocalMoveY(0, 0.2f).SetEase(Ease.Linear);
                     break;
 
                 case 1:
