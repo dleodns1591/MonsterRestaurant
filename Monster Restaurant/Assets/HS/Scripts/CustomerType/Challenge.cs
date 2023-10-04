@@ -49,7 +49,7 @@ public class Challenge : MonoBehaviour, I_CustomerType
 
         OM.OrderTalk[0] = $"챌린지 모드에 오신 것을 환영합니다. 원하시는 난이도를 선택해주세요.";
         OM.dialogNumber++;
-        OM.orderButtonManager.B
+        //OM.orderButtonManager.B;
 
         StartCoroutine(ButtonOnDelay());
 
