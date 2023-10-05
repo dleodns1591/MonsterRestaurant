@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 18478
+  controlID: 18874
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 18479
+  controlID: 18875
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 18480
+  controlID: 18876
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -225,8 +225,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: fe010100
-      m_LastClickedID: 66046
+      m_SelectedIDs: c6010100
+      m_LastClickedID: 65990
       m_ExpandedIDs: a03affff1840ffff5e40ffff5e41ffff0642ffff2a4affffb857ffffda5fffff1c62ffff1e63ffff6663ffff3690ffffb895ffff08f0ffffd2f0ffff12f3ffffeafaffffd4810000f2810000128300002ae2000038e500003ce80000e4ef00001efc000004020100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -526,9 +526,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0, y: -2.036852, z: 90}
+    m_Target: {x: -0.31333584, y: -2.0179737, z: 96.55518}
     speed: 2
-    m_Value: {x: 0, y: -2.036852, z: 90}
+    m_Value: {x: -0.31333584, y: -2.0179737, z: 96.55518}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -579,9 +579,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 5.1764975
+    m_Target: 5.595861
     speed: 2
-    m_Value: 5.1764975
+    m_Value: 5.595861
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -754,7 +754,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -763,14 +763,14 @@ MonoBehaviour:
     y: 325.6
     width: 1144
     height: 405.19998
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 14}
+  m_MinSize: {x: 231, y: 271}
+  m_MaxSize: {x: 10001, y: 10021}
+  m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
   - {fileID: 14}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -812,21 +812,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scene
+    - Assets
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 75
   m_LastFolders:
-  - Assets/Scene
+  - Assets
   m_LastFoldersGridSize: 75
   m_LastProjectPath: C:\Users\ASUS\MonsterRestaurant\Monster Restaurant
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 707.80005}
-    m_SelectedIDs: 5a770000
-    m_LastClickedID: 30554
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 60770000
+    m_LastClickedID: 30560
     m_ExpandedIDs: 000000004277000044770000467700004a7700004c7700004e77000050770000527700005477000056770000587700005a770000aa77000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -880,8 +880,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 363affff
-    m_LastClickedInstanceID: -50634
+    m_SelectedInstanceIDs: c6010100
+    m_LastClickedInstanceID: 65990
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000606000007060000042600000a4bc000076260000e6620000e26200002a7200003a720000926b0000166e0000d06c000020e700007e6f0000fc7000006ed4000018710000447100005a73000000000000fc6b0000006c0000026c0000046c0000667300002c20020096760200ae7602009a760200b6760200b2760200a2760200a6760200aa760200c0630000ca630000c8630000b6630000ee6b0000ec6b0000
     m_RenameOverlay:
