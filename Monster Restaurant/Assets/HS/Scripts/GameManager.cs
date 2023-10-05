@@ -14,7 +14,6 @@ public enum EendingType
     WormHole_FindHouse,
     WormHole_SpaceAdventure,
     Dragon,
-    WormHole
 }
 
 public struct OrderSet

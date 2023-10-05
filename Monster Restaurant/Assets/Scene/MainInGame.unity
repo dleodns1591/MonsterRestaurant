@@ -8895,6 +8895,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EndingImg: {fileID: 1365479691}
+  WormHoleEndingImg:
+  - {fileID: 21300000, guid: d1cbe60873e059d4a807fca92024e78e, type: 3}
+  - {fileID: 21300000, guid: f79d10493ff49e54da64422dde26db9e, type: 3}
   EndingExplanTxt: {fileID: 947319174}
   EndingTypes: {fileID: 11400000, guid: 71d529b3eb55526478c8b66b2eae7b15, type: 2}
 --- !u!1 &1200896031

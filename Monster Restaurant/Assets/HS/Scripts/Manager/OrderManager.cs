@@ -75,7 +75,6 @@ public class OrderManager : Singleton<OrderManager>
     private void Start()
     {
         GameManager.Instance.Money = 100;
-
         shop = GameManager.Instance.shop;
 
         SoundManager.instance.PlaySoundClip("Ingame_bgm", SoundType.BGM);
