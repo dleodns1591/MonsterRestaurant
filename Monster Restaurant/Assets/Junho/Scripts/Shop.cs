@@ -98,7 +98,6 @@ public class Shop : MonoBehaviour
         GameManager.Instance.WormHoleDraw = () =>
         {
             int rand = UnityEngine.Random.Range(1, 10);
-            GM.IsEndingOpens[(int)EendingType.WormHole] = true;
             if (rand >= 7)
             {
 

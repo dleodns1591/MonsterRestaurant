@@ -10,6 +10,7 @@ public class EndingManager : MonoBehaviour
 {
     [Header("엔딩 관련")]
     [SerializeField] private Image EndingImg;
+    [SerializeField] private Sprite[] WormHoleEndingImg;
     [SerializeField] private Text EndingExplanTxt;
     [SerializeField] private EndingData EndingTypes;
     private GameObject EndingCanvas => EndingImg.transform.parent.gameObject;
@@ -19,6 +20,17 @@ public class EndingManager : MonoBehaviour
     public void EndingProduction(EendingType endingType)
     {
         SoundManager.instance.PlaySoundClip("Ending_bgm", SoundType.BGM);
+
+        bool WormHole = false;
+        bool WormHoleType = false;
+
+        if (endingType == EendingType.WormHole_FindHouse || endingType == EendingType.WormHole_SpaceAdventure)
+        {
+            WormHole = true;
+            if (endingType == EendingType.WormHole_SpaceAdventure) WormHoleType = true;
+        }
+
+
         StartCoroutine(EndingDelay(EndingTypes.endingData[(int)endingType].Speech, EndingTypes.endingData[(int)endingType].EndingSpr));
 
         IEnumerator EndingDelay(string speech, Sprite spr)
@@ -39,6 +51,7 @@ public class EndingManager : MonoBehaviour
                 for (int i = 0; i < line.Length; i++)
                 {
                     EndingExplanTxt.text = "";
+                    if (WormHole == true && i == 8) EndingImg.sprite = WormHoleEndingImg[Convert.ToInt32(WormHoleType)];
                     EndingExplanTxt.DOText(line[i], 0.05f * line[i].Length).OnComplete(() =>
                     {
                         StartCoroutine(CompleteDelay());
