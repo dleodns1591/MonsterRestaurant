@@ -24,7 +24,7 @@ public class TitleManager : MonoBehaviour
             SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
 
             DOTween.KillAll();
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene("SubMain");
         });
     }
 }

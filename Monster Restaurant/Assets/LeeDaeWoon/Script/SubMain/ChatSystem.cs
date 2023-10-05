@@ -80,7 +80,7 @@ public class ChatSystem : MonoBehaviour
                     break;
 
                 case 1:
-                    SceneManager.LoadScene(2);
+                    SceneManager.LoadScene("MainInGame");
                     break;
 
                 case 2:

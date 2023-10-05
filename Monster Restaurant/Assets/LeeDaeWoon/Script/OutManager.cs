@@ -81,7 +81,7 @@ public class OutManager : MonoBehaviour
             {
                 Time.timeScale = 1;
                 DOTween.KillAll();
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene("SubMain");
             });
         });
     }
