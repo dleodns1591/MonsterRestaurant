@@ -65,9 +65,9 @@ public class VideoSceneManager : MonoBehaviour
             }
             if (Input.GetMouseButtonDown(0))
             {
+                videoPlayer.Play();
                 StoryImg.gameObject.SetActive(false);
                 StoryExplanTxt.gameObject.SetActive(false);
-                videoPlayer.Play();
                 SkipButton.gameObject.SetActive(true);
             }
 
