@@ -780,7 +780,7 @@ GameObject:
   - component: {fileID: 252130374}
   - component: {fileID: 252130373}
   m_Layer: 5
-  m_Name: OutNoBtn
+  m_Name: Out YesBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1915,6 +1915,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16eb528505839f84889c09030ef4d567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exitYesBtn: {fileID: 252130373}
+  exitNoBtn: {fileID: 1123321276}
+  exitGroup: {fileID: 684441572}
+  exitWindow: {fileID: 1866937792}
 --- !u!225 &684441572
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3171,7 +3175,7 @@ GameObject:
   - component: {fileID: 1123321277}
   - component: {fileID: 1123321276}
   m_Layer: 5
-  m_Name: OutYesBtn
+  m_Name: Out NoBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
