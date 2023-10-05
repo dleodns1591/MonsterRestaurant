@@ -6353,7 +6353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7310060fafed3ba44929af1295f5ac55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEndingOpens: 010000000000000000
+  isEndingOpens: 000000000000000000
   isChallenge: 0
 --- !u!4 &1979649652
 Transform:
