@@ -54,8 +54,7 @@ public class GameManager : Singleton<GameManager>
         {
             money = value;
 
-            MoneyText.text = ((int)Money).ToString();
-            //OrderManager.Instance.MoneyText.text = money.ToString() + " $";
+            MoneyText.text = ((int)Mathf.Ceil(Money)).ToString();
             if (money < 0)
             {
                 //거지 엔딩
