@@ -98,6 +98,7 @@ public class Shop : MonoBehaviour
         GameManager.Instance.WormHoleDraw = () =>
         {
             int rand = UnityEngine.Random.Range(1, 10);
+            SM.isWormHoleFirstBuy = true;
             if (rand >= 7)
             {
 

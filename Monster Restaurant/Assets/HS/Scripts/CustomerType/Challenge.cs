@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -16,26 +17,25 @@ public class Challenge : MonoBehaviour, I_CustomerType
     int randomMain;
     ECookingStyle cookingStyle;
     List<ESubMatarials> subs;
+    int subCount;
 
     int difficulty;
     public string SpecialAnswer()
     {
         //제한시간
-        if (GM.Satisfaction >= OM.GroupOrderTimeLimit)
+        if (GM.Satisfaction >= (100 - LimitTimeSetting()))
         {
             OM.customerManager.EeventCustomerSetting((int)EeventCustomerType.GroupOrder);
             OM.customer.CustomerImg.sprite = OM.customer.EventGuestSuccess[(int)EeventCustomerType.GroupOrder];
-            GM.Money += 700;
-            GM.SalesRevenue += 700;
-            return "빠르게 만들어주셔서 감사합니다. 아이들이 좋아할 거예요";
+            StartCoroutine(ChallengeFinish());
+            return $"{OM.ChallengeTimeTaken}초만에 완성하셨습니다!";
         }
         else
         {
             OM.customerManager.EeventCustomerSetting((int)EeventCustomerType.GroupOrder);
             OM.customer.CustomerImg.sprite = OM.customer.EventGuestFails[(int)EeventCustomerType.GroupOrder];
-            GM.Money -= 20;
-            GM.SalesRevenue -= 20;
-            return "늦게 주시면 어떡해요..! 현재 급식 배분을 잘 처리해서 다행이지만, 돈은 못드리겠네요";
+            StartCoroutine(ChallengeFinish());
+            return $"엄청나게 형편없군요 ㅋ";
         }
     }
     public void SpecialType()
@@ -48,7 +48,6 @@ public class Challenge : MonoBehaviour, I_CustomerType
 
         OM.OrderTalk[0] = $"챌린지 모드에 오신 것을 환영합니다. 원하시는 난이도를 선택해주세요.";
         OM.dialogNumber++;
-        //OM.orderButtonManager.B;
 
         StartCoroutine(ButtonOnDelay());
 
@@ -59,19 +58,27 @@ public class Challenge : MonoBehaviour, I_CustomerType
     {   
         ChallengeBtns[diff - 1].onClick.AddListener(() =>
         {
+            foreach (var item in ChallengeBtns) { item.gameObject.SetActive(false); }
+            OM.perfectMade = 100;
+            randomMain = Random.Range(0, Enum.GetValues(typeof(EMainMatarials)).Length - 1);
+            cookingStyle = (ECookingStyle)Random.Range(0, Enum.GetValues(typeof(ECookingStyle)).Length - 1);
             //난이도 설정
             difficulty = diff;
 
+            ChallengeBtns[diff - 1].gameObject.SetActive(true);
+
             if (diff != 4)
             {
+                subCount = 0;
                 subs = new List<ESubMatarials> { ESubMatarials.NULL };
-                OM.OrderTalk[1] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {DrawMainMatarial()}을 {DrawCookingStyle()} 만든 음식을 만들어 주십시오";
+                OM.OrderTalk[1] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {MainMatarial()}을 {CookingStyle()} 만든 음식을 만들어 주십시오";
 
             }
             else
             {
+                subCount = 7;
                 subs = new List<ESubMatarials> { (ESubMatarials)Random.Range(0, Enum.GetNames(typeof(ESubMatarials)).Length - 1 /*NULL 제외*/) };
-                OM.OrderTalk[1] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {SubString(subs[0])} 들어간 {DrawMainMatarial()}을 {DrawCookingStyle()} 만든 음식을 만들어 주십시오";
+                OM.OrderTalk[1] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {SubString(subs[0])} 들어간 {MainMatarial()}을 {CookingStyle()} 만든 음식을 만들어 주십시오";
             }
 
                 OM.isNext = true;
@@ -80,8 +87,8 @@ public class Challenge : MonoBehaviour, I_CustomerType
             ChallengeBtns[diff - 1].onClick.RemoveAllListeners();
             ChallengeBtns[diff - 1].onClick.AddListener(() =>
             {
-                if (diff != 4) OM.OrderTalk[0] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {DrawMainMatarial()}을 {DrawCookingStyle()} 만든 음식을 만들어 주십시오";
-                else OM.OrderTalk[0] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {SubString(subs[0])} 들어간 {DrawMainMatarial()}을 {DrawCookingStyle()} 만든 음식을 만들어 주십시오";
+                if (diff != 4) OM.OrderTalk[0] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {MainMatarial()}을 {CookingStyle()} 만든 음식을 만들어 주십시오";
+                else OM.OrderTalk[0] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {SubString(subs[0])} 들어간 {MainMatarial()}을 {CookingStyle()} 만든 음식을 만들어 주십시오";
                 //4개 다 비활성화
                 foreach (var item in ChallengeBtns) { item.gameObject.SetActive(false); }
 
@@ -92,51 +99,35 @@ public class Challenge : MonoBehaviour, I_CustomerType
 
     void SucsessCook()
     {
-        GM.ConditionSetting((EMainMatarials)randomMain, subs, 7, cookingStyle, DishCountSetting());
         foreach(var item in ChallengeBtns) { item.gameObject.SetActive(false); }
 
         GameManager.Instance.ReturnCook();
+        GM.ConditionSetting((EMainMatarials)randomMain, subs, subCount, cookingStyle, DishCountSetting());
     }
 
-    /// <summary>
-    /// 튀기기를 제외한 조리 방식을 뽑는 함수
-    /// </summary>
-    /// <returns></returns>
-    string DrawCookingStyle()
+    string CookingStyle()
     {
-        int rand = Random.Range(0, 1);
-        if (rand == 0)
+        switch (cookingStyle)
         {
-            cookingStyle = ECookingStyle.Roast;
-            return "구워서";
-        }
-        else
-        {
-            cookingStyle = ECookingStyle.Boil;
-            return "삶아서";
+            case ECookingStyle.Fry:
+                return "튀겨서";
+            case ECookingStyle.Boil:
+                return "삶아서";
+            case ECookingStyle.Roast:
+                return "구워서";
+            default:
+                return "";
         }
     }
 
-    /// <summary>
-    /// 고기를 제외한 메인 재료 뽑는 함수
-    /// </summary>
-    /// <returns></returns>
-    string DrawMainMatarial()
+    string MainMatarial()
     {
-        int MeatCheck(int num)
-        {
-            if ((EMainMatarials)num == EMainMatarials.Meat || (EMainMatarials)num == EMainMatarials.NULL)
-                num = MeatCheck(Random.Range(0, Enum.GetValues(typeof(EMainMatarials)).Length));
-
-            return num;
-        }
-        int rand = Random.Range(0, Enum.GetValues(typeof(EMainMatarials)).Length);
-        rand = MeatCheck(rand);
-        randomMain = rand;
-        switch ((EMainMatarials)rand)
+        switch ((EMainMatarials)randomMain)
         {
             case EMainMatarials.Bread:
                 return "빵";
+            case EMainMatarials.Meat:
+                return "고기";
             case EMainMatarials.Noodle:
                 return "면";
             case EMainMatarials.Rice:
@@ -185,12 +176,16 @@ public class Challenge : MonoBehaviour, I_CustomerType
         switch (difficulty)
         {
             case 1:
+                OM.ChallengeTimeLimit = 60;
                 return 60;
             case 2:
+                OM.ChallengeTimeLimit = 40;
                 return 40;
             case 3:
+                OM.ChallengeTimeLimit = 25;
                 return 25;
             case 4:
+                OM.ChallengeTimeLimit = 40;
                 return 40;
             default:
                 return 1;
@@ -215,7 +210,13 @@ public class Challenge : MonoBehaviour, I_CustomerType
 
     IEnumerator ButtonOnDelay()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(5.4f);
         foreach (var item in ChallengeBtns) { item.gameObject.SetActive(true); }
+    }
+
+    IEnumerator ChallengeFinish()
+    {
+        yield return new WaitForSeconds(4);
+        SceneManager.LoadScene("SubMain");
     }
 }

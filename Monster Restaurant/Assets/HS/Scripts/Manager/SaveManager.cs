@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class SaveManager : MonoBehaviour
 {
     public bool[] isEndingOpens = new bool[Enum.GetValues(typeof(EendingType)).Length];
+    public bool isWormHoleFirstBuy;
 
     public bool isChallenge = false;
 

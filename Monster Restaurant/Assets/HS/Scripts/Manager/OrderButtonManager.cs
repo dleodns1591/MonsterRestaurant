@@ -14,5 +14,5 @@ public class OrderButtonManager : MonoBehaviour
     {
         OrderButtonObject.Instance.CookingBtn.gameObject.SetActive(isActive);
         OrderButtonObject.Instance.ReAskBtn.gameObject.SetActive(isActive);
-    }
+    }  
 }

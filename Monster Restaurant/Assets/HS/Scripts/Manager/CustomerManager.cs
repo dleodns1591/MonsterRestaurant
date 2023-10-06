@@ -26,6 +26,7 @@ public class CustomerManager : MonoBehaviour
         {
             Destroy((UnityEngine.Object)OM.CustomerType);
             OM.CustomerType = gameObject.AddComponent<Challenge>();
+            GM.Money = 1000;
             EeventCustomerSetting((int)EeventCustomerType.GroupOrder);
             OM.CustomerType.SpecialType();
             return;

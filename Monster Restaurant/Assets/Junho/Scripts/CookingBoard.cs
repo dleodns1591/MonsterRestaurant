@@ -206,9 +206,11 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
 
         if (Cooking.Instance.AnswerOrder.style != style) checkList++;
+
+        print(Cooking.Instance.AnswerOrder.style);
+        print(style);
         if (Cooking.Instance.AnswerOrder.main != mainMaterial) checkList++;
         if (Cooking.Instance.AnswerOrder.count > SubMatarialsCount()) checkList++;
-
 
         if (Cooking.Instance.AnswerOrder.sub[0] != ESubMatarials.NULL)
         {
@@ -227,6 +229,6 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
         print("Satisfaction : "+(checkList * 20) / Cooking.Instance.AnswerOrder.dishCount);
 
-        GameManager.Instance.Satisfaction -= ((checkList * 20) * OrderManager.Instance.perfectMade_Earth) / Cooking.Instance.AnswerOrder.dishCount;
+        GameManager.Instance.Satisfaction -= ((checkList * 20) * OrderManager.Instance.perfectMade) / Cooking.Instance.AnswerOrder.dishCount;
     }
 }

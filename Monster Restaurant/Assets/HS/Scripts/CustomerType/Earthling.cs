@@ -44,7 +44,7 @@ public class Earthling : MonoBehaviour, I_CustomerType
 
     public string SpecialAnswer()
     {
-        OM.perfectMade_Earth = 1;
+        OM.perfectMade = 1;
 
         if (GM.Satisfaction >= 40)
         {
@@ -122,7 +122,7 @@ public class Earthling : MonoBehaviour, I_CustomerType
         cook = BtnObjects.BtnCookText;
         ask = BtnObjects.BtnAskText;
 
-        OM.perfectMade_Earth = 100;
+        OM.perfectMade = 100;
 
         subs = new List<ESubMatarials> { ESubMatarials.NULL };
 

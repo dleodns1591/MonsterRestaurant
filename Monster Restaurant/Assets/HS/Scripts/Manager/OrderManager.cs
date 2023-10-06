@@ -56,13 +56,17 @@ public class OrderManager : Singleton<OrderManager>
     [Header("상점 관련")]
     [SerializeField] private Shop shop;
 
+    [Header("챌린지 관련")]
+    [HideInInspector] public int ChallengeTimeTaken;
+    [HideInInspector] public int ChallengeTimeLimit;
+
     [Header("내부 변수들")]
     private Tween DayTween;
     public int ReQuestionCount, GuestOfTheDay;
     private Coroutine Ordercoroutine;
     [HideInInspector] public bool isCookingSuccess;
     [HideInInspector] public bool isBeggar;
-    [HideInInspector] public int perfectMade_Earth;
+    [HideInInspector] public int perfectMade;
     [HideInInspector] public int GroupOrderTimeLimit;
     [HideInInspector] public int orderType;
     [HideInInspector] public string[] OrderTalk = new string[3], AskTalk = new string[3];
@@ -124,7 +128,6 @@ public class OrderManager : Singleton<OrderManager>
         .OnComplete(() => //시간이 다 지났을때
         {
             GameManager.Instance.dayEndCheck = true;
-            //손님 화내면서 나가기
         });
     }
 
@@ -147,7 +150,7 @@ public class OrderManager : Singleton<OrderManager>
         }
         yield return StartCoroutine(customer.Moving());
 
-        orderButtonManager.ButtonSetActive(true);
+        if(SaveManager.Instance.isChallenge == false) orderButtonManager.ButtonSetActive(true);
 
         orderMessageManager.BallonSetActive(true);
 

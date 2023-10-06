@@ -54,22 +54,29 @@ public class SatisfactionManager : MonoBehaviour
                 GameManager.Instance.Satisfaction -= (OM.ReQuestionCount * 8);
                 OM.ReQuestionCount = 0;
             }
-            if (!GameManager.Instance.isGroupOrder)
+            if (GameManager.Instance.isGroupOrder)
+            {
+                if (GameManager.Instance.Satisfaction <= OM.GroupOrderTimeLimit)
+                    FaceImage.sprite = FaceSprites[(int)EFaceType.Angry];
+            }
+            else if(SaveManager.Instance.isChallenge == true)
+            {
+                print("asd");
+                if (GameManager.Instance.Satisfaction <= (100 - OM.ChallengeTimeLimit)) 
+                    FaceImage.sprite = FaceSprites[(int)EFaceType.Angry];
+            }
+            else
             {
                 if (GameManager.Instance.Satisfaction <= 70)
                     FaceImage.sprite = FaceSprites[(int)EFaceType.Umm];
                 if (GameManager.Instance.Satisfaction <= 40)
                     FaceImage.sprite = FaceSprites[(int)EFaceType.Angry];
             }
-            else
-            {
-                if (GameManager.Instance.Satisfaction <= OM.GroupOrderTimeLimit)
-                    FaceImage.sprite = FaceSprites[(int)EFaceType.Angry];
-            }
             yield return new WaitForSeconds(1f);
 
             EmotionText.text = $"{GameManager.Instance.Satisfaction}%";
             GameManager.Instance.Satisfaction--;
+            OM.ChallengeTimeTaken++;
             EmotionText.text = $"{GameManager.Instance.Satisfaction}%";
         }
     }
