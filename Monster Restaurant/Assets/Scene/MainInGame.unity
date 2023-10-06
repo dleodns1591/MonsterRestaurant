@@ -6668,6 +6668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEndingOpens: 000000000000000000
+  isWormHoleFirstBuy: 0
   isChallenge: 1
 --- !u!1001 &858178316
 PrefabInstance:
