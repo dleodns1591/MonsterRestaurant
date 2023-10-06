@@ -61,7 +61,7 @@ public class CustomerManager : MonoBehaviour
                 case EeventCustomerType.Human:
                     if (GameManager.Instance.isEarthlingRefuse)
                     {
-                        OM.NormalGuestType = UnityEngine.Random.Range(0, 8);
+                        OM.NormalGuestType = UnityEngine.Random.Range(0, Enum.GetValues(typeof(EcustomerType)).Length);
                         SetCustomerType(OM.NormalGuestType);
                         return;
                     }
@@ -75,7 +75,7 @@ public class CustomerManager : MonoBehaviour
                 case EeventCustomerType.Beggar:
                     if (GameManager.Instance.isBeggarRefuse)
                     {
-                        OM.NormalGuestType = UnityEngine.Random.Range(0, 8);
+                        OM.NormalGuestType = UnityEngine.Random.Range(0, Enum.GetValues(typeof(EcustomerType)).Length);
                         SetCustomerType(OM.NormalGuestType);
                         return;
                     }
@@ -102,39 +102,7 @@ public class CustomerManager : MonoBehaviour
 
         isCurrentEventType = false;
         OM.CustomerType = gameObject.AddComponent<NormalCustomer>();
-        switch ((EcustomerType)type)
-        {
-            case EcustomerType.Alien:
-                NormalCustomerSetting(type);
-                break;
-            case EcustomerType.Hyena:
-                NormalCustomerSetting(type);
-                break;
-            case EcustomerType.Robot:
-                NormalCustomerSetting(type);
-                break;
-            case EcustomerType.Dragon:
-                NormalCustomerSetting(type);
-                break;
-            case EcustomerType.Light:
-                NormalCustomerSetting(type);
-                break;
-            case EcustomerType.FSM:
-                NormalCustomerSetting(type);
-                break;
-            case EcustomerType.Chris:
-                NormalCustomerSetting(type);
-                break;
-            case EcustomerType.Demon:
-                NormalCustomerSetting(type);
-                break;
-            case EcustomerType.Holotle:
-                NormalCustomerSetting(type);
-                break;
-            default:
-                Destroy((UnityEngine.Object)OM.CustomerType);
-                break;
-        }
+        NormalCustomerSetting(type);
         OM.CustomerType.SpecialType();
     }
     void NormalCustomerSetting(int type)
@@ -184,6 +152,10 @@ public class CustomerManager : MonoBehaviour
                 return "리시드";
             case "FoodCleanTester":
                 return "H-30122";
+            case "Trash":
+                return "쓰레기";
+            case "Joker":
+                return "조커";
             default:
                 return "";
         }
@@ -211,6 +183,10 @@ public class CustomerManager : MonoBehaviour
                 return EcustomerType.Demon;
             case "아홀로노트":
                 return EcustomerType.Holotle;
+            case "쓰레기":
+                return EcustomerType.Trash;
+            case "조커":
+                return EcustomerType.Joker;
             default:
                 return EcustomerType.Alien;
         }

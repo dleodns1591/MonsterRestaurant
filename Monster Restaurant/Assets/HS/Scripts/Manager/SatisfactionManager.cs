@@ -61,7 +61,6 @@ public class SatisfactionManager : MonoBehaviour
             }
             else if(SaveManager.Instance.isChallenge == true)
             {
-                print("asd");
                 if (GameManager.Instance.Satisfaction <= (100 - OM.ChallengeTimeLimit)) 
                     FaceImage.sprite = FaceSprites[(int)EFaceType.Angry];
             }

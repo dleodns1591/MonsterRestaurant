@@ -14,7 +14,9 @@ public enum EcustomerType
     FSM,
     Chris,
     Demon,
-    Holotle
+    Holotle,
+    Trash,
+    Joker
 }
 public enum EeventCustomerType
 {

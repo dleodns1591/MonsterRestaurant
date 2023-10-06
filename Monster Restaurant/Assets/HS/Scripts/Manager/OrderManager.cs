@@ -80,7 +80,7 @@ public class OrderManager : Singleton<OrderManager>
     {
         GameManager.Instance.Money = 100;
         shop = GameManager.Instance.shop;
-
+        perfectMade = 1;
         SoundManager.instance.PlaySoundClip("Ingame_bgm", SoundType.BGM);
 
         materialSetting.RandomOrderMaterial();
@@ -114,7 +114,7 @@ public class OrderManager : Singleton<OrderManager>
         GameManager.Instance.TaxCost = 0;
         GameManager.Instance.SettlementCost = 0;
         NextCustomerReady();
-        normalGuestType = UnityEngine.Random.Range(0, 9);
+        normalGuestType = UnityEngine.Random.Range(0, Enum.GetValues(typeof(EcustomerType)).Length);
 
         if (SaveManager.Instance.isChallenge == false) customerManager.SetCustomerType(normalGuestType);
         else customerManager.SetCustomerType(0);
@@ -124,7 +124,7 @@ public class OrderManager : Singleton<OrderManager>
         if (DayTween != null)
             DayTween.Kill();
 
-        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 5)
+        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 120)
         .OnComplete(() => //시간이 다 지났을때
         {
             GameManager.Instance.dayEndCheck = true;
@@ -164,7 +164,6 @@ public class OrderManager : Singleton<OrderManager>
             orderMessageManager.StopTalking();
             orderMessageManager.ResetText();
 
-            print(OrderTalk[i]);
             orderMessageManager.TalkingText(OrderTalk[i]);
 
             while (!isNext)
@@ -193,7 +192,7 @@ public class OrderManager : Singleton<OrderManager>
         yield return new WaitForSeconds(1f);
 
             NextCustomerReady();
-            normalGuestType = UnityEngine.Random.Range(0, 9);
+            normalGuestType = UnityEngine.Random.Range(0, Enum.GetValues(typeof(EcustomerType)).Length);
             customerManager.SetCustomerType(normalGuestType);
 
         Ordercoroutine = StartCoroutine(Order());
