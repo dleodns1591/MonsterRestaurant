@@ -71,14 +71,14 @@ public class Challenge : MonoBehaviour, I_CustomerType
             {
                 subCount = 0;
                 subs = new List<ESubMatarials> { ESubMatarials.NULL };
-                OM.OrderTalk[1] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {MainMatarial()}을 {CookingStyle()} 만든 음식을 만들어 주십시오";
+                OM.OrderTalk[1] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {MainMatarial()} {CookingStyle()} 만든 음식을 만들어 주십시오";
 
             }
             else
             {
                 subCount = 7;
                 subs = new List<ESubMatarials> { (ESubMatarials)Random.Range(0, Enum.GetNames(typeof(ESubMatarials)).Length - 1 /*NULL 제외*/) };
-                OM.OrderTalk[1] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {SubString(subs[0])} 들어간 {MainMatarial()}을 {CookingStyle()} 만든 음식을 만들어 주십시오";
+                OM.OrderTalk[1] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {SubString(subs[0])} 들어간 {MainMatarial()} {CookingStyle()} 만든 음식을 만들어 주십시오";
             }
 
                 OM.isNext = true;
@@ -125,15 +125,15 @@ public class Challenge : MonoBehaviour, I_CustomerType
         switch ((EMainMatarials)randomMain)
         {
             case EMainMatarials.Bread:
-                return "빵";
+                return "빵을";
             case EMainMatarials.Meat:
-                return "고기";
+                return "고기를";
             case EMainMatarials.Noodle:
-                return "면";
+                return "면을";
             case EMainMatarials.Rice:
-                return "밥";
+                return "밥을";
             default:
-                return "빵";
+                return "빵을";
         }
     }
 
@@ -217,6 +217,7 @@ public class Challenge : MonoBehaviour, I_CustomerType
     IEnumerator ChallengeFinish()
     {
         yield return new WaitForSeconds(4);
+        SaveManager.Instance.isChallenge = false;
         SceneManager.LoadScene("SubMain");
     }
 }

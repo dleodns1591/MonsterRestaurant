@@ -36,7 +36,7 @@ public class MapScrollMG : Singleton<MapScrollMG>
         {
             yield return null;
 
-            if (Input.GetMouseButtonDown(0)) print(Input.mousePosition);
+            //if (Input.GetMouseButtonDown(0)) print(Input.mousePosition);
 
 
             bool isPosYCheck = (Input.mousePosition.y <= LeftUpPos.y && Input.mousePosition.y >= RightDownPos.y);

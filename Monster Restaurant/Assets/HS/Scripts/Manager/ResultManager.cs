@@ -10,6 +10,10 @@ public class ResultManager : MonoBehaviour
     [SerializeField] private Button NextButton;
     [SerializeField] private Text Principal, BasicRevenue, SalesRevenue, MarterialCost, TaxCost, SettlementCost, Total;
     [SerializeField] private Text DayText;
+    [Header("도장 창 관련")]
+    [SerializeField] private GameObject DailyPopup;
+    [SerializeField] private GameObject[] Stamps;
+
 
     private int EndingDate = 20;
 
@@ -59,12 +63,14 @@ public class ResultManager : MonoBehaviour
         IEnumerator NumberAni()
         {
             yield return new WaitForSeconds(FadeInOut.instance.fadeTime);
+            #region 텍스트 초기화
             BasicRevenue.text = "";
             SalesRevenue.text = "";
             MarterialCost.text = "";
             TaxCost.text = "";
             SettlementCost.text = "";
             Total.text = "";
+            #endregion
             for (int i = 0; i < RevenuePopup.transform.childCount; i++)
             {
                 RevenuePopup.transform.GetChild(i).gameObject.SetActive(true);
@@ -83,20 +89,47 @@ public class ResultManager : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
             NumberAnimation(GameManager.Instance.SettlementCost, 1.3f, SettlementCost);
             yield return new WaitForSeconds(1.5f);
-            NumberAnimation((int)GameManager.Instance.Money, 1.3f, Total);
+            NumberAnimation((int)Mathf.Ceil(GameManager.Instance.Money), 1.3f, Total);
             yield return new WaitForSeconds(2.0f);
+            NextButton.gameObject.transform.GetChild(0).GetComponent<Text>().text = "다음";
             NextButton.gameObject.SetActive(true);
             NextButton.onClick.RemoveAllListeners();
             NextButton.onClick.AddListener(() =>
             {
                 NextButton.gameObject.SetActive(false);
-                RevenuePopup.GetComponent<RectTransform>().DOAnchorPosY(865, 2.5f).OnComplete(() =>
+                RevenuePopup.GetComponent<RectTransform>().DOAnchorPosY(865, 1.5f).OnComplete(() =>
                 {
                     for (int i = 0; i < RevenuePopup.transform.childCount; i++)
                     {
                         RevenuePopup.transform.GetChild(i).gameObject.SetActive(false);
                     }
-                    OM.TimeFill.fillAmount = 1;
+
+                    StartCoroutine(Daily());
+
+                    IEnumerator Daily()
+                    {
+                        DailyPopup.GetComponent<RectTransform>().DOAnchorPosY(0, 1.5f);
+                        yield return new WaitForSeconds(1.5f);
+                        //도장연출
+                        Stamps[GM.Day - 1].gameObject.SetActive(true);
+                        Stamps[GM.Day - 1].GetComponent<RectTransform>().localScale = new Vector3(1.5f, 1.5f);
+                        Stamps[GM.Day - 1].GetComponent<RectTransform>().DOScale(new Vector3(1, 1), 0.65f);
+                        yield return new WaitForSeconds(0.65f);
+                        NextButton.gameObject.transform.GetChild(0).GetComponent<Text>().text = "다음 일차로!";
+                        NextButton.gameObject.SetActive(true);
+                        NextButton.onClick.RemoveAllListeners();
+                        NextButton.onClick.AddListener(() =>
+                        {
+                            NextButton.gameObject.SetActive(false);
+                            DailyPopup.GetComponent<RectTransform>().DOAnchorPosY(865, 1.5f).OnComplete(() =>
+                            {
+                                OM.TimeFill.fillAmount = 1;
+
+                                StartCoroutine(DayProduction());
+                                StartCoroutine(Reset());
+                            });
+                        });
+                    }
 
                     IEnumerator DayProduction()
                     {
@@ -109,8 +142,6 @@ public class ResultManager : MonoBehaviour
                         DayText.DOFade(0, FadeInOut.instance.fadeTime);
                         yield return new WaitForSeconds(FadeInOut.instance.fadeTime);
                     }
-                    StartCoroutine(DayProduction());
-                    StartCoroutine(Reset());
                 });
             });
             IEnumerator Reset()

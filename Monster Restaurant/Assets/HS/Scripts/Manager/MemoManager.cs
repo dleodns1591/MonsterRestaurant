@@ -60,13 +60,11 @@ public class MemoManager : MonoBehaviour
             {
                 print("ConditionSetting");
                 MemoTexts[i].text = OM.AskTalk[AskCheck];
-                print(OM.AskTalk[AskCheck]);
                 AskCheck++;
             }
             else
             {
                 MemoTexts[i].text = OM.OrderTalk[OrderCheck];
-                print(OM.AskTalk[OrderCheck]);
                 OrderCheck++;
             }
             MemoTexts[i].rectTransform.DOAnchorPos(MemoOnTextSizes[i], 0.3f).SetEase(Ease.OutQuint);
