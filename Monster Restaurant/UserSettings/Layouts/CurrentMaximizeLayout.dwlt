@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 11917
+  controlID: 115
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 11918
+  controlID: 116
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 11919
+  controlID: 117
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -224,10 +224,10 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 36.399994}
-      m_SelectedIDs: 9c6a0000
-      m_LastClickedID: 27292
-      m_ExpandedIDs: c818ffffbcafffffecfafffffefaffffa6690000926a0000486c0000626c0000f26d0000c06e0000ea6e0000586f0000
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: cc7a0000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 2ef2ffff8af2fffffefaffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -812,22 +812,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/Customer/Normal/Trash
+    - Assets/Scene
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 75
   m_LastFolders:
-  - Assets/Resources/Customer/Normal/Trash
+  - Assets/Scene
   m_LastFoldersGridSize: 75
   m_LastProjectPath: C:\Users\ASUS\MonsterRestaurant\Monster Restaurant
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 559.80005}
-    m_SelectedIDs: 90310100
-    m_LastClickedID: 78224
-    m_ExpandedIDs: 0000000046780000487800004a7800004c7800004e78000050780000527800005478000056780000587800005a7800005c7800005e78000086780000327a000000ca9a3b
+    scrollPos: {x: 0, y: 1011.80005}
+    m_SelectedIDs: 6e780000
+    m_LastClickedID: 30830
+    m_ExpandedIDs: 00000000587800005a7800005c7800005e78000060780000627800006478000066780000687800006a7800006c7800006e78000070780000727800009478000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -855,7 +855,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000046780000487800004a7800004c7800004e78000050780000527800005478000056780000587800005a7800005c7800005e780000327a000000ca9a3b
+    m_ExpandedIDs: 00000000587800005a7800005c7800005e78000060780000627800006478000066780000687800006a7800006c7800006e7800007078000072780000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -880,9 +880,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 9c6a0000
-    m_LastClickedInstanceID: 27292
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: cc7a0000
+    m_LastClickedInstanceID: 31436
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000606000007060000042600000a4bc000076260000e6620000e26200002a7200003a720000926b0000166e0000d06c000020e700007e6f0000fc7000006ed4000018710000447100005a73000000000000fc6b0000006c0000026c0000046c0000667300002c20020096760200ae7602009a760200b6760200b2760200a2760200a6760200aa760200c0630000ca630000c8630000b6630000ee6b0000ec6b0000d0740000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -910,7 +910,7 @@ MonoBehaviour:
     m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 75
   m_SkipHiddenPackages: 0
-  m_DirectoriesAreaWidth: 122
+  m_DirectoriesAreaWidth: 123
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -958,8 +958,8 @@ MonoBehaviour:
     y: 0
     width: 392
     height: 730.8
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}

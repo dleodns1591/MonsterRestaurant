@@ -18,9 +18,14 @@ public class VideoSceneManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(StoryDelay(Speech));
-        videoPlayer.loopPointReached += OnVideoEnd;
-        ButtonAddListener();
+        if (PlayerPrefs.GetInt("FirstConnect") != 1)
+        {
+            StartCoroutine(StoryDelay(Speech));
+            videoPlayer.loopPointReached += OnVideoEnd;
+            ButtonAddListener();
+            PlayerPrefs.SetInt("FirstConnect", 1);
+        }
+        else SceneManager.LoadScene("Title");
     }
 
     void ButtonAddListener()
