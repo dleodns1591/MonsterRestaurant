@@ -100,6 +100,15 @@ public class ChatSystem : MonoBehaviour
                     settingGroup.gameObject.SetActive(true);
                     settingWidnow.transform.DOLocalMoveY(0, 0.2f).SetEase(Ease.Linear);
                     break;
+
+                case 4:
+                    SceneManager.LoadScene("MainInGame");
+                    SaveManager.Instance.isChallenge = true;
+                    break;
+
+                case 5:
+                    SceneManager.LoadScene("Tutorial");
+                    break;
             }
         });
         
