@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class OutManager : MonoBehaviour
 {
+    public static OutManager instance;
+    void Awake() => instance = this;
+
     [SerializeField] Button outBtn;
     [SerializeField] Button outYesBtn;
     [SerializeField] Button outNoBtn;
@@ -14,7 +17,7 @@ public class OutManager : MonoBehaviour
     [SerializeField] CanvasGroup outWindow;
 
     Image fade;
-    bool isOut = false;
+    public bool isOut = false;
 
 
     void Start()

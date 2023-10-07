@@ -7194,7 +7194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEndingOpens: 000000000000000000
   isWormHoleFirstBuy: 0
-  isChallenge: 0
+  isChallenge: 1
 --- !u!1 &850888600
 GameObject:
   m_ObjectHideFlags: 0

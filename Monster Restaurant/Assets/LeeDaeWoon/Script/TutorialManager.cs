@@ -16,13 +16,13 @@ public class TutorialManager : MonoBehaviour
 
     void Update()
     {
-        //AnyKeyDown();
+        AnyKeyDown();
         TutorialCheck();
     }
 
     void AnyKeyDown()
     {
-        if (Input.anyKeyDown)
+        if (Input.anyKeyDown && !OutManager.instance.isOut)
         {
             tutorialNum++;
         }
