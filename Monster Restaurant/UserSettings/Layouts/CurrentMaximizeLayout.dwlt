@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 5809
+  controlID: 11700
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 5810
+  controlID: 11701
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 5859
+  controlID: 11702
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -223,10 +223,10 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 8418faff
-      m_LastClickedID: -386940
-      m_ExpandedIDs: 8018faff8218faff4c93fbff829afbffcaa3fbff3cb3fbff18bcfbff52dffbff86eefbff0259fcff0859fcff7074fdff147cfdff9e9dfdffa89dfdff4076feff943dffff2af2ffffaafafffff4ffffff927a0000b07c00000e7d0000ba7e0000c27e00006cba0000bebc00002cbd0000f0be0000f8be000042c60000cac700005ac80000e0c80000f8c800009ec90000a2c90000c4c90000dec90000f0c900005aca000084ca0000b6ca00006acb000008cc000022cc000070cc000088cc0000b4cc0000c0cc00006ad400008cd50000a2d900008eee0000c6f3000052f400006af60000f0f600002af70000b2f70000d4f70000eef700006af8000094f8000018fa000032fa000080fa00007a02010062030100
+      scrollPos: {x: 0, y: 388}
+      m_SelectedIDs: 3623faff3223faff3823faff3423faff3a23faff827bfaff6838faff0233faff0033faff782dfaff2e28faff2c28faff2a28faff2828faff2628faff4e26faff4c26faff4a26faff4826faff4626faff
+      m_LastClickedID: -361598
+      m_ExpandedIDs: 3e40faff7e7bfaff807bfaffa2f0faff10fafaff660efbff680efbff5836fbffcc82fbff06aafcff08aafcff16aafcff28aafcff32aafcff34aafcff3caafcffba5dfdffce5dfdffe05dfdffe85dfdffea5dfdfff85dfdff185efdff2a5efdff2e5efdff305efdffa438feffec38feffc272feffde72feff0a73feff1673feff0ec2ffff10c2ffff1ec2ffff26c2ffff3ec2ffff50c2ffff56c2ffff72c2fffff8fafffff86a0000a26c0000be70000012720000a27600004077000048770000144c0200f4510200a4560200
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -525,9 +525,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.8276967, y: 1.2751448, z: 66.056656}
+    m_Target: {x: -1.6742452, y: 0.8625569, z: 60.1333}
     speed: 2
-    m_Value: {x: -1.0233623, y: 1.2888714, z: 63.3908}
+    m_Value: {x: -1.6742452, y: 0.8625569, z: 60.1333}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -578,9 +578,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 2.1733675
+    m_Target: 2.9427195
     speed: 2
-    m_Value: 2.0797775
+    m_Value: 2.9427195
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -635,7 +635,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -70950
+  m_LastSelectedObjectID: -264830
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -741,7 +741,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 5811
+  controlID: 11638
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -797,7 +797,7 @@ MonoBehaviour:
     m_LastAppliedPresetName: Default
     m_SaveData: []
   m_SearchFilter:
-    m_NameFilter: Tutor
+    m_NameFilter: 
     m_ClassNames: []
     m_AssetLabels: []
     m_AssetBundleNames: []
@@ -809,22 +809,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scene
+    - Assets/Resources/UI/Daily
     m_Globs: []
-    m_OriginalText: Tutor
+    m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 75
   m_LastFolders:
-  - Assets/Scene
+  - Assets/Resources/UI/Daily
   m_LastFoldersGridSize: 75
   m_LastProjectPath: C:\Users\USER\MonsterRestaurant\Monster Restaurant
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 460}
-    m_SelectedIDs: 90780000
-    m_LastClickedID: 30864
-    m_ExpandedIDs: 0000000080780000827800008478000086780000887800008a7800008c7800008e78000090780000927800009478000096780000e078000000ca9a3b
+    scrollPos: {x: 0, y: 528}
+    m_SelectedIDs: a8810000
+    m_LastClickedID: 33192
+    m_ExpandedIDs: 000000002e81000030810000328100003481000036810000388100003a8100003c8100003e8100004081000042810000448100008e81000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -852,7 +852,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000080780000827800008478000086780000887800008a7800008c7800008e7800009078000092780000947800009678000000ca9a3b
+    m_ExpandedIDs: 000000002e81000030810000328100003481000036810000388100003a8100003c8100003e81000040810000428100004481000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -877,8 +877,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 8418faff
-    m_LastClickedInstanceID: -386940
+    m_SelectedInstanceIDs: 3623faff3223faff3823faff3423faff3a23faff827bfaff6838faff0233faff0033faff782dfaff2e28faff2c28faff2a28faff2828faff2628faff4e26faff4c26faff4a26faff4826faff4626faff
+    m_LastClickedInstanceID: -384198
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000606000007060000042600000a4bc000076260000e6620000e26200002a7200003a720000926b0000166e0000d06c000020e700007e6f0000fc7000006ed4000018710000447100005a73000000000000fc6b0000006c0000026c0000046c0000667300002c20020096760200ae7602009a760200b6760200b2760200a2760200a6760200aa760200c0630000ca630000c8630000b6630000ee6b0000ec6b0000
     m_RenameOverlay:
@@ -907,7 +907,7 @@ MonoBehaviour:
     m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 75
   m_SkipHiddenPackages: 0
-  m_DirectoriesAreaWidth: 122
+  m_DirectoriesAreaWidth: 164
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -958,7 +958,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 5805
+  controlID: 11666
 --- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52

@@ -52,7 +52,7 @@ public class ChatSystem : MonoBehaviour
     {
         chatNum = chatList[0].num;
 
-        switch (LanguageManager.Instance.languageNum)
+        switch (LanguageManager.instance.languageNum)
         {
             case 0:
                 chatText.text = chatList[0].enChat;

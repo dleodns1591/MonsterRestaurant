@@ -120,7 +120,7 @@ public class EndingBook : MonoBehaviour
 
             if (endingSprite[i].isEndingcheck)
             {
-                switch (LanguageManager.Instance.languageNum)
+                switch (LanguageManager.instance.languageNum)
                 {
                     case 0:
                         if (i == 0)

@@ -67,6 +67,181 @@ MonoBehaviour:
     m_Localized: Going out
     m_Metadata:
       m_Items: []
+  - m_Id: 31103107770527744
+    m_Localized: "Hello. I'm going to explain the tutorial \r\nI'm Lee Daewoon, the
+      producer of this game."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31103577373192192
+    m_Localized: ( Click on the screen to move on. )
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31103872501198848
+    m_Localized: First, I'll briefly explain what you see on the screen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31103962259304448
+    m_Localized: This year represents the time of day. Take as many orders as possible
+      before the day passes.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31104109873639424
+    m_Localized: "Indicates the player's current status.\r\nYou can buy ingredients
+      through Soyuz, \r\nYou can earn a profit by meeting the needs of your customers."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31104123685482496
+    m_Localized: 'Now I''ll explain about the customer.
+
+      First, when the day
+      begins, customers come.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31104125589696512
+    m_Localized: 'The guest who came
+
+      [ "The fluffy grilled meat I saw on TV
+      yesterday..." ]
+
+      This is how you place an order that is hard to understand
+      the player.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31104164437340160
+    m_Localized: "After receiving the order, press the 'Okay' button and it goes
+      to the kitchen, \r\nIf you ask \"What?\" once again, it makes the order easier
+      to understand."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31104192606285824
+    m_Localized: However, if you press the "Yes?" button, the customer's favor will
+      be reduced, so please press it carefully.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31104202374819840
+    m_Localized: Now that I've received your order, I'll move on to the kitchen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31104216715145216
+    m_Localized: I'll explain what you see on the screen as well, I'll explain the
+      kitchen first.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31104227104436224
+    m_Localized: 'It functions as a numerical measure of customer favorability.
+
+      It
+      decreases by 1% per second, and if it decreases by a certain number, the money
+      you receive from the customer also decreases.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31104238483582976
+    m_Localized: Please note that if you give food incorrectly or cook it differently,
+      your favorability will decrease.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31104248252116992
+    m_Localized: Your order is currently listed. If you forget to order, you can
+      refer to this receipt.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31104261145407488
+    m_Localized: Now, I'm going to explain the ingredients for cooking.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31104273560547328
+    m_Localized: "There are four main ingredients \r\nIt's in the order of bread,
+      meat, noodles, and rice."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31104283857563648
+    m_Localized: The main material can be placed by drag and drop.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31104297388388352
+    m_Localized: "There are 12 kinds of ingredients\r\n[Alien plants, batteries,
+      colored paper, poop, preservatives, stickers, bismuth, eyeballs, hair bunches,
+      jewelry, money, screws] \r\nIt consists of ingredients that are difficult for
+      ordinary people to eat."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31104305940574208
+    m_Localized: Sub-materials can be placed by clicking when the main material is
+      on the cutting board.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31104314618589184
+    m_Localized: If you place the ingredients incorrectly, you can throw them in
+      the trash.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31104325561528320
+    m_Localized: "The kitchen screen is based on the mouse point \r\nStay on the
+      right or left edge for 2 seconds to move in that direction."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31104338471596032
+    m_Localized: "It is an oven that can cook food in the order of frying, boiling,
+      and baking.\r\nThere are customers who eat raw food \r\nCooking is not mandatory."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31104350362447872
+    m_Localized: If you put the finished food in this box, it will be packed and
+      delivered to the customer who ordered it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31104359216623616
+    m_Localized: Packaged food is delivered to customers, and if the favorability
+      is above a certain number, it is revealed with good words and expressions.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31104368083382272
+    m_Localized: 'If you cook differently from the food you ordered
+
+      I will
+      speak with an angry expression.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31104380737597440
+    m_Localized: You can spend the day meeting the customer's demand.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31104391584067584
+    m_Localized: If you repeat for the 20th day, all stamps will be stamped on the
+      first day, and the ending will be shown.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31104401763643392
+    m_Localized: There are a total of 9 endings, and you can check them by asking
+      the part-timer.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31106650879471616
+    m_Localized: 'That''s it for the tutorial.
+
+      Now you can go get your order.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31107250996293632
+    m_Localized: All right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31107295120371712
+    m_Localized: "\rYes?\r\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31113436697112576
+    m_Localized: Frying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31113459270856704
+    m_Localized: Boil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31113476597526528
+    m_Localized: Roast
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

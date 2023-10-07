@@ -158,14 +158,14 @@ public class SettingSystem : MonoBehaviour
         {
             SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
 
-            LanguageManager.Instance.LanguageSetting(1);
+            LanguageManager.instance.LanguageSetting(1);
         });
 
         englishBtn.onClick.AddListener(() =>
         {
             SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
 
-            LanguageManager.Instance.LanguageSetting(0);
+            LanguageManager.instance.LanguageSetting(0);
         });
 
         backBtn.onClick.AddListener(() =>
