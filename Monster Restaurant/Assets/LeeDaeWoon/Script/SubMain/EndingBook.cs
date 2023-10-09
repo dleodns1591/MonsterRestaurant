@@ -23,7 +23,7 @@ public class EndingBook : MonoBehaviour
     [SerializeField] Animator endingAnimation;
 
     [SerializeField] Button endingCancleBtn;
-    [SerializeField] Button endingLeftBtn;
+    public Button endingLeftBtn;
     [SerializeField] Button endingRightBtn;
     public int endingCount = 0;
 
@@ -91,7 +91,7 @@ public class EndingBook : MonoBehaviour
 
     void EndingBtnCheck()
     {
-        if (0 < endingCount)
+        if (1 < endingCount)
             endingLeftBtn.gameObject.SetActive(true);
         else
             endingLeftBtn.gameObject.SetActive(false);

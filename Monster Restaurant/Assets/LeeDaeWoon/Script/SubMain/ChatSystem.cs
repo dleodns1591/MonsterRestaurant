@@ -86,6 +86,7 @@ public class ChatSystem : MonoBehaviour
                 case 2:
                     if (EndingBook.instnace.endingWindow.transform.localPosition.y == -1050)
                     {
+                        EndingBook.instnace.endingLeftBtn.gameObject.SetActive(false);
                         endingCount = 0;
                         endingGroup.alpha = 1;
 
