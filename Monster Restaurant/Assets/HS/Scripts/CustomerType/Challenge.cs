@@ -53,6 +53,16 @@ public class Challenge : MonoBehaviour, I_CustomerType
 
         ChallengeBtns = BtnObjects.ChallengeBtns;
 
+        if(SaveManager.Instance.isChallenge == true)
+        {
+            ChallengeBtns[0].gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Easy Mode";
+            ChallengeBtns[1].gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Normal Mode";
+            ChallengeBtns[1].gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Normal Mode";
+            ChallengeBtns[2].gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Hard Mode";
+            ChallengeBtns[3].gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Bug Mode";
+
+        }
+
         if (SaveManager.Instance.isEnglish == false)
             OM.OrderTalk[0] = "챌린지 모드에 오신 것을 환영합니다. 원하시는 난이도를 선택해주세요.";
         else
