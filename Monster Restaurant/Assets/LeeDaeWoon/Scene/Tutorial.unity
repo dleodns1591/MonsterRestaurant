@@ -104807,6 +104807,7 @@ MonoBehaviour:
   outNoBtn: {fileID: 1166972856}
   outFade: {fileID: 283550741}
   outWindow: {fileID: 1887681219}
+  isOut: 0
 --- !u!4 &1854353278
 Transform:
   m_ObjectHideFlags: 0
@@ -111036,8 +111037,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70.94
-  m_fontSizeBase: 70.94
+  m_fontSize: 68
+  m_fontSizeBase: 68
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

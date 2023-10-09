@@ -7194,7 +7194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEndingOpens: 000000000000000000
   isWormHoleFirstBuy: 0
-  isChallenge: 1
+  isChallenge: 0
 --- !u!1 &850888600
 GameObject:
   m_ObjectHideFlags: 0
@@ -8176,6 +8176,7 @@ MonoBehaviour:
   outNoBtn: {fileID: 1998258448}
   outFade: {fileID: 1116796791}
   outWindow: {fileID: 1744106220}
+  isOut: 0
 --- !u!1 &947319172
 GameObject:
   m_ObjectHideFlags: 0
