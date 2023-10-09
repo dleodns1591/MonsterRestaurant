@@ -41,6 +41,9 @@ public class SettingSystem : MonoBehaviour
 
     [Header("Å©·¹µ÷")]
     [SerializeField] Button creditBtn;
+    [SerializeField] Button creditCancleBtn;
+    [SerializeField] CanvasGroup creditGroup;
+    [SerializeField] GameObject creditWindow;
 
     void Start()
     {
@@ -150,6 +153,23 @@ public class SettingSystem : MonoBehaviour
         creditBtn.onClick.AddListener(() =>
         {
             SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+
+            creditGroup.alpha = 1;
+
+            creditGroup.gameObject.SetActive(true);
+            creditWindow.transform.DOLocalMoveY(0, 0.2f).SetEase(Ease.Linear);
+        });
+
+        // Å©·¹µ÷ Ãë¼Ò ¹öÆ°À» ´­·¶À» ½Ã
+        creditCancleBtn.onClick.AddListener(() =>
+        {
+            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+
+            creditGroup.DOFade(0, 0.2f).SetEase(Ease.Linear).OnComplete(() =>
+            {
+                creditWindow.transform.DOLocalMoveY(1050, 0).SetEase(Ease.Linear);
+                creditGroup.gameObject.SetActive(false);
+            });
         });
     }
 
