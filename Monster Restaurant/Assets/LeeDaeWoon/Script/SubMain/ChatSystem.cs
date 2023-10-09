@@ -84,11 +84,14 @@ public class ChatSystem : MonoBehaviour
                     break;
 
                 case 2:
-                    endingCount = 0;
-                    endingGroup.alpha = 1;
+                    if (EndingBook.instnace.endingWindow.transform.localPosition.y == -1050)
+                    {
+                        endingCount = 0;
+                        endingGroup.alpha = 1;
 
-                    endingWindow.transform.DOLocalMoveY(0, 0.2f).SetEase(Ease.Linear);
-                    endingGroup.gameObject.SetActive(true);
+                        endingWindow.transform.DOLocalMoveY(0, 0.2f).SetEase(Ease.Linear);
+                        endingGroup.gameObject.SetActive(true);
+                    }
                     break;
 
                 case 3:
@@ -111,7 +114,7 @@ public class ChatSystem : MonoBehaviour
                     break;
             }
         });
-        
+
         leftBtn.onClick.AddListener(() =>
         {
             SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
