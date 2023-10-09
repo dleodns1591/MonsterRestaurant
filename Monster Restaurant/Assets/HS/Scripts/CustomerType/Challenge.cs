@@ -53,7 +53,7 @@ public class Challenge : MonoBehaviour, I_CustomerType
 
         ChallengeBtns = BtnObjects.ChallengeBtns;
 
-        if(SaveManager.Instance.isChallenge == true)
+        if(SaveManager.Instance.isEnglish == true)
         {
             ChallengeBtns[0].gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Easy Mode";
             ChallengeBtns[1].gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Normal Mode";

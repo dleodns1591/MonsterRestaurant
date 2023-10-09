@@ -28,8 +28,8 @@ public class GroupOrder : MonoBehaviour, I_CustomerType
         {
             OM.customerManager.EeventCustomerSetting((int)EeventCustomerType.GroupOrder);
             OM.customer.CustomerImg.sprite = OM.customer.EventGuestSuccess[(int)EeventCustomerType.GroupOrder];
-            GM.Money += 700;
-            GM.SalesRevenue += 700;
+            OM.directingManager.Directing(700);
+
             if (SM.isEnglish == false)
                 return "빠르게 만들어주셔서 감사합니다. 아이들이 좋아할 거예요";
             else

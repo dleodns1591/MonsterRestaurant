@@ -46,6 +46,9 @@ public class OrderManager : Singleton<OrderManager>
     [Header("요리 당 만족도 관련")]
     public SatisfactionManager satisfactionManager;
 
+    [Header("돈 연출 관련")]
+    public DirectingManager directingManager;
+
     [Header("메모 관련")]
     [SerializeField] private MemoManager memoManager;
 

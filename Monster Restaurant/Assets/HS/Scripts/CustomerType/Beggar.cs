@@ -192,13 +192,15 @@ public class Beggar : MonoBehaviour, I_CustomerType
             switch (OM.Beggar_SuccessPoint)
             {
                 case 2:
-                    GM.Money += 10;
+                    OM.directingManager.Directing(10);
                     break;
                 case 3:
-                    GM.Money += 20;
+                    OM.directingManager.Directing(20);
+
                     break;
                 case 4:
-                    GM.Money += 30;
+                    OM.directingManager.Directing(30);
+
                     break;
                 case 5:
                     List<ESubMatarials> subs = new List<ESubMatarials> { ESubMatarials.NULL };
