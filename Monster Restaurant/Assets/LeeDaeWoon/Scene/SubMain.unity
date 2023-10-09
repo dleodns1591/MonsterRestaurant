@@ -3638,6 +3638,7 @@ GameObject:
   - component: {fileID: 1273542968}
   - component: {fileID: 1273542967}
   - component: {fileID: 1273542966}
+  - component: {fileID: 1273542969}
   m_Layer: 5
   m_Name: ChatWindow
   m_TagString: Untagged
@@ -3748,6 +3749,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1273542964}
   m_CullTransparentMesh: 1
+--- !u!114 &1273542969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273542964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12f95cc23b82fed4c968a72aed27a3b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1301273773
 GameObject:
   m_ObjectHideFlags: 0
@@ -4558,6 +4571,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
   - {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
   - {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
+  - {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
+  - {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
   - {fileID: 21300000, guid: 5aae1baf4e9c47e4d8192b433dc507b1, type: 3}
   interactable: 0
   enableShadowEffect: 1
@@ -4849,6 +4864,12 @@ MonoBehaviour:
   endingRightBtn: {fileID: 1229070208}
   endingCount: 0
   endingSprite:
+  - endingspriteKO: {fileID: 21300000, guid: 3885c9d05b60b1d479b6f58703926325, type: 3}
+    endingspriteENG: {fileID: 21300000, guid: 44422833964adb845a148eb8fb9a1264, type: 3}
+    isEndingcheck: 0
+  - endingspriteKO: {fileID: 21300000, guid: 3885c9d05b60b1d479b6f58703926325, type: 3}
+    endingspriteENG: {fileID: 21300000, guid: 44422833964adb845a148eb8fb9a1264, type: 3}
+    isEndingcheck: 0
   - endingspriteKO: {fileID: 21300000, guid: bfe23bbacef083847ab1ef379bb1f5b0, type: 3}
     endingspriteENG: {fileID: 21300000, guid: 1943a78aa78b1764a9c57d3fa976e4c1, type: 3}
     isEndingcheck: 0
@@ -4876,6 +4897,7 @@ MonoBehaviour:
   - endingspriteKO: {fileID: 21300000, guid: 3885c9d05b60b1d479b6f58703926325, type: 3}
     endingspriteENG: {fileID: 21300000, guid: 44422833964adb845a148eb8fb9a1264, type: 3}
     isEndingcheck: 0
+  isEndingClick: 0
   isEndingLeft: 0
   isEndingRight: 0
   isEndingCancle: 0
@@ -6001,9 +6023,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7310060fafed3ba44929af1295f5ac55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEndingOpens: 010000000000000000
+  isEndingOpens: 000000000000000000
   isWormHoleFirstBuy: 0
   isChallenge: 0
+  isEnglish: 0
 --- !u!4 &1979649652
 Transform:
   m_ObjectHideFlags: 0

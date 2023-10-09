@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 
 [System.Serializable]
-class endingCheck
+public class endingCheck
 {
     public Sprite endingspriteKO;
     public Sprite endingspriteENG;
@@ -19,17 +19,18 @@ public class EndingBook : MonoBehaviour
 
     [Header("¿£µù")]
     [SerializeField] CanvasGroup endingGroup;
-    [SerializeField] GameObject endingWindow;
+    public GameObject endingWindow;
     [SerializeField] Animator endingAnimation;
 
     [SerializeField] Button endingCancleBtn;
-    [SerializeField] Button endingLeftBtn;
+    public Button endingLeftBtn;
     [SerializeField] Button endingRightBtn;
-    [SerializeField] int endingCount = 0;
+    public int endingCount = 0;
 
     [Space(10)]
     [SerializeField] List<endingCheck> endingSprite = new List<endingCheck>();
 
+    public bool isEndingClick = false;
     public bool isEndingLeft = false;
     public bool isEndingRight = false;
     public bool isEndingCancle = false;
@@ -56,6 +57,7 @@ public class EndingBook : MonoBehaviour
             endingGroup.DOFade(0, 0.2f).SetEase(Ease.Linear).OnComplete(() =>
             {
                 isEndingCancle = true;
+                isEndingClick = false;
                 endingWindow.transform.DOLocalMoveY(-1050, 0.5f).SetEase(Ease.OutBack);
             });
         });
@@ -89,7 +91,7 @@ public class EndingBook : MonoBehaviour
 
     void EndingBtnCheck()
     {
-        if (0 < endingCount)
+        if (1 < endingCount)
             endingLeftBtn.gameObject.SetActive(true);
         else
             endingLeftBtn.gameObject.SetActive(false);
@@ -98,26 +100,46 @@ public class EndingBook : MonoBehaviour
             endingRightBtn.gameObject.SetActive(true);
         else
             endingRightBtn.gameObject.SetActive(false);
+    }
 
+    public void EndingPageRight()
+    {
+        if (!isEndingClick)
+        {
+            isEndingClick = true;
+
+            AutoFlip.instnace.PageFlipTime = 0.01f;
+            AutoFlip.instnace.AnimationFramesCount = 2;
+
+            isEndingRight = true;
+
+            ++endingCount;
+            AutoFlip.instnace.FlipRightPage();
+        }
+
+        else
+        {
+            AutoFlip.instnace.PageFlipTime = 0.4f;
+            AutoFlip.instnace.AnimationFramesCount = 40;
+        }
     }
 
     IEnumerator EndingCheck()
     {
         SaveManager saveManager = SaveManager.Instance;
 
-        endingSprite[0].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.Eating];
-        endingSprite[1].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.Loser];
-        endingSprite[2].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.Salve];
-        endingSprite[3].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.Mine];
-        endingSprite[4].isEndingcheck = saveManager.isWormHoleFirstBuy;
-        endingSprite[5].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.WormHole_SpaceAdventure];
-        endingSprite[6].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.WormHole_FindHouse];
-        endingSprite[7].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.Dragon];
-        endingSprite[8].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.LookStar];
+        endingSprite[2].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.Eating];
+        endingSprite[3].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.Loser];
+        endingSprite[4].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.Salve];
+        endingSprite[5].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.Mine];
+        endingSprite[6].isEndingcheck = saveManager.isWormHoleFirstBuy;
+        endingSprite[7].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.WormHole_SpaceAdventure];
+        endingSprite[8].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.WormHole_FindHouse];
+        endingSprite[9].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.Dragon];
+        endingSprite[10].isEndingcheck = saveManager.isEndingOpens[(int)EendingType.LookStar];
 
         for (int i = 0; i < endingSprite.Count; i++)
         {
-
             if (endingSprite[i].isEndingcheck)
             {
                 switch (LanguageManager.instance.languageNum)
