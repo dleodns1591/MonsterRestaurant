@@ -85,7 +85,10 @@ public class Shop : MonoBehaviour
             StartCoroutine(RefuseOrderDelay());
             IEnumerator RefuseOrderDelay()
             {
-                OM.OrderTalk[1] = "이용해 주셔서 감사합니다.";
+                if (SM.isEnglish == false)
+                    OM.OrderTalk[1] = "이용해 주셔서 감사합니다.";
+                else
+                    OM.OrderTalk[1] = "Thank you for using us.";
                 OM.isNext = true;
                 OM.orderButtonManager.ButtonSetActive(false);
                 MouseGuide.SetActive(false);
@@ -117,6 +120,10 @@ public class Shop : MonoBehaviour
         {
             int rand = UnityEngine.Random.Range(0, 2);
             string[] speechs = new string[3] { "탁월한 선택이시네요.", "역시.. 보는 눈이 있으시네요.", "구매해 주셔서 감사합니다." };
+            if (SM.isEnglish == false)
+                speechs = new string[3] { "탁월한 선택이시네요.", "역시.. 보는 눈이 있으시네요.", "구매해 주셔서 감사합니다." };
+            else
+                speechs = new string[3] { "That's an excellent choice.", "As expected... You have an eye for it.", "Thank you for your purchase." };
 
             OM.SpeakOrder(speechs[rand]);
 
@@ -149,8 +156,16 @@ public class Shop : MonoBehaviour
                 yield return new WaitForSeconds(FadeInOut.instance.fadeTime);
                 StopBuyBtn.gameObject.SetActive(true);
                 OM.orderMessageManager.ResetText();
-                OM.SpeakOrder("마음에 드시는 제품 있으시면 구매해주세요.");
-                yield return new WaitForSeconds("마음에 드시는 제품 있으시면 구매해주세요.".Length * 0.05f);
+                if (SM.isEnglish == false)
+                {
+                    OM.SpeakOrder("마음에 드시는 제품 있으시면 구매해주세요.");
+                    yield return new WaitForSeconds("마음에 드시는 제품 있으시면 구매해주세요.".Length * 0.05f);
+                }
+                else
+                {
+                    OM.SpeakOrder("If there is a product you like, please purchase it.");
+                    yield return new WaitForSeconds("If there is a product you like, please purchase it.".Length * 0.05f);
+                }
                 MouseGuide.SetActive(true);
             }
 

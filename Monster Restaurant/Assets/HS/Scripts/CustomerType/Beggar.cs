@@ -1,3 +1,4 @@
+using DG.Tweening.Core.Easing;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,6 +9,7 @@ public class Beggar : MonoBehaviour, I_CustomerType
 {
     OrderManager OM;
     GameManager GM;
+    SaveManager SM;
     OrderButtonObject BtnObjects;
     Button cookBtn;
     Button askBtn;
@@ -17,20 +19,42 @@ public class Beggar : MonoBehaviour, I_CustomerType
     {
         OM.customerManager.EeventCustomerSetting((int)EeventCustomerType.Beggar);
         OM.customer.CustomerImg.sprite = OM.customer.EventGuestSuccess[(int)EeventCustomerType.Beggar];
-        switch (OM.Beggar_SuccessPoint)
+
+        if (SM.isEnglish == false)
         {
-            case 0:
-                return "큭큭..이 은혜는.. 꼭 갚겠습니다.";
-            case 1:
-                return "다시 한 번 말하지만 이 은혜는 꼭 갚겠습니다.. 큭큭";
-            case 2:
-                return "큭큭 감사합니다!..";
-            case 3:
-                return "감사합니다!.. 큭큭";
-            case 4:
-                return "감사합니다!.. 큭큭";
-            default:
-                return " ";
+            switch (OM.Beggar_SuccessPoint)
+            {
+                case 0:
+                    return "큭큭..이 은혜는.. 꼭 갚겠습니다.";
+                case 1:
+                    return "다시 한 번 말하지만 이 은혜는 꼭 갚겠습니다.. 큭큭";
+                case 2:
+                    return "큭큭 감사합니다!..";
+                case 3:
+                    return "감사합니다!.. 큭큭";
+                case 4:
+                    return "감사합니다!.. 큭큭";
+                default:
+                    return " ";
+            }
+        }
+        else
+        {
+            switch (OM.Beggar_SuccessPoint)
+            {
+                case 0:
+                    return "Wow, this grace.... I'll pay back.";
+                case 1:
+                    return "Once again, I'll make sure to return this favor. LOL";
+                case 2:
+                    return "Thank you!";
+                case 3:
+                    return "Thank you!.. Tsk tsk";
+                case 4:
+                    return "Thank you!.. Tsk tsk";
+                default:
+                    return " ";
+            }
         }
     }
 
@@ -39,7 +63,7 @@ public class Beggar : MonoBehaviour, I_CustomerType
         BtnObjects = OrderButtonObject.Instance;
         OM = OrderManager.Instance;
         GM = GameManager.Instance;
-
+        SM = SaveManager.Instance;
         cookBtn = BtnObjects.CookingBtn;
         askBtn = BtnObjects.ReAskBtn;
         cook = BtnObjects.BtnCookText;
@@ -47,26 +71,54 @@ public class Beggar : MonoBehaviour, I_CustomerType
 
         OM.StopOrderCoroutine();
 
-        switch (OM.Beggar_SuccessPoint)
+        if (SM.isEnglish == false)
         {
-            case 0:
-                Point0();
-                break;
-            case 1:
-                Point1();
-                break;
-            case 2:
-                Point2();
-                break;
-            case 3:
-                Point3();
-                break;
-            case 4:
-                Point4();
-                break;
-            case 5:
-                Point5();
-                break;
+
+            switch (OM.Beggar_SuccessPoint)
+            {
+                case 0:
+                    Point0();
+                    break;
+                case 1:
+                    Point1();
+                    break;
+                case 2:
+                    Point2();
+                    break;
+                case 3:
+                    Point3();
+                    break;
+                case 4:
+                    Point4();
+                    break;
+                case 5:
+                    Point5();
+                    break;
+            }
+        }
+        else
+        {
+            switch (OM.Beggar_SuccessPoint)
+            {
+                case 0:
+                    Point0Eng();
+                    break;
+                case 1:
+                    Point1Eng();
+                    break;
+                case 2:
+                    Point2Eng();
+                    break;
+                case 3:
+                    Point3Eng();
+                    break;
+                case 4:
+                    Point4Eng();
+                    break;
+                case 5:
+                    Point5Eng();
+                    break;
+            }
         }
     }
 
@@ -155,11 +207,18 @@ public class Beggar : MonoBehaviour, I_CustomerType
 
                     askBtn.gameObject.SetActive(false);
 
-                    cook.text = "알겠습니다";
+                    if (SaveManager.Instance.isEnglish == false)
+                        cook.text = "알겠습니다";
+                    else
+                        cook.text = "Wait a Minute";
+
                     cookBtn.onClick.RemoveAllListeners();
                     cookBtn.onClick.AddListener(() =>
                     {
-                        OM.AskTalk[0] = "알겠습니다";
+                        if (SaveManager.Instance.isEnglish == false)
+                            OM.AskTalk[0] = "알겠습니다";
+                        else
+                            OM.AskTalk[0] = "Wait a Minute";
                         OM.dialogNumber++;
 
                         SucsessCook();
@@ -258,5 +317,90 @@ public class Beggar : MonoBehaviour, I_CustomerType
         FirstTalking("쉬운일이 아니였을 텐데 음식을 매번 무료로 주셔서 감사합니다. \n마지막으로 늘 먹던걸로 음식 3개 가능할까요?");
 
         ButtonAssignment("", "나가세요", "");
+    }
+
+    void Point0Eng()
+    {
+        FirstTalking("Please, I'm so hungry..");
+
+        ButtonAssignment("Wait a Minute", "Oh... Get out", "If you live that strict, the store will go bust!");
+    }
+
+    void Point1Eng()
+    {
+        FirstTalking("Hello, it's me again. Could you please give me some food?");
+
+        cook.text = "Wait a Minute";
+        cookBtn.onClick.RemoveAllListeners();
+        cookBtn.onClick.AddListener(() =>
+        {
+            OM.AskTalk[0] = "Wait a Minute";
+            OM.dialogNumber++;
+
+            SucsessCook();
+        });
+        ask.text = "Pardon?";
+        askBtn.onClick.RemoveAllListeners();
+        askBtn.onClick.AddListener(() =>
+        {
+            OM.AskTalk[0] = "Pardon?";
+            OM.dialogNumber++;
+
+            OM.OrderTalk[1] = "Please, I'll give you the money one day..";
+            OM.dialogNumber++;
+
+            OM.isNext = true;
+
+            cook.text = "All right.";
+            cookBtn.onClick.RemoveAllListeners();
+            cookBtn.onClick.AddListener(() =>
+            {
+                OM.AskTalk[1] = "All right.";
+                OM.dialogNumber++;
+
+                SucsessCook();
+
+            });
+
+            ask.text = "Please get out.";
+            askBtn.onClick.RemoveAllListeners();
+            askBtn.onClick.AddListener(() =>
+            {
+                OM.AskTalk[1] = "Please get out.";
+                OM.dialogNumber++;
+                OM.OrderTalk[2] = "The store... ruin it...";
+                OM.dialogNumber++;
+
+                RefuseOrder();
+            });
+        });
+    }
+
+    void Point2Eng()
+    {
+        FirstTalking("Hello, boss. Is it possible today as well?");
+
+        ButtonAssignment("Wait a Minute", "Please get out.", "Until now... Thank you for making food for free... Boss.");
+    }
+
+    void Point3Eng()
+    {
+        FirstTalking("Hello.. Boss, please give me what I always eat..");
+
+        ButtonAssignment("Wait a Minute", "Please get out.", "Until now... Thank you for making food for free... Boss.");
+    }
+
+    void Point4Eng()
+    {
+        FirstTalking("Boss, you know..?");
+
+        ButtonAssignment("Wait a Minute", "Please get out.", "Thank you for making free food so far, boss.");
+    }
+
+    void Point5Eng()
+    {
+        FirstTalking("It must not have been easy, but thank you for providing free food every time. \nLastly, is it possible to eat 3 dishes with what I always eat?");
+
+        ButtonAssignment("", "Please get out.", "");
     }
 }

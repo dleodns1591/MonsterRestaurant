@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -28,14 +29,20 @@ public class Challenge : MonoBehaviour, I_CustomerType
             OM.customerManager.EeventCustomerSetting((int)EeventCustomerType.GroupOrder);
             OM.customer.CustomerImg.sprite = OM.customer.EventGuestSuccess[(int)EeventCustomerType.GroupOrder];
             StartCoroutine(ChallengeFinish());
-            return $"{OM.ChallengeTimeTaken}초만에 완성하셨습니다!";
+            if (SaveManager.Instance.isEnglish == false)
+                return $"{OM.ChallengeTimeTaken}초만에 하셨네요? 대단합니다. 이정도면 알바를 하시는데 지장은 없을 것입니다.!";
+            else
+            return $"You did it in {OM.ChallengeTimeTaken} seconds? That's great. This won't interfere with your part-time job";
         }
         else
         {
             OM.customerManager.EeventCustomerSetting((int)EeventCustomerType.GroupOrder);
             OM.customer.CustomerImg.sprite = OM.customer.EventGuestFails[(int)EeventCustomerType.GroupOrder];
             StartCoroutine(ChallengeFinish());
-            return $"엄청나게 형편없군요 ㅋ";
+            if (SaveManager.Instance.isEnglish == false)
+                return $"{LimitTimeSetting()}초 안에 이정도도 못 만드시면.. 알바를 하시는데 많은 문제가 생길 것입니다.";
+            else
+                return $"If you can't make this much in {LimitTimeSetting()}seconds.. You will have many problems working part-time.";
         }
     }
     public void SpecialType()
@@ -46,7 +53,10 @@ public class Challenge : MonoBehaviour, I_CustomerType
 
         ChallengeBtns = BtnObjects.ChallengeBtns;
 
-        OM.OrderTalk[0] = $"챌린지 모드에 오신 것을 환영합니다. 원하시는 난이도를 선택해주세요.";
+        if (SaveManager.Instance.isEnglish == false)
+            OM.OrderTalk[0] = "챌린지 모드에 오신 것을 환영합니다. 원하시는 난이도를 선택해주세요.";
+        else
+            OM.OrderTalk[0] = "Welcome to challenge mode. Please select your desired difficulty level.";
         OM.dialogNumber++;
 
         StartCoroutine(ButtonOnDelay());
@@ -71,14 +81,19 @@ public class Challenge : MonoBehaviour, I_CustomerType
             {
                 subCount = 0;
                 subs = new List<ESubMatarials> { ESubMatarials.NULL };
-                OM.OrderTalk[1] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {MainMatarial()} {CookingStyle()} 만든 음식을 만들어 주십시오";
-
+                if (SaveManager.Instance.isEnglish == false)
+                    OM.OrderTalk[1] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {MainMatarial()} {CookingStyle()} 만든 음식을 만들어 주십시오";
+                else
+                    OM.OrderTalk[1] = $"Please Make {DishCountSetting()} {CookingStyle()} {MainMatarial()} foods within {LimitTimeSetting()} seconds.";
             }
             else
             {
                 subCount = 7;
                 subs = new List<ESubMatarials> { (ESubMatarials)Random.Range(0, Enum.GetNames(typeof(ESubMatarials)).Length - 1 /*NULL 제외*/) };
-                OM.OrderTalk[1] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {SubString(subs[0])} 들어간 {MainMatarial()} {CookingStyle()} 만든 음식을 만들어 주십시오";
+                if (SaveManager.Instance.isEnglish == false)
+                    OM.OrderTalk[1] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {SubString(subs[0])} 들어간 {MainMatarial()} {CookingStyle()} 만든 음식을 만들어 주십시오";
+                else
+                    OM.OrderTalk[1] = $"Please make {DishCountSetting()} foods {CookingStyle()} with {SubString(subs[0])} in {MainMatarial()} foods within {LimitTimeSetting()} seconds.";
             }
 
                 OM.isNext = true;
@@ -87,8 +102,16 @@ public class Challenge : MonoBehaviour, I_CustomerType
             ChallengeBtns[diff - 1].onClick.RemoveAllListeners();
             ChallengeBtns[diff - 1].onClick.AddListener(() =>
             {
-                if (diff != 4) OM.OrderTalk[0] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {MainMatarial()}을 {CookingStyle()} 만든 음식을 만들어 주십시오";
-                else OM.OrderTalk[0] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {SubString(subs[0])} 들어간 {MainMatarial()}을 {CookingStyle()} 만든 음식을 만들어 주십시오";
+                if (SaveManager.Instance.isEnglish == false)
+                {
+                    if (diff != 4) OM.OrderTalk[0] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {MainMatarial()}을 {CookingStyle()} 만든 음식을 만들어 주십시오";
+                    else OM.OrderTalk[0] = $"{LimitTimeSetting()}초 안에 {DishCountSetting()}개의 {SubString(subs[0])} 들어간 {MainMatarial()}을 {CookingStyle()} 만든 음식을 만들어 주십시오";
+                }
+                else
+                {
+                    if (diff != 4) OM.OrderTalk[0] = $"Please Make {DishCountSetting()} {CookingStyle()} {MainMatarial()} foods within {LimitTimeSetting()} seconds.";
+                    else OM.OrderTalk[0] = $"Please make {DishCountSetting()} foods {CookingStyle()} with {SubString(subs[0])} in {MainMatarial()} foods within {LimitTimeSetting()} seconds.";
+                }
                 //4개 다 비활성화
                 foreach (var item in ChallengeBtns) { item.gameObject.SetActive(false); }
 
@@ -107,22 +130,41 @@ public class Challenge : MonoBehaviour, I_CustomerType
 
     string CookingStyle()
     {
-        switch (cookingStyle)
+        if (SaveManager.Instance.isEnglish == false)
         {
-            case ECookingStyle.Fry:
-                return "튀겨서";
-            case ECookingStyle.Boil:
-                return "삶아서";
-            case ECookingStyle.Roast:
-                return "구워서";
-            default:
-                return "";
+            switch (cookingStyle)
+            {
+                case ECookingStyle.Fry:
+                    return "튀겨서";
+                case ECookingStyle.Boil:
+                    return "삶아서";
+                case ECookingStyle.Roast:
+                    return "구워서";
+                default:
+                    return "";
+            }
         }
+        else
+        {
+            switch (cookingStyle)
+            {
+                case ECookingStyle.Fry:
+                    return "fried";
+                case ECookingStyle.Boil:
+                    return "boiled";
+                case ECookingStyle.Roast:
+                    return "roasted";
+                default:
+                    return "";
+            }
+        }    
+            
     }
 
     string MainMatarial()
     {
-        switch ((EMainMatarials)randomMain)
+        if (SaveManager.Instance.isEnglish == false)
+            switch ((EMainMatarials)randomMain)
         {
             case EMainMatarials.Bread:
                 return "빵을";
@@ -135,41 +177,96 @@ public class Challenge : MonoBehaviour, I_CustomerType
             default:
                 return "빵을";
         }
+        else
+        {
+            switch ((EMainMatarials)randomMain)
+            {
+                case EMainMatarials.Bread:
+                    return "bread";
+                case EMainMatarials.Meat:
+                    return "meat";
+                case EMainMatarials.Noodle:
+                    return "noodle";
+                case EMainMatarials.Rice:
+                    return "rice";
+                default:
+                    return "rice";
+            }
+
+        }
     }
 
     string SubString(ESubMatarials eSub)
     {
-        switch (eSub)
+        if (SaveManager.Instance.isEnglish == false)
         {
-            case ESubMatarials.AlienPlant:
-                return "외계 풀이"; 
-            case ESubMatarials.Battery:
-                return "건전지가";
-            case ESubMatarials.Bismuth:
-                return "비스무트가";
-            case ESubMatarials.Bolt:
-                return "너트가";
-            case ESubMatarials.Eyes:
-                return "눈알이";
-            case ESubMatarials.Fur:
-                return "털 뭉치가";
-            case ESubMatarials.Jewelry:
-                return "보석이";
-            case ESubMatarials.Money:
-                return "돈이";
-            case ESubMatarials.Paper:
-                return "종이가";
-            case ESubMatarials.Poop:
-                return "똥이";
-            case ESubMatarials.Preservatives:
-                return "방부제가";
-            case ESubMatarials.Sticker:
-                return "스티커가";
-            case ESubMatarials.NULL:
-                return "외계 풀이";
-            default:
-                return "외계 풀이";
+            switch (eSub)
+            {
+                case ESubMatarials.AlienPlant:
+                    return "외계 풀이";
+                case ESubMatarials.Battery:
+                    return "건전지가";
+                case ESubMatarials.Bismuth:
+                    return "비스무트가";
+                case ESubMatarials.Bolt:
+                    return "너트가";
+                case ESubMatarials.Eyes:
+                    return "눈알이";
+                case ESubMatarials.Fur:
+                    return "털 뭉치가";
+                case ESubMatarials.Jewelry:
+                    return "보석이";
+                case ESubMatarials.Money:
+                    return "돈이";
+                case ESubMatarials.Paper:
+                    return "종이가";
+                case ESubMatarials.Poop:
+                    return "똥이";
+                case ESubMatarials.Preservatives:
+                    return "방부제가";
+                case ESubMatarials.Sticker:
+                    return "스티커가";
+                case ESubMatarials.NULL:
+                    return "외계 풀이";
+                default:
+                    return "외계 풀이";
+            }
         }
+        else
+        {
+            switch (eSub)
+            {
+                case ESubMatarials.AlienPlant:
+                    return "Alien Plant";
+                case ESubMatarials.Battery:
+                    return "Battery";
+                case ESubMatarials.Bismuth:
+                    return "Bismuth";
+                case ESubMatarials.Bolt:
+                    return "Bolt";
+                case ESubMatarials.Eyes:
+                    return "Eyes";
+                case ESubMatarials.Fur:
+                    return "fur";
+                case ESubMatarials.Jewelry:
+                    return "jewelry";
+                case ESubMatarials.Money:
+                    return "money";
+                case ESubMatarials.Paper:
+                    return "paper";
+                case ESubMatarials.Poop:
+                    return "poop";
+                case ESubMatarials.Preservatives:
+                    return "preservatives";
+                case ESubMatarials.Sticker:
+                    return "sticker";
+                case ESubMatarials.NULL:
+                    return "외계 풀이";
+                default:
+                    return "외계 풀이";
+            }
+        }
+            
     }
     int LimitTimeSetting()
     {
