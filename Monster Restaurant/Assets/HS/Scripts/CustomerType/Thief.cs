@@ -76,6 +76,21 @@ public class Thief : MonoBehaviour, I_CustomerType
 
         }
     }
+    void RefuseOrder(int money)
+    {
+        StartCoroutine(RefuseOrderDelay());
+        IEnumerator RefuseOrderDelay()
+        {
+            OrderManager.Instance.StopOrderCoroutine();
+            OrderManager.Instance.isNext = true;
+            cookBtn.gameObject.SetActive(false);
+            askBtn.gameObject.SetActive(false);
+            yield return new WaitForSeconds(1.5f);
+            OM.directingManager.DirectingReverse(money);
+            StartCoroutine(OrderManager.Instance.ExitAndComein());
+
+        }
+    }
     void SucsessCook()
     {
         cookBtn.gameObject.SetActive(false);
@@ -170,8 +185,7 @@ public class Thief : MonoBehaviour, I_CustomerType
                 else
                     OM.OrderTalk[2] = "That's what you should have done... Pfft....";
 
-                GM.Money = GM.Money / 5;
-                RefuseOrder();
+                RefuseOrder((int)GM.Money / 5);
             });
         });
     }
@@ -197,8 +211,7 @@ public class Thief : MonoBehaviour, I_CustomerType
                 OM.OrderTalk[1] = "내가 말해야 알아?";
             else
                 OM.OrderTalk[1] = "Do I have to tell you?";
-            GM.Money = GM.Money / 3;
-            RefuseOrder();
+            RefuseOrder((int)GM.Money / 3);
         });
         if (SM.isEnglish == false)
             ask.text = "잠..잠시만요..";
@@ -213,8 +226,7 @@ public class Thief : MonoBehaviour, I_CustomerType
                 OM.OrderTalk[1] = "순순히 따른다면 나도 좋고 너도 좋은거라고.. 큭큭";
             else
                 OM.OrderTalk[1] = "If you follow obediently, it's good for me and it's good for you too... hehehe.";
-            GM.Money = GM.Money / 4;
-            RefuseOrder();
+            RefuseOrder((int)GM.Money / 4);
         });
     }
 

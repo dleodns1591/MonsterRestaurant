@@ -53,7 +53,7 @@ public class GameManager : Singleton<GameManager>
         set
         {
             money = value;
-
+            print(money);
             MoneyText.text = ((int)Mathf.Ceil(Money)).ToString();
             if (money < 0)
             {

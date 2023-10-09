@@ -8343,7 +8343,7 @@ MonoBehaviour:
   materialSetting: {fileID: 945262613}
   orderMessageManager: {fileID: 781209805}
   satisfactionManager: {fileID: 4877039913111676460}
-  directingManager: {fileID: 0}
+  directingManager: {fileID: 945262617}
   memoManager: {fileID: 1802100778}
   endingManager: {fileID: 1160866549}
   CookingScene: {fileID: 1152493739}

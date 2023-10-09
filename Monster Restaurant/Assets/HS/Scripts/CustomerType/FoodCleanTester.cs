@@ -32,7 +32,20 @@ public class FoodCleanTester : MonoBehaviour, I_CustomerType
             StartCoroutine(OM.ExitAndComein());
         }
     }
-
+    void RefuseOrder(int money)
+    {
+        StartCoroutine(RefuseOrderDelay());
+        IEnumerator RefuseOrderDelay()
+        {
+            // OM.StopOrderCoroutine();
+            OM.isNext = true;
+            cookBtn.gameObject.SetActive(false);
+            askBtn.gameObject.SetActive(false);
+            yield return new WaitForSeconds(2.5f);
+            OM.directingManager.DirectingReverse(money);
+            StartCoroutine(OM.ExitAndComein());
+        }
+    }
     void DrawResult(int SuccessRate)
     {
         int rand = 0;
@@ -64,9 +77,7 @@ public class FoodCleanTester : MonoBehaviour, I_CustomerType
                     $"You can pay a fine of {(int)GameManager.Instance.Money / 4} for violating the sanitary handling standards of Article 3 of the Food Sanitation Act.";
                 OM.isNext = true;
 
-                GameManager.Instance.Money -= GameManager.Instance.Money / 4;
-
-                RefuseOrder();
+                RefuseOrder((int)GameManager.Instance.Money / 4);
                 return;
             }
             if (SM.isEnglish == false)
@@ -87,9 +98,8 @@ public class FoodCleanTester : MonoBehaviour, I_CustomerType
                     OM.OrderTalk[2] = "수고하세요.";
                 else
                     OM.OrderTalk[2] = "take care";
-                GM.Money -= GM.Money / 4;
 
-                RefuseOrder();
+                RefuseOrder((int)GM.Money / 4);
 
             });
 
@@ -105,9 +115,7 @@ public class FoodCleanTester : MonoBehaviour, I_CustomerType
                 else
                     OM.OrderTalk[2] = $"...... Article 314 You can pay a total fine of {(int)GM.Money / 3}won for obstruction of business.”";
 
-                GM.Money -= GM.Money / 3;
-
-                RefuseOrder();
+                RefuseOrder((int)GM.Money / 3);
             });
         }
     }
@@ -170,9 +178,7 @@ public class FoodCleanTester : MonoBehaviour, I_CustomerType
                 else
                     OM.OrderTalk[2] = "All Right";
 
-                GM.Money -= GM.Money / 2;
-
-                RefuseOrder();
+                RefuseOrder((int)GM.Money / 2);
             });
 
             if (SM.isEnglish == false)
