@@ -2989,7 +2989,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5aae1baf4e9c47e4d8192b433dc507b1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4563,8 +4563,8 @@ MonoBehaviour:
   BookPanel: {fileID: 1486890548}
   background: {fileID: 21300000, guid: a6c608b5b7b83a54c97fd6f741bf2750, type: 3}
   bookPages:
-  - {fileID: 21300000, guid: 5aae1baf4e9c47e4d8192b433dc507b1, type: 3}
-  - {fileID: 21300000, guid: 5aae1baf4e9c47e4d8192b433dc507b1, type: 3}
+  - {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
+  - {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
   - {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
   - {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
   - {fileID: 21300000, guid: 74be889717bde4047ac8cd043a5bca82, type: 3}
