@@ -188,6 +188,7 @@ public class SettingSystem : MonoBehaviour
             SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
 
             LanguageManager.instance.LanguageSetting(1);
+            SaveManager.Instance.isEnglish = false;
         });
 
         englishBtn.onClick.AddListener(() =>
@@ -195,6 +196,7 @@ public class SettingSystem : MonoBehaviour
             SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
 
             LanguageManager.instance.LanguageSetting(0);
+            SaveManager.Instance.isEnglish = true;
         });
 
         backBtn.onClick.AddListener(() =>
