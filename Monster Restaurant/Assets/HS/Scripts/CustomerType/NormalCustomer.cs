@@ -36,6 +36,7 @@ public class NormalCustomer : MonoBehaviour, I_CustomerType
 {
     OrderManager OM;
     GameManager GM;
+    SaveManager SM;
     OrderButtonObject BtnObjects;
     Button cookBtn;
     Button askBtn;
@@ -55,7 +56,7 @@ public class NormalCustomer : MonoBehaviour, I_CustomerType
         BtnObjects = OrderButtonObject.Instance;
         OM = OrderManager.Instance;
         GM = GameManager.Instance;
-
+        SM = SaveManager.Instance;
         cookBtn = BtnObjects.CookingBtn;
         askBtn = BtnObjects.ReAskBtn;
         cook = BtnObjects.BtnCookText;
@@ -65,6 +66,14 @@ public class NormalCustomer : MonoBehaviour, I_CustomerType
 
         OM.dialogNumber++;
 
+        if (SM.isEnglish == false)
+            KR();
+        else
+            Eng();
+    }
+
+    void KR()
+    {
         CookBtnChange();
         ask.text = "네?";
         askBtn.onClick.RemoveAllListeners();
@@ -87,6 +96,30 @@ public class NormalCustomer : MonoBehaviour, I_CustomerType
         });
     }
 
+    void Eng()
+    {
+        CookBtnChangeEng();
+        ask.text = "Pardon?";
+        askBtn.onClick.RemoveAllListeners();
+        askBtn.onClick.AddListener(() =>
+        {
+            OM.AskTalk[0] = "Pardon?";
+            ReAskContent();
+
+            CookBtnChangeEng();
+            askBtn.onClick.RemoveAllListeners();
+            askBtn.onClick.AddListener(() =>
+            {
+                OM.AskTalk[1] = "Pardon?";
+                ReAskContent();
+
+                askBtn.gameObject.SetActive(false);
+
+                CookBtnChangeEng();
+            });
+        });
+    }
+
     void CookBtnChange()
     {
         cook.text = "알겠습니다";
@@ -102,7 +135,21 @@ public class NormalCustomer : MonoBehaviour, I_CustomerType
             GM.ReturnCook();
         });
     }
-    
+    void CookBtnChangeEng()
+    {
+        cook.text = "Wait a Minute";
+        cookBtn.onClick.RemoveAllListeners();
+        cookBtn.onClick.AddListener(() =>
+        {
+            OM.AskTalk[ReaskCount] = "Wait a Minute";
+            OM.dialogNumber++;
+
+            cookBtn.gameObject.SetActive(false);
+            askBtn.gameObject.SetActive(false);
+
+            GM.ReturnCook();
+        });
+    }
     void ReAskContent()
     {
         ReaskCount++;
