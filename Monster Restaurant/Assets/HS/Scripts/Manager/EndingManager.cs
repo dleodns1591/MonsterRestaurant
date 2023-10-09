@@ -12,7 +12,7 @@ public class EndingManager : MonoBehaviour
     [SerializeField] private Image EndingImg;
     [SerializeField] private Sprite[] WormHoleEndingImg;
     [SerializeField] private Text EndingExplanTxt;
-    [SerializeField] private EndingData EndingTypes;
+    [SerializeField] private EndingData EndingTypes, EndingTypesEnglish;
     private GameObject EndingCanvas => EndingImg.transform.parent.gameObject;
 
 
@@ -30,8 +30,10 @@ public class EndingManager : MonoBehaviour
             if (endingType == EendingType.WormHole_SpaceAdventure) WormHoleType = true;
         }
 
-
-        StartCoroutine(EndingDelay(EndingTypes.endingData[(int)endingType].Speech, EndingTypes.endingData[(int)endingType].EndingSpr));
+        if (SaveManager.Instance.isEnglish == false)
+            StartCoroutine(EndingDelay(EndingTypes.endingData[(int)endingType].Speech, EndingTypes.endingData[(int)endingType].EndingSpr));
+        else
+            StartCoroutine(EndingDelay(EndingTypesEnglish.endingData[(int)endingType].Speech, EndingTypesEnglish.endingData[(int)endingType].EndingSpr));
 
         IEnumerator EndingDelay(string speech, Sprite spr)
         {

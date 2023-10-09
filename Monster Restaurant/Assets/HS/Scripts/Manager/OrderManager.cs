@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using DG.Tweening.Core.Easing;
+
 public class OrderManager : Singleton<OrderManager>
 {
     public TextAsset OrderTalkTxt, AnswerTalkTxt;
@@ -95,7 +97,11 @@ public class OrderManager : Singleton<OrderManager>
         {
             string[] cell = line[i].Split('\t');
 
-            Sentence[i] = cell[7 + (OrderSequence * 2)];
+            if (SaveManager.Instance.isEnglish == false)
+                Sentence[i] = cell[7 + (OrderSequence * 2)];
+            else
+                Sentence[i] = cell[8 + (OrderSequence * 2)];
+
         }
         return Sentence;
     }
@@ -118,7 +124,7 @@ public class OrderManager : Singleton<OrderManager>
 
         if (SaveManager.Instance.isChallenge == false) customerManager.SetCustomerType(normalGuestType);
         else customerManager.SetCustomerType(0);
-        
+
         Ordercoroutine = StartCoroutine(Order());
 
         if (DayTween != null)
@@ -150,7 +156,7 @@ public class OrderManager : Singleton<OrderManager>
         }
         yield return StartCoroutine(customer.Moving());
 
-        if(SaveManager.Instance.isChallenge == false) orderButtonManager.ButtonSetActive(true);
+        if (SaveManager.Instance.isChallenge == false) orderButtonManager.ButtonSetActive(true);
 
         orderMessageManager.BallonSetActive(true);
 
@@ -160,7 +166,7 @@ public class OrderManager : Singleton<OrderManager>
             {
                 continue;
             }
-            
+
             orderMessageManager.StopTalking();
             orderMessageManager.ResetText();
 
@@ -191,9 +197,9 @@ public class OrderManager : Singleton<OrderManager>
 
         yield return new WaitForSeconds(1f);
 
-            NextCustomerReady();
-            normalGuestType = UnityEngine.Random.Range(0, Enum.GetValues(typeof(EcustomerType)).Length);
-            customerManager.SetCustomerType(normalGuestType);
+        NextCustomerReady();
+        normalGuestType = UnityEngine.Random.Range(0, Enum.GetValues(typeof(EcustomerType)).Length);
+        customerManager.SetCustomerType(normalGuestType);
 
         Ordercoroutine = StartCoroutine(Order());
     }

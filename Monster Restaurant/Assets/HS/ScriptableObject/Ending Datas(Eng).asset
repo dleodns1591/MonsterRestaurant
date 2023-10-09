@@ -1,0 +1,136 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1206eb901c999f849b6b401ce6e167cf, type: 3}
+  m_Name: Ending Datas(Eng)
+  m_EditorClassIdentifier: 
+  endingData:
+  - Speech: 'Maybe I have a talent for this part-time job. I made more money than
+      I expected.
+
+      I was thinking about how to spend this money and decided
+      to just take over the restaurant. Life is a series of challenges.
+
+      I
+      thought this would be better than going back to Earth and paying off my student
+      loans and living in a hurry.
+
+      We''ll remodel it and add a menu to make
+      it the best restaurant in the universe. Look forward to it.
+
+      Ending
+      Open: "This restaurant has been mine"'
+    EndingSpr: {fileID: 21300000, guid: 8d22f92f49cee4e4fa78ac8d056a58bf, type: 3}
+  - Speech: 'My boss said that I was doing better than I thought, and I made an extension
+      contract forcibly.
+
+      So I continued to work in this restaurant.
+
+      Oh...Wait
+      a minute. I have a guest.
+
+      Welcome! You can taste everything in the
+      world at Monster Restaurant. How may I help you?
+
+      Ending Open: "Useful
+      Slave"'
+    EndingSpr: {fileID: 21300000, guid: d355a0bb04597d544866bdfa484eab72, type: 3}
+  - Speech: 'I was called to the president''s office because I didn''t perform well.
+
+      Of
+      course, I got in a lot of trouble.
+
+      To summarize,
+
+      My Boss says
+      that if you make this many mistakes next time, you''ll get me to a singularity
+      beyond the event horizon.
+
+      You mean you''ll throw me in a black hole
+      if I make a mistake again...?
+
+      Oh, I want to cry... Please save me...
+
+      Ending
+      Open: "You''re a Loooooser"'
+    EndingSpr: {fileID: 21300000, guid: ed31c9f8695a6b9419c8930cad4ee89d, type: 3}
+  - Speech: "The restaurant was closed due to lawsuits and protests from numerous
+      customers.  \r\nI became meat, and my meat was sold for food on the space black
+      market.\r\nI didn't want to know that brains are the most expensive to sell
+      on the space black market.\r\nEnding Open: \"I want to eat your brain\""
+    EndingSpr: {fileID: 21300000, guid: fe2ef20f8d13358469bc5c9f74c9e06d, type: 3}
+  - Speech: "Stella: \"Won't you go see the stars with me?\"\r\nStella said she wanted
+      to see the stars with me and asked me to join her on her spaceship.\r\nI explained
+      the situation and asked her to take me to Earth.\r\nStella did me a favor,
+      and that's how I decided to go to Earth in a spaceship with Stella. \r\nBut
+      to tell you how I feel right now, it's so awkward that I'm going crazy.\r\nIt's
+      my first time being alone with a girl since elementary school cleaning duty,
+      so I don't know how to start a conversation.\r\nStella says it'll take at least
+      a month to get to Earth... I think it's good to be close. I need to talk to
+      him.\r\n\"Wow, the weather is nice, isn't it?\"\r\nStella: \"Is there weather
+      in space?\"LOL\"\r\nOh... I think I messed it up. I should've just stayed still\r\nBut
+      isn't smiling a positive sign? Right?\r\nEnding Open: \"Won't you go see the
+      stars with me?\""
+    EndingSpr: {fileID: 21300000, guid: fd8c19a0b27fa854d8032c8a35c93278, type: 3}
+  - Speech: "Using the wormhole pass purchased from Receid, we decided to escape
+      to Earth on a wormhole\r\nReceid opens the bag and I saw a strange space...\r\nReceid:
+      \"You can go into this bag\"\r\nReceid: \"Please refer to only three precautions
+      when using the product.\"\r\nReceid: \"First, You will refrain from excessive
+      movement\"\r\nReceid: \"Never open the door that says second room 101\"\r\nReceid:
+      \"Never make eye contact if anyone is in the third wormhole. That's all.\"\r\nReceid:
+      \"For your information, I am not responsible for any injuries or accidents
+      caused by the product, and if the product is defective, \r\nexchange and refund
+      are not possible.\"\r\nLeaving Receid's significant words behind, I rode a
+      wormhole and I was able to step on Earth safely.\r\nBut I feel nervous. It's
+      full of warning signs and There's no one here\r\nI read a nearby warning sign.\r\n.....
+      I guess this is Area 51.\r\nHow... can I get home?\r\nEnding Open: \"Exchange
+      and refund is not possible  - how can I get home\""
+    EndingSpr: {fileID: 21300000, guid: ce002161242073f44bf6adae76b3964b, type: 3}
+  - Speech: "Using the wormhole pass purchased from Receid, we decided to escape
+      to Earth on a wormhole\r\nReceid opens the bag and I saw a strange space...\r\nReceid:
+      \"You can go into this bag\"\r\nReceid: \"Please refer to only three precautions
+      when using the product.\"\r\nReceid: \"First, You will refrain from excessive
+      movement\"\r\nReceid: \"Never open the door that says second room 101\"\r\nReceid:
+      \"Never make eye contact if anyone is in the third wormhole. That's all.\"\r\nReceid:
+      \"For your information, I am not responsible for any injuries or accidents
+      caused by the product, and if the product is defective, \r\nexchange and refund
+      are not possible.\"\r\nLeaving Receid's significant words behind, I rode a
+      wormhole and I arrived safely...\r\nI thought so? I can't see anything.\r\nI
+      realized I was in space without any equipment.\r\nI don't remember after that...
+      It was like hitting an asteroid and tearing my whole body apart...\r\nBut let's
+      think positively. I became the first human being to be hit and killed by an
+      asteroid in space!\r\nEnding Open: \"Exchange and refund is not possible -
+      space exploration\""
+    EndingSpr: {fileID: 21300000, guid: ce002161242073f44bf6adae76b3964b, type: 3}
+  - Speech: 'Mr. Sock thanked me and said he wanted to repay me for my kindness so
+      far.
+
+      Dressed me in a suit, served me a delicious meal at a fancy restaurant,
+      and took me somewhere.
+
+      Mr. Sock said that when he was a beggar, he
+      used to watch the night view of the city here while eating the food I gave
+      him.
+
+      That''s why he really wanted to bring me here.
+
+      I''m sorry
+      to say this to Mr. Sock, but I think he should take a shower in the washing
+      machine. His smells really terrible..
+
+      If I make a lot of money later,
+      I''ll have to give you a washing machine as a gift.
+
+      Ending Open: "Rags
+      to riches"'
+    EndingSpr: {fileID: 21300000, guid: 9e5b26e771081c346aa03ad33b5134a6, type: 3}
+  - Speech: Normal WormHole Ending
+    EndingSpr: {fileID: 21300000, guid: ce002161242073f44bf6adae76b3964b, type: 3}

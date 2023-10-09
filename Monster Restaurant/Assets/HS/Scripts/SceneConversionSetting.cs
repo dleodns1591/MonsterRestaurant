@@ -47,12 +47,20 @@ public class SceneConversionSetting : MonoBehaviour
                 formerName = cell[0];
                 if (cell[1] == "성공")
                 {
-                    SucsessTalk[(int)OM.customerManager.NameToEnumReturn(cell[0]), sucsessCnt] = cell[2];
+                    if (SaveManager.Instance.isEnglish == false)
+                        SucsessTalk[(int)OM.customerManager.NameToEnumReturn(cell[0]), sucsessCnt] = cell[2];
+                    else
+                        SucsessTalk[(int)OM.customerManager.NameToEnumReturn(cell[0]), sucsessCnt] = cell[3];
+
                     sucsessCnt++;
                 }
                 else if (cell[1] == "실패")
                 {
-                    FailTalk[(int)OM.customerManager.NameToEnumReturn(cell[0]), FailCnt] = cell[2];
+                    if (SaveManager.Instance.isEnglish == false)
+                        FailTalk[(int)OM.customerManager.NameToEnumReturn(cell[0]), FailCnt] = cell[2];
+                    else
+                        FailTalk[(int)OM.customerManager.NameToEnumReturn(cell[0]), FailCnt] = cell[3];
+
                     FailCnt++;
                 }
 

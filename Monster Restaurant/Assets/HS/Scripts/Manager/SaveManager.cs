@@ -11,6 +11,8 @@ public class SaveManager : MonoBehaviour
 
     public bool isChallenge = false;
 
+    public bool isEnglish = false;
+
     public static SaveManager Instance = null;
     void Awake()
     {

@@ -7,6 +7,7 @@ public class ResultManager : MonoBehaviour
 {
     [Header("결과 창 관련")]
     [SerializeField] private GameObject RevenuePopup;
+    [SerializeField] private GameObject ExplanTextKR, ExplanTextEng;
     [SerializeField] private Button NextButton;
     [SerializeField] private Text Principal, BasicRevenue, SalesRevenue, MarterialCost, TaxCost, SettlementCost, Total;
     [SerializeField] private Text DayText;
@@ -75,6 +76,11 @@ public class ResultManager : MonoBehaviour
             {
                 RevenuePopup.transform.GetChild(i).gameObject.SetActive(true);
             }
+            if (SaveManager.Instance.isEnglish == false)
+                ExplanTextEng.SetActive(false);
+            else
+                ExplanTextKR.SetActive(false);
+
             NextButton.gameObject.SetActive(false);
 
             NumberAnimation(OM.firstMoney, 1.3f, Principal);
@@ -91,7 +97,12 @@ public class ResultManager : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
             NumberAnimation((int)Mathf.Ceil(GameManager.Instance.Money), 1.3f, Total);
             yield return new WaitForSeconds(2.0f);
-            NextButton.gameObject.transform.GetChild(0).GetComponent<Text>().text = "다음";
+
+            if (SaveManager.Instance.isEnglish == false)
+                NextButton.gameObject.transform.GetChild(0).GetComponent<Text>().text = "다음";
+            else
+                NextButton.gameObject.transform.GetChild(0).GetComponent<Text>().text = "Next";
+
             NextButton.gameObject.SetActive(true);
             NextButton.onClick.RemoveAllListeners();
             NextButton.onClick.AddListener(() =>
@@ -115,7 +126,12 @@ public class ResultManager : MonoBehaviour
                         Stamps[GM.Day - 1].GetComponent<RectTransform>().localScale = new Vector3(1.5f, 1.5f);
                         Stamps[GM.Day - 1].GetComponent<RectTransform>().DOScale(new Vector3(1, 1), 0.65f);
                         yield return new WaitForSeconds(0.65f);
-                        NextButton.gameObject.transform.GetChild(0).GetComponent<Text>().text = "다음 일차로!";
+
+                        if (SaveManager.Instance.isEnglish == false)
+                            NextButton.gameObject.transform.GetChild(0).GetComponent<Text>().text = "다음 일차로!";
+                        else
+                            NextButton.gameObject.transform.GetChild(0).GetComponent<Text>().text = "Next Day!";
+
                         NextButton.gameObject.SetActive(true);
                         NextButton.onClick.RemoveAllListeners();
                         NextButton.onClick.AddListener(() =>
@@ -135,7 +151,11 @@ public class ResultManager : MonoBehaviour
                     {
                         GM.Day++;
                         GM.eventCheck.Check();
-                        DayText.text = $"{GM.Day}일차....!";
+                        if (SaveManager.Instance.isEnglish == false)
+                            DayText.text = $"{GM.Day}일차....!";
+                        else
+                            DayText.text = $"Day {GM.Day}....!";
+
                         DayText.DOFade(1, 1);
                         yield return new WaitForSeconds(1.5f);
                         FadeInOut.instance.LittleFade();

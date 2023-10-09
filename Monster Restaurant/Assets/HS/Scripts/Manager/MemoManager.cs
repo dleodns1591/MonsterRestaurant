@@ -58,7 +58,6 @@ public class MemoManager : MonoBehaviour
         {
             if (i % 2 != 0)
             {
-                print("ConditionSetting");
                 MemoTexts[i].text = OM.AskTalk[AskCheck];
                 AskCheck++;
             }

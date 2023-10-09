@@ -118,47 +118,51 @@ public class CustomerManager : MonoBehaviour
 
     string NameKoreanReturn(string name)
     {
-        switch (name)
+        if (SaveManager.Instance.isEnglish == false)
         {
-            case "Alien":
-                return "퀘이사";
-            case "Hyena":
-                return "제토";
-            case "Robot":
-                return "sdh210224";
-            case "Dragon":
-                return "시금치";
-            case "Light":
-                return "2차 양지화";
-            case "FSM":
-                return "날스괴";
-            case "Chris":
-                return "유령 크리스";
-            case "Demon":
-                return "헬리오스";
-            case "Holotle":
-                return "아홀로노트";
-            case "Human":
-                return "스텔라";
-            case "Thief":
-                return "도주";
-            case "Beggar":
-                return "양말 아저씨";
-            case "Rich":
-                return "양말 아저씨";
-            case "GroupOrder":
-                return "플로리안";
-            case "SalesMan":
-                return "리시드";
-            case "FoodCleanTester":
-                return "H-30122";
-            case "Trash":
-                return "쓰레기";
-            case "Joker":
-                return "조커";
-            default:
-                return "";
+            switch (name)
+            {
+                case "Alien":
+                    return "퀘이사";
+                case "Hyena":
+                    return "제토";
+                case "Robot":
+                    return "sdh210224";
+                case "Dragon":
+                    return "시금치";
+                case "Light":
+                    return "2차 양지화";
+                case "FSM":
+                    return "날스괴";
+                case "Chris":
+                    return "유령 크리스";
+                case "Demon":
+                    return "헬리오스";
+                case "Holotle":
+                    return "아홀로노트";
+                case "Human":
+                    return "스텔라";
+                case "Thief":
+                    return "도주";
+                case "Beggar":
+                    return "양말 아저씨";
+                case "Rich":
+                    return "양말 아저씨";
+                case "GroupOrder":
+                    return "플로리안";
+                case "SalesMan":
+                    return "리시드";
+                case "FoodCleanTester":
+                    return "H-30122";
+                case "Trash":
+                    return "쓰레기";
+                case "Joker":
+                    return "조커";
+                default:
+                    return "";
+            }
         }
+        else return name;
     }
 
     public EcustomerType NameToEnumReturn(string name)
