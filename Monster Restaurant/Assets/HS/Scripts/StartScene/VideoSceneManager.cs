@@ -18,6 +18,8 @@ public class VideoSceneManager : MonoBehaviour
 
     private void Start()
     {
+        PlayerPrefs.SetInt("FirstConnect", 0);
+
         if (PlayerPrefs.GetInt("FirstConnect") != 1)
         {
             StartCoroutine(StoryDelay(Speech));
