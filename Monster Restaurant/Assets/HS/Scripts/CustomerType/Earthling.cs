@@ -50,7 +50,7 @@ public class Earthling : MonoBehaviour, I_CustomerType
         {
             OM.customerManager.EeventCustomerSetting((int)EeventCustomerType.Human);
             OM.customer.CustomerImg.sprite = OM.customer.EventGuestSuccess[(int)EeventCustomerType.Human];
-            if(SM.isEnglish == false)
+            if (SM.isEnglish == false)
             {
                 switch (OM.Earthling_SuccessPoint - 1)
                 {
@@ -86,14 +86,17 @@ public class Earthling : MonoBehaviour, I_CustomerType
                         return "My judgment was not wrong. I felt that friendliness because you were an Earthling.\r\nI'm glad we're fellow Earthlings, but will you leave this planet with me?";
                 }
             }
-            
+
         }
         else
         {
             OM.customer.CustomerImg.sprite = OM.customer.EventGuestFails[(int)EeventCustomerType.Human];
 
             GameManager.Instance.isEarthlingRefuse = true;
-            return "I felt somewhat familiar with this store, but it wasn't...";
+            if (SM.isEnglish == false)
+                return "......죄송합니다. 다음 가게를 찾아야 하네..";
+            else
+                return "I felt somewhat familiar with this store, but it wasn't...";
         }
     }
 
@@ -177,7 +180,7 @@ public class Earthling : MonoBehaviour, I_CustomerType
 
     void Point0()
     {
-        if(SM.isEnglish == false)
+        if (SM.isEnglish == false)
         {
             FirstTalking("밥을 안 먹은 지 꽤 된 것 같은데 구워서 주실 수 있나요?");
 
