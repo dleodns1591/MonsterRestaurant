@@ -25,7 +25,7 @@ public class GroupOrder : MonoBehaviour, I_CustomerType
 
     public string SpecialAnswer()
     {
-        if (GM.Satisfaction >= OM.GroupOrderTimeLimit)
+        if (GM.Satisfaction >= (100 - OM.GroupOrderTimeLimit))
         {
             OM.customerManager.EeventCustomerSetting((int)EeventCustomerType.GroupOrder);
             OM.customer.CustomerImg.sprite = OM.customer.EventGuestSuccess[(int)EeventCustomerType.GroupOrder];
