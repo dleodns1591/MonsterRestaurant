@@ -56,7 +56,6 @@ public class DirectingManager : MonoBehaviour
         }
         yield return new WaitForSeconds(1.2f);
         GameManager.Instance.Money -= money;
-        GameManager.Instance.SalesRevenue -= money;
         IEnumerator Directing2(GameObject obj)
         {
             yield return new WaitForSeconds(0.7f);

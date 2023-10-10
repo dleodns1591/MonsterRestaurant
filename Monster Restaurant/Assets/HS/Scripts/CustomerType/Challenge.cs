@@ -289,11 +289,11 @@ public class Challenge : MonoBehaviour, I_CustomerType
                 OM.ChallengeTimeLimit = 40;
                 return 40;
             case 3:
-                OM.ChallengeTimeLimit = 25;
-                return 25;
+                OM.ChallengeTimeLimit = 30;
+                return 30;
             case 4:
-                OM.ChallengeTimeLimit = 40;
-                return 40;
+                OM.ChallengeTimeLimit = 50;
+                return 50;
             default:
                 return 1;
         }
@@ -309,7 +309,7 @@ public class Challenge : MonoBehaviour, I_CustomerType
             case 3:
                 return 5;
             case 4:
-                return 7;
+                return 6;
             default:
                 return 1;
         }

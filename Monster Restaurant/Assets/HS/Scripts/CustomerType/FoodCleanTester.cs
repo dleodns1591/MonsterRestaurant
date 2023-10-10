@@ -37,12 +37,11 @@ public class FoodCleanTester : MonoBehaviour, I_CustomerType
         StartCoroutine(RefuseOrderDelay());
         IEnumerator RefuseOrderDelay()
         {
-            // OM.StopOrderCoroutine();
             OM.isNext = true;
             cookBtn.gameObject.SetActive(false);
             askBtn.gameObject.SetActive(false);
-            yield return new WaitForSeconds(2.5f);
             OM.directingManager.DirectingReverse(money);
+            yield return new WaitForSeconds(2.5f);
             StartCoroutine(OM.ExitAndComein());
         }
     }

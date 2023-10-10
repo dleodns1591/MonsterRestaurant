@@ -133,7 +133,7 @@ public class OrderManager : Singleton<OrderManager>
         if (DayTween != null)
             DayTween.Kill();
 
-        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 120)
+        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 25)
         .OnComplete(() => //Ω√∞£¿Ã ¥Ÿ ¡ˆ≥µ¿ª∂ß
         {
             GameManager.Instance.dayEndCheck = true;
@@ -165,6 +165,7 @@ public class OrderManager : Singleton<OrderManager>
 
         for (int i = 0; i < OrderTalk.Length; i++)
         {
+            print(OrderTalk.Length);
             if (OrderTalk[i].Equals(""))
             {
                 continue;
@@ -175,10 +176,17 @@ public class OrderManager : Singleton<OrderManager>
 
             orderMessageManager.TalkingText(OrderTalk[i]);
 
-            while (!isNext)
+            while (isNext == false)
             {
                 yield return null;
+
+                if (isNext == true)
+                {
+                    print("≥ÿΩ∫∆Æ µ∆¿›æ∆ Ω√πﬂ");
+                    break;
+                }
             }
+            print("¥Ÿ¿Ω");
             isNext = false;
         }
     }

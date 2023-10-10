@@ -67,12 +67,11 @@ public class Thief : MonoBehaviour, I_CustomerType
         StartCoroutine(RefuseOrderDelay());
         IEnumerator RefuseOrderDelay()
         {
-            OrderManager.Instance.StopOrderCoroutine();
-            OrderManager.Instance.isNext = true;
+            OM.isNext = true;
             cookBtn.gameObject.SetActive(false);
             askBtn.gameObject.SetActive(false);
             yield return new WaitForSeconds(1.5f);
-            StartCoroutine(OrderManager.Instance.ExitAndComein());
+            StartCoroutine(OM.ExitAndComein());
 
         }
     }
@@ -81,13 +80,13 @@ public class Thief : MonoBehaviour, I_CustomerType
         StartCoroutine(RefuseOrderDelay());
         IEnumerator RefuseOrderDelay()
         {
-            OrderManager.Instance.StopOrderCoroutine();
-            OrderManager.Instance.isNext = true;
+            OM.StopOrderCoroutine();
+            OM.isNext = true;
             cookBtn.gameObject.SetActive(false);
             askBtn.gameObject.SetActive(false);
-            yield return new WaitForSeconds(1.5f);
             OM.directingManager.DirectingReverse(money);
-            StartCoroutine(OrderManager.Instance.ExitAndComein());
+            yield return new WaitForSeconds(1.5f);
+            StartCoroutine(OM.ExitAndComein());
 
         }
     }

@@ -144,7 +144,6 @@ public class Beggar : MonoBehaviour, I_CustomerType
         IEnumerator RefuseOrderDelay()
         {
             GM.isBeggarRefuse = true;
-            OM.StopOrderCoroutine();
             OM.isNext = true;
             cookBtn.gameObject.SetActive(false);
             askBtn.gameObject.SetActive(false);
