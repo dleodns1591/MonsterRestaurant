@@ -89,7 +89,7 @@ public class OrderManager : Singleton<OrderManager>
         SoundManager.instance.PlaySoundClip("Ingame_bgm", SoundType.BGM);
 
         materialSetting.RandomOrderMaterial();
-        OrderLoop();
+        //OrderLoop();
     }
     public string[] RandomOrderSpeech(int OrderSequence)
     {

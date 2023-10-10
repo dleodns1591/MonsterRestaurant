@@ -32,7 +32,7 @@ public class Challenge : MonoBehaviour, I_CustomerType
             if (SaveManager.Instance.isEnglish == false)
                 return $"{OM.ChallengeTimeTaken}초만에 하셨네요? 대단합니다. 이정도면 알바를 하시는데 지장은 없을 것입니다.!";
             else
-            return $"You did it in {OM.ChallengeTimeTaken} seconds? That's great. This won't interfere with your part-time job";
+                return $"You did it in {OM.ChallengeTimeTaken} seconds? That's great. This won't interfere with your part-time job";
         }
         else
         {
@@ -53,7 +53,7 @@ public class Challenge : MonoBehaviour, I_CustomerType
 
         ChallengeBtns = BtnObjects.ChallengeBtns;
 
-        if(SaveManager.Instance.isEnglish == true)
+        if (SaveManager.Instance.isEnglish == true)
         {
             ChallengeBtns[0].gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Easy Mode";
             ChallengeBtns[1].gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Normal Mode";
@@ -75,7 +75,7 @@ public class Challenge : MonoBehaviour, I_CustomerType
     }
 
     void ButtonSetting(int diff)
-    {   
+    {
         ChallengeBtns[diff - 1].onClick.AddListener(() =>
         {
             foreach (var item in ChallengeBtns) { item.gameObject.SetActive(false); }
@@ -106,9 +106,12 @@ public class Challenge : MonoBehaviour, I_CustomerType
                     OM.OrderTalk[1] = $"Please make {DishCountSetting()} foods {CookingStyle()} with {SubString(subs[0])} in {MainMatarial()} foods within {LimitTimeSetting()} seconds.";
             }
 
-                OM.isNext = true;
+            OM.isNext = true;
 
-            ChallengeBtns[diff - 1].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "알겠습니다";
+            if (SaveManager.Instance.isEnglish == false)
+                ChallengeBtns[diff - 1].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "알겠습니다";
+            else
+                ChallengeBtns[diff - 1].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "All right";
             ChallengeBtns[diff - 1].onClick.RemoveAllListeners();
             ChallengeBtns[diff - 1].onClick.AddListener(() =>
             {
@@ -132,7 +135,7 @@ public class Challenge : MonoBehaviour, I_CustomerType
 
     void SucsessCook()
     {
-        foreach(var item in ChallengeBtns) { item.gameObject.SetActive(false); }
+        foreach (var item in ChallengeBtns) { item.gameObject.SetActive(false); }
 
         GameManager.Instance.ReturnCook();
         GM.ConditionSetting((EMainMatarials)randomMain, subs, subCount, cookingStyle, DishCountSetting());
@@ -167,26 +170,26 @@ public class Challenge : MonoBehaviour, I_CustomerType
                 default:
                     return "";
             }
-        }    
-            
+        }
+
     }
 
     string MainMatarial()
     {
         if (SaveManager.Instance.isEnglish == false)
             switch ((EMainMatarials)randomMain)
-        {
-            case EMainMatarials.Bread:
-                return "빵을";
-            case EMainMatarials.Meat:
-                return "고기를";
-            case EMainMatarials.Noodle:
-                return "면을";
-            case EMainMatarials.Rice:
-                return "밥을";
-            default:
-                return "빵을";
-        }
+            {
+                case EMainMatarials.Bread:
+                    return "빵을";
+                case EMainMatarials.Meat:
+                    return "고기를";
+                case EMainMatarials.Noodle:
+                    return "면을";
+                case EMainMatarials.Rice:
+                    return "밥을";
+                default:
+                    return "빵을";
+            }
         else
         {
             switch ((EMainMatarials)randomMain)
@@ -276,7 +279,7 @@ public class Challenge : MonoBehaviour, I_CustomerType
                     return "외계 풀이";
             }
         }
-            
+
     }
     int LimitTimeSetting()
     {
