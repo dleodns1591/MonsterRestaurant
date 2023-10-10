@@ -85,7 +85,6 @@ public class OrderManager : Singleton<OrderManager>
     {
         GameManager.Instance.IsEndingOpens = SaveManager.Instance.isEndingOpens;
         GameManager.Instance.Money = 100;
-        GameManager.Instance.Day = 19;
         shop = GameManager.Instance.shop;
         perfectMade = 1;
         SoundManager.instance.PlaySoundClip("Ingame_bgm", SoundType.BGM);
@@ -135,7 +134,7 @@ public class OrderManager : Singleton<OrderManager>
         if (DayTween != null)
             DayTween.Kill();
 
-        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 10)
+        DayTween = DOTween.To(() => TimeFill.fillAmount, x => TimeFill.fillAmount = x, 0, 120)
         .OnComplete(() => //시간이 다 지났을때
         {
             GameManager.Instance.dayEndCheck = true;
