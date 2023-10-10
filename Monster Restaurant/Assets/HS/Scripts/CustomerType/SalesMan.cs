@@ -34,7 +34,6 @@ public class SalesMan : MonoBehaviour, I_CustomerType
 
     public void SpecialType()
     {
-        OM.customerManager.EeventCustomerSetting((int)EeventCustomerType.SalesMan);
         #region 변수 설정
         BtnObjects = OrderButtonObject.Instance;
         OM = OrderManager.Instance;
@@ -45,6 +44,7 @@ public class SalesMan : MonoBehaviour, I_CustomerType
         cook = BtnObjects.BtnCookText;
         ask = BtnObjects.BtnAskText;
         #endregion
+        OM.customerManager.EeventCustomerSetting((int)EeventCustomerType.SalesMan);
         OM.StopOrderCoroutine();
 
         if (SM.isEnglish == false)

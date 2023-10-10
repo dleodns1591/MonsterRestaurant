@@ -51,6 +51,7 @@ public class Thief : MonoBehaviour, I_CustomerType
         cook = BtnObjects.BtnCookText;
         ask = BtnObjects.BtnAskText;
 
+        OM.StopOrderCoroutine();
 
         if (GM.shop.ManEatingPlant.isBuy == false)
         {
@@ -80,7 +81,6 @@ public class Thief : MonoBehaviour, I_CustomerType
         StartCoroutine(RefuseOrderDelay());
         IEnumerator RefuseOrderDelay()
         {
-            OM.StopOrderCoroutine();
             OM.isNext = true;
             cookBtn.gameObject.SetActive(false);
             askBtn.gameObject.SetActive(false);

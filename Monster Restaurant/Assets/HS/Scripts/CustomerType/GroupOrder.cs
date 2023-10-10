@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using TMPro;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 using UnityEngine.UI;
@@ -55,6 +56,8 @@ public class GroupOrder : MonoBehaviour, I_CustomerType
         cook = BtnObjects.BtnCookText;
         ask = BtnObjects.BtnAskText;
 
+        OM.StopOrderCoroutine();
+
         GM.isGroupOrder = true;
 
         OM.GroupOrderTimeLimit = Random.Range(30, 35);
@@ -85,6 +88,12 @@ public class GroupOrder : MonoBehaviour, I_CustomerType
 
             //¿ä¸®
             SucsessCook();
+
+            List<ESubMatarials> subs = new List<ESubMatarials>
+            {
+                ESubMatarials.NULL
+            };
+            GM.ConditionSetting((EMainMatarials)randomMain, subs, 0, cookingStyle, dishCount);
         });
 
         askBtn.onClick.RemoveAllListeners();
@@ -93,11 +102,6 @@ public class GroupOrder : MonoBehaviour, I_CustomerType
     }
     void SucsessCook()
     {
-        List<ESubMatarials> subs = new List<ESubMatarials>
-        {
-            ESubMatarials.NULL
-        };
-        GM.ConditionSetting((EMainMatarials)randomMain, subs, 0, cookingStyle, dishCount);
 
         cookBtn.gameObject.SetActive(false);
         askBtn.gameObject.SetActive(false);
