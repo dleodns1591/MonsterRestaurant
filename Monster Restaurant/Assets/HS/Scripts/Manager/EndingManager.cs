@@ -40,6 +40,7 @@ public class EndingManager : MonoBehaviour
             bool isEndLine = false;
             EndingCanvas.SetActive(true);
             FadeInOut.instance.FadeOut();
+            EndingImg.raycastTarget = true;
             EndingImg.sprite = spr;
             EndingImg.DOFade(1, FadeInOut.instance.fadeTime);
             yield return new WaitForSeconds(FadeInOut.instance.fadeTime + 1);

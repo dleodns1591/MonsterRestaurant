@@ -39,11 +39,36 @@ public class GameManager : Singleton<GameManager>
 
         set
         {
-            isEndingOpens = value;
-            SaveManager.Instance.isEndingOpens = isEndingOpens;
+
+            if (!IsEndingOpensArrayContent(isEndingOpens, value))
+            {
+                for (int i = 0; i < isEndingOpens.Length; i++)
+                {
+                    if (isEndingOpens[i] != value[i])
+                    {
+                        SaveManager.Instance.isEndingOpens[i] = true;
+                    }
+                }
+
+                isEndingOpens = value;
+            }
+
         }
     }
 
+    private bool IsEndingOpensArrayContent(bool[] arr1, bool[] arr2)
+    {
+        if (arr1.Length != arr2.Length)
+            return false;
+
+        for (int i = 0; i < arr1.Length; i++)
+        {
+            if (arr1[i] != arr2[i])
+                return false;
+        }
+
+        return true;
+    }
 
     [SerializeField] private Text MoneyText;
     private float money;
@@ -114,8 +139,7 @@ public class GameManager : Singleton<GameManager>
         else
         {
             OrderManager.Instance.endingManager.EndingProduction(EendingType.Eating);
-            isEndingOpens[(int)EendingType.Eating] = true;
-            SaveManager.Instance.isEndingOpens[(int)EendingType.Eating] = true;
+            IsEndingOpens[(int)EendingType.Eating] = true;
         }
         return false;
     }
