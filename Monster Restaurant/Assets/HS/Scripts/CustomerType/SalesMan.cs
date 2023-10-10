@@ -71,11 +71,17 @@ public class SalesMan : MonoBehaviour, I_CustomerType
             GM.ShopAppearProd();
         });
 
-        ask.text = "Please leave.";
+        if(SM.isEnglish == false)
+            ask.text = "나가주세요.";
+            else
+            ask.text = "Please leave.";
         askBtn.onClick.RemoveAllListeners();
         askBtn.onClick.AddListener(() =>
         {
             OM.customer.CustomerImg.sprite = OM.customer.EventGuestFails[(int)EeventCustomerType.SalesMan];
+            if(SM.isEnglish == false)
+                OM.OrderTalk[1] = "이런.. 실례를 범했군요..";
+                else
             OM.OrderTalk[1] = "Oh, my... I've been rude..";
 
             RefuseOrder();

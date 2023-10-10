@@ -100,9 +100,11 @@ public class CustomerManager : MonoBehaviour
             return;
         }
 
-        isCurrentEventType = false;
-        OM.CustomerType = gameObject.AddComponent<NormalCustomer>();
-        NormalCustomerSetting(type);
+        isCurrentEventType = true;
+        //OM.CustomerType = gameObject.AddComponent<NormalCustomer>();
+        //NormalCustomerSetting(type);
+        OM.CustomerType = gameObject.AddComponent<SalesMan>();
+        EeventCustomerSetting((int)EeventCustomerType.SalesMan);
         OM.CustomerType.SpecialType();
     }
     void NormalCustomerSetting(int type)
