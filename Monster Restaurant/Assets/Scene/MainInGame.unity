@@ -4786,14 +4786,14 @@ MonoBehaviour:
   m_text: "\uB053\uC774\uAE30"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2fd6953637dac174085f0c973139c116, type: 2}
-  m_sharedMaterial: {fileID: 2547420513504411750, guid: 2fd6953637dac174085f0c973139c116, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: a9cc59eb614bd784598367d98e0a3fd1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4885,9 +4885,9 @@ MonoBehaviour:
   m_UpdateString:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 500493537}
+      - m_Target: {fileID: 2100000, guid: a9cc59eb614bd784598367d98e0a3fd1, type: 2}
         m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7516,7 +7516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEndingOpens: 000000000000000000
   isWormHoleFirstBuy: 0
-  isChallenge: 0
+  isChallenge: 1
   isEnglish: 0
 --- !u!1 &850888600
 GameObject:
@@ -12897,14 +12897,14 @@ MonoBehaviour:
   m_text: "\uD280\uAE30\uAE30"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2fd6953637dac174085f0c973139c116, type: 2}
-  m_sharedMaterial: {fileID: 2547420513504411750, guid: 2fd6953637dac174085f0c973139c116, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: a9cc59eb614bd784598367d98e0a3fd1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -12996,9 +12996,9 @@ MonoBehaviour:
   m_UpdateString:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1495807146}
+      - m_Target: {fileID: 2100000, guid: a9cc59eb614bd784598367d98e0a3fd1, type: 2}
         m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14736,14 +14736,14 @@ MonoBehaviour:
   m_text: "\uAD7D\uAE30"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2fd6953637dac174085f0c973139c116, type: 2}
-  m_sharedMaterial: {fileID: 2547420513504411750, guid: 2fd6953637dac174085f0c973139c116, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: a9cc59eb614bd784598367d98e0a3fd1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -14835,9 +14835,9 @@ MonoBehaviour:
   m_UpdateString:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1666722487}
+      - m_Target: {fileID: 2100000, guid: a9cc59eb614bd784598367d98e0a3fd1, type: 2}
         m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
