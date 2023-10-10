@@ -42,7 +42,10 @@ public class GroupOrder : MonoBehaviour, I_CustomerType
             OM.customer.CustomerImg.sprite = OM.customer.EventGuestFails[(int)EeventCustomerType.GroupOrder];
             GM.Money -= 20;
             GM.SalesRevenue -= 20;
-            return "What if you give it to me late..! I'm glad we're handling the meal distribution right now, but I can't give you money.";
+            if (SM.isEnglish == false)
+                return "늦게 주시면 어떡해요..! 현재 급식 배분을 잘 처리해서 다행이지만, 돈은 못 드리겠네요..";
+            else
+                return "What if you give it to me late..! I'm glad we're handling the meal distribution right now, but I can't give you money.";
         }
     }
     public void SpecialType()
