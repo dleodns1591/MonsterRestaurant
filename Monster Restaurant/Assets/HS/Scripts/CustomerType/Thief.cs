@@ -30,7 +30,7 @@ public class Thief : MonoBehaviour, I_CustomerType
         else
         {
             OM.customerManager.EeventCustomerSetting((int)EeventCustomerType.Thief);
-            OM.customer.CustomerImg.sprite = OM.customer.EventGuestFails[(int)EeventCustomerType.Thief];
+            OM.customer.CustomerImg.sprite = OM.customer.EventGuestDefualts[(int)EeventCustomerType.Thief];
             GM.Money -= 30;
             GM.SalesRevenue -= 30;
             if (SM.isEnglish == false)
@@ -133,6 +133,8 @@ public class Thief : MonoBehaviour, I_CustomerType
         askBtn.onClick.RemoveAllListeners();
         askBtn.onClick.AddListener(() =>
         {
+            OM.customer.CustomerImg.sprite = OM.customer.EventGuestFails[(int)EeventCustomerType.Thief];
+
             if (SM.isEnglish == false)
                 OM.AskTalk[0] = "네?";
             else
@@ -159,6 +161,8 @@ public class Thief : MonoBehaviour, I_CustomerType
                 cookBtn.onClick.RemoveAllListeners();
                 cookBtn.onClick.AddListener(() =>
                 {
+                    OM.customer.CustomerImg.sprite = OM.customer.EventGuestSuccess[(int)EeventCustomerType.Thief];
+
                     OM.AskTalk[1] = "식인 식물을 보여준다.";
 
                     if (SM.isEnglish == false)
@@ -177,6 +181,9 @@ public class Thief : MonoBehaviour, I_CustomerType
             askBtn.onClick.RemoveAllListeners();
             askBtn.onClick.AddListener(() =>
             {
+                OM.customer.CustomerImg.sprite = OM.customer.EventGuestFails[(int)EeventCustomerType.Thief];
+
+
                 OM.AskTalk[1] = "죄송합니다.";
 
                 if (SM.isEnglish == false)
@@ -191,6 +198,8 @@ public class Thief : MonoBehaviour, I_CustomerType
 
     void NotBuy()
     {
+        OM.customer.CustomerImg.sprite = OM.customer.EventGuestFails[(int)EeventCustomerType.Thief];
+
         if (SM.isEnglish == false)
             OM.OrderTalk[0] = "돈 내놔!";
         else
@@ -204,6 +213,8 @@ public class Thief : MonoBehaviour, I_CustomerType
         cookBtn.onClick.RemoveAllListeners();
         cookBtn.onClick.AddListener(() =>
         {
+            OM.customer.CustomerImg.sprite = OM.customer.EventGuestDefualts[(int)EeventCustomerType.Thief];
+
             OM.AskTalk[0] = "네?";
 
             if (SM.isEnglish == false)
@@ -219,6 +230,8 @@ public class Thief : MonoBehaviour, I_CustomerType
         askBtn.onClick.RemoveAllListeners();
         askBtn.onClick.AddListener(() =>
         {
+            OM.customer.CustomerImg.sprite = OM.customer.EventGuestDefualts[(int)EeventCustomerType.Thief];
+
             OM.AskTalk[0] = "잠..잠시만요..";
 
             if (SM.isEnglish == false)
