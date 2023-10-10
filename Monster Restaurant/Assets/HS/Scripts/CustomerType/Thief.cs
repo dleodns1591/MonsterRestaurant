@@ -96,9 +96,9 @@ public class Thief : MonoBehaviour, I_CustomerType
         askBtn.gameObject.SetActive(false);
 
         //¿ä¸®
+        GM.ReturnCook();
         subs = new List<ESubMatarials> { ESubMatarials.Money };
         GM.ConditionSetting((EMainMatarials)mainMatarialRand, subs, 0, ECookingStyle.None, 1);
-        GM.ReturnCook();
     }
 
     void Buy()
