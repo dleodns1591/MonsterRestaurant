@@ -1466,7 +1466,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC548\uB155\uD788 \uACC4\uC138\uC694."
+  m_Text: "\uBA54\uB274\uC5D0 \uB300\uD55C \uC124\uBA85\uC744 \uB4E3\uACE0 \uC2F6\uC5B4\uC694."
 --- !u!1 &573473702
 GameObject:
   m_ObjectHideFlags: 0
@@ -3508,8 +3508,8 @@ MonoBehaviour:
   chatNum: 0
   chatList:
   - num: 0
-    koChat: "\uC548\uB155\uD788 \uACC4\uC138\uC694."
-    enChat: Goodbye.
+    koChat: "\uBA54\uB274\uC5D0 \uB300\uD55C \uC124\uBA85\uC744 \uB4E3\uACE0 \uC2F6\uC5B4\uC694."
+    enChat: I want to listen to the menu.
   - num: 1
     koChat: "\uC8FC\uBB38\uD560\uAC8C\uC694."
     enChat: I'd like to order.
@@ -3517,14 +3517,14 @@ MonoBehaviour:
     koChat: "\uC5D4\uB529 \uB2E4\uC2DC \uBCF4\uC5EC\uC8FC\uC138\uC694."
     enChat: Please show us the ending again.
   - num: 3
-    koChat: "\uBC14\uAFB8\uACE0 \uC2F6\uC740 \uAC8C \uC788\uB294\uB370\uC694."
-    enChat: I want to change something.
-  - num: 4
     koChat: "\uBE60\uB974\uAC8C \uBD80\uD0C1\uB4DC\uB9B4\uAC8C\uC694."
     enChat: I'll ask you quickly.
+  - num: 4
+    koChat: "\uBC14\uAFB8\uACE0 \uC2F6\uC740 \uAC8C \uC788\uB294\uB370\uC694."
+    enChat: I want to change something.
   - num: 5
-    koChat: "\uBA54\uB274\uC5D0 \uB300\uD55C \uC124\uBA85\uC744 \uB4E3\uACE0 \uC2F6\uC5B4\uC694."
-    enChat: I want to listen to the menu.
+    koChat: "\uC548\uB155\uD788 \uACC4\uC138\uC694."
+    enChat: Goodbye.
   chatText: {fileID: 531821882}
   chatBtn: {fileID: 1273542966}
   leftBtn: {fileID: 1366328430}
