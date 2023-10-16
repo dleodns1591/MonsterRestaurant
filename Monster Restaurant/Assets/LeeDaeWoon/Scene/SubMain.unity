@@ -1548,6 +1548,9 @@ MonoBehaviour:
   creditCancleBtn: {fileID: 1236741569}
   creditGroup: {fileID: 30987592}
   creditWindow: {fileID: 963763931}
+  backgroundCredit: {fileID: 1336326441}
+  creditKO: {fileID: 21300000, guid: 8c4b108368bde1648861297914f1afad, type: 3}
+  creditEN: {fileID: 21300000, guid: e0f73fc2dde0dc1408c865fd93479008, type: 3}
 --- !u!1 &584904364
 GameObject:
   m_ObjectHideFlags: 0
