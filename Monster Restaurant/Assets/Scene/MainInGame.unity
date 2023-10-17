@@ -7928,7 +7928,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &849455194
 Transform:
   m_ObjectHideFlags: 0
@@ -9303,7 +9303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3959017519ffc5445b90dea41f84ec17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OrderTalkTxt: {fileID: 4900000, guid: ef70e9aad5983314ea78630f9ccf805e, type: 3}
+  OrderTalkTxt: {fileID: 4900000, guid: 00dece33a47e7cb4eb9636a5bee0e8b5, type: 3}
   AnswerTalkTxt: {fileID: 4900000, guid: 594b082584a0bd44f8c96db02974766a, type: 3}
   orderButtonManager: {fileID: 1533417245}
   TimeFill: {fileID: 601277343}
@@ -9399,22 +9399,22 @@ MonoBehaviour:
   eventChecks:
   - eventCheckList: 000000000000
   - eventCheckList: 010001000000
-  - eventCheckList: 000000000001
-  - eventCheckList: 000101000000
+  - eventCheckList: 000000000101
+  - eventCheckList: 000001000000
   - eventCheckList: 010000010000
-  - eventCheckList: 000001000100
+  - eventCheckList: 000001000000
   - eventCheckList: 000100000001
   - eventCheckList: 010001000000
-  - eventCheckList: 000000010000
-  - eventCheckList: 000101000000
+  - eventCheckList: 000000010100
+  - eventCheckList: 000001000000
   - eventCheckList: 010000000001
-  - eventCheckList: 000001000100
-  - eventCheckList: 000100010000
-  - eventCheckList: 010001000000
-  - eventCheckList: 000000000001
   - eventCheckList: 000101000000
+  - eventCheckList: 000000010000
+  - eventCheckList: 010001000000
+  - eventCheckList: 000000000101
+  - eventCheckList: 000001000000
   - eventCheckList: 010000010000
-  - eventCheckList: 000001000100
+  - eventCheckList: 000001000000
   - eventCheckList: 000100000001
   - eventCheckList: 010001000000
   returnEventCustomer: 

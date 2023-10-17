@@ -82,7 +82,7 @@ public class MaterialSetting : MonoBehaviour
         string[] line = OM.OrderTalkTxt.text.Split('\n');
 
         GM.orderSets = new OrderSet[line.Length];
-        for (int i = 0; i < line.Length; i++)
+        for (int i = 1; i < line.Length; i++)
         {
             string[] cell = line[i].Split('\t');
 
