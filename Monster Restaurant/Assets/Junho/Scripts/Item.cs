@@ -19,7 +19,8 @@ public class Item : MonoBehaviour, IPointerDownHandler
     [SerializeField] private TextMeshProUGUI priceTxt;
     [SerializeField] private GameObject Obj;
     [SerializeField] private GameObject ObjImage;
-    [SerializeField] private string explanation;
+    [SerializeField, TextArea] private string explanation;
+    [SerializeField, TextArea] private string explanationEnglish;
     [SerializeField] private GameObject soldOutImg;
     public Item()
     {
@@ -61,30 +62,27 @@ public class Item : MonoBehaviour, IPointerDownHandler
     {
         if (Input.GetMouseButton(0))
         {
-            if (GameManager.Instance.BuyCheck(price) == true)
+            if(GameManager.Instance.Money > price)
             {
                 BuyItem();
                 SoundManager.instance.PlaySoundClip("BuySFX", SoundType.SFX);
             }
+            else
+            {
+                if (SaveManager.Instance.isEnglish == false)
+                    OrderManager.Instance.SpeakOrder("구매할 수 있는 돈이 충분하지 않습니다.");
+                else
+                    OrderManager.Instance.SpeakOrder("Don't have enough money to buy it.");
+            }
         }
         else if (Input.GetMouseButton(1))
         {
-            print("Right");
-
-            if (GameManager.Instance.shop.ReturnScript != null) StopCoroutine(GameManager.Instance.shop.ReturnScript);
-           GameManager.Instance.shop.ReturnScript = StartCoroutine(ReturnExplanation());
+            OrderManager.Instance.orderMessageManager.ResetText();
+            if (SaveManager.Instance.isEnglish == false)
+                OrderManager.Instance.SpeakOrder(explanation);
+            else
+                OrderManager.Instance.SpeakOrder(explanationEnglish);
         }
 
-    }
-
-    private IEnumerator ReturnExplanation()
-    {
-        print("ex");
-
-        // 설명 대사 
-
-        yield return new WaitForSeconds(3f);
-
-        // 원래 대사
     }
 }

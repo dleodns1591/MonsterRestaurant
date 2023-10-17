@@ -151,6 +151,8 @@ public class Shop : MonoBehaviour
             {
                 FadeInOut.instance.FadeOut();
                 yield return new WaitForSeconds(FadeInOut.instance.fadeTime);
+                OM.orderMessageManager.StopTalking();
+                OM.orderMessageManager.ResetText();
                 ShopOpen();
                 FadeInOut.instance.Fade();
                 yield return new WaitForSeconds(FadeInOut.instance.fadeTime);

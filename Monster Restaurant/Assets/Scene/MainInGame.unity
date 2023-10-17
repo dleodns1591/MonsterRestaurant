@@ -3768,6 +3768,86 @@ MonoBehaviour:
   pushAnimation: {fileID: 1884096953}
   isCooking: 0
   isCookingDrop: 0
+--- !u!1 &406594389
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 406594390}
+  - component: {fileID: 406594392}
+  - component: {fileID: 406594391}
+  m_Layer: 5
+  m_Name: Text (Legacy) (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &406594390
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406594389}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1707749679}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 530, y: 41}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &406594391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406594389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 0f8ca638fb7b1ec42a0f772516b6d313, type: 3}
+    m_FontSize: 64
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 64
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: ":  \uC124\uBA85"
+--- !u!222 &406594392
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406594389}
+  m_CullTransparentMesh: 1
 --- !u!1 &410546289
 GameObject:
   m_ObjectHideFlags: 0
@@ -5962,7 +6042,10 @@ MonoBehaviour:
   priceTxt: {fileID: 31746848}
   Obj: {fileID: 1261608247}
   ObjImage: {fileID: 1903571172}
-  explanation: "\uD2B9\uBCC4\uD55C \uC2DD\uBB3C \uAC19\uB2E4."
+  explanation: "\uC2DD\uB2F9\uC758 \uBD84\uC704\uAE30\uB97C \uC62C\uB9B4 \uAD00\uC0C1\uC6A9
+    \uC2DD\uBB3C\uC785\uB2C8\uB2E4."
+  explanationEnglish: It's an ornamental plant that will raise the atmosphere of
+    the restaurant.
   soldOutImg: {fileID: 1944614363}
 --- !u!1 &649196935
 GameObject:
@@ -9360,7 +9443,10 @@ MonoBehaviour:
   priceTxt: {fileID: 629805915}
   Obj: {fileID: 975329095}
   ObjImage: {fileID: 1884931192}
-  explanation: "\uD2B9\uBCC4\uD55C \uC2DD\uBB3C \uAC19\uB2E4."
+  explanation: "\uC2DD\uB2F9\uC758 \uBD84\uC704\uAE30\uB97C \uC62C\uB9B4 \uAD00\uC0C1\uC6A9
+    \uC2DD\uBB3C\uC785\uB2C8\uB2E4."
+  explanationEnglish: It's an ornamental plant that will raise the atmosphere of
+    the restaurant.
   soldOutImg: {fileID: 1668737234}
 --- !u!1 &995064614
 GameObject:
@@ -10251,7 +10337,13 @@ MonoBehaviour:
   priceTxt: {fileID: 76291594}
   Obj: {fileID: 0}
   ObjImage: {fileID: 1994234476}
-  explanation: "\uC218\uC0C1\uD558\uAC8C \uC0DD\uAE34 \uBB3C\uAC74\uC774\uB2E4."
+  explanation: "\uC6DC\uD640\uC744 \uD0C0\uACE0 \uC6B0\uC8FC \uC5B4\uB514\uB4E0\uC9C0
+    \uAC08 \uC218 \uC788\uB294 \uD2F0\uCF13\uC785\uB2C8\uB2E4. \n\uC8FC\uC758: \uC2E0\uCCB4
+    \uC77C\uBD80\uAC00 \uC0AC\uB77C\uC9C8 \uC218 \uC788\uC74C"
+  explanationEnglish: 'It''s a ticket to go anywhere in the universe by wormhole.
+
+    Caution:
+    Body parts may disappear'
   soldOutImg: {fileID: 1810713256}
 --- !u!1 &1099296170
 GameObject:
@@ -12915,6 +13007,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434939122}
   m_CullTransparentMesh: 1
+--- !u!1 &1474295231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1474295232}
+  - component: {fileID: 1474295234}
+  - component: {fileID: 1474295233}
+  m_Layer: 5
+  m_Name: MouseGuide2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1474295232
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474295231}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1707749679}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 378, y: 0}
+  m_SizeDelta: {x: 53, y: 72}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1474295233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474295231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 34460bb53f770004bb48a80c90e78cea, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1474295234
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474295231}
+  m_CullTransparentMesh: 1
 --- !u!1 &1495807144
 GameObject:
   m_ObjectHideFlags: 0
@@ -14991,13 +15159,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2771c525cdf33343863eb07094e4de5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 4
+  type: 3
   isBuy: 0
   price: 500
   priceTxt: {fileID: 805982044}
   Obj: {fileID: 1137637428}
   ObjImage: {fileID: 459423882}
-  explanation: "\uD2B9\uBCC4\uD55C \uC2DD\uBB3C \uAC19\uB2E4."
+  explanation: "\uC2DD\uB2F9\uC758 \uBD84\uC704\uAE30\uB97C \uC62C\uB9B4 \uAD00\uC0C1\uC6A9
+    \uC2DD\uBB3C\uC785\uB2C8\uB2E4."
+  explanationEnglish: It's an ornamental plant that will raise the atmosphere of
+    the restaurant.
   soldOutImg: {fileID: 1314161187}
 --- !u!1 &1668737234
 GameObject:
@@ -15664,10 +15835,12 @@ RectTransform:
   m_GameObject: {fileID: 1707749676}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.65, y: 0.65, z: 0.65}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1079879501}
+  - {fileID: 1474295232}
+  - {fileID: 406594390}
   m_Father: {fileID: 599222033}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

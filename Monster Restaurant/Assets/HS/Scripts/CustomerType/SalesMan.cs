@@ -49,13 +49,13 @@ public class SalesMan : MonoBehaviour, I_CustomerType
 
         if (SM.isEnglish == false)
         {
-            OM.OrderTalk[0] = "안녕하세요. 몬스터 아웃핏터스 회사의 영업사원을 맡게 된 리시드입니다. 제가 아주 좋은 물건\r\n들을 가지고 왔는데.. 한 번 확인해 보시겠습니까?";
+            OM.OrderTalk[0] = "안녕하세요. 몬스터 아웃핏터스 회사의 영업사원을 맡게 된 리시드입니다. 제가 아주 좋은 물건들을 가지고 왔는데.. 한 번 확인해 보시겠습니까?";
             cook.text = "확인하겠습니다.";
 
         }
         else
         {
-            OM.OrderTalk[0] = "Hello, I'm Lisid, and I'm a sales representative for Monster Outfitters. I brought some very good\r\nstuff.. Would you like to check it out?";
+            OM.OrderTalk[0] = "Hello, I'm Lisid, and I'm a sales representative for Monster Outfitters. I brought some very good stuff.. Would you like to check it out?";
             cook.text = "Let me check.";
         }
         
