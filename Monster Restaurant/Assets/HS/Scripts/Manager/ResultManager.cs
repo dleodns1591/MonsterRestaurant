@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public class ResultManager : MonoBehaviour
@@ -14,7 +15,8 @@ public class ResultManager : MonoBehaviour
     [Header("도장 창 관련")]
     [SerializeField] private GameObject DailyPopup;
     [SerializeField] private GameObject[] Stamps;
-
+    [Header("날짜 관련")]
+    [SerializeField] private TextMeshProUGUI CurDayText;
 
     private int EndingDate = 20;
 
@@ -150,6 +152,7 @@ public class ResultManager : MonoBehaviour
                     IEnumerator DayProduction()
                     {
                         GM.Day++;
+                        CurDayText.text = $"Day {GM.Day}";
                         GM.eventCheck.Check();
                         if (SaveManager.Instance.isEnglish == false)
                             DayText.text = $"{GM.Day}일차....!";
