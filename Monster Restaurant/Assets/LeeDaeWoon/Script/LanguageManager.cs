@@ -26,4 +26,12 @@ public class LanguageManager : MonoBehaviour
         else
             Destroy(this.gameObject);
     }
+
+    void Update()
+    {
+        if (!SaveManager.Instance.isEnglish)
+            languageNum = 1;
+        else
+            languageNum = 0;
+    }
 }
