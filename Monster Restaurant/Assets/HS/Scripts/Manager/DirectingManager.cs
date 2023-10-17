@@ -9,9 +9,9 @@ public class DirectingManager : MonoBehaviour
 
     const float SpawnX = 5.76f, SpawnY = 0.59f;
     const float TargetX = 4.298f, TargetY = 4.245f;
-    public void Directing(int money)
+    public void Directing(int money, int ObjCount)
     {
-        StartCoroutine(DirectingGoldCor(money));
+        StartCoroutine(DirectingGoldCor(money, ObjCount));
     }
 
     public void DirectingReverse(int money)
@@ -19,10 +19,10 @@ public class DirectingManager : MonoBehaviour
         StartCoroutine(DirectingGoldCorReverse(money));
     }
 
-    IEnumerator DirectingGoldCor(int money)
+    IEnumerator DirectingGoldCor(int money, int ObjCount)
     {
         yield return new WaitForSeconds(1.5f);
-        for (int i = 0; i < 12; i++)
+        for (int i = 0; i < ObjCount; i++)
         {
             GameObject DirectingObj = Instantiate(SummonedObject, new Vector3(SpawnX, SpawnY), new Quaternion());
 

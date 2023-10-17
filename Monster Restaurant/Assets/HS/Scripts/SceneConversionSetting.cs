@@ -77,13 +77,13 @@ public class SceneConversionSetting : MonoBehaviour
                 //if 성공 실패
                 if (OM.isCookingSuccess)
                 {
-                    OM.directingManager.Directing(50);
+                    OM.directingManager.Directing(50, 12);
                     OM.customer.CustomerImg.sprite = OM.customer.GuestSuccess[OM.NormalGuestType];
                     OM.AnswerTalk = SucsessTalk[OM.NormalGuestType, UnityEngine.Random.Range(0, 2)];
                 }
                 else
                 {
-                    OM.directingManager.Directing(20);
+                    OM.directingManager.Directing(20, 4);
                     int rand = UnityEngine.Random.Range(1, 5);
                     if (rand == 1)
                         GM.SettlementCost += 100;

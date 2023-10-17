@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,7 +30,10 @@ public class Challenge : MonoBehaviour, I_CustomerType
             OM.customer.CustomerImg.sprite = OM.customer.EventGuestSuccess[(int)EeventCustomerType.GroupOrder];
             StartCoroutine(ChallengeFinish());
             if (SaveManager.Instance.isEnglish == false)
+            {
+                
                 return $"{OM.ChallengeTimeTaken}초만에 하셨네요? 대단합니다. 이정도면 알바를 하시는데 지장은 없을 것입니다.!";
+            }
             else
                 return $"You did it in {OM.ChallengeTimeTaken} seconds? That's great. This won't interfere with your part-time job";
         }

@@ -191,14 +191,14 @@ public class Beggar : MonoBehaviour, I_CustomerType
             switch (OM.Beggar_SuccessPoint)
             {
                 case 2:
-                    OM.directingManager.Directing(10);
+                    OM.directingManager.Directing(10, 4);
                     break;
                 case 3:
-                    OM.directingManager.Directing(20);
+                    OM.directingManager.Directing(20, 6);
 
                     break;
                 case 4:
-                    OM.directingManager.Directing(30);
+                    OM.directingManager.Directing(30, 8);
 
                     break;
                 case 5:
