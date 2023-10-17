@@ -64,7 +64,11 @@ public class Cooking : Singleton<Cooking>
             {
                 testAnimators[i].color = Color.gray;
             }
-            else testAnimators[i].color = Color.white;
+            else
+            {
+                testAnimators[i].color = Color.white;
+                testAnimators[i].gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            }
 
             //print("Color");
         }
