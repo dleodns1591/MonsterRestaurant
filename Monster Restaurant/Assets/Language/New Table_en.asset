@@ -254,6 +254,54 @@ MonoBehaviour:
     m_Localized: ': Sale'
     m_Metadata:
       m_Items: []
+  - m_Id: 34821831268708352
+    m_Localized: AlienPlant
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34823226025783296
+    m_Localized: Battery
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34823253011935232
+    m_Localized: Bismuth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34823276822999040
+    m_Localized: Eyes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34823300562759680
+    m_Localized: Fur
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34823373598175232
+    m_Localized: Jewelry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34823503713873920
+    m_Localized: Money
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34823527541714944
+    m_Localized: Bolt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34823578573811712
+    m_Localized: Paper
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34823603303428096
+    m_Localized: Poop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34823624589520896
+    m_Localized: Preservatives
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34823690716917760
+    m_Localized: Sticker
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
