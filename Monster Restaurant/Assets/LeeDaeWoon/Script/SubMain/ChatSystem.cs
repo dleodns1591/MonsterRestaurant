@@ -75,10 +75,7 @@ public class ChatSystem : MonoBehaviour
             switch (chatNum)
             {
                 case 0:
-                    exitGroup.alpha = 1;
-
-                    exitGroup.gameObject.SetActive(true);
-                    exitWindow.transform.DOLocalMoveY(0, 0.2f).SetEase(Ease.Linear);
+                    SceneManager.LoadScene("Tutorial");
                     break;
 
                 case 1:
@@ -98,6 +95,11 @@ public class ChatSystem : MonoBehaviour
                     break;
 
                 case 3:
+                    SceneManager.LoadScene("MainInGame");
+                    SaveManager.Instance.isChallenge = true;
+                    break;
+
+                case 4:
                     settingGroup.alpha = 1;
 
                     SettingSystem.instance.amongSetting.transform.DOLocalMoveX(0, 0).SetEase(Ease.Linear);
@@ -107,13 +109,11 @@ public class ChatSystem : MonoBehaviour
                     settingWidnow.transform.DOLocalMoveY(0, 0.2f).SetEase(Ease.Linear);
                     break;
 
-                case 4:
-                    SceneManager.LoadScene("MainInGame");
-                    SaveManager.Instance.isChallenge = true;
-                    break;
-
                 case 5:
-                    SceneManager.LoadScene("Tutorial");
+                    exitGroup.alpha = 1;
+
+                    exitGroup.gameObject.SetActive(true);
+                    exitWindow.transform.DOLocalMoveY(0, 0.2f).SetEase(Ease.Linear);
                     break;
             }
         });

@@ -45,6 +45,9 @@ public class SettingSystem : MonoBehaviour
     [SerializeField] CanvasGroup creditGroup;
     [SerializeField] GameObject creditWindow;
 
+    [SerializeField] Image backgroundCredit;
+    [SerializeField] Sprite creditKO;
+    [SerializeField] Sprite creditEN;
     void Start()
     {
         SettingBtns();
@@ -158,6 +161,17 @@ public class SettingSystem : MonoBehaviour
 
             creditGroup.gameObject.SetActive(true);
             creditWindow.transform.DOLocalMoveY(0, 0.2f).SetEase(Ease.Linear);
+
+            switch (LanguageManager.instance.languageNum)
+            {
+                case 0:
+                    backgroundCredit.sprite = creditEN;
+                    break;
+
+                case 1:
+                    backgroundCredit.sprite = creditKO;
+                    break;
+            }
         });
 
         // 크레딧 취소 버튼을 눌렀을 시
