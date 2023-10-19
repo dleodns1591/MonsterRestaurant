@@ -10,7 +10,7 @@ public class CustomerGuide : MonoBehaviour
 
     void Start()
     {
-        
+        Btns();
     }
 
     void Update()
@@ -22,7 +22,7 @@ public class CustomerGuide : MonoBehaviour
     {
         guideBtn.onClick.AddListener(() =>
         {
-
+            guideWindow.SetActive(true);
         });
     }
 }
