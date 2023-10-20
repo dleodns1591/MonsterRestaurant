@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 8398094}
   - component: {fileID: 8398093}
   - component: {fileID: 8398095}
+  - component: {fileID: 8398096}
   m_Layer: 5
   m_Name: CustomerBox03
   m_TagString: Untagged
@@ -244,6 +245,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8398096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8398091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50226e18d9641684c8a814045f9e7d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customerBoxParent: {fileID: 721290751}
 --- !u!1 &16244131
 GameObject:
   m_ObjectHideFlags: 0
@@ -2675,6 +2689,7 @@ GameObject:
   - component: {fileID: 204585546}
   - component: {fileID: 204585545}
   - component: {fileID: 204585547}
+  - component: {fileID: 204585548}
   m_Layer: 5
   m_Name: CustomerBox02
   m_TagString: Untagged
@@ -2784,6 +2799,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &204585548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50226e18d9641684c8a814045f9e7d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customerBoxParent: {fileID: 721290751}
 --- !u!1 &210634231
 GameObject:
   m_ObjectHideFlags: 0
@@ -8193,6 +8221,7 @@ GameObject:
   - component: {fileID: 797924190}
   - component: {fileID: 797924189}
   - component: {fileID: 797924191}
+  - component: {fileID: 797924192}
   m_Layer: 5
   m_Name: CustomerBox01
   m_TagString: Untagged
@@ -8302,6 +8331,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &797924192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797924187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50226e18d9641684c8a814045f9e7d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customerBoxParent: {fileID: 721290751}
 --- !u!1 &798408770
 GameObject:
   m_ObjectHideFlags: 0
@@ -10409,7 +10451,6 @@ MonoBehaviour:
   generalBtn: {fileID: 881257616}
   eventBtn: {fileID: 1854786911}
   customerBox: {fileID: 721290751}
-  customerBoxBtn: {fileID: 0}
   generalList:
   - name: "\uC2DC\uAE08\uCE58"
     eCustomer: 0
@@ -10484,6 +10525,7 @@ MonoBehaviour:
     eCustomer: 17
     profile: {fileID: 21300000, guid: b5c7140e89c97f6439b766831e9140dd, type: 3}
     story: {fileID: 0}
+  isCustomerCheck: 0
 --- !u!1 &947319172
 GameObject:
   m_ObjectHideFlags: 0
@@ -16541,6 +16583,7 @@ GameObject:
   - component: {fileID: 1546153044}
   - component: {fileID: 1546153043}
   - component: {fileID: 1546153045}
+  - component: {fileID: 1546153046}
   m_Layer: 5
   m_Name: CustomerBox04
   m_TagString: Untagged
@@ -16650,6 +16693,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1546153046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546153041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50226e18d9641684c8a814045f9e7d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customerBoxParent: {fileID: 721290751}
 --- !u!1 &1546600239
 GameObject:
   m_ObjectHideFlags: 0

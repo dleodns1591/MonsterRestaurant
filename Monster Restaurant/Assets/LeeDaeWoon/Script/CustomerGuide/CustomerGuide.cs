@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 
 [System.Serializable]
-class Guide
+public class Guide
 {
     public enum ECustomer
     {
@@ -42,6 +42,9 @@ class Guide
 
 public class CustomerGuide : MonoBehaviour
 {
+    public static CustomerGuide instance;
+    void Awake() => instance = this;
+
     [SerializeField] Image clickBox;
     [SerializeField] Image fade;
     [SerializeField] CanvasGroup guideWindow;
@@ -55,13 +58,12 @@ public class CustomerGuide : MonoBehaviour
 
     [Header("손님 박스")]
     [SerializeField] GameObject customerBox;
-    [SerializeField] Button customerBoxBtn;
 
-    [SerializeField] List<Guide> generalList = new List<Guide>();
-    [SerializeField] List<Guide> eventList = new List<Guide>();
+    public List<Guide> generalList = new List<Guide>();
+    public List<Guide> eventList = new List<Guide>();
 
+    public bool isCustomerCheck = false;
     bool isArrow = false;
-    bool isCustomerCheck = false;
 
     void Start()
     {
@@ -97,20 +99,18 @@ public class CustomerGuide : MonoBehaviour
     {
         SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
 
-        if (!isArrow)
-        {
-            int saveCustomer = customerList.Count;
 
-            for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
+        {
+            if (!isArrow)
             {
+                int saveCustomer = customerList.Count;
+
                 customerList.Insert(0, customerList[saveCustomer - 1]);
                 customerList.RemoveAt(saveCustomer);
             }
-        }
 
-        else
-        {
-            for (int i = 0; i < 4; i++)
+            else
             {
                 customerList.Add(customerList[0]);
                 customerList.RemoveAt(0);
@@ -118,6 +118,7 @@ public class CustomerGuide : MonoBehaviour
         }
         CustomerBox(customerList);
     }
+
 
     // 버튼들
     void Btns()
@@ -134,6 +135,7 @@ public class CustomerGuide : MonoBehaviour
             guideWindow.gameObject.SetActive(true);
 
             GeneralClick(); // 일반 손님 클릭
+
         });
 
         // 취소 버튼을 눌렀을 시
