@@ -8780,6 +8780,7 @@ MonoBehaviour:
   isEndingOpens: 000000000000000000
   isWormHoleFirstBuy: 0
   isChallenge: 0
+  isPvp: 0
   isEnglish: 0
 --- !u!1 &850888600
 GameObject:
@@ -10254,6 +10255,7 @@ MonoBehaviour:
   resultManager: {fileID: 39444528}
   customer: {fileID: 410546290}
   customerManager: {fileID: 945262614}
+  onlineVer: {fileID: 0}
   materialSetting: {fileID: 945262613}
   orderMessageManager: {fileID: 781209805}
   satisfactionManager: {fileID: 4877039913111676460}
@@ -10458,7 +10460,7 @@ MonoBehaviour:
     story: {fileID: 0}
   - name: sdh210224
     eCustomer: 1
-    profile: {fileID: 21300000, guid: b5c7140e89c97f6439b766831e9140dd, type: 3}
+    profile: {fileID: 21300000, guid: 260e508ae4c05e749a0f5cd9210b8b61, type: 3}
     story: {fileID: 0}
   - name: "\uC81C\uD1A0"
     eCustomer: 2
@@ -10470,31 +10472,31 @@ MonoBehaviour:
     story: {fileID: 0}
   - name: "\uD018\uC774\uC0AC"
     eCustomer: 4
-    profile: {fileID: 21300000, guid: b5c7140e89c97f6439b766831e9140dd, type: 3}
+    profile: {fileID: 21300000, guid: 2aea9b94d3e57af42bc0c0fd93829ad0, type: 3}
     story: {fileID: 0}
   - name: "\uC544\uD640\uB85C\uB178\uD2B8"
     eCustomer: 5
-    profile: {fileID: 21300000, guid: b5c7140e89c97f6439b766831e9140dd, type: 3}
+    profile: {fileID: 21300000, guid: 1527cf264db6a8b4b92ed2fb8b6f7ab6, type: 3}
     story: {fileID: 0}
   - name: "2\uCC28 \uC591\uC790\uD654"
     eCustomer: 6
-    profile: {fileID: 21300000, guid: b5c7140e89c97f6439b766831e9140dd, type: 3}
+    profile: {fileID: 21300000, guid: 19a08d1e7d672e34585c7b4dce90ea14, type: 3}
     story: {fileID: 0}
   - name: "\uD5EC\uB9AC\uC624\uC2A4"
     eCustomer: 7
-    profile: {fileID: 21300000, guid: b5c7140e89c97f6439b766831e9140dd, type: 3}
+    profile: {fileID: 21300000, guid: a81d135df9f5ee040be43440110c2370, type: 3}
     story: {fileID: 0}
   - name: "\uB0A0\uC544\uB2E4\uB2C8\uB294 \uC2A4\uD30C\uCF00\uD2F0 \uAD34\uBB3C"
     eCustomer: 8
-    profile: {fileID: 21300000, guid: b5c7140e89c97f6439b766831e9140dd, type: 3}
+    profile: {fileID: 21300000, guid: 2e23252c988c9734ea4bf380cc437ba8, type: 3}
     story: {fileID: 0}
   - name: "\uC4F0\uB808\uAE30"
     eCustomer: 9
-    profile: {fileID: 21300000, guid: b5c7140e89c97f6439b766831e9140dd, type: 3}
+    profile: {fileID: 21300000, guid: 85afb7e5e6690f44aa578f55a661d12f, type: 3}
     story: {fileID: 0}
   - name: "\uC870\uCEE4"
     eCustomer: 10
-    profile: {fileID: 21300000, guid: b5c7140e89c97f6439b766831e9140dd, type: 3}
+    profile: {fileID: 21300000, guid: 978c02d1392db9741856af06cf51937f, type: 3}
     story: {fileID: 0}
   - name: ???
     eCustomer: 17
