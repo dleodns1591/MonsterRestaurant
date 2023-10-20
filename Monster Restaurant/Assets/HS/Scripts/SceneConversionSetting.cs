@@ -108,7 +108,10 @@ public class SceneConversionSetting : MonoBehaviour
             {
                 OM.orderMessageManager.AfterOrder = () =>
                 {
-                    StartCoroutine(OM.ExitAndComein());
+                    if (SaveManager.Instance.isPvp == false)
+                        StartCoroutine(OM.ExitAndComein());
+                    else
+                        StartCoroutine(OM.PvpEnd());
                 };
                 OM.orderMessageManager.TalkingText(OM.AnswerTalk);
             });

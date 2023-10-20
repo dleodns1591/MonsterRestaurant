@@ -16,7 +16,7 @@ public class TestObj : MonoBehaviourPunCallbacks, IPunObservable
         else
         {
                 int asd = (int)stream.ReceiveNext();
-                for (int i = 0; i < asd - 1; i++)
+                for (int i = 0; i < asd; i++)
                 {
                     test.Player2.transform.GetChild(i).gameObject.SetActive(true);
                 }

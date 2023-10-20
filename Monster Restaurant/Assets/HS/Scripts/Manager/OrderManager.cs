@@ -23,7 +23,12 @@ public class OrderManager : Singleton<OrderManager>
     [Header("손님 관련")]
     [SerializeField] public Customer customer;
     [SerializeField] public CustomerManager customerManager;
+
+    [Header("온라인 PVP 전용")]
+    [SerializeField] public CustomerManagerOnlineVer onlineVer;
+
     public I_CustomerType CustomerType;
+
     public int NormalGuestType
     {
         get
@@ -126,8 +131,15 @@ public class OrderManager : Singleton<OrderManager>
         NextCustomerReady();
         normalGuestType = UnityEngine.Random.Range(0, Enum.GetValues(typeof(EcustomerType)).Length);
 
-        if (SaveManager.Instance.isChallenge == false) customerManager.SetCustomerType(normalGuestType);
-        else customerManager.SetCustomerType(0);
+        if (SaveManager.Instance.isPvp)
+        {
+            onlineVer.SetCustomerType();
+        }
+        else
+        {
+            if (SaveManager.Instance.isChallenge == false) customerManager.SetCustomerType(normalGuestType);
+            else customerManager.SetCustomerType(0);
+        }
 
         Ordercoroutine = StartCoroutine(Order());
 
@@ -164,6 +176,8 @@ public class OrderManager : Singleton<OrderManager>
 
         orderMessageManager.BallonSetActive(true);
 
+        if (SaveManager.Instance.isPvp == true) yield break;
+
         for (int i = 0; i < OrderTalk.Length; i++)
         {
             print(OrderTalk.Length);
@@ -183,11 +197,9 @@ public class OrderManager : Singleton<OrderManager>
 
                 if (isNext == true)
                 {
-                    print("넥스트 됐잖아 시발");
                     break;
                 }
             }
-            print("다음");
             isNext = false;
         }
     }
@@ -214,6 +226,17 @@ public class OrderManager : Singleton<OrderManager>
         customerManager.SetCustomerType(normalGuestType);
 
         Ordercoroutine = StartCoroutine(Order());
+    }
+
+    /// <summary>
+    /// 대결이 끝나면 다음 손님 안받고 끝나는 함수 (구현 필요함!!)
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator PvpEnd()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        onlineVer.EndBtnsSetActive(true);
     }
 
     public void StopOrderCoroutine()

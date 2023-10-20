@@ -207,7 +207,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1846224088}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Test, Assembly-CSharp
         m_MethodName: Click
         m_Mode: 1
@@ -754,7 +754,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1846224088}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Test, Assembly-CSharp
         m_MethodName: Next
         m_Mode: 1
@@ -914,7 +914,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1846224083}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e5e9e52e844f284c82cbe9708a59274, type: 3}
+  m_Script: {fileID: 11500000, guid: e2d72988be2cbd34182a6858923ee697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   count: 0

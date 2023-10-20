@@ -10,6 +10,7 @@ public class SaveManager : MonoBehaviour
     public bool isWormHoleFirstBuy;
 
     public bool isChallenge = false;
+    public bool isPvp = false;
 
     public bool isEnglish = false;
 

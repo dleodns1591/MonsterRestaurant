@@ -31,6 +31,7 @@ public class Packaging : MonoBehaviour
 
         yield return Pack();
 
+        //¿©±â´Ù ++;
 
         if(packQuantity >= Cooking.Instance.AnswerOrder.dishCount)
         {

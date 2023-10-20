@@ -42,7 +42,30 @@ public class Customer : MonoBehaviour
 
         Image CustomerImg = gameObject.GetComponent<Image>();
 
-        if (OrderManager.Instance.customerManager.isCurrentEventType == true)
+        if(!SaveManager.Instance.isPvp)
+        {
+            if (OrderManager.Instance.customerManager.isCurrentEventType == true)
+            {
+                //와리가리 움직임
+                for (int i = 0; i < SlowMovingPos.Length; i++)
+                {
+                    if (i != SlowMovingPos.Length - 1)
+                        transform.DOMove(SlowMovingPos[i].position, delayTime);
+                    else
+                        transform.DOMove(SlowMovingPos[i].position, 0.25f);
+
+                    yield return new WaitForSeconds(delayTime);
+
+                }
+                //빠르게 이동
+                transform.DOMove(FastMovingPos.position, delayTime);
+            }
+            else
+            {
+                transform.DOMove(FastMovingPos.position, 1.2f);
+            }
+        }
+        else
         {
             //와리가리 움직임
             for (int i = 0; i < SlowMovingPos.Length; i++)
@@ -57,10 +80,6 @@ public class Customer : MonoBehaviour
             }
             //빠르게 이동
             transform.DOMove(FastMovingPos.position, delayTime);
-        }
-        else
-        {
-            transform.DOMove(FastMovingPos.position, 1.2f);
         }
 
 
