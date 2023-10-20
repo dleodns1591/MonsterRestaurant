@@ -119,6 +119,28 @@ public class CustomerGuide : MonoBehaviour
         CustomerBox(customerList);
     }
 
+    // 초기화
+    void CustomerReset()
+    {
+        if (!isCustomerCheck)
+        {
+            for (int i = 0; i < generalList.Count; i++)
+            {
+                if (generalList[0].eCustomer != Guide.ECustomer.Spinach)
+                    ArrowClick(generalList, isArrow);
+            }
+        }
+
+        else
+        {
+            for (int i = 0; i < eventList.Count; i++)
+            {
+                if (eventList[0].eCustomer != Guide.ECustomer.Stella)
+                    ArrowClick(eventList, isArrow);
+            }
+        }
+    }
+
 
     // 버튼들
     void Btns()
@@ -135,6 +157,7 @@ public class CustomerGuide : MonoBehaviour
             guideWindow.gameObject.SetActive(true);
 
             GeneralClick(); // 일반 손님 클릭
+            CustomerReset(); // 일반 손님과 이벤트 손님 순서 초기화
 
         });
 
@@ -179,6 +202,7 @@ public class CustomerGuide : MonoBehaviour
             SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
 
             GeneralClick();
+            CustomerReset(); // 일반 손님과 이벤트 손님 순서 초기화
         });
 
         // 이벤트 손님 버튼을 눌렀을 시
@@ -190,6 +214,7 @@ public class CustomerGuide : MonoBehaviour
 
             isCustomerCheck = true;
             CustomerBox(eventList);
+            CustomerReset(); // 일반 손님과 이벤트 손님 순서 초기화
         });
     }
 }
