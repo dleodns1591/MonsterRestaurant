@@ -18,6 +18,8 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
 
     [SerializeField] private Sprite[] DisConnectIconSpr;
 
+    private bool DisconnectCorutineDelay;
+
     private void Awake()
     {
         Managers.GetComponent<GameManager>().enabled = false;
@@ -49,6 +51,20 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
 
     }
 
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        if (DisconnectCorutineDelay == false)
+        {
+            DisConnectBackground.SetActive(true);
+            DisConnectIcon.gameObject.SetActive(true);
+            CurStateText.gameObject.SetActive(true);
+
+            DisconnectCorutineDelay = true;
+            StartCoroutine(ConnectTry(0));
+        }
+    }
+
+
     public override void OnJoinedRoom()
     {
         print("방 접속!");
@@ -64,12 +80,12 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
             CurStateText.text = "상대를 찾고 있습니다...";
             if (IconSpr + 1 == DisConnectIconSpr.Length)
             {
-                yield return new WaitForSecondsRealtime(0.7f);
+                yield return new WaitForSecondsRealtime(0.3f);
                 StartCoroutine(FindPlayer(0));
             }
             else
             {
-                yield return new WaitForSecondsRealtime(0.7f);
+                yield return new WaitForSecondsRealtime(0.3f);
                 StartCoroutine(FindPlayer(IconSpr + 1));
             }
         }
@@ -78,6 +94,7 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
             DisConnectBackground.SetActive(false);
             DisConnectIcon.gameObject.SetActive(false);
             CurStateText.gameObject.SetActive(false);
+            CurStateText.text = "";
 
             Managers.GetComponent<GameManager>().enabled = true;
             Managers.GetComponent<OrderManager>().enabled = true;
@@ -91,7 +108,6 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
 
         PhotonNetwork.ConnectUsingSettings();
 
-        yield return new WaitForSecondsRealtime(0.7f);
 
 
         if (Application.internetReachability == NetworkReachability.NotReachable)
@@ -99,21 +115,24 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
             DisConnectIcon.sprite = DisConnectIconSpr[IconSpr];
             CurStateText.text = "인터넷 접속 중...";
             if (IconSpr + 1 == DisConnectIconSpr.Length)
+            {
+                yield return new WaitForSecondsRealtime(0.7f);
                 StartCoroutine(ConnectTry(0));
+            }
             else
+            {
+                yield return new WaitForSecondsRealtime(0.7f);
                 StartCoroutine(ConnectTry(IconSpr + 1));
+            }
         }
         else
         {
             print("연결됨");
-            Time.timeScale = 1;
-            Managers.GetComponent<GameManager>().enabled = true;
-            Managers.GetComponent<OrderManager>().enabled = true;
             DisConnectBackground.SetActive(false);
             DisConnectIcon.gameObject.SetActive(false);
             CurStateText.gameObject.SetActive(false);
-
-            PhotonNetwork.JoinLobby();
+            DisconnectCorutineDelay = false;
+            CurStateText.text = "";
         }
     }
 

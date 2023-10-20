@@ -17,7 +17,6 @@ public class SceneConversionSetting : MonoBehaviour
         CookToOrder();
         OrderToCook();
     }
-
     public void CookToOrder()
     {
         GM.ReturnOrder = () =>

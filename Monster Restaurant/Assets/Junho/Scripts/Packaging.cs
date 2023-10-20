@@ -14,11 +14,23 @@ public class Packaging : MonoBehaviour
 
     private int packQuantity = 0;
 
-    public IEnumerator CheckPack(GameObject cook)
+    public IEnumerator CheckPack(GameObject cook, int check)
     {
         Cooking.Instance.cookingMachine.isCooking = false;
 
         packQuantity++;
+
+        if(SaveManager.Instance.isPvp)
+        {
+            if(check > 0)
+            {
+                packQuantity--;
+            }
+            else
+            {
+                //여기다 ++;
+            }
+        }
 
         cook.transform.parent = transform;
         cook.transform.SetAsFirstSibling();
@@ -31,7 +43,6 @@ public class Packaging : MonoBehaviour
 
         yield return Pack();
 
-        //여기다 ++;
 
         if(packQuantity >= Cooking.Instance.AnswerOrder.dishCount)
         {

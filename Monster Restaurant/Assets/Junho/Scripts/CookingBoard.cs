@@ -37,6 +37,8 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     private bool isEnterTrash;
 
+    public int checkList = 0;
+
     private void Start()
     {
         canvas = GameObject.Find("Canvas");
@@ -177,7 +179,7 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
             if (item.gameObject.tag == "Packaging")
             {
                 OrderCheck();
-                StartCoroutine(item.gameObject.GetComponent<Packaging>().CheckPack(gameObject));
+                StartCoroutine(item.gameObject.GetComponent<Packaging>().CheckPack(gameObject, checkList));
             }
         }
 
@@ -203,7 +205,7 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
         print("OrderCheckOn");
 
-        int checkList = 0;
+        checkList = 0;
 
 
         if (Cooking.Instance.AnswerOrder.style != style) checkList++;

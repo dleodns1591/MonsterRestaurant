@@ -61,7 +61,7 @@ public class CuttingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
             else if (item.gameObject.tag == "Packaging")
             {
                 food.OrderCheck();
-                StartCoroutine(item.gameObject.GetComponent<Packaging>().CheckPack(food.gameObject));
+                StartCoroutine(item.gameObject.GetComponent<Packaging>().CheckPack(food.gameObject, food.checkList));
                 CreateFood();
             }
         }
