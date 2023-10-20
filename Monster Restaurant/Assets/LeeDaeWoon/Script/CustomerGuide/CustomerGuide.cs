@@ -104,16 +104,16 @@ public class CustomerGuide : MonoBehaviour
         {
             if (!isArrow)
             {
-                int saveCustomer = customerList.Count;
-
-                customerList.Insert(0, customerList[saveCustomer - 1]);
-                customerList.RemoveAt(saveCustomer);
+                customerList.Add(customerList[0]);
+                customerList.RemoveAt(0);
             }
 
             else
             {
-                customerList.Add(customerList[0]);
-                customerList.RemoveAt(0);
+                int saveCustomer = customerList.Count;
+
+                customerList.Insert(0, customerList[saveCustomer - 1]);
+                customerList.RemoveAt(saveCustomer);
             }
         }
         CustomerBox(customerList);
