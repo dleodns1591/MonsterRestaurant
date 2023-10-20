@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1a13d4cbd17e7ed499c4ba9b3eb7d4e5
+guid: 4191a6b62124f3d4e837bcf79f097937
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Background_RedMachine_0
+      name: Background_RedMachine_MouseHover_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 2
-        width: 385
-        height: 354
+        x: 3
+        y: 3
+        width: 394
+        height: 363
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,8 +130,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ab0e2139b6cd314b9e6ab6f0e0e5298
-      internalID: 1644234958
+      spriteID: 01f61c2c6852a2f45a049252c233d0a7
+      internalID: -856299757
       vertices: []
       indices: 
       edges: []
@@ -147,7 +147,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Background_RedMachine_0: 1644234958
+      Background_RedMachine_MouseHover_0: -856299757
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
