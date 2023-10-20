@@ -8,10 +8,13 @@ public class CustomerBox : MonoBehaviour
     [SerializeField] GameObject customerBoxParent;
     Button customerBoxBtn;
 
-    bool isCustomerType;
+    CustomerGuide customerGuide = null;
+    bool isCustomerType = false;
 
     void Start()
     {
+        customerGuide = CustomerGuide.instance;
+
         Btn();
     }
 
@@ -53,72 +56,34 @@ public class CustomerBox : MonoBehaviour
         {
             if (num == i)
             {
-                var eCustomer = CustomerGuide.instance.generalList[num].eCustomer;
 
                 if (!isCustomerType)
                 {
-                    switch (eCustomer)
-                    {
-                        case Guide.ECustomer.Spinach:
-                            break;
+                    var eGeneraCustomer = customerGuide.generalList[num];
+                    customerGuide.story.sprite = eGeneraCustomer.story;
 
-                        case Guide.ECustomer.Sdh210224:
-                            break;
-
-                        case Guide.ECustomer.Zeto:
-                            break;
-
-                        case Guide.ECustomer.ChrisTheGhost:
-                            break;
-
-                        case Guide.ECustomer.Quasar:
-                            break;
-
-                        case Guide.ECustomer.Axolonaut:
-                            break;
-
-                        case Guide.ECustomer.Quantum:
-                            break;
-
-                        case Guide.ECustomer.Hellios:
-                            break;
-
-                        case Guide.ECustomer.FSM:
-                            break;
-
-                        case Guide.ECustomer.Garbage:
-                            break;
-
-                        case Guide.ECustomer.Joker:
-                            break;
-                    }
                 }
 
                 else
                 {
-                    switch (eCustomer)
-                    {
-                        case Guide.ECustomer.Stella:
-                            break;
-
-                        case Guide.ECustomer.Sock:
-                            break;
-
-                        case Guide.ECustomer.Florian:
-                            break;
-
-                        case Guide.ECustomer.Dopey:
-                            break;
-
-                        case Guide.ECustomer.Receid:
-                            break;
-
-                        case Guide.ECustomer.H30122:
-                            break;
-                    }
+                    var eEventCustomer = customerGuide.eventList[num];
+                    customerGuide.story.sprite = eEventCustomer.story;
                 }
+
+                CustomerStory();
             }
         }
 
+    }
+
+    void CustomerStory()
+    {
+        customerGuide.storyContant.position = Vector2.zero;
+
+        customerGuide.customerBoxParent.SetActive(false);
+        customerGuide.customerStoryParent.SetActive(true);
+
+        customerGuide.storyContant.sizeDelta =
+            new Vector2(customerGuide.storyContant.rect.width, customerGuide.story.rectTransform.rect.height);
     }
 }
