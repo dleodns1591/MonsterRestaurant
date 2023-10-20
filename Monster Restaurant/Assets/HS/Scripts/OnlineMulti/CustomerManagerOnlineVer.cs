@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CustomerManagerOnlineVer : MonoBehaviour
@@ -28,7 +29,7 @@ public class CustomerManagerOnlineVer : MonoBehaviour
         OrderButtonObject.Instance.CookingBtn.onClick.RemoveAllListeners();
         OrderButtonObject.Instance.CookingBtn.onClick.AddListener(() =>
         {
-
+            SceneManager.LoadScene("OnlinePvp");
         });
 
         if (SaveManager.Instance.isEnglish == false)
@@ -38,7 +39,7 @@ public class CustomerManagerOnlineVer : MonoBehaviour
         OrderButtonObject.Instance.ReAskBtn.onClick.RemoveAllListeners();
         OrderButtonObject.Instance.ReAskBtn.onClick.AddListener(() =>
         {
-
+            SceneManager.LoadScene("Title");
         });
 
         OM.orderButtonManager.ButtonSetActive(active);
