@@ -72,6 +72,7 @@ public class CustomerGuide : MonoBehaviour
     public Image story;
     public RectTransform storyContant;
     public Button backBtn;
+    [SerializeField] Image bottomArrow;
 
 
     void Start()
@@ -81,11 +82,12 @@ public class CustomerGuide : MonoBehaviour
 
         CustomerBox(eventList);
         CustomerBox(generalList);
+        BottomArrowMove();
     }
 
     void Update()
     {
-
+        BottomArrowFade();
     }
 
     // 일반 손님 또는 이벤트 손님 적용
@@ -150,6 +152,21 @@ public class CustomerGuide : MonoBehaviour
             }
         }
     }
+
+    // 아래 화살표 페이드
+    void BottomArrowFade()
+    {
+        if (customerStoryParent.activeSelf)
+        {
+            if (storyContant.transform.localPosition.y < 10)
+                bottomArrow.DOFade(1, 0.2f).SetEase(Ease.Linear).SetUpdate(true);
+            else
+                bottomArrow.DOFade(0, 0.2f).SetEase(Ease.Linear).SetUpdate(true);
+        }
+    }
+
+    // 아래 화살표 이동
+    void BottomArrowMove() => bottomArrow.transform.DOLocalMoveY(-350, 0.8f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InBack).SetUpdate(true);
 
 
     // 버튼들
