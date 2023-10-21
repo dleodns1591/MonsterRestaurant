@@ -652,6 +652,7 @@ MonoBehaviour:
   - {fileID: 1852886125}
   - {fileID: 1294285795}
   - {fileID: 263916439}
+  netWorkManager: {fileID: 0}
 --- !u!114 &37171305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7487,8 +7488,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5a95019b318772246a62f1e0161505a4, type: 3}
   cookingStyleSprites:
   - sprites:
-    - {fileID: 21300000, guid: c8d5e02d558c34d45ab326c5d7076b5e, type: 3}
     - {fileID: 21300000, guid: 55dff9acf9dc905449c7b0a184ae4fcc, type: 3}
+    - {fileID: 21300000, guid: c8d5e02d558c34d45ab326c5d7076b5e, type: 3}
   - sprites:
     - {fileID: 21300000, guid: 2244b4952d8e2f7429b00c6ec07cd78b, type: 3}
     - {fileID: 21300000, guid: bb725aeb88e5b3f419dfd6309bcfb256, type: 3}
@@ -8780,6 +8781,7 @@ MonoBehaviour:
   isEndingOpens: 000000000000000000
   isWormHoleFirstBuy: 0
   isChallenge: 0
+  isPvp: 0
   isEnglish: 0
 --- !u!1 &850888600
 GameObject:
@@ -10254,6 +10256,7 @@ MonoBehaviour:
   resultManager: {fileID: 39444528}
   customer: {fileID: 410546290}
   customerManager: {fileID: 945262614}
+  onlineVer: {fileID: 0}
   materialSetting: {fileID: 945262613}
   orderMessageManager: {fileID: 781209805}
   satisfactionManager: {fileID: 4877039913111676460}

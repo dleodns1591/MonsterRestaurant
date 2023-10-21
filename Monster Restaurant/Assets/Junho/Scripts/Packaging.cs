@@ -9,6 +9,8 @@ public class Packaging : MonoBehaviour
 
     [SerializeField] private GameObject[] stickers;
 
+    [SerializeField] private NetWorkManager netWorkManager;
+
     readonly Vector3 startUnder = new Vector3(1722, -8, 0);
     readonly Vector3 startUp = new Vector3(200, 230, 0);
 
@@ -28,7 +30,7 @@ public class Packaging : MonoBehaviour
             }
             else
             {
-                //¿©±â´Ù ++;
+                netWorkManager.CountPlus();
             }
         }
 

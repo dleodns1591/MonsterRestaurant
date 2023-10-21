@@ -33,9 +33,9 @@ public class CustomerManagerOnlineVer : MonoBehaviour
         });
 
         if (SaveManager.Instance.isEnglish == false)
-            OrderButtonObject.Instance.BtnCookText.text = "돌아가기";
+            OrderButtonObject.Instance.BtnAskText.text = "돌아가기";
         else
-            OrderButtonObject.Instance.BtnCookText.text = "Go Back";
+            OrderButtonObject.Instance.BtnAskText.text = "Go Back";
         OrderButtonObject.Instance.ReAskBtn.onClick.RemoveAllListeners();
         OrderButtonObject.Instance.ReAskBtn.onClick.AddListener(() =>
         {
@@ -49,6 +49,8 @@ public class CustomerManagerOnlineVer : MonoBehaviour
     {
         OM.CustomerType = gameObject.AddComponent<OnlinePvp>();
         EeventCustomerSetting((int)EeventCustomerType.GroupOrder);
+
+        GM.Money = 100000;
 
         OM.CustomerType.SpecialType();
         return;

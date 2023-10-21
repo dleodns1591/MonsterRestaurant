@@ -383,6 +383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   test: {fileID: 0}
+  a: -130
 --- !u!1 &6590419680234264758
 GameObject:
   m_ObjectHideFlags: 0

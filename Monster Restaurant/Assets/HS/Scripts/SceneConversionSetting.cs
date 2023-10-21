@@ -106,6 +106,8 @@ public class SceneConversionSetting : MonoBehaviour
                 }
             }
             
+            if(SaveManager.Instance.isPvp == true)
+                OM.AnswerTalk = OM.CustomerType.SpecialAnswer();
 
             OM.CookingScene.transform.DOMoveY(-10, 1).SetEase(Ease.OutBounce).OnComplete(() =>
             {

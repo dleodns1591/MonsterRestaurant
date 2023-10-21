@@ -22,11 +22,11 @@ public class OnlinePvp : MonoBehaviour, I_CustomerType
     public string SpecialAnswer()
     {
         //count가 5개이면
-        if (true)
+        if (GameObject.Find("ConnetCanvas").GetComponent<NetWorkManager>().count >= 5)
         {
             OM.customer.CustomerImg.sprite = OM.customer.EventGuestSuccess[(int)EeventCustomerType.GroupOrder];
             if (SM.isEnglish == false)
-                return "너 이김 ㅋㅋ";
+                return "당신이 이기셨습니다 축하드립니다!!!\n 게임을 계속하실려면 계속하기 버튼을,\n게임을 그만하시고 싶으시다면 돌아가기 버튼을 눌러주세요.";
             else
                 return "";
         }
@@ -34,7 +34,7 @@ public class OnlinePvp : MonoBehaviour, I_CustomerType
         {
             OM.customer.CustomerImg.sprite = OM.customer.EventGuestFails[(int)EeventCustomerType.GroupOrder];
             if (SM.isEnglish == false)
-                return "너 짐 ㅋㅋ";
+                return "당신은 지셨습니다. 정말 아쉽네요...\n게임을 계속하실려면 계속하기 버튼을,\n게임을 그만하시고 싶으시다면 돌아가기 버튼을 눌러주세요.";
             else
                 return "";
         }
@@ -65,10 +65,14 @@ public class OnlinePvp : MonoBehaviour, I_CustomerType
 
         yield return new WaitForSeconds(6f);
 
+
         if (SM.isEnglish == false)
-            OM.orderMessageManager.TalkingText($"다른 가게 알바생과 매칭이 잡혔습니다!\n이번 대결에서 조리할 요리는.. {CookingStyle()} 만든 {SubString(this.subs[0])} {DrawCookingStyle()}입니다!!!\n실력을 다투는 대결이기 때문에 메모 기능은 지원하지 않는다는 점 알아주시면 감사하겠습니다");
+            OM.orderMessageManager.TalkingText($"다른 가게 알바생과 매칭이 잡혔습니다!\n이번 대결에서 조리할 요리는.. {CookingStyle()} 만든 {SubString(this.subs[0])} {DrawCookingStyle()}입니다!!\n실력을 다투는 대결이기 때문에 메모 기능은 지원하지 않는다는 점 알아주시면 감사하겠습니다");
         else
             OM.orderMessageManager.TalkingText("");
+
+        askBtn.gameObject.SetActive(false);
+        cookBtn.gameObject.SetActive(false);
 
         yield return new WaitForSeconds(7.7f);
 
@@ -83,7 +87,7 @@ public class OnlinePvp : MonoBehaviour, I_CustomerType
 
         SucsessCook();
 
-        GM.ConditionSetting((EMainMatarials)randomMain, subs, 1, cookingStyle, 1);
+        GM.ConditionSetting((EMainMatarials)randomMain, subs, 7, cookingStyle, 5);
     }
 
     void SucsessCook()
@@ -100,10 +104,6 @@ public class OnlinePvp : MonoBehaviour, I_CustomerType
         GameManager.Instance.ReturnCook();
     }
 
-    /// <summary>
-    /// 튀기기를 제외한 조리 방식을 뽑는 함수
-    /// </summary>
-    /// <returns></returns>
     string DrawCookingStyle()
     {
         int NullCheck(int num)
@@ -123,7 +123,7 @@ public class OnlinePvp : MonoBehaviour, I_CustomerType
             case EMainMatarials.Bread:
                 return "빵";
             case EMainMatarials.Noodle:
-                return "라면";
+                return "파스타";
             case EMainMatarials.Rice:
                 return "밥";
             default:

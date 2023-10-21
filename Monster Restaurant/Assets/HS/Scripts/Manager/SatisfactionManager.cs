@@ -28,7 +28,8 @@ public class SatisfactionManager : MonoBehaviour
         GameManager.Instance.Satisfaction = 100;
         EmotionText.text = "100%";
         FaceImage.sprite = FaceSprites[(int)EFaceType.Happy];
-        StartCoroutine(SatisfactionUpdate());
+        if(SaveManager.Instance.isPvp == false)
+            StartCoroutine(SatisfactionUpdate());
     }
 
     public void LoopStop()
