@@ -49,6 +49,7 @@ public class CustomerGuide : MonoBehaviour
     [SerializeField] Image fade;
     [SerializeField] CanvasGroup guideWindow;
 
+    [Space(5)]
     [SerializeField] Button guideBtn;
     [SerializeField] Button cancleBtn;
     [SerializeField] Button leftArrowBtn;
@@ -58,6 +59,7 @@ public class CustomerGuide : MonoBehaviour
 
     [Header("손님 박스")]
     [SerializeField] GameObject customerBox;
+    public GameObject customerBoxParent;
 
     public List<Guide> generalList = new List<Guide>();
     public List<Guide> eventList = new List<Guide>();
@@ -65,17 +67,27 @@ public class CustomerGuide : MonoBehaviour
     public bool isCustomerCheck = false;
     bool isArrow = false;
 
+    [Header("손님 스토리")]
+    public GameObject customerStoryParent;
+    public Image story;
+    public RectTransform storyContant;
+    public Button backBtn;
+    [SerializeField] Image bottomArrow;
+
+
     void Start()
     {
-        Btns();
+        CustomerBoxBtns();
+        CustomerStoryBtns();
 
         CustomerBox(eventList);
         CustomerBox(generalList);
+        BottomArrowMove();
     }
 
     void Update()
     {
-
+        BottomArrowFade();
     }
 
     // 일반 손님 또는 이벤트 손님 적용
@@ -104,16 +116,16 @@ public class CustomerGuide : MonoBehaviour
         {
             if (!isArrow)
             {
-                int saveCustomer = customerList.Count;
-
-                customerList.Insert(0, customerList[saveCustomer - 1]);
-                customerList.RemoveAt(saveCustomer);
+                customerList.Add(customerList[0]);
+                customerList.RemoveAt(0);
             }
 
             else
             {
-                customerList.Add(customerList[0]);
-                customerList.RemoveAt(0);
+                int saveCustomer = customerList.Count;
+
+                customerList.Insert(0, customerList[saveCustomer - 1]);
+                customerList.RemoveAt(saveCustomer);
             }
         }
         CustomerBox(customerList);
@@ -141,9 +153,24 @@ public class CustomerGuide : MonoBehaviour
         }
     }
 
+    // 아래 화살표 페이드
+    void BottomArrowFade()
+    {
+        if (customerStoryParent.activeSelf)
+        {
+            if (storyContant.transform.localPosition.y < 10)
+                bottomArrow.DOFade(1, 0.2f).SetEase(Ease.Linear).SetUpdate(true);
+            else
+                bottomArrow.DOFade(0, 0.2f).SetEase(Ease.Linear).SetUpdate(true);
+        }
+    }
+
+    // 아래 화살표 이동
+    void BottomArrowMove() => bottomArrow.transform.DOLocalMoveY(-350, 0.8f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InBack).SetUpdate(true);
+
 
     // 버튼들
-    void Btns()
+    void CustomerBoxBtns()
     {
         // 손님 가이드 버튼을 눌렀을 시
         guideBtn.onClick.AddListener(() =>
@@ -172,6 +199,9 @@ public class CustomerGuide : MonoBehaviour
                 Time.timeScale = 1;
 
                 guideWindow.gameObject.SetActive(false);
+
+                customerBoxParent.SetActive(true);
+                customerStoryParent.SetActive(false);
             });
         });
 
@@ -215,6 +245,15 @@ public class CustomerGuide : MonoBehaviour
             isCustomerCheck = true;
             CustomerBox(eventList);
             CustomerReset(); // 일반 손님과 이벤트 손님 순서 초기화
+        });
+    }
+
+    void CustomerStoryBtns()
+    {
+        backBtn.onClick.AddListener(() =>
+        {
+            customerBoxParent.SetActive(true);
+            customerStoryParent.SetActive(false);
         });
     }
 }

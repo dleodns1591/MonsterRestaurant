@@ -21,34 +21,34 @@ public class FadeInOut : MonoBehaviour
         Image fade = GetComponent<Image>();
 
         fade.DOFade(1, 0);
-        fade.DOFade(0, fadeTime).SetEase(Ease.Linear);
+        fade.DOFade(0, fadeTime).SetEase(Ease.Linear).SetUpdate(true);
     }
     public void LittleFade()
     {
         Image fade = GetComponent<Image>();
 
         fade.DOFade(0.75f, 0);
-        fade.DOFade(0, fadeTime).SetEase(Ease.Linear);
+        fade.DOFade(0, fadeTime).SetEase(Ease.Linear).SetUpdate(true);
     }
 
     public void FadeOut()
     {
         Image fade = GetComponent<Image>();
 
-        fade.DOFade(1, fadeTime).SetEase(Ease.Linear);
+        fade.DOFade(1, fadeTime).SetEase(Ease.Linear).SetUpdate(true);
     }
 
     public void LittleFadeOut()
     {
         Image fade = GetComponent<Image>();
 
-        fade.DOFade(0.75f, fadeTime).SetEase(Ease.Linear);
+        fade.DOFade(0.75f, fadeTime).SetEase(Ease.Linear).SetUpdate(true);
     }
     public void RevenueFadeOut()
     {
         Image fade = transform.GetChild(0).GetComponent<Image>();
 
         fade.DOFade(0, 0);
-        fade.DOFade(1, fadeTime).SetEase(Ease.Linear);
+        fade.DOFade(1, fadeTime).SetEase(Ease.Linear).SetUpdate(true);
     }
 }

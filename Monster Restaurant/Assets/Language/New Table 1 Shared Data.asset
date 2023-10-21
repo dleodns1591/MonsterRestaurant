@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: New Table 1 Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: sprite
+  m_TableCollectionNameGuidString: ecfe2746456febf4b889054ff47060c8
+  m_Entries:
+  - m_Id: 18938507264
+    m_Key: "\uC77C\uBC18 \uC190\uB2D8"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 69219823616
+    m_Key: "\uD2B9\uBCC4 \uC190\uB2D8"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89369260032
+    m_Key: "\uB3CC\uC544\uAC00\uAE30"
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items:
+    - rid: 2598103584282509316
+  m_KeyGenerator:
+    rid: 2598103584282509314
+  references:
+    version: 2
+    RefIds:
+    - rid: 2598103584282509314
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1697898155258
+    - rid: 2598103584282509316
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 18938507264
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 69219823616
+          m_TableCodes:
+          - en
+          - ko
+        - m_KeyId: 89369260032
+          m_TableCodes:
+          - ko
+          - en
+        m_TypeString: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
