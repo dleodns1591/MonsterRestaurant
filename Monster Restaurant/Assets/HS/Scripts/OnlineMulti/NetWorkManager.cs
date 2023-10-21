@@ -49,7 +49,7 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
     }
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        print("방이 없다 ;");
+        print("들어갈 수 있는 방이 없음");
         PhotonNetwork.JoinRandomOrCreateRoom();
     }
 
@@ -64,8 +64,9 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
 
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 2;
+
         if (PhotonNetwork.CountOfRooms == 0)
-            PhotonNetwork.CreateRoom("1대1뜨실분", roomOptions, null);
+            PhotonNetwork.CreateRoom("새로운 방", roomOptions, null);
         else
             PhotonNetwork.JoinRandomRoom();
     }
@@ -86,7 +87,7 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.JoinLobby();
-        Click();
+        ConnectPopupSetting();
     }
 
     public override void OnJoinedRoom()
@@ -135,8 +136,6 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
 
         PhotonNetwork.ConnectUsingSettings();
 
-
-
         if (Application.internetReachability == NetworkReachability.NotReachable)
         {
             DisConnectIcon.sprite = DisConnectIconSpr[IconSpr];
@@ -163,7 +162,7 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
         }
     }
 
-    void Click()
+    void ConnectPopupSetting()
     {
         DisConnectBackground.SetActive(true);
         DisConnectIcon.gameObject.SetActive(true);

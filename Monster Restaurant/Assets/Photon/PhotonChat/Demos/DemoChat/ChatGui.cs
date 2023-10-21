@@ -231,7 +231,7 @@ namespace Photon.Chat.Demo
             {
                 return;
             }
-            if ("test".Equals(inputLine))
+            if ("NetWorkManager".Equals(inputLine))
             {
                 if (this.TestLength != this.testBytes.Length)
                 {
