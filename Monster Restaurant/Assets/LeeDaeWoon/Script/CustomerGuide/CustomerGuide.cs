@@ -250,8 +250,11 @@ public class CustomerGuide : MonoBehaviour
 
     void CustomerStoryBtns()
     {
+        // 돌아가기 버튼을 눌렀을 시
         backBtn.onClick.AddListener(() =>
         {
+            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+
             customerBoxParent.SetActive(true);
             customerStoryParent.SetActive(false);
         });
