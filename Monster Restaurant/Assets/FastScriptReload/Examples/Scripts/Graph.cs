@@ -86,7 +86,7 @@ namespace FastScriptReload.Examples
 	}
 }
 
-// Dynamically adding new types, OnScriptHotReloadNewTypeAdded will trigger and allow setup, re-add for test
+// Dynamically adding new types, OnScriptHotReloadNewTypeAdded will trigger and allow setup, re-add for NetWorkManager
  // public class NewMonoBehaviourTest : MonoBehaviour
  // {
  // 	static void OnScriptHotReloadNewTypeAdded()
@@ -103,7 +103,7 @@ namespace FastScriptReload.Examples
  //
  // 	private void Update()
  // 	{
- // 		Debug.Log("test");
+ // 		Debug.Log("NetWorkManager");
  // 	}
  //
  // 	void OnScriptHotReload()

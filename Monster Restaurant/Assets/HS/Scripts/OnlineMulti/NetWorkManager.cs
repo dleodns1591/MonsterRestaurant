@@ -1,6 +1,8 @@
 using Photon.Pun;
 using Photon.Realtime;
+using System;
 using System.Collections;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +12,8 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
     public int count;
 
     public GameObject Player1, Player2;
+
+    public Action CountPlus;
 
     [SerializeField] private GameObject DisConnectBackground;
     [SerializeField] private Image DisConnectIcon;
@@ -34,21 +38,37 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsConnected)
         {
             print("접속!");
-        }
-        else
-        {
-            Application.Quit();
+
+            //yield return new WaitForSeconds(10f);
+            //RoomOptions roomOptions = new RoomOptions();
+            //roomOptions.MaxPlayers = 2;
+            //if (PhotonNetwork.CountOfRooms == 0) PhotonNetwork.CreateRoom("1대1뜨실분", roomOptions, null);
+            //else PhotonNetwork.JoinRandomRoom();
+
         }
     }
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        print("들어갈 수 있는 방이 없음");
+        PhotonNetwork.JoinRandomOrCreateRoom();
+    }
+
+    void asd()
+    {
+        PhotonNetwork.JoinRandomOrCreateRoom();
+    }
+
     public override void OnJoinedLobby()
     {
         print("로비");
 
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 2;
-        if (PhotonNetwork.CountOfRooms == 0) PhotonNetwork.CreateRoom("1대1뜨실분", roomOptions, null);
-        else PhotonNetwork.JoinRandomRoom();
 
+        if (PhotonNetwork.CountOfRooms == 0)
+            PhotonNetwork.CreateRoom("새로운 방", roomOptions, null);
+        else
+            PhotonNetwork.JoinRandomRoom();
     }
 
     public override void OnDisconnected(DisconnectCause cause)
@@ -64,13 +84,17 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
         }
     }
 
+    public override void OnConnectedToMaster()
+    {
+        PhotonNetwork.JoinLobby();
+        ConnectPopupSetting();
+    }
 
     public override void OnJoinedRoom()
     {
         print("방 접속!");
+        PhotonNetwork.CurrentRoom.MaxPlayers = 2;
         StartCoroutine(FindPlayer(0));
-
-        //PhotonNetwork.Instantiate("Player", Vector2.zero, Quaternion.identity);
     }
     public IEnumerator FindPlayer(int IconSpr)
     {
@@ -96,8 +120,12 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
             CurStateText.gameObject.SetActive(false);
             CurStateText.text = "";
 
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+
             Managers.GetComponent<GameManager>().enabled = true;
             Managers.GetComponent<OrderManager>().enabled = true;
+
+            PhotonNetwork.Instantiate("Player", Vector2.zero, Quaternion.identity);
         }
         yield return new WaitForSecondsRealtime(0.7f);
     }
@@ -107,8 +135,6 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
         print("연결중...");
 
         PhotonNetwork.ConnectUsingSettings();
-
-
 
         if (Application.internetReachability == NetworkReachability.NotReachable)
         {
@@ -136,10 +162,8 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
         }
     }
 
-    public void Click()
+    void ConnectPopupSetting()
     {
-        PhotonNetwork.JoinLobby();
-
         DisConnectBackground.SetActive(true);
         DisConnectIcon.gameObject.SetActive(true);
         CurStateText.gameObject.SetActive(true);

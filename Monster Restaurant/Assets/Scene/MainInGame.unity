@@ -652,6 +652,7 @@ MonoBehaviour:
   - {fileID: 1852886125}
   - {fileID: 1294285795}
   - {fileID: 263916439}
+  netWorkManager: {fileID: 0}
 --- !u!114 &37171305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7640,8 +7641,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5a95019b318772246a62f1e0161505a4, type: 3}
   cookingStyleSprites:
   - sprites:
-    - {fileID: 21300000, guid: c8d5e02d558c34d45ab326c5d7076b5e, type: 3}
     - {fileID: 21300000, guid: 55dff9acf9dc905449c7b0a184ae4fcc, type: 3}
+    - {fileID: 21300000, guid: c8d5e02d558c34d45ab326c5d7076b5e, type: 3}
   - sprites:
     - {fileID: 21300000, guid: 2244b4952d8e2f7429b00c6ec07cd78b, type: 3}
     - {fileID: 21300000, guid: bb725aeb88e5b3f419dfd6309bcfb256, type: 3}
@@ -22914,8 +22915,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2007882762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 90}
+  m_LocalScale: {x: 0.009259259, y: 0.009259259, z: 0.009259259}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 684982781}
@@ -22930,8 +22931,8 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920.0001, y: 1080}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2007882764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22971,7 +22972,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &2007882766
 Canvas:
   m_ObjectHideFlags: 0
@@ -22981,7 +22982,7 @@ Canvas:
   m_GameObject: {fileID: 2007882762}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 2
   m_Camera: {fileID: 429507184}
   m_PlaneDistance: 100
   m_PixelPerfect: 0

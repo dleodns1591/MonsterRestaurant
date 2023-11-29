@@ -172,7 +172,7 @@ public class OrderManager : Singleton<OrderManager>
         }
         yield return StartCoroutine(customer.Moving());
 
-        if (SaveManager.Instance.isChallenge == false) orderButtonManager.ButtonSetActive(true);
+        if (SaveManager.Instance.isChallenge == false && SaveManager.Instance.isPvp == false) orderButtonManager.ButtonSetActive(true);
 
         orderMessageManager.BallonSetActive(true);
 
@@ -234,7 +234,7 @@ public class OrderManager : Singleton<OrderManager>
     /// <returns></returns>
     public IEnumerator PvpEnd()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.1f);
 
         onlineVer.EndBtnsSetActive(true);
     }

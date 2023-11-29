@@ -234,7 +234,6 @@ public class CookingBoard : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
         GameManager.Instance.Satisfaction -= ((checkList * 30) * OrderManager.Instance.perfectMade) / Cooking.Instance.AnswerOrder.dishCount;
 
-        print("√ ±‚»≠");
         style = ECookingStyle.Roast;
         mainMaterial = EMainMatarials.NULL;
         subMaterials.Clear();
