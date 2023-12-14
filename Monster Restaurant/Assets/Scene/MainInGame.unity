@@ -10647,93 +10647,117 @@ MonoBehaviour:
   generalList:
   - name: "\uC2DC\uAE08\uCE58"
     eCustomer: 0
-    profile: {fileID: 21300000, guid: e074bf187e6b61b49857345c8c99e786, type: 3}
+    profileKo: {fileID: 21300000, guid: e074bf187e6b61b49857345c8c99e786, type: 3}
+    profileEn: {fileID: 21300000, guid: 044977c3f926807488d55aa62858df34, type: 3}
     storyKo: {fileID: 21300000, guid: d7f7ad9a031ed6f46acdf59d2ac6cd1d, type: 3}
     storyEn: {fileID: 21300000, guid: 30d9c6bcb5774774b82d49fbba60e3f1, type: 3}
   - name: sdh210224
     eCustomer: 1
-    profile: {fileID: 21300000, guid: 260e508ae4c05e749a0f5cd9210b8b61, type: 3}
+    profileKo: {fileID: 21300000, guid: 260e508ae4c05e749a0f5cd9210b8b61, type: 3}
+    profileEn: {fileID: 21300000, guid: f76bcc117bfd33f46b5b672172938bb9, type: 3}
     storyKo: {fileID: 21300000, guid: 79686c2b74e72ab4ebbed3be5046ce4e, type: 3}
     storyEn: {fileID: 21300000, guid: ec035bd413f50354e92515dccd214a80, type: 3}
   - name: "\uC81C\uD1A0"
     eCustomer: 2
-    profile: {fileID: 21300000, guid: 74b691ed41b76474bb34dae9450aa89d, type: 3}
+    profileKo: {fileID: 21300000, guid: 74b691ed41b76474bb34dae9450aa89d, type: 3}
+    profileEn: {fileID: 21300000, guid: 387ccf9b3aef2ba44833df3f55482ca1, type: 3}
     storyKo: {fileID: 21300000, guid: 414456f63b7b75444b49d120f257e370, type: 3}
     storyEn: {fileID: 21300000, guid: 10cc1ff2787d7754ca0e814e212e3891, type: 3}
   - name: "\uC720\uB839 \uD06C\uB9AC\uC2A4"
     eCustomer: 3
-    profile: {fileID: 21300000, guid: 77bc55691d2514246bf3566f7038798a, type: 3}
+    profileKo: {fileID: 21300000, guid: 77bc55691d2514246bf3566f7038798a, type: 3}
+    profileEn: {fileID: 21300000, guid: 374edb6354647b94793532e1a7ffe329, type: 3}
     storyKo: {fileID: 21300000, guid: d56ad9dd991b51b4a808afb8dcbb4534, type: 3}
     storyEn: {fileID: 21300000, guid: d3151d5b8b56a594fb1bb63ad31deac2, type: 3}
   - name: "\uD018\uC774\uC0AC"
     eCustomer: 4
-    profile: {fileID: 21300000, guid: 2aea9b94d3e57af42bc0c0fd93829ad0, type: 3}
+    profileKo: {fileID: 21300000, guid: 2aea9b94d3e57af42bc0c0fd93829ad0, type: 3}
+    profileEn: {fileID: 21300000, guid: 0acbb3ec849df454ebce9040743d0427, type: 3}
     storyKo: {fileID: 21300000, guid: 3fcc9ea721867ba499e4c0c714ccddb8, type: 3}
     storyEn: {fileID: 21300000, guid: 0a574a2ff6d3f034787e783c0cdf9a87, type: 3}
   - name: "\uC544\uD640\uB85C\uB178\uD2B8"
     eCustomer: 5
-    profile: {fileID: 21300000, guid: 1527cf264db6a8b4b92ed2fb8b6f7ab6, type: 3}
+    profileKo: {fileID: 21300000, guid: 1527cf264db6a8b4b92ed2fb8b6f7ab6, type: 3}
+    profileEn: {fileID: 21300000, guid: fbd9e53a1e13eb748a3983142ab49f3c, type: 3}
     storyKo: {fileID: 21300000, guid: a677958f82c9288419a283a752112d47, type: 3}
     storyEn: {fileID: 21300000, guid: cddfc1dd7fd2e4c44b1fea9fb6349e94, type: 3}
   - name: "2\uCC28 \uC591\uC790\uD654"
     eCustomer: 6
-    profile: {fileID: 21300000, guid: 19a08d1e7d672e34585c7b4dce90ea14, type: 3}
+    profileKo: {fileID: 21300000, guid: 19a08d1e7d672e34585c7b4dce90ea14, type: 3}
+    profileEn: {fileID: 21300000, guid: 68152ebd1d6b5f1408fc72807851e1da, type: 3}
     storyKo: {fileID: 21300000, guid: aa0ae84b13c0e7145aad8991d8d7d6ad, type: 3}
     storyEn: {fileID: 21300000, guid: 43f1b5e1d2ac97d4c9d600958328a364, type: 3}
   - name: "\uD5EC\uB9AC\uC624\uC2A4"
     eCustomer: 7
-    profile: {fileID: 21300000, guid: a81d135df9f5ee040be43440110c2370, type: 3}
+    profileKo: {fileID: 21300000, guid: a81d135df9f5ee040be43440110c2370, type: 3}
+    profileEn: {fileID: 21300000, guid: 8c894e175c55b4649b5f72855457a126, type: 3}
     storyKo: {fileID: 21300000, guid: df726c4fd4075f5478398ee8bb80355e, type: 3}
     storyEn: {fileID: 21300000, guid: f691e95df8c0aa640b4865eaea0e2eaa, type: 3}
   - name: "\uB0A0\uC544\uB2E4\uB2C8\uB294 \uC2A4\uD30C\uCF00\uD2F0 \uAD34\uBB3C"
     eCustomer: 8
-    profile: {fileID: 21300000, guid: 2e23252c988c9734ea4bf380cc437ba8, type: 3}
+    profileKo: {fileID: 21300000, guid: 2e23252c988c9734ea4bf380cc437ba8, type: 3}
+    profileEn: {fileID: 21300000, guid: 98e2239b2333f7745a33c93b4314f0aa, type: 3}
     storyKo: {fileID: 21300000, guid: c31f7c9a1e30a7c4899635c5bcb3bfea, type: 3}
     storyEn: {fileID: 21300000, guid: 95c2457c10c7ced4b90da452b613f853, type: 3}
   - name: "\uC4F0\uB808\uAE30"
     eCustomer: 9
-    profile: {fileID: 21300000, guid: 85afb7e5e6690f44aa578f55a661d12f, type: 3}
+    profileKo: {fileID: 21300000, guid: 85afb7e5e6690f44aa578f55a661d12f, type: 3}
+    profileEn: {fileID: 21300000, guid: afa41dd9958c7f24ab6044ee8ee96c50, type: 3}
     storyKo: {fileID: 21300000, guid: 93bd18350c780e94f8a549e2eba70539, type: 3}
     storyEn: {fileID: 21300000, guid: f3224f475a1094a4385d79989964e7f0, type: 3}
   - name: "\uC870\uCEE4"
     eCustomer: 10
-    profile: {fileID: 21300000, guid: 978c02d1392db9741856af06cf51937f, type: 3}
+    profileKo: {fileID: 21300000, guid: 978c02d1392db9741856af06cf51937f, type: 3}
+    profileEn: {fileID: 21300000, guid: b513587c5eb47c84bb2a16ecec75a5fd, type: 3}
     storyKo: {fileID: 21300000, guid: dd76f9187eeb57345867821a24c8dc27, type: 3}
     storyEn: {fileID: 21300000, guid: 70952793f3da9d24797f2ba3cf74623b, type: 3}
   - name: ???
     eCustomer: 17
-    profile: {fileID: 21300000, guid: b5c7140e89c97f6439b766831e9140dd, type: 3}
+    profileKo: {fileID: 21300000, guid: b5c7140e89c97f6439b766831e9140dd, type: 3}
+    profileEn: {fileID: 21300000, guid: b5c7140e89c97f6439b766831e9140dd, type: 3}
     storyKo: {fileID: 0}
     storyEn: {fileID: 0}
   eventList:
   - name: "\uC2A4\uD154\uB77C"
     eCustomer: 11
-    profile: {fileID: 21300000, guid: b5c7140e89c97f6439b766831e9140dd, type: 3}
+    profileKo: {fileID: 21300000, guid: d71194b9f900f584faf402d6280d4376, type: 3}
+    profileEn: {fileID: 21300000, guid: 1e05ba10e18df59499ff7c7dedeae3bb, type: 3}
     storyKo: {fileID: 0}
     storyEn: {fileID: 0}
   - name: "\uC591\uB9D0 \uC544\uC800\uC528"
     eCustomer: 12
-    profile: {fileID: 21300000, guid: b5c7140e89c97f6439b766831e9140dd, type: 3}
+    profileKo: {fileID: 21300000, guid: 406cee859dcd7274185c0d2ff879e890, type: 3}
+    profileEn: {fileID: 21300000, guid: 435c367ec1f0c67458e421c02feec553, type: 3}
     storyKo: {fileID: 0}
     storyEn: {fileID: 0}
   - name: "\uD50C\uB85C\uB9AC\uC548"
     eCustomer: 13
-    profile: {fileID: 21300000, guid: b5c7140e89c97f6439b766831e9140dd, type: 3}
+    profileKo: {fileID: 21300000, guid: 38b699804c4b30a4c971a115f53b1b42, type: 3}
+    profileEn: {fileID: 21300000, guid: c0684861ab34e3845b11c3fe680a5d8b, type: 3}
     storyKo: {fileID: 0}
     storyEn: {fileID: 0}
   - name: "\uB3C4\uC8FC"
     eCustomer: 14
-    profile: {fileID: 21300000, guid: b5c7140e89c97f6439b766831e9140dd, type: 3}
+    profileKo: {fileID: 21300000, guid: b07635dd8dbf3e945bafa4cf8cc55520, type: 3}
+    profileEn: {fileID: 21300000, guid: 8f2ed982824234549913e298974776ee, type: 3}
+    storyKo: {fileID: 0}
+    storyEn: {fileID: 0}
+  - name: "\uB9AC\uC2DC\uB4DC"
+    eCustomer: 15
+    profileKo: {fileID: 21300000, guid: 8ab487d0b23fd074e8e164cc2b15e6da, type: 3}
+    profileEn: {fileID: 21300000, guid: 8f291d82d8a40fc4d9dea0f44b23a795, type: 3}
     storyKo: {fileID: 0}
     storyEn: {fileID: 0}
   - name: "\uC2DD\uD488\uC704\uC0DD\uAD00\uB9AC\uC6D0"
     eCustomer: 16
-    profile: {fileID: 21300000, guid: b5c7140e89c97f6439b766831e9140dd, type: 3}
+    profileKo: {fileID: 21300000, guid: 843df2a9ae2b4bd41ae7499c59a6ccb8, type: 3}
+    profileEn: {fileID: 21300000, guid: 44b0d30e5857f4643af14888f780d78b, type: 3}
     storyKo: {fileID: 0}
     storyEn: {fileID: 0}
   - name: ???
     eCustomer: 17
-    profile: {fileID: 21300000, guid: b5c7140e89c97f6439b766831e9140dd, type: 3}
+    profileKo: {fileID: 21300000, guid: b5c7140e89c97f6439b766831e9140dd, type: 3}
+    profileEn: {fileID: 21300000, guid: b5c7140e89c97f6439b766831e9140dd, type: 3}
     storyKo: {fileID: 0}
     storyEn: {fileID: 0}
   isCustomerCheck: 0
