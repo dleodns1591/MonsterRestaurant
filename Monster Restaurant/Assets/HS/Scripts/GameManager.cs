@@ -121,6 +121,7 @@ public class GameManager : Singleton<GameManager>
             if (satisfaction < 0)
             {
                 satisfaction = 0;
+                ReturnOrder();
                 OrderManager.Instance.satisfactionManager.LoopStop();
             }
         }
