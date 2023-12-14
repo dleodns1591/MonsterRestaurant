@@ -24,6 +24,8 @@ public class ChatSystem : MonoBehaviour
     [SerializeField] Button leftBtn;
     [SerializeField] Button rightBtn;
 
+    [SerializeField] Text challengText;
+
     [Header("¿£µù")]
     [SerializeField] CanvasGroup endingGroup;
     [SerializeField] GameObject endingWindow;
@@ -62,6 +64,17 @@ public class ChatSystem : MonoBehaviour
 
             case 1:
                 chatText.text = chatList[0].koChat;
+                break;
+        }
+
+        switch(chatNum)
+        {
+            case 3:
+                challengText.gameObject.SetActive(true);
+                break;
+
+            default:
+                challengText.gameObject.SetActive(false);
                 break;
         }
     }

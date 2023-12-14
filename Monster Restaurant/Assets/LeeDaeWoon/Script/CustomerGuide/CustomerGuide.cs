@@ -74,7 +74,6 @@ public class CustomerGuide : MonoBehaviour
     public Button backBtn;
     [SerializeField] Image bottomArrow;
 
-
     void Start()
     {
         CustomerBoxBtns();
@@ -97,6 +96,8 @@ public class CustomerGuide : MonoBehaviour
             customerBox.transform.GetChild(i).GetComponent<Image>().sprite = customerList[i].profile;
     }
 
+    #region 손님 도감 버튼 상호작용 관련 코드
+
     // 일반 손님 클릭
     void GeneralClick()
     {
@@ -110,7 +111,6 @@ public class CustomerGuide : MonoBehaviour
     void ArrowClick(List<Guide> customerList, bool isArrow)
     {
         SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
-
 
         for (int i = 0; i < 4; i++)
         {
@@ -259,4 +259,5 @@ public class CustomerGuide : MonoBehaviour
             customerStoryParent.SetActive(false);
         });
     }
+    #endregion
 }
