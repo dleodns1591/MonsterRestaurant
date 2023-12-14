@@ -37,7 +37,8 @@ public class Guide
     public string name;
     public ECustomer eCustomer;
     public Sprite profile;
-    public Sprite story;
+    public Sprite storyKo;
+    public Sprite storyEn;
 }
 
 public class CustomerGuide : MonoBehaviour
