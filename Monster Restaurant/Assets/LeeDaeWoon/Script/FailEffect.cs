@@ -41,6 +41,7 @@ public class FailEffect : MonoBehaviour
                 mainCam.DOShakePosition(0.5f, 1).OnComplete(() =>
                 {
                     mainCam.transform.position = new Vector3(0, 0, mainCam.transform.position.z);
+                    Effect(Color.black, 0.2f, 0.2f, 1, true, false);
                 });
             }
         }

@@ -147,6 +147,7 @@ public class GameManager : Singleton<GameManager>
     public Action ReturnSpecialOrder;
     public Action ReturnOrder;
     public Action ReturnCook;
+    public Action<Color, float, float, float, bool, bool> PvpFailEffect;
     public Action<EMainMatarials, List<ESubMatarials>, int, ECookingStyle, int> ConditionSetting;
     public Action ShopAppearProd;
     public Action BuyTalking;

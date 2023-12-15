@@ -27,6 +27,7 @@ public class Packaging : MonoBehaviour
             if(check > 0)
             {
                 packQuantity--;
+                GameManager.Instance.PvpFailEffect(Color.red, 0.6f, 0.95f, 0.15f, false, true);
             }
             else
             {
