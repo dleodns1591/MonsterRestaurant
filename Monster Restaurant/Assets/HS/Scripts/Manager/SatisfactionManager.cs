@@ -32,6 +32,11 @@ public class SatisfactionManager : MonoBehaviour
             StartCoroutine(SatisfactionUpdate());
     }
 
+    public void EmotionTextUpdate()
+    {
+        EmotionText.text = $"{GameManager.Instance.Satisfaction}%";
+    }
+
     public void LoopStop()
     {
         StopAllCoroutines();

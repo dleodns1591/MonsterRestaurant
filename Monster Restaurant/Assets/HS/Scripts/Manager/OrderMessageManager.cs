@@ -10,6 +10,7 @@ public class OrderMessageManager : MonoBehaviour
     [Header("손님의 대사 관련")]
     [SerializeField] private UIText OrderText;
     [SerializeField] private GameObject NameBallon;
+    [SerializeField] private GameObject OrderTimer;
     private Image SpeechBallon => OrderText.transform.parent.GetComponent<Image>();
     private Text NameBallonText => NameBallon.transform.GetComponentInChildren<Text>();
 
@@ -44,6 +45,7 @@ public class OrderMessageManager : MonoBehaviour
     {
         SpeechBallon.gameObject.SetActive(isActive);
         NameBallon.gameObject.SetActive(isActive);
+        OrderTimer.gameObject.SetActive(isActive);
     }
 
     public void NameBallonSetting(string name)
