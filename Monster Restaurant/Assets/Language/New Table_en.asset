@@ -302,6 +302,10 @@ MonoBehaviour:
     m_Localized: Sticker
     m_Metadata:
       m_Items: []
+  - m_Id: 55685668695912448
+    m_Localized: (Challenge Mode)
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -52,11 +52,13 @@ public class VideoSceneManager : MonoBehaviour
         if (isEnglish == false)
         {
             LanguageText.text = "   한국어 | 영어";
+            LanguageManager.instance.LanguageSetting(1);
             SaveManager.Instance.isEnglish = false;
         }
         else
         {
             LanguageText.text = "Korean | English";
+            LanguageManager.instance.LanguageSetting(0);
             SaveManager.Instance.isEnglish = true;
         }
     }

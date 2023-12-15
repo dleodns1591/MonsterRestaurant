@@ -36,8 +36,10 @@ public class Guide
 
     public string name;
     public ECustomer eCustomer;
-    public Sprite profile;
-    public Sprite story;
+    public Sprite profileKo;
+    public Sprite profileEn;
+    public Sprite storyKo;
+    public Sprite storyEn;
 }
 
 public class CustomerGuide : MonoBehaviour
@@ -74,9 +76,12 @@ public class CustomerGuide : MonoBehaviour
     public Button backBtn;
     [SerializeField] Image bottomArrow;
 
+    LanguageManager languageManager;
 
     void Start()
     {
+        languageManager = LanguageManager.instance;
+
         CustomerBoxBtns();
         CustomerStoryBtns();
 
@@ -88,13 +93,45 @@ public class CustomerGuide : MonoBehaviour
     void Update()
     {
         BottomArrowFade();
+        UndeterminedSetting();
     }
 
     // 일반 손님 또는 이벤트 손님 적용
     void CustomerBox(List<Guide> customerList)
     {
         for (int i = 0; i < customerBox.transform.childCount; i++)
-            customerBox.transform.GetChild(i).GetComponent<Image>().sprite = customerList[i].profile;
+        {
+            switch (languageManager.languageNum)
+            {
+                case 0:
+                    customerBox.transform.GetChild(i).GetComponent<Image>().sprite = customerList[i].profileEn;
+                    break;
+
+                case 1:
+                    customerBox.transform.GetChild(i).GetComponent<Image>().sprite = customerList[i].profileKo;
+                    break;
+            }
+        }
+    }
+
+    #region 손님 도감 버튼 상호작용 관련 코드
+
+    // 미정 클릭
+    void UndeterminedSetting()
+    {
+        for (int i = 0; i < customerBox.transform.childCount; i++)
+        {
+            switch (generalList[i].eCustomer)
+            {
+                case Guide.ECustomer.Undetermined:
+                    customerBox.transform.GetChild(i).GetComponent<Image>().raycastTarget = false;
+                    break;
+
+                default:
+                    customerBox.transform.GetChild(i).GetComponent<Image>().raycastTarget = true;
+                    break;
+            }
+        }
     }
 
     // 일반 손님 클릭
@@ -110,7 +147,6 @@ public class CustomerGuide : MonoBehaviour
     void ArrowClick(List<Guide> customerList, bool isArrow)
     {
         SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
-
 
         for (int i = 0; i < 4; i++)
         {
@@ -250,10 +286,14 @@ public class CustomerGuide : MonoBehaviour
 
     void CustomerStoryBtns()
     {
+        // 돌아가기 버튼을 눌렀을 시
         backBtn.onClick.AddListener(() =>
         {
+            SoundManager.instance.PlaySoundClip("Button_SFX", SoundType.SFX);
+
             customerBoxParent.SetActive(true);
             customerStoryParent.SetActive(false);
         });
     }
+    #endregion
 }

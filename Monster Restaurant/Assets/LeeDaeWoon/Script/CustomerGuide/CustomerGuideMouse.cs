@@ -20,7 +20,7 @@ public class CustomerGuideMouse : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        customerGuide.rectTransform.sizeDelta = new Vector2(400, 369);
+        customerGuide.rectTransform.sizeDelta = new Vector2(400, 353);
     }
 
     public void OnPointerExit(PointerEventData eventData)

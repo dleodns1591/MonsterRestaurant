@@ -29,9 +29,6 @@ public class LanguageManager : MonoBehaviour
 
     void Update()
     {
-        if (!SaveManager.Instance.isEnglish)
-            languageNum = 1;
-        else
-            languageNum = 0;
+
     }
 }

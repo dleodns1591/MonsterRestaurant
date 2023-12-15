@@ -11,8 +11,11 @@ public class CustomerBox : MonoBehaviour
     CustomerGuide customerGuide = null;
     bool isCustomerType = false;
 
+    LanguageManager languageManager;
+
     void Start()
     {
+        languageManager = LanguageManager.instance;
         customerGuide = CustomerGuide.instance;
 
         Btn();
@@ -60,14 +63,32 @@ public class CustomerBox : MonoBehaviour
                 if (!isCustomerType)
                 {
                     var eGeneraCustomer = customerGuide.generalList[num];
-                    customerGuide.story.sprite = eGeneraCustomer.story;
+                    switch (languageManager.languageNum)
+                    {
+                        case 0:
+                            customerGuide.story.sprite = eGeneraCustomer.storyEn;
+                            break;
+
+                        case 1:
+                            customerGuide.story.sprite = eGeneraCustomer.storyKo;
+                            break;
+                    }
 
                 }
 
                 else
                 {
                     var eEventCustomer = customerGuide.eventList[num];
-                    customerGuide.story.sprite = eEventCustomer.story;
+                    switch (languageManager.languageNum)
+                    {
+                        case 0:
+                            customerGuide.story.sprite = eEventCustomer.storyEn;
+                            break;
+
+                        case 1:
+                            customerGuide.story.sprite = eEventCustomer.storyKo;
+                            break;
+                    }
                 }
 
                 CustomerStory();
