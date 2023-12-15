@@ -10724,38 +10724,38 @@ MonoBehaviour:
     eCustomer: 11
     profileKo: {fileID: 21300000, guid: d71194b9f900f584faf402d6280d4376, type: 3}
     profileEn: {fileID: 21300000, guid: 1e05ba10e18df59499ff7c7dedeae3bb, type: 3}
-    storyKo: {fileID: 0}
-    storyEn: {fileID: 0}
+    storyKo: {fileID: 21300000, guid: 8e26a9886d1aa2b41a4cd3ebd7b9b8b7, type: 3}
+    storyEn: {fileID: 21300000, guid: 086219123d4e5df44b33633234a644fe, type: 3}
   - name: "\uC591\uB9D0 \uC544\uC800\uC528"
     eCustomer: 12
     profileKo: {fileID: 21300000, guid: 406cee859dcd7274185c0d2ff879e890, type: 3}
     profileEn: {fileID: 21300000, guid: 435c367ec1f0c67458e421c02feec553, type: 3}
-    storyKo: {fileID: 0}
-    storyEn: {fileID: 0}
+    storyKo: {fileID: 21300000, guid: 563d541d81097b844b69607d5fbb2fff, type: 3}
+    storyEn: {fileID: 21300000, guid: 063217334ff7d3d40a09fd26f418b17f, type: 3}
   - name: "\uD50C\uB85C\uB9AC\uC548"
     eCustomer: 13
     profileKo: {fileID: 21300000, guid: 38b699804c4b30a4c971a115f53b1b42, type: 3}
     profileEn: {fileID: 21300000, guid: c0684861ab34e3845b11c3fe680a5d8b, type: 3}
-    storyKo: {fileID: 0}
-    storyEn: {fileID: 0}
+    storyKo: {fileID: 21300000, guid: 74eecb52e9f13a84db63aaa0dfe8a479, type: 3}
+    storyEn: {fileID: 21300000, guid: 959926ce96fb79d40ab3ec462e965b4e, type: 3}
   - name: "\uB3C4\uC8FC"
     eCustomer: 14
     profileKo: {fileID: 21300000, guid: b07635dd8dbf3e945bafa4cf8cc55520, type: 3}
     profileEn: {fileID: 21300000, guid: 8f2ed982824234549913e298974776ee, type: 3}
-    storyKo: {fileID: 0}
-    storyEn: {fileID: 0}
+    storyKo: {fileID: 21300000, guid: c476ccfadaa2f5e4096a8a4389fad10f, type: 3}
+    storyEn: {fileID: 21300000, guid: e335b950d0092ca4c8acf4d807a8436e, type: 3}
   - name: "\uB9AC\uC2DC\uB4DC"
     eCustomer: 15
     profileKo: {fileID: 21300000, guid: 8ab487d0b23fd074e8e164cc2b15e6da, type: 3}
     profileEn: {fileID: 21300000, guid: 8f291d82d8a40fc4d9dea0f44b23a795, type: 3}
-    storyKo: {fileID: 0}
-    storyEn: {fileID: 0}
+    storyKo: {fileID: 21300000, guid: 24a2cbf5587764f4783177a20221f4da, type: 3}
+    storyEn: {fileID: 21300000, guid: cfb508ad7c8a3724c82ed93d8869e354, type: 3}
   - name: "\uC2DD\uD488\uC704\uC0DD\uAD00\uB9AC\uC6D0"
     eCustomer: 16
     profileKo: {fileID: 21300000, guid: 843df2a9ae2b4bd41ae7499c59a6ccb8, type: 3}
     profileEn: {fileID: 21300000, guid: 44b0d30e5857f4643af14888f780d78b, type: 3}
-    storyKo: {fileID: 0}
-    storyEn: {fileID: 0}
+    storyKo: {fileID: 21300000, guid: e8cf03f78d210814a85e99f63d81bb1f, type: 3}
+    storyEn: {fileID: 21300000, guid: 8950d7dc5428b6c43ae14b000250b375, type: 3}
   - name: ???
     eCustomer: 17
     profileKo: {fileID: 21300000, guid: b5c7140e89c97f6439b766831e9140dd, type: 3}
