@@ -16,11 +16,9 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
     public Action CountPlus;
 
     [SerializeField] private GameObject DisConnectBackground;
-    [SerializeField] private Image DisConnectIcon;
+    [SerializeField] private GameObject DisConnectIcon;
     [SerializeField] private TextMeshProUGUI CurStateText;
     [SerializeField] private GameObject Managers;
-
-    [SerializeField] private Sprite[] DisConnectIconSpr;
 
     private bool DisconnectCorutineDelay;
 
@@ -53,11 +51,6 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRandomOrCreateRoom();
     }
 
-    void asd()
-    {
-        PhotonNetwork.JoinRandomOrCreateRoom();
-    }
-
     public override void OnJoinedLobby()
     {
         print("로비");
@@ -80,7 +73,7 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
             CurStateText.gameObject.SetActive(true);
 
             DisconnectCorutineDelay = true;
-            StartCoroutine(ConnectTry(0));
+            StartCoroutine(ConnectTry());
         }
     }
 
@@ -94,24 +87,15 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
     {
         print("방 접속!");
         PhotonNetwork.CurrentRoom.MaxPlayers = 2;
-        StartCoroutine(FindPlayer(0));
+        StartCoroutine(FindPlayer());
     }
-    public IEnumerator FindPlayer(int IconSpr)
+    public IEnumerator FindPlayer()
     {
         if (PhotonNetwork.CurrentRoom.PlayerCount != PhotonNetwork.CurrentRoom.MaxPlayers)
         {
-            DisConnectIcon.sprite = DisConnectIconSpr[IconSpr];
             CurStateText.text = "상대를 찾고 있습니다...";
-            if (IconSpr + 1 == DisConnectIconSpr.Length)
-            {
                 yield return new WaitForSecondsRealtime(0.3f);
-                StartCoroutine(FindPlayer(0));
-            }
-            else
-            {
-                yield return new WaitForSecondsRealtime(0.3f);
-                StartCoroutine(FindPlayer(IconSpr + 1));
-            }
+                StartCoroutine(FindPlayer());
         }
         else
         {
@@ -130,7 +114,7 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
         yield return new WaitForSecondsRealtime(0.7f);
     }
 
-    public IEnumerator ConnectTry(int IconSpr)
+    public IEnumerator ConnectTry()
     {
         print("연결중...");
 
@@ -138,18 +122,9 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
 
         if (Application.internetReachability == NetworkReachability.NotReachable)
         {
-            DisConnectIcon.sprite = DisConnectIconSpr[IconSpr];
             CurStateText.text = "인터넷 접속 중...";
-            if (IconSpr + 1 == DisConnectIconSpr.Length)
-            {
                 yield return new WaitForSecondsRealtime(0.7f);
-                StartCoroutine(ConnectTry(0));
-            }
-            else
-            {
-                yield return new WaitForSecondsRealtime(0.7f);
-                StartCoroutine(ConnectTry(IconSpr + 1));
-            }
+                StartCoroutine(ConnectTry());
         }
         else
         {
