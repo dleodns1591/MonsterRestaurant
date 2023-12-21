@@ -37,16 +37,6 @@ public class EndingBook : MonoBehaviour
 
     void Start()
     {
-        SaveManager.Instance.isEndingOpens[(int)EendingType.Eating] = true;
-        SaveManager.Instance.isEndingOpens[(int)EendingType.Loser] = true;
-        SaveManager.Instance.isEndingOpens[(int)EendingType.Salve] = true;
-        SaveManager.Instance.isEndingOpens[(int)EendingType.Mine] = true;
-        SaveManager.Instance.isWormHoleFirstBuy = true;
-        SaveManager.Instance.isEndingOpens[(int)EendingType.WormHole_SpaceAdventure] = true;
-        SaveManager.Instance.isEndingOpens[(int)EendingType.WormHole_FindHouse] = true;
-        SaveManager.Instance.isEndingOpens[(int)EendingType.Dragon] = true;
-        SaveManager.Instance.isEndingOpens[(int)EendingType.LookStar] = true;
-
         EndingBtns();
     }
 

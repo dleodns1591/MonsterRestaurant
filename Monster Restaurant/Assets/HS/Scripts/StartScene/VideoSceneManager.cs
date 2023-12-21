@@ -55,6 +55,7 @@ public class VideoSceneManager : MonoBehaviour
             LanguageManager.instance.LanguageSetting(1);
             SaveManager.Instance.isEnglish = false;
         }
+
         else
         {
             LanguageText.text = "Korean | English";

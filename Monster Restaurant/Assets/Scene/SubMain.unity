@@ -3523,9 +3523,12 @@ MonoBehaviour:
     koChat: "\uBE60\uB974\uAC8C \uBD80\uD0C1\uB4DC\uB9B4\uAC8C\uC694."
     enChat: I'll ask you quickly.
   - num: 4
+    koChat: "\uC2E4\uB825\uC744 \uC778\uC815\uBC1B\uACE0 \uC2F6\uC5B4\uC694."
+    enChat: I want to be recognized for my skills.
+  - num: 5
     koChat: "\uBC14\uAFB8\uACE0 \uC2F6\uC740 \uAC8C \uC788\uB294\uB370\uC694."
     enChat: I want to change something.
-  - num: 5
+  - num: 6
     koChat: "\uC548\uB155\uD788 \uACC4\uC138\uC694."
     enChat: Goodbye.
   chatText: {fileID: 531821882}
@@ -6489,7 +6492,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.9969, y: -44}
+  m_AnchoredPosition: {x: -6.9969, y: -70}
   m_SizeDelta: {x: 627.2261, y: 388.6202}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2107456963
@@ -6514,10 +6517,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 0f8ca638fb7b1ec42a0f772516b6d313, type: 3}
-    m_FontSize: 50
+    m_FontSize: 45
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 5
+    m_MinSize: 4
     m_MaxSize: 94
     m_Alignment: 4
     m_AlignByGeometry: 0

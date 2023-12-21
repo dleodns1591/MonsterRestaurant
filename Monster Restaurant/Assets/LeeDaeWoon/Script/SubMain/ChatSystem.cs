@@ -113,6 +113,10 @@ public class ChatSystem : MonoBehaviour
                     break;
 
                 case 4:
+                    SceneManager.LoadScene("OnlinePvp");
+                    break;
+
+                case 5:
                     settingGroup.alpha = 1;
 
                     SettingSystem.instance.amongSetting.transform.DOLocalMoveX(0, 0).SetEase(Ease.Linear);
@@ -122,7 +126,7 @@ public class ChatSystem : MonoBehaviour
                     settingWidnow.transform.DOLocalMoveY(0, 0.2f).SetEase(Ease.Linear);
                     break;
 
-                case 5:
+                case 6:
                     exitGroup.alpha = 1;
 
                     exitGroup.gameObject.SetActive(true);
