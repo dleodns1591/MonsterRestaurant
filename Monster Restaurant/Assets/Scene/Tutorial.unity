@@ -14611,6 +14611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OrderText: {fileID: 1947476152}
   NameBallon: {fileID: 693261244}
+  OrderTimer: {fileID: 0}
 --- !u!1 &298876139
 GameObject:
   m_ObjectHideFlags: 0
@@ -16497,6 +16498,7 @@ MonoBehaviour:
   Obj: {fileID: 875892307}
   ObjImage: {fileID: 1616850065}
   explanation: "\uD2B9\uBCC4\uD55C \uC2DD\uBB3C \uAC19\uB2E4."
+  explanationEnglish: 
   soldOutImg: {fileID: 792434934}
 --- !u!222 &332461127
 CanvasRenderer:
@@ -35753,6 +35755,50 @@ RectTransform:
   m_AnchoredPosition: {x: -1245.2, y: -119.66}
   m_SizeDelta: {x: 1184, y: 644.8}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &659347161
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 659347163}
+  - component: {fileID: 659347162}
+  m_Layer: 0
+  m_Name: LanguageSetting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &659347162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659347161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ea653d834729f34eb33d5464f991daa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &659347163
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659347161}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &659779061
 GameObject:
   m_ObjectHideFlags: 0
@@ -58810,6 +58856,7 @@ MonoBehaviour:
   Obj: {fileID: 63201118}
   ObjImage: {fileID: 404920494}
   explanation: "\uD2B9\uBCC4\uD55C \uC2DD\uBB3C \uAC19\uB2E4."
+  explanationEnglish: 
   soldOutImg: {fileID: 1129109000}
 --- !u!222 &1039921463
 CanvasRenderer:
@@ -70172,6 +70219,7 @@ MonoBehaviour:
   Obj: {fileID: 0}
   ObjImage: {fileID: 1627710343}
   explanation: "\uC218\uC0C1\uD558\uAC8C \uC0DD\uAE34 \uBB3C\uAC74\uC774\uB2E4."
+  explanationEnglish: 
   soldOutImg: {fileID: 1889212264}
 --- !u!222 &1233946779
 CanvasRenderer:
@@ -115992,6 +116040,7 @@ MonoBehaviour:
   Obj: {fileID: 540218835}
   ObjImage: {fileID: 53342174}
   explanation: "\uD2B9\uBCC4\uD55C \uC2DD\uBB3C \uAC19\uB2E4."
+  explanationEnglish: 
   soldOutImg: {fileID: 1822587921}
 --- !u!1 &2081503124
 GameObject:

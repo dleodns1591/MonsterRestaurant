@@ -10,9 +10,11 @@ public class FadeInOut : MonoBehaviour
     void Awake() => instance = this;
 
     public float fadeTime = 0;
+    LanguageManager languageManager;
 
     void Start()
     {
+        languageManager = LanguageManager.instance;
         Fade();
     }
 

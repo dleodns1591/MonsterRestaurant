@@ -23,6 +23,7 @@ public class VideoSceneManager : MonoBehaviour
     bool isEndLine = false;
     bool isFinal = false;
     bool isClick = false;
+    bool isFade = false;
     private void Start()
     {
         PlayerPrefs.SetInt("FirstConnect", 0);
@@ -53,26 +54,24 @@ public class VideoSceneManager : MonoBehaviour
         {
             LanguageText.text = "   한국어 | 영어";
             LanguageManager.instance.LanguageSetting(1);
-            SaveManager.Instance.isEnglish = false;
         }
 
         else
         {
             LanguageText.text = "Korean | English";
             LanguageManager.instance.LanguageSetting(0);
-            SaveManager.Instance.isEnglish = true;
         }
     }
 
     public void NextStory()
     {
-        if(isEndLine == true)
+        if (isEndLine == true)
             isClick = true;
 
 
-        if(isFinal == true)
+        if (isFinal == true)
         {
-            if (SaveManager.Instance.isEnglish == false)
+            if (LanguageManager.instance.languageNum == 1)
                 videoPlayer.clip = VideoKorean;
             else
                 videoPlayer.clip = VideoEnglish;
@@ -86,7 +85,11 @@ public class VideoSceneManager : MonoBehaviour
     IEnumerator StoryDelay()
     {
         isEndLine = false;
-        FadeInOut.instance.Fade();
+        if (!isFade)
+        {
+            isFade = true;
+            FadeInOut.instance.Fade();
+        }
         StoryImg.DOFade(1, FadeInOut.instance.fadeTime);
         yield return new WaitForSeconds(FadeInOut.instance.fadeTime);
 
@@ -100,7 +103,7 @@ public class VideoSceneManager : MonoBehaviour
             for (int i = 0; i < line.Length; i++)
             {
                 StoryExplanTxt.text = "";
-                if (SaveManager.Instance.isEnglish == false)
+                if (LanguageManager.instance.languageNum == 1)
                 {
                     StoryExplanTxt.DOText(line[i], 0.05f * line[i].Length).OnComplete(() =>
                     {
@@ -118,8 +121,8 @@ public class VideoSceneManager : MonoBehaviour
                 {
                     yield return null;
                 }
-                    isClick = false;
-                    isEndLine = false;
+                isClick = false;
+                isEndLine = false;
             }
 
             isFinal = true;

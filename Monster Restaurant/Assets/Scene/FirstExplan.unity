@@ -427,6 +427,7 @@ MonoBehaviour:
   isEndingOpens: 0000000000000000
   isWormHoleFirstBuy: 0
   isChallenge: 0
+  isPvp: 0
   isEnglish: 0
 --- !u!4 &129614839
 Transform:
@@ -932,7 +933,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 69.99997}
-  m_SizeDelta: {x: 1000, y: 500}
+  m_SizeDelta: {x: 1600, y: 500}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &587921565
 CanvasRenderer:
