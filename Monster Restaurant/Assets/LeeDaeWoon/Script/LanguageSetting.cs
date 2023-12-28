@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
+using UnityEngine.Localization;
 
 public class LanguageSetting : MonoBehaviour
 {
@@ -10,10 +11,6 @@ public class LanguageSetting : MonoBehaviour
     void Start()
     {
         languageManager = LanguageManager.instance;
-    }
-
-    void Update()
-    {
-
+        LocalizationSettings.SelectedLocale = languageManager.selectedLanguage[languageManager.languageNum];
     }
 }
