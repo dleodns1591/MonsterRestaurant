@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Npc;
 using PlayerFSM;
 using UnityEngine;
 
@@ -13,8 +14,11 @@ namespace FSMManager
         MapSelect
     }
 
-    public class GameManager : MonoBehaviour
+    public class GameManager : Singleton<GameManager>
     {
+
+        public PlayerFSM.PlayerFSM player;
+
         public FSMMachine<GameManager> FSMMachine = new FSMMachine<GameManager>();
 
         private void Awake()
@@ -22,7 +26,6 @@ namespace FSMManager
             RegistFSMState();
 
             FSMMachine.FSMStart(GameState.Working);
-
         }
 
         private void Update()
@@ -56,6 +59,7 @@ namespace FSMManager
         }
         public override void OnEnter()
         {
+            NpcManager.Instance.EntryNpc();
         }
         public override void OnUpdate()
         {

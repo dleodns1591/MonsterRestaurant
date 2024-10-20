@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 
 namespace PlayerFSM
@@ -20,12 +18,39 @@ namespace PlayerFSM
 
         public FSMMachine<PlayerFSM> FSMMachine = new FSMMachine<PlayerFSM>();
 
+        private SpriteRenderer playerSr;
+
+        private InteractionObject curInteraction;
+
+        public InteractionObject CurNpc
+        {
+            get
+            {
+                return curInteraction;
+            }
+
+            set
+            {
+
+                if(curInteraction != null)
+                {
+                    curInteraction.BtnImgEnable(false);
+                }
+
+                curInteraction = value;
+                curInteraction.BtnImgEnable(true);
+
+            }
+        }
+
+
         private void Awake()
         {
             RegistFSMState();
 
             FSMMachine.FSMStart(PlayerState.Counter);
 
+            playerSr = gameObject.GetComponentInChildren<SpriteRenderer>();
         }
 
         private void Update()
@@ -58,8 +83,17 @@ namespace PlayerFSM
 
             transform.Translate(moveVec * moveSpd * Time.deltaTime);
 
-            // 캐릭터 회전//
+            // 캐릭터 회전
+            var playerFlip = (moveVec.x < 0);
+            playerSr.flipX = playerFlip;
+        }
 
+        public void Interaction()
+        {
+            if (Input.GetKeyDown(KeyCode.S) && curInteraction != null)
+            {
+                curInteraction.InteractionEvent();
+            }
         }
 
 
@@ -76,6 +110,8 @@ namespace PlayerFSM
         public override void OnUpdate()
         {
             root.Move();
+            root.Interaction();
+
         }
 
 
@@ -96,6 +132,7 @@ namespace PlayerFSM
         public override void OnUpdate()
         {
             root.Move();
+            root.Interaction();
         }
         public override void OnExit()
         {

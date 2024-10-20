@@ -4,19 +4,47 @@ using UnityEngine;
 
 namespace Npc
 {
-    public class Npc : MonoBehaviour
+    public class Npc : InteractionObject
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+        private GameObject npcObj;
 
+        private bool isSpawned = false;
+
+        public bool IsSpawned => isSpawned;
+
+
+        protected override void Awake()
+        {
+            base.Awake();
+            Init();
         }
 
-        // Update is called once per frame
-        void Update()
+        private void Init()
         {
+            npcObj = transform.GetChild(0).gameObject;
 
+            npcObj.SetActive(false);
+            interactionBtnObj.SetActive(false);
+
+            isSpawned = false;
+            isInteractionEnable = false;
+        }
+
+        public void Spawn()
+        {
+            npcObj.SetActive(true);
+
+            isSpawned = true;
+            isInteractionEnable = true;
+        }
+
+        public override void InteractionEvent()
+        {
+            base.InteractionEvent();
+
+            npcObj.SetActive(false);
+            isSpawned = false;
+            isInteractionEnable = false;
         }
     }
-
 }
